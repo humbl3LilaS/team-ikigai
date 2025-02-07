@@ -1,4 +1,5 @@
 import { pgEnum, pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 
 export const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
 
