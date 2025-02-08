@@ -6,6 +6,10 @@ export const CLIENT_NAV_ITEMS = [
         href: "/",
     },
     { title: "About", href: "/about" },
+    {
+        title: "Contact Us",
+        href: "/contact",
+    },
 ];
 
 export const adminSideBarItems = [
