@@ -11,7 +11,7 @@ export function AdminSideBar({ children }: { children: ReactNode }) {
         <SidebarProvider open={isOpen} onOpenChange={toggleSideBar}>
             <AppSideBar />
             <main>
-                <SidebarTrigger />
+                <SidebarTrigger className={"size-10"} />
                 {children}
             </main>
         </SidebarProvider>
