@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import Cart from "@/features/cart/components/cart";
 
 const CartPage = () => {
     return (
-        <div className='p-5'>
+        <div className="p-5">
             <h2 className={"text-3xl font-bold font-title"}>Your cart</h2>
-            <Cart/>
+            <Cart />
         </div>
-    )
-}
+    );
+};
 
-export default CartPage
+export default CartPage;
