@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/share/admin/adminSideBar";
+import { AdminSideBar } from "@/components/share/admin/admin-side-bar";
 
 export const metadata: Metadata = {
     title: "Admin Page",
@@ -12,13 +11,5 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return (
-        <SidebarProvider>
-            <AppSidebar />
-            <main>
-                <SidebarTrigger />
-                {children}
-            </main>
-        </SidebarProvider>
-    );
+    return <AdminSideBar>{children}</AdminSideBar>;
 }
