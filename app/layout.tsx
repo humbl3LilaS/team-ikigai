@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = localFont({
     src: "/fonts/interVF.ttf",
@@ -31,6 +32,7 @@ export default function RootLayout({
                 className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
             >
                 {children}
+                <Toaster />
             </body>
         </html>
     );

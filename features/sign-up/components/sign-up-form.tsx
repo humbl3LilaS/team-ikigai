@@ -1,9 +1,8 @@
 "use client";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { SignInSchema, SignInSchemaType } from "@/validation";
+import { IUserInsert, UserInsertSchema } from "@/database/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import {
     Form,
     FormControl,
@@ -11,36 +10,40 @@ import {
     FormItem,
     FormLabel,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import PasswordField from "@/components/share/client/password-field";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import PasswordField from "@/components/share/client/password-field";
-import { Input } from "@/components/ui/input";
-import { signInWithCredential } from "@/features/sign-in/actions/sign-in-actions";
+import { signUp } from "@/features/sign-up/actions/sign-up-action";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
-const SignInForm = () => {
-    const form = useForm<SignInSchemaType>({
-        resolver: zodResolver(SignInSchema),
+const SignUpForm = () => {
+    const form = useForm<IUserInsert>({
+        resolver: zodResolver(UserInsertSchema),
         defaultValues: {
-            email: "",
+            name: "",
             password: "",
+            email: "",
+            phoneNumber: "",
         },
     });
 
-    const router = useRouter();
     const { toast } = useToast();
+    const router = useRouter();
 
-    const onSubmit: SubmitHandler<SignInSchemaType> = async (values) => {
-        const res = await signInWithCredential(values);
+    const onSubmit: SubmitHandler<IUserInsert> = async (values) => {
+        const res = await signUp(values);
         if (!res.success) {
             return toast({
-                title: "Login Failed",
+                title: "Failed to register",
                 description: res.cause.reason,
                 variant: "destructive",
             });
         }
         toast({
-            title: "Successfully Login",
+            title: "Successfully registered",
+            description: "Your account created successfully",
         });
         return router.push("/");
     };
@@ -54,13 +57,43 @@ const SignInForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
+                        name={"name"}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Username</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder={"Eg: Superman"}
+                                        {...field}
+                                    />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
                         name={"email"}
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
                                     <Input
-                                        placeholder={"Eg: Superman"}
+                                        placeholder={"Eg: super@gmail.com"}
+                                        {...field}
+                                    />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name={"phoneNumber"}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder={"Eg: 09123456789"}
                                         {...field}
                                     />
                                 </FormControl>
@@ -95,10 +128,10 @@ const SignInForm = () => {
                                 <Loader2
                                     className={"mr-2 inline-block animate-spin"}
                                 />
-                                <span>Signing In..</span>
+                                <span>Signing Up..</span>
                             </>
                         ) : (
-                            <span>Sign In</span>
+                            <span>Sign Up</span>
                         )}
                     </Button>
                 </form>
@@ -107,4 +140,4 @@ const SignInForm = () => {
     );
 };
 
-export default SignInForm;
+export default SignUpForm;

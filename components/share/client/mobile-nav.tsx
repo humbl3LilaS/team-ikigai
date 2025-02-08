@@ -1,13 +1,17 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { CLIENT_NAV_ITEMS } from "@/constants";
 import Link from "next/link";
 
 const MobileNav = () => {
-    console.log("mobile nav");
     return (
         <Sheet>
             <SheetTrigger
@@ -18,10 +22,10 @@ const MobileNav = () => {
                     <Menu className={"size-20"} />
                 </Button>
             </SheetTrigger>
-            <SheetContent className="w-[270px]">
-                <nav className="flex justify-between flex-col h-full">
-                    <ul className="flex flex-col gap-3">
-                        {CLIENT_NAV_ITEMS.map((item) => (
+            <SheetContent>
+                <SheetHeader className={"sr-only"}>Mobile Menu</SheetHeader>
+                <nav>
+                    {CLIENT_NAV_ITEMS.map((item) => (
                             <li key={item.title}>
                                 <Button asChild>
                                     <Link className="w-full" href={item.href}>
