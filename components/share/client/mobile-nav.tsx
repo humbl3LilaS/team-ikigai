@@ -1,13 +1,17 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { CLIENT_NAV_ITEMS } from "@/constants";
 import Link from "next/link";
 
 const MobileNav = () => {
-    console.log("mobile nav");
     return (
         <Sheet>
             <SheetTrigger asChild={true} className={"md:hidden"}>
@@ -16,6 +20,7 @@ const MobileNav = () => {
                 </Button>
             </SheetTrigger>
             <SheetContent>
+                <SheetHeader className={"sr-only"}>Mobile Menu</SheetHeader>
                 <nav>
                     <ul>
                         {CLIENT_NAV_ITEMS.map((item) => (
