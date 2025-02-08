@@ -35,7 +35,7 @@ const SignInForm = () => {
         <Form {...form}>
             <div
                 className={
-                    "w-full max-w-screen-sm bg-white p-10 shadow-md rounded-md"
+                    "w-full max-w-screen-sm rounded-md bg-white p-10 shadow-md"
                 }
             >
                 <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -47,7 +47,6 @@ const SignInForm = () => {
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
                                     <Input
-                                        className={"form-input"}
                                         placeholder={"Eg: Superman"}
                                         {...field}
                                     />
@@ -71,7 +70,7 @@ const SignInForm = () => {
                         )}
                     />
                     <Button
-                        className={"form-btn mt-4"}
+                        className={"mt-4"}
                         type={"submit"}
                         disabled={
                             form.formState.isSubmitting ||
@@ -81,7 +80,7 @@ const SignInForm = () => {
                         {form.formState.isSubmitting ? (
                             <>
                                 <Loader2
-                                    className={"animate-spin inline-block mr-2"}
+                                    className={"mr-2 inline-block animate-spin"}
                                 />
                                 <span>Signing In..</span>
                             </>
