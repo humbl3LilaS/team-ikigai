@@ -26,7 +26,10 @@ export const signUp = async (
             };
         }
         const hashedPassword = await hash(payload.password, 10);
-        const [new_user] = await db.insert(users).values(payload).returning();
+        const [new_user] = await db
+            .insert(users)
+            .values({ ...payload, password: hashedPassword })
+            .returning();
         if (!new_user) {
             return {
                 success: false,
