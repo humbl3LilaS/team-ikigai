@@ -7,11 +7,12 @@ import { CLIENT_NAV_ITEMS } from "@/constants";
 import Link from "next/link";
 
 const MobileNav = () => {
+    console.log("mobile nav");
     return (
         <Sheet>
             <SheetTrigger asChild={true} className={"md:hidden"}>
-                <Button>
-                    <Menu className={"size-6"} />
+                <Button variant={"link"} className={"size-12"}>
+                    <Menu className={"size-full"} />
                 </Button>
             </SheetTrigger>
             <SheetContent>
