@@ -25,7 +25,8 @@ const MobileNav = () => {
             <SheetContent>
                 <SheetHeader className={"sr-only"}>Mobile Menu</SheetHeader>
                 <nav>
-                    {CLIENT_NAV_ITEMS.map((item) => (
+                    <ul>
+                        {CLIENT_NAV_ITEMS.map((item) => (
                             <li key={item.title}>
                                 <Button asChild>
                                     <Link className="w-full" href={item.href}>
