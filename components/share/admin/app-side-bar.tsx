@@ -1,5 +1,3 @@
-"use client";
-
 import {
     Sidebar,
     SidebarContent,
@@ -13,7 +11,7 @@ import {
 import { adminSideBarItems } from "@/constants";
 import React from "react";
 
-export function AppSidebar() {
+const AppSideBar = () => {
     return (
         <Sidebar>
             <SidebarContent>
@@ -42,4 +40,6 @@ export function AppSidebar() {
             </SidebarContent>
         </Sidebar>
     );
-}
+};
+
+export default AppSideBar;
