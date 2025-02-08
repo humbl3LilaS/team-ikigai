@@ -10,7 +10,8 @@
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
         "db:studio": "drizzle-kit studio",
-        "format": "pnpm exec prettier . --write"
+        "format": "pnpm exec prettier . --write",
+        "seed": "bun database/seed.ts"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.10.0",
@@ -45,6 +46,7 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3",
         "@eslint/js": "^9.20.0",
+        "@faker-js/faker": "^9.4.0",
         "@types/bcryptjs": "^2.4.6",
         "@types/node": "^20",
         "@types/react": "^19",
