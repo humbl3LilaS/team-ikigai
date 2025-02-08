@@ -10,20 +10,37 @@ const MobileNav = () => {
     console.log("mobile nav");
     return (
         <Sheet>
-            <SheetTrigger asChild={true} className={"md:hidden"}>
-                <Button variant={"link"} className={"size-12"}>
-                    <Menu className={"size-full"} />
+            <SheetTrigger
+                asChild={true}
+                className={"md:hidden bg-black text-white"}
+            >
+                <Button variant={"link"} className={"size-full"}>
+                    <Menu className={"size-20"} />
                 </Button>
             </SheetTrigger>
-            <SheetContent>
-                <nav>
-                    <ul>
+            <SheetContent className="w-[270px]">
+                <nav className="flex justify-between flex-col h-full">
+                    <ul className="flex flex-col gap-3">
                         {CLIENT_NAV_ITEMS.map((item) => (
                             <li key={item.title}>
-                                <Link href={item.href}>{item.title}</Link>
+                                <Button asChild>
+                                    <Link className="w-full" href={item.href}>
+                                        {item.title}
+                                    </Link>
+                                </Button>
                             </li>
                         ))}
                     </ul>
+                    <div className="flex flex-col gap-3">
+                        <Button asChild>
+                            <Link href="/sign-in" className="">
+                                Sign In
+                            </Link>
+                        </Button>
+                        <Button asChild>
+                            <Link href="/sign-up">Sign Up</Link>
+                        </Button>
+                    </div>
                 </nav>
             </SheetContent>
         </Sheet>

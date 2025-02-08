@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import PasswordField from "@/components/share/password-field";
+import PasswordField from "@/components/share/client/header";
 import { Input } from "@/components/ui/input";
 import { signInWithCredential } from "@/features/sign-in/actions/sign-in-actions";
 
