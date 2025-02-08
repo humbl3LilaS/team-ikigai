@@ -20,7 +20,7 @@ const PasswordField = ({ onChange, value }: PasswordFieldProps) => {
             <Input
                 value={value}
                 onChange={onChange}
-                placeholder={"Eg: super@gmail.com"}
+                placeholder={"Eg: SUpeR@1232"}
                 type={isPasswordField ? "password" : "text"}
             />
             <Button
