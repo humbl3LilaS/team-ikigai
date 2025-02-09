@@ -1,4 +1,11 @@
-import { Users, Home, ShoppingCart, Laptop, ChartLine, ArrowRightLeft } from "lucide-react";
+import {
+    Users,
+    Home,
+    ShoppingCart,
+    Laptop,
+    ChartLine,
+    ArrowRightLeft,
+} from "lucide-react";
 
 export const CLIENT_NAV_ITEMS = [
     {
@@ -11,8 +18,6 @@ export const CLIENT_NAV_ITEMS = [
         href: "/contact",
     },
 ];
-
-
 
 export const adminSideBarItems = [
     {
