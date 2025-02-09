@@ -1,7 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { Input } from "../ui/input";
-import { Crosshair, Search, X } from "lucide-react";
-import { Button } from "../ui/button";
+import { X } from "lucide-react";
 
 const ClientSearchP = () => {
     return (

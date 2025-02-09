@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
     Sidebar,
     SidebarContent,
@@ -9,7 +11,6 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { adminSideBarItems } from "@/constants";
-import React from "react";
 
 const AppSideBar = () => {
     return (

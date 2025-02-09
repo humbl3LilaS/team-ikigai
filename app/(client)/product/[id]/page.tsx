@@ -1,39 +1,19 @@
-import ProductSlider from "@/components/slider/productSlider";
-import { Button } from "@/components/ui/button";
 import {
-    AppleIcon,
     Battery,
     ComputerIcon,
     Laptop,
     ScreenShare,
     Shrink,
 } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 
-interface Props {
-    params: {
-        id: string;
-    };
-}
+import ProductSlider from "@/components/slider/productSlider";
+import { Button } from "@/components/ui/button";
 
-const page = ({ params }: Props) => {
+const page = () => {
     return (
         <section className="w-full flex flex-col md:flex-row">
-            {/* <Image src="/lenovo.png" alt="product" className='' width={350} height={150}/> */}
-
             <div className="flex p-5 md:w-1/2 md:flex-1 gap-5 sm:gap-10 flex-col">
-                <div className="flex w-full justify-center  gap-3">
-                    <Button className="px-10 rounded-[1000px] bg-black/5 text-black hover:text-white  py-4">
-                        13"
-                    </Button>
-                    <Button className="px-10 rounded-[1000px] bg-black/5 text-black hover:text-white  py-4">
-                        13.5"
-                    </Button>
-                    <Button className="px-10 rounded-[1000px] bg-black/5 text-black hover:text-white  py-4">
-                        15"
-                    </Button>
-                </div>
                 <div className="w-full flex flex-col gap-10">
                     <ProductSlider images={"/lenovo.png"} />
                 </div>
