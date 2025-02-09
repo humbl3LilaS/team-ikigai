@@ -9,28 +9,30 @@ export type ICartItem = {
 
 type Store = {
     cart: ICartItem[];
+    bulkAdd: (payload: ICartItem[]) => void;
     addToCart: (item: ICartItem) => void;
-    increaseQuantity: (payload: ICartItem & { qty?: number }) => void;
+    increaseQuantity: (payload: {
+        pid: string;
+        cid: string;
+        q: number;
+    }) => void;
     reduceQuantity: (payload: ICartItem) => void;
-    removeFromCart: (item: ICartItem) => void;
+    removeFromCart: (item: Omit<ICartItem, "q">) => void;
     emptyCart: () => void;
-};
-
-const getItemsInCart = (): ICartItem[] => {
-    if (typeof window === "undefined") {
-        return [];
-    }
-    const cart = sessionStorage.getItem("cart") ?? `[]`;
-    return JSON.parse(cart);
 };
 
 export const useCartStore = create<Store>()(
     immer((set) => ({
-        cart: getItemsInCart(),
+        cart: [] as ICartItem[],
+        bulkAdd: (payload) =>
+            set((state) => {
+                state.cart = payload;
+                localStorage.setItem("cart", JSON.stringify(state.cart));
+            }),
         addToCart: (payload) =>
             set((state) => {
                 state.cart.push(payload);
-                sessionStorage.setItem("cart", JSON.stringify(state.cart));
+                localStorage.setItem("cart", JSON.stringify(state.cart));
             }),
         increaseQuantity: (payload) =>
             set((state) => {
@@ -38,12 +40,12 @@ export const useCartStore = create<Store>()(
                     if (item.pid === payload.pid && item.cid === payload.cid) {
                         return {
                             ...item,
-                            q: item.q + (payload.qty ?? 1),
+                            q: item.q + payload.q,
                         };
                     }
                     return item;
                 });
-                sessionStorage.setItem("cart", JSON.stringify(state.cart));
+                localStorage.setItem("cart", JSON.stringify(state.cart));
             }),
         reduceQuantity: (payload) =>
             set((state) => {
@@ -56,20 +58,20 @@ export const useCartStore = create<Store>()(
                     }
                     return item;
                 });
-                sessionStorage.setItem("cart", JSON.stringify(state.cart));
+                localStorage.setItem("cart", JSON.stringify(state.cart));
             }),
         removeFromCart: (payload) =>
             set((state) => {
                 state.cart = state.cart.filter(
                     (item) =>
-                        item.pid !== payload.pid && item.cid !== payload.cid,
+                        item.pid !== payload.pid || item.cid !== payload.cid,
                 );
-                sessionStorage.setItem("cart", JSON.stringify(state.cart));
+                localStorage.setItem("cart", JSON.stringify(state.cart));
             }),
         emptyCart: () =>
             set((state) => {
                 state.cart = [];
-                sessionStorage.setItem("cart", JSON.stringify(state.cart));
+                localStorage.setItem("cart", JSON.stringify(state.cart));
             }),
     })),
 );
