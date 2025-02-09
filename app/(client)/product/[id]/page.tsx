@@ -1,5 +1,3 @@
-import ProductSlider from "@/components/slider/productSlider";
-import { Button } from "@/components/ui/button";
 import {
     Battery,
     ComputerIcon,
@@ -7,9 +5,11 @@ import {
     ScreenShare,
     Shrink,
 } from "lucide-react";
-import React from "react";
-import { getProductById } from "@/actions/get-product-by-id";
 import { notFound } from "next/navigation";
+
+import { getProductById } from "@/actions/get-product-by-id";
+import { Button } from "@/components/ui/button";
+import ProductSlider from "@/features/client/product/components/product-slider";
 
 const ProductDetailPage = async ({
     params,
@@ -36,7 +36,13 @@ const ProductDetailPage = async ({
                     <h1>Available in {productInfo.colors.length} colors</h1>
                     <div className="flex gap-2">
                         {productInfo.colors.map((item) => (
-                            <span className={""} key={item.colorHex} />
+                            <span
+                                style={{
+                                    backgroundColor: item.colorHex,
+                                }}
+                                key={item.colorHex}
+                                className={"block size-8 rounded-full"}
+                            />
                         ))}
                     </div>
                 </div>

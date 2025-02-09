@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import React, { useState } from "react";
-import { Button } from "../ui/button";
 import { SkipBack, SkipForward } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
 
 interface Props {
     images: string[];

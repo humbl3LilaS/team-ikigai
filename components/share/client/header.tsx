@@ -1,13 +1,16 @@
 "use client";
 
+import { CarTaxiFrontIcon, Search, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from "../../ui/button";
-import { CarTaxiFrontIcon, Search, User } from "lucide-react";
-import MobileNav from "./mobile-nav";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+
 import ProductSearch from "@/components/searchs/product-search";
+
+import { Button } from "../../ui/button";
+
+import MobileNav from "./mobile-nav";
 
 const Header = () => {
     const pathname = usePathname();
