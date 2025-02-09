@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { AdminSideBar } from "@/components/share/admin/admin-side-bar";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
+import { AdminSideBar } from "@/components/share/admin/admin-side-bar";
 
 export const metadata: Metadata = {
     title: "Admin Page",

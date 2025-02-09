@@ -1,4 +1,5 @@
 import React from "react";
+
 import Cart from "@/features/cart/components/cart";
 
 const CartPage = () => {

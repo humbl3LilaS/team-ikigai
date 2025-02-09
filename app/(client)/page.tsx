@@ -1,7 +1,6 @@
 import Description from "@/components/homeProduct/Description";
 import Hero from "@/components/homeProduct/Hero";
 import ProductList from "@/components/homeProduct/ProductList";
-import Header from "@/components/share/client/header";
 
 export default async function Home() {
     return (

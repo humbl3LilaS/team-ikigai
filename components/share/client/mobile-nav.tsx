@@ -1,18 +1,18 @@
 "use client";
 
+import { Menu } from "lucide-react";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 import {
     Sheet,
     SheetContent,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
 import { CLIENT_NAV_ITEMS } from "@/constants";
-import Link from "next/link";
 
 const MobileNav = () => {
-    console.log("mobile nav");
     return (
         <Sheet>
             <SheetTrigger

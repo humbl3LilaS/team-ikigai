@@ -1,10 +1,11 @@
 "use client";
 
+import { ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
-import React from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
-import { ShoppingCart, ShoppingCartIcon } from "lucide-react";
+import React from "react";
+
+import { Button } from "../ui/button";
 
 const ProductCard = () => {
     const handleAddToCart = () => {};

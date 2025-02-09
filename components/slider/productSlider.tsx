@@ -1,21 +1,12 @@
 "use client";
 
+import { SkipBack, SkipForward } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+
 import { Button } from "../ui/button";
-import {
-    Dot,
-    LucideSkipBack,
-    SkipBack,
-    SkipForward,
-    StepBack,
-} from "lucide-react";
 
-interface Props {
-    images: string; // string[]
-}
-
-const ProductSlider = ({ images }: Props) => {
+const ProductSlider = () => {
     const productImageData = [
         {
             src: "/lenovo.png",
@@ -40,7 +31,6 @@ const ProductSlider = ({ images }: Props) => {
     const handleGoForward = () => {
         setCurIndex((prev) => (prev + 1) % productImageData.length);
     };
-    console.log(curIndex, "cur index is");
     const handleSetIndex = (id: number) => {
         setCurIndex(id);
     };

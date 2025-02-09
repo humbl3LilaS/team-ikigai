@@ -1,9 +1,10 @@
 "use client";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import React, { ReactNode } from "react";
-import { useSidebarState } from "@/hooks/use-sidebar-state";
+
 import AppSideBar from "@/components/share/admin/app-side-bar";
 import DashboardBreadcrumb from "@/components/share/admin/dashboard-breadcrumb";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { useSidebarState } from "@/hooks/use-sidebar-state";
 
 export function AdminSideBar({ children }: { children: ReactNode }) {
     const isOpen = useSidebarState((state) => state.isOpen);
