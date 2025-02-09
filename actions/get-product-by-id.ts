@@ -1,8 +1,9 @@
 "use server";
 
+import { eq } from "drizzle-orm";
+
 import { db } from "@/database/dirzzle";
 import { productColors, productDetails, products } from "@/database/schema";
-import { eq } from "drizzle-orm";
 
 export const getProductById = async (id: string) => {
     try {
@@ -16,6 +17,7 @@ export const getProductById = async (id: string) => {
 
         const colors = await db
             .select({
+                id: productColors.id,
                 colorHex: productColors.colorHex,
                 stock: products.stock,
             })
@@ -26,7 +28,11 @@ export const getProductById = async (id: string) => {
             ...product,
             colors,
         };
-    } catch (err) {
-        console.log(err);
+    } catch {
+        return undefined;
     }
 };
+
+export type RProductInfo = NonNullable<
+    Awaited<ReturnType<typeof getProductById>>
+>;

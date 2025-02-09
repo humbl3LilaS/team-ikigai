@@ -6,3 +6,11 @@ export const SignInSchema = z.object({
 });
 
 export type SignInSchemaType = Zod.infer<typeof SignInSchema>;
+
+export const CheckoutFormSchema = z.object({
+    colorId: z.string().min(1),
+    productId: z.string().min(1),
+    quantity: z.coerce.number().min(1),
+});
+
+export type CheckoutFormSchemaType = Zod.infer<typeof CheckoutFormSchema>;
