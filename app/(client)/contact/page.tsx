@@ -34,6 +34,6 @@ const ContactPage = () => {
       </div>
     </section>
   );
-}
+};
 
 export default ContactPage;
