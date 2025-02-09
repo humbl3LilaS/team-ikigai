@@ -77,7 +77,6 @@ const AccountUpgradeForm = () => {
     const router = useRouter();
 
     const onSubmit = () => {
-        // Simulate API request (Replace with actual request logic)
         setTimeout(() => {
             toast({
                 title: "Upgrade Request Submitted",
@@ -85,11 +84,11 @@ const AccountUpgradeForm = () => {
                     "Your business account upgrade request is being processed.",
             });
 
-            router.push("/dashboard"); // Redirect to dashboard after success
+            router.push("/profile");
         }, 1000);
     };
 
-    if (!hydrated) return null; // Avoid SSR mismatches
+    if (!hydrated) return null;
 
     return (
         <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -130,7 +129,7 @@ const AccountUpgradeForm = () => {
                                 <FormControl>
                                     <Select
                                         onValueChange={field.onChange}
-                                        value={field.value || "Small"} // Prevents hydration issues
+                                        value={field.value || "Small"}
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select size" />

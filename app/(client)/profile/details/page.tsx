@@ -33,6 +33,10 @@ export default function DetailPage() {
         defaultValues: user,
     });
 
+    const selectedRegion = form.watch("region");
+    const filteredCity =
+        regionCityMap[selectedRegion as keyof typeof regionCityMap] || [];
+
     const toggleEditing = () => {
         if (editing) {
             form.reset(user);
@@ -50,13 +54,15 @@ export default function DetailPage() {
     return (
         <div className="max-w-xl mx-auto my-10 p-6 bg-white shadow rounded">
             <div className="flex justify-between items-center mb-4">
-                <Button variant="link">
-                    <Link href="/profile">
-                        <SendToBack className="size-10" />
-                    </Link>
-                </Button>
+                <div className="flex items-center space-x-2">
+                    <Button variant="link">
+                        <Link href="/profile">
+                            <SendToBack className="size-10" />
+                        </Link>
+                    </Button>
 
-                <h1 className="text-2xl font-bold">Profile Details</h1>
+                    <h1 className="text-2xl font-bold">Profile Details</h1>
+                </div>
             </div>
 
             <Form {...form}>
@@ -206,7 +212,7 @@ export default function DetailPage() {
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select a city" />
                                             </SelectTrigger>
-                                            {/* <SelectContent>
+                                            <SelectContent>
                                                 {filteredCity.map((city) => (
                                                     <SelectItem
                                                         key={city}
@@ -215,7 +221,7 @@ export default function DetailPage() {
                                                         {city}
                                                     </SelectItem>
                                                 ))}
-                                            </SelectContent> */}
+                                            </SelectContent>
                                         </Select>
                                     ) : (
                                         <p className="bg-gray-100 p-2 rounded">

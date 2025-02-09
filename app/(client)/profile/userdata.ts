@@ -1,4 +1,4 @@
-import { Order } from "@/features/profile/components/orderList";
+// import { Order } from "@/features/profile/components/orderList";
 
 // placeholderUsers.js
 export type IUser = {
@@ -57,26 +57,26 @@ export const placeholderUsers:IUser[] = [
 };
 
 
-export const orders : Order[]= [
-    {
-        id: "ORD011",
-        orderDate: "2025-02-24",
-        totalAmount: 5222,
-        status: "Processing",
-            orderItems: [
-      {
-        id: "1a",
-        quantity: 2,
-        product: { name: "Product A", price: 20 },
-      },
-      {
-        id: "1b",
-        quantity: 1,
-        product: { name: "Product B", price: 60 },
-      },
-    ],
-    },
-];
+// export const orders : Order[]= [
+//     {
+//         id: "ORD011",
+//         orderDate: "2025-02-24",
+//         totalAmount: 5222,
+//         status: "Processing",
+//             orderItems: [
+//       {
+//         id: "1a",
+//         quantity: 2,
+//         product: { name: "Product A", price: 20 },
+//       },
+//       {
+//         id: "1b",
+//         quantity: 1,
+//         product: { name: "Product B", price: 60 },
+//       },
+//     ],
+//     },
+// ];
 
 export const order = [
   {
