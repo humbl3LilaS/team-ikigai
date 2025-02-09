@@ -3,7 +3,7 @@ import React from "react";
 
 const Hero = () => {
     return (
-        <section className="flex gap-1 md:mx-20 sm:gap-16 p-3 sm:p-5 relative">
+        <section className="flex gap-1 justify-center sm:gap-16 p-3 sm:p-5 relative">
             <div className="hidden sm:block">
                 <Image
                     src="/heroCover.png"
@@ -13,7 +13,7 @@ const Hero = () => {
                     className="mx-5 min-w-56"
                 />
             </div>
-            <div className="max-w-[350px] sm:max-w-[450px] mt-8 font-inter min-h-full rounded-md p-3 lg:p-6 relative">
+            <div className="max-w-[350px] sm:max-w-[450px] mt-8 font-inter min-h-full rounded-md p-3 lg:p-6 relative backdrop-blur-lg">
                 <h1 className="text-4xl pb-3 font-extrabold text-blue-600 -ms-1">
                     Product Title
                 </h1>

@@ -1,14 +1,12 @@
 "use client";
 
-import { CarTaxiFrontIcon, Search, User } from "lucide-react";
+import { Search, ShoppingCartIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import ProductSearch from "@/components/searchs/product-search";
-
-import { Button } from "../../ui/button";
 
 import MobileNav from "./mobile-nav";
 
@@ -22,15 +20,19 @@ const Header = () => {
         // implement searching function here
     };
     return (
-        <nav className="flex justify-between items-center text-white p-4 sm:p-6">
+        <nav className="flex justify-between gap-2 bg-white items-center text-white p-4 sm:px-10 sm:py-6">
             <div className="cursor-pointer">
                 <Image
                     src="/brandLogo.png"
                     width={72}
-                    height={45}
+                    height={30}
                     alt="logo"
                     className=""
                 />
+            </div>
+
+            <div className={`sm:hidden max-w-md`}>
+                <ProductSearch />
             </div>
 
             <div className="sm:hidden">
@@ -56,15 +58,15 @@ const Header = () => {
                 </div>
                 {isSearchOpen && <ProductSearch />}
 
-                <Button className="" onClick={handleSearch}>
-                    <Search />
-                </Button>
-                <Button className="">
-                    <CarTaxiFrontIcon />
-                </Button>
-                <Button className="">
-                    <User />
-                </Button>
+                <button className="bg-transparent cursor-pointer hover:bg-transparent shadow-none text-blue-500" onClick={handleSearch}>
+                    <Search className="size-6"/>
+                </button>
+                <button  className="bg-transparent cursor-pointer hover:bg-transparent shadow-none text-blue-500">
+                    <ShoppingCartIcon className="size-6" />
+                </button>
+                <button className="bg-transparent cursor-pointer hover:bg-transparent shadow-none text-blue-500">
+                    <User className="size-6" />
+                </button>
             </div>
         </nav>
     );
