@@ -1,6 +1,6 @@
 "use client";
 
-import { CarTaxiFrontIcon, Search, User } from "lucide-react";
+import { Search, ShoppingCartIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,8 +8,6 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import ProductSearch from "@/components/searchs/product-search";
-
-import { Button } from "../../ui/button";
 
 import MobileNav from "./mobile-nav";
 
@@ -25,15 +23,19 @@ const Header = () => {
     const { data: session } = useSession();
 
     return (
-        <nav className="flex justify-between items-center text-white p-4 sm:p-6">
+        <nav className="flex justify-between gap-2 bg-white items-center text-white p-4 sm:px-10 sm:py-6">
             <div className="cursor-pointer">
                 <Image
                     src="/brandLogo.png"
                     width={72}
-                    height={45}
+                    height={30}
                     alt="logo"
                     className=""
                 />
+            </div>
+
+            <div className={`sm:hidden max-w-md`}>
+                <ProductSearch />
             </div>
 
             <div className="sm:hidden">
