@@ -1,8 +1,9 @@
 import React from "react";
+import ProductCard from "./product-card";
+import { getFeatureProducts } from "@/features/client/product/actions/get-feature-products";
 
-import ProductCard from "../cards/productCard";
-
-const ProductList = () => {
+const ProductList = async () => {
+    const featureProducts = await getFeatureProducts();
     return (
         <section className="w-full h-full mt-6 p-4 sm:p-8">
             <div className="flex flex-col gap-5">
@@ -12,12 +13,14 @@ const ProductList = () => {
                         Product description
                     </p>
                 </div>
-                {/* style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))'}} className='gap-4 mt-5' */}
                 <div className="max-w-full overflow-x-auto flex gap-5 mt-5">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {featureProducts ? (
+                        featureProducts.map((item) => (
+                            <ProductCard key={item.id} data={item} />
+                        ))
+                    ) : (
+                        <div>Empty</div>
+                    )}
                 </div>
             </div>
         </section>

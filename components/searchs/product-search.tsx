@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 
-const ClientSearchP = () => {
+const ProductSearch = () => {
     return (
         <>
             <div className="bg-black/5 flex items-center gap-1 rounded-md px-3">
@@ -14,4 +14,4 @@ const ClientSearchP = () => {
     );
 };
 
-export default ClientSearchP;
+export default ProductSearch;

@@ -4,10 +4,10 @@ import Cart from "@/features/cart/components/cart";
 
 const CartPage = () => {
     return (
-        <div className="p-5">
+        <section className=" py-20 px-5">
             <h2 className={"text-3xl font-bold font-title"}>Your cart</h2>
             <Cart />
-        </div>
+        </section>
     );
 };
 
