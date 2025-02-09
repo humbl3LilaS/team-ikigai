@@ -4,6 +4,7 @@ import { CarTaxiFrontIcon, Search, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import ProductSearch from "@/components/searchs/product-search";
@@ -21,6 +22,8 @@ const Header = () => {
         }
         // implement searching function here
     };
+    const { data: session } = useSession();
+
     return (
         <nav className="flex justify-between items-center text-white p-4 sm:p-6">
             <div className="cursor-pointer">
@@ -62,9 +65,22 @@ const Header = () => {
                 <Button className="">
                     <CarTaxiFrontIcon />
                 </Button>
-                <Button className="">
-                    <User />
-                </Button>
+                {session && (
+                    <Link
+                        href={"/profile"}
+                        className="text-white bg-black px-2 py-1 rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-neutral-800"
+                    >
+                        <User />
+                    </Link>
+                )}
+                {!session && (
+                    <Link
+                        href={"/sign-up"}
+                        className="text-black hidden sm:flex font-semibold px-4 py-1 items-center border-2 border-black hover:black hover:text-white hover:bg-black rounded-sm"
+                    >
+                        Get started
+                    </Link>
+                )}
             </div>
         </nav>
     );
