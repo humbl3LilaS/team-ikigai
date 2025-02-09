@@ -49,13 +49,15 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ orders }) => {
     return (
         <div className="container mx-auto px-4 py-8 mt-[10vh]">
             <div className="flex justify-between items-center mb-4">
-                <Button variant="link">
-                    <Link href="/profile">
-                        <SendToBack className="size-10" />
-                    </Link>
-                </Button>
+                <div className="flex items-center space-x-2">
+                    <Button variant="link">
+                        <Link href="/profile">
+                            <SendToBack className="size-10" />
+                        </Link>
+                    </Button>
 
-                <h1 className="text-2xl font-bold">Profile Details</h1>
+                    <h1 className="text-2xl font-bold">Order List</h1>
+                </div>
             </div>
 
             {/* Ensure the parent container has a fixed height & overflow */}
