@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Users, Home, ShoppingCart, Laptop, ChartLine, ArrowRightLeft } from "lucide-react";
 
 export const CLIENT_NAV_ITEMS = [
     {
@@ -12,36 +12,38 @@ export const CLIENT_NAV_ITEMS = [
     },
 ];
 
+
+
 export const adminSideBarItems = [
     {
         title: "Dashboard",
         url: "/admin",
-        icon: Home,
+        icon: <Home />,
     },
     {
         title: "Orders",
         url: "/admin/order",
-        icon: Inbox,
+        icon: <ShoppingCart />,
     },
     {
         title: "Customers",
         url: "/admin/customers",
-        icon: Calendar,
+        icon: <Users />,
     },
     {
         title: "Products",
         url: "/admin/products",
-        icon: Search,
+        icon: <Laptop />,
     },
     {
-        title: "Daily Reports",
+        title: "Reports",
         url: "/admin/reports",
-        icon: Settings,
+        icon: <ChartLine />,
     },
     {
         title: "Transactions",
         url: "/admin/transactions",
-        icon: Settings,
+        icon: <ArrowRightLeft />,
     },
 ];
 export const REGION = [

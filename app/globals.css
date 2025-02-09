@@ -86,3 +86,9 @@ body {
         @apply bg-background text-foreground;
     }
 }
+
+@layer utilities {
+    .admin-header {
+        @apply text-2xl font-bold leading-9 pb-2;
+    }
+}

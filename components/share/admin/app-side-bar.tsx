@@ -1,6 +1,8 @@
+'use client'
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -9,11 +11,13 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { adminSideBarItems } from "@/constants";
-import React from "react";
+import { usePathname } from "next/navigation";
 
 const AppSideBar = () => {
+    const path = usePathname();
+
     return (
-        <Sidebar>
+        <Sidebar collapsible="icon">
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Admin</SidebarGroupLabel>
@@ -21,14 +25,15 @@ const AppSideBar = () => {
                         <SidebarMenu>
                             {adminSideBarItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
+                                    <SidebarMenuButton size='lg' asChild isActive={path == item.url ? true : false}>
                                         <a
                                             href={item.url}
                                             className="flex items-center gap-2 p-2"
                                         >
-                                            {React.createElement(item.icon, {
+                                            {/* {React.createElement(item.icon, {
                                                 className: "w-5 h-5",
-                                            })}
+                                            })} */}
+                                            <span>{item.icon}</span>
                                             <span>{item.title}</span>
                                         </a>
                                     </SidebarMenuButton>
@@ -38,6 +43,10 @@ const AppSideBar = () => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
+
+            <SidebarFooter>
+                Footer
+            </SidebarFooter>
         </Sidebar>
     );
 };

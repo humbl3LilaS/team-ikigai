@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AdminSideBar } from "@/components/share/admin/admin-side-bar";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+// import { auth } from "@/auth";
+// import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Admin Page",
@@ -13,9 +13,9 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const session = await auth();
-    if (!session || session.user.role === "USER") {
-        redirect("/");
-    }
+    // const session = await auth();
+    // if (!session || session.user.role === "USER") {
+    //     redirect("/");
+    // }
     return <AdminSideBar>{children}</AdminSideBar>;
 }
