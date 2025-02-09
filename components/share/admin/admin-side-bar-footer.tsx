@@ -9,7 +9,6 @@ import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "
 
 export default function AdminSidebarFooter() {
   const { theme, setTheme } = useTheme();
-  console.log(theme);
 
   useEffect(() => {
     if (theme == "system") {
