@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { D_ProductDetails } from "@/dummy";
-import { columns} from "../columns/products-column";
+import { columns } from "../columns/products-column";
 
 const ProductsTable = () => {
     const [pagination, setPagination] = useState<PaginationState>({

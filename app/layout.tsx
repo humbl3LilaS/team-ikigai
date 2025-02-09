@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -31,7 +32,7 @@ export default function RootLayout({
             <body
                 className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
             >
-                {children}
+                <SessionProvider>{children}</SessionProvider>
                 <Toaster />
             </body>
         </html>

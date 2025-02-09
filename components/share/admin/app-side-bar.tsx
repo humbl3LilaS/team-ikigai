@@ -28,7 +28,13 @@ const AppSideBar = () => {
                         <SidebarMenu>
                             {adminSideBarItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton size='lg' asChild isActive={path == item.url ? true : false}>
+                                    <SidebarMenuButton
+                                        size="lg"
+                                        asChild
+                                        isActive={
+                                            path == item.url ? true : false
+                                        }
+                                    >
                                         <a
                                             href={item.url}
                                             className="flex items-center gap-2 p-2"
@@ -46,7 +52,7 @@ const AppSideBar = () => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-        <AdminSidebarFooter />
+            <AdminSidebarFooter />
         </Sidebar>
     );
 };
