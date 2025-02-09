@@ -1,11 +1,13 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormField,
@@ -14,9 +16,7 @@ import {
     FormControl,
     FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import {
     Select,
     SelectContent,
@@ -24,6 +24,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+
 import { placeholderUsers, regionCityMap } from "../userdata";
 
 // 🚀 Zod Validation Schema
@@ -46,7 +48,7 @@ const AccountUpgradeSchema = z.object({
 type AccountUpgradeSchemaType = z.infer<typeof AccountUpgradeSchema>;
 
 const AccountUpgradeForm = () => {
-    const [user, setUser] = useState<(typeof placeholderUsers)[0] | null>(null);
+    const [, setUser] = useState<(typeof placeholderUsers)[0] | null>(null);
     const [hydrated, setHydrated] = useState(false);
 
     useEffect(() => {
@@ -74,9 +76,7 @@ const AccountUpgradeForm = () => {
     const { toast } = useToast();
     const router = useRouter();
 
-    const onSubmit = async (values: AccountUpgradeSchemaType) => {
-        console.log("Submitting form with values:", values);
-
+    const onSubmit = () => {
         // Simulate API request (Replace with actual request logic)
         setTimeout(() => {
             toast({

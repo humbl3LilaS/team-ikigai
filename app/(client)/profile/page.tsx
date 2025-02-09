@@ -1,23 +1,15 @@
 import React from "react";
-import UserInfo from "@/features/profile/components/user_info";
-import ProfileLayout from "./profileLayout";
+
+import Logout from "@/features/profile/components/logout";
 import ProfileCard from "@/features/profile/components/profile_nav";
 import UpgradeAccount from "@/features/profile/components/upgradeAccount";
-import Logout from "@/features/profile/components/logout";
-import { SideLayout, RightTop, RightBottom } from "./profileLayout";
-import UserOrder from "@/features/profile/components/user_order";
-import UserOrderHistory from "@/features/profile/components/user_order_history";
-import { orders } from "./userdata";
+import UserInfo from "@/features/profile/components/user_info";
 
-interface ProfileLayoutProps {
-    children: React.ReactNode;
-}
-
-const ProfilePage: React.FC<ProfileLayoutProps> = ({ children }) => {
+const ProfilePage = () => {
     return (
         <>
-            <ProfileLayout>
-                <SideLayout>
+            <div>
+                <div className="flex justify-center items-center">
                     <div className="flex flex-col justify-center items-center  p-5 bg-white shadow rounded-lg md:p-6">
                         <UserInfo
                             avatarUrl="https://randomuser.me/api/port"
@@ -32,14 +24,8 @@ const ProfilePage: React.FC<ProfileLayoutProps> = ({ children }) => {
                             <Logout />
                         </div>
                     </div>
-                </SideLayout>
-                <RightTop>
-                    <UserOrder orders={orders} />
-                </RightTop>
-                <RightBottom>
-                    <UserOrderHistory orders={orders} />
-                </RightBottom>
-            </ProfileLayout>
+                </div>
+            </div>
         </>
     );
 };

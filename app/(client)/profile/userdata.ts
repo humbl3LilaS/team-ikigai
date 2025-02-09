@@ -1,6 +1,19 @@
-// placeholderUsers.js
+import { Order } from "@/features/profile/components/orderList";
 
-export const placeholderUsers = [
+// placeholderUsers.js
+export type IUser = {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+    phoneNumber: string;
+    address: string;
+    city: string;
+    region: string;
+  };
+
+export const placeholderUsers:IUser[] = [
     {
       id: "123e4567-e89b-12d3-a456-426614174000",
       name: "John Doe",
@@ -44,23 +57,28 @@ export const placeholderUsers = [
 };
 
 
-export const orders: any[] = [
+export const orders : Order[]= [
     {
         id: "ORD011",
-        date: "2025-02-24",
-        total: "59.99",
+        orderDate: "2025-02-24",
+        totalAmount: 5222,
         status: "Processing",
-    },
-    { id: "ORD012", date: "2025-02-26", total: "49.99", status: "Shipped" },
-    {
-        id: "ORD013",
-        date: "2025-03-02",
-        total: "119.99",
-        status: "Processing",
+            orderItems: [
+      {
+        id: "1a",
+        quantity: 2,
+        product: { name: "Product A", price: 20 },
+      },
+      {
+        id: "1b",
+        quantity: 1,
+        product: { name: "Product B", price: 60 },
+      },
+    ],
     },
 ];
 
-export const order: any[] = [
+export const order = [
   {
     id: "1",
     orderDate: new Date().toISOString(),

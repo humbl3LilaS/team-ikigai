@@ -1,11 +1,11 @@
 "use client";
 
+import { SendToBack } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { placeholderUsers, regionCityMap } from "../userdata";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { SendToBack } from "lucide-react";
 import {
     Form,
     FormControl,
@@ -14,6 +14,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
     Select,
     SelectContent,
@@ -21,7 +22,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import Link from "next/link";
+
+import { IUser, placeholderUsers, regionCityMap } from "../userdata";
 
 export default function DetailPage() {
     const [user, setUser] = useState(placeholderUsers[0]);
@@ -30,10 +32,6 @@ export default function DetailPage() {
     const form = useForm({
         defaultValues: user,
     });
-
-    const selectedRegion = form.watch("region");
-    const filteredCity =
-        regionCityMap[selectedRegion as keyof typeof regionCityMap] || [];
 
     const toggleEditing = () => {
         if (editing) {
@@ -44,7 +42,7 @@ export default function DetailPage() {
         }
     };
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: IUser) => {
         setUser(data);
         setEditing(false);
     };
@@ -208,7 +206,7 @@ export default function DetailPage() {
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select a city" />
                                             </SelectTrigger>
-                                            <SelectContent>
+                                            {/* <SelectContent>
                                                 {filteredCity.map((city) => (
                                                     <SelectItem
                                                         key={city}
@@ -217,7 +215,7 @@ export default function DetailPage() {
                                                         {city}
                                                     </SelectItem>
                                                 ))}
-                                            </SelectContent>
+                                            </SelectContent> */}
                                         </Select>
                                     ) : (
                                         <p className="bg-gray-100 p-2 rounded">
