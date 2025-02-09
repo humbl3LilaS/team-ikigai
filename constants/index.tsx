@@ -182,110 +182,154 @@ export const PRODUCT_PLACEHOLDER = [
         name: "Apple MacBook Pro 14-inch",
         brand: "Apple",
         category: "Laptop",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074694/MacBook-Pro-Retina-14-Inch_tyxjsc.png",
     },
     {
         name: "Microsoft Surface Studio",
         brand: "Microsoft",
         category: "Laptop",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074694/Microsoft_Surface_Studio_r7jk5p.png",
     },
     {
         name: "G.Skill Trident Z RAM 32 GB",
         brand: "G Skill",
         category: "Processor",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074684/G.Skill_Trident_Z_RAM_32_GB_ycn9jy.png",
     },
     {
         name: "Intel Core i7-13700 K CPU",
         brand: "Intel",
         category: "Processor",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074683/Intel_Core_i7-13700_K_CPU_bckqat.png",
     },
     {
         name: "HP EliteBook 840",
         brand: "HP",
         category: "Laptop",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074693/HP_EliteBook_840_khoycc.png",
     },
     {
         name: "LG UltraGear 27-inch",
         brand: "LG",
         category: "Monitor",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074691/LG_UltraGear_27-inch_whtbgx.png",
     },
     {
         name: "WD Black SN850X 1TB SSD",
         brand: "WD",
         category: "Storage Device",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074695/WD_Black_SN850X_1TB_SSD_eo72xs.png",
     },
     {
         name: "Epson EcoTank ET-3850",
         brand: "Epson",
         category: "Printer",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074686/Epson_EcoTank_ET-3850_gn4kva.png",
     },
     {
         name: "Logitech MX Keys Keyboard",
         brand: "Logitech",
         category: "Accessories",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074686/Logitech_MX_Keys_Keyboard_cnzdls.png",
     },
     {
         name: "Samsung T7 Protabel SSD",
         brand: "Samsung",
         category: "Storage Device",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074942/Samsung_T7_Protabel_SSD_bffphd.png",
     },
     {
         name: "Canon Image CLASS MF644 CDW",
         brand: "Canon",
         category: "Printer",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074683/HyperX_Cloud_Alpha_Headset_qfgttb.png",
     },
     {
         name: "APC Smart-UPS 1500VA",
         brand: "APC",
         category: "Power Supply",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074682/APC_Smart-UPS_1500VA_zsb9ec.png",
     },
     {
         name: "Dell Ultrasharp Webcam",
         brand: "Dell",
         category: "Accessories",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074681/Dell_Ultrasharp_Webcam_ilykkx.png",
     },
     {
         name: "HP Omen 25L",
         brand: "HP",
         category: "Desktop",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074681/HP_Omen_25L_rvrkpn.png",
     },
     {
         name: "Asus TUF Gaming F15",
         brand: "Asus",
         category: "Laptop",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074694/Asus_TUF_Gaming_F15_b3abiq.png",
     },
     {
         name: "Seagate IronWolf 4TB HDD",
         brand: "Seagate",
         category: "Storage Device",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074681/Seagate_IronWolf_4TB_HDD_ei9erx.png",
     },
     {
         name: "Cisco Catalyst 9200 Switch",
         brand: "Cisco",
         category: "Networking Device",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074681/Cisco_Catalyst_9200_Switch_jjoo94.png",
     },
     {
         name: "G.Skill Trident Z RAM 32 GB",
         brand: "G Skill",
         category: "Memory",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074684/G.Skill_Trident_Z_RAM_32_GB_ycn9jy.png",
     },
     {
         name: "TP-link Deco XE75 Router",
         brand: "TP-link",
         category: "Networking Device",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074681/TP-link_Deco_XE75_Router_qlytjo.png",
     },
     {
         name: "Microsoft Surface Studio",
         brand: "Microsoft",
         category: "Desktop PC",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074694/Microsoft_Surface_Studio_r7jk5p.png",
     },
     {
         name: "Acer Aspire 5",
         brand: "Acer",
         category: "Laptop",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074515/Acer_Aspire_5_itwk2i.png",
     },
     {
         name: "HyperX Cloud Alpha Headset",
         brand: "HyperX",
         category: "Accessories",
+        imageUrl:
+            "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074683/HyperX_Cloud_Alpha_Headset_qfgttb.png",
     },
 ];

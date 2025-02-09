@@ -1,4 +1,7 @@
-'use client'
+"use client";
+import { usePathname } from "next/navigation";
+import React from "react";
+
 import {
     Sidebar,
     SidebarContent,
@@ -10,7 +13,7 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { adminSideBarItems } from "@/constants";
-import { usePathname } from "next/navigation";
+
 import AdminSidebarFooter from "./admin-side-bar-footer";
 
 const AppSideBar = () => {
