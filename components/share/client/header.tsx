@@ -4,9 +4,9 @@ import { CarTaxiFrontIcon, Search, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import ClientSearchP from "@/components/searchs/clientSearchP";
+import ProductSearch from "@/components/searchs/product-search";
 
 import { Button } from "../../ui/button";
 
@@ -54,7 +54,7 @@ const Header = () => {
                         Contact Us
                     </Link>
                 </div>
-                {isSearchOpen && <ClientSearchP />}
+                {isSearchOpen && <ProductSearch />}
 
                 <Button className="" onClick={handleSearch}>
                     <Search />
