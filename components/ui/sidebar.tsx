@@ -8,7 +8,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
     Tooltip,
@@ -208,9 +208,11 @@ const Sidebar = React.forwardRef<
                     onOpenChange={setOpenMobile}
                     {...props}
                 >
+                    <SheetTitle className="hidden"></SheetTitle>
                     <SheetContent
                         data-sidebar="sidebar"
                         data-mobile="true"
+                        aria-describedby=""
                         className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
                         style={
                             {
@@ -293,7 +295,7 @@ const SidebarTrigger = React.forwardRef<
             }}
             {...props}
         >
-            <PanelLeft />
+            <PanelLeft className="scale-125" />
             <span className="sr-only">Toggle Sidebar</span>
         </Button>
     );

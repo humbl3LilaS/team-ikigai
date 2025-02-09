@@ -1,11 +1,13 @@
 name: Next.js CI
 
 on:
-    pull_request:
-        types: ["opened", "synchronize"]
-    push:
-        branches:
-            - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+    branches:
+      - main
 
 jobs:
     build:
@@ -51,4 +53,4 @@ jobs:
               run: pnpm run build
               env:
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
-                  AUTH_SECRET: ${{ secretes.AUTH_SECRET }}
+                  AUTH_SECRET: ${{ secrets.AUTH_SECRET }}

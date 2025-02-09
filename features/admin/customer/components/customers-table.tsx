@@ -5,25 +5,23 @@ import {
     PaginationState,
     useReactTable,
 } from "@tanstack/react-table";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
 
 import DataTableBody from "@/components/share/admin/data-table-body";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-    columns,
-    ORDER_PLACEHOLDER,
-} from "@/features/admin/order/columns/order-columns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { D_Users } from "@/dummy";
+import { CustomersColumns } from "../columns/customers-columns";
 
-const OrderTable = () => {
+const CustomersTable = () => {
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: 15,
     });
 
     const table = useReactTable({
-        data: ORDER_PLACEHOLDER,
-        columns: columns,
+        data: D_Users,
+        columns: CustomersColumns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onPaginationChange: setPagination,
@@ -34,7 +32,7 @@ const OrderTable = () => {
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
             <div>
-                <DataTableBody table={table} data={ORDER_PLACEHOLDER} />
+                <DataTableBody table={table} data={D_Users} />
                 <div className="flex items-center justify-between space-x-2 py-4">
                     <p className={"text-foreground text-sm font-semibold"}>
                         Page {pagination.pageIndex + 1} of{" "}
@@ -65,4 +63,4 @@ const OrderTable = () => {
     );
 };
 
-export default OrderTable;
+export default CustomersTable;

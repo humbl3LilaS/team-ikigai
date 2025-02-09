@@ -5,24 +5,22 @@ import {
     PaginationState,
     useReactTable,
 } from "@tanstack/react-table";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
 
 import DataTableBody from "@/components/share/admin/data-table-body";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-    columns,
-    ORDER_PLACEHOLDER,
-} from "@/features/admin/order/columns/order-columns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { D_ProductDetails } from "@/dummy";
+import { columns} from "../columns/products-column";
 
-const OrderTable = () => {
+const ProductsTable = () => {
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: 15,
     });
 
     const table = useReactTable({
-        data: ORDER_PLACEHOLDER,
+        data: D_ProductDetails,
         columns: columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
@@ -34,7 +32,7 @@ const OrderTable = () => {
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
             <div>
-                <DataTableBody table={table} data={ORDER_PLACEHOLDER} />
+                <DataTableBody table={table} data={D_ProductDetails} />
                 <div className="flex items-center justify-between space-x-2 py-4">
                     <p className={"text-foreground text-sm font-semibold"}>
                         Page {pagination.pageIndex + 1} of{" "}
@@ -65,4 +63,4 @@ const OrderTable = () => {
     );
 };
 
-export default OrderTable;
+export default ProductsTable;
