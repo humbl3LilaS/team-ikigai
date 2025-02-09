@@ -11,6 +11,7 @@ import ProductSlider from "@/components/slider/productSlider";
 import { Button } from "@/components/ui/button";
 
 const page = () => {
+    console.log("console");
     return (
         <section className="w-full flex flex-col md:flex-row">
             <div className="flex p-5 md:w-1/2 md:flex-1 gap-5 sm:gap-10 flex-col">
