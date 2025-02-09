@@ -2,555 +2,555 @@ export const D_Complains = [{
   "id": 1,
   "invoice_id": "78-852-6050",
   "type": "Mates",
-  "status": false
+  "status": false,
 }, {
   "id": 2,
   "invoice_id": "34-553-5064",
   "type": "Allso",
-  "status": true
+  "status": true,
 }, {
   "id": 3,
   "invoice_id": "69-842-0248",
   "type": "Willsmore",
-  "status": true
+  "status": true,
 }, {
   "id": 4,
   "invoice_id": "71-002-4904",
   "type": "O'Rudden",
-  "status": false
+  "status": false,
 }, {
   "id": 5,
   "invoice_id": "66-235-1181",
   "type": "Ninnotti",
-  "status": false
+  "status": false,
 }, {
   "id": 6,
   "invoice_id": "37-120-6512",
   "type": "Dormand",
-  "status": false
+  "status": false,
 }, {
   "id": 7,
   "invoice_id": "46-054-2783",
   "type": "Burg",
-  "status": false
+  "status": false,
 }, {
   "id": 8,
   "invoice_id": "42-764-1795",
   "type": "Casacchia",
-  "status": true
+  "status": true,
 }, {
   "id": 9,
   "invoice_id": "68-242-9202",
   "type": "Yaneev",
-  "status": true
+  "status": true,
 }, {
   "id": 10,
   "invoice_id": "29-489-1748",
   "type": "La Padula",
-  "status": false
+  "status": false,
 }, {
   "id": 11,
   "invoice_id": "17-245-8980",
   "type": "Marquis",
-  "status": true
+  "status": true,
 }, {
   "id": 12,
   "invoice_id": "30-973-6466",
   "type": "Bagshaw",
-  "status": true
+  "status": true,
 }, {
   "id": 13,
   "invoice_id": "46-385-5388",
   "type": "Fish",
-  "status": true
+  "status": true,
 }, {
   "id": 14,
   "invoice_id": "79-346-0207",
   "type": "Utridge",
-  "status": false
+  "status": false,
 }, {
   "id": 15,
   "invoice_id": "49-404-9170",
   "type": "Cherrie",
-  "status": true
+  "status": true,
 }, {
   "id": 16,
   "invoice_id": "78-951-7866",
   "type": "Jennison",
-  "status": true
+  "status": true,
 }, {
   "id": 17,
   "invoice_id": "63-411-9631",
   "type": "Tregunna",
-  "status": false
+  "status": false,
 }, {
   "id": 18,
   "invoice_id": "00-431-9930",
   "type": "Joseph",
-  "status": true
+  "status": true,
 }, {
   "id": 19,
   "invoice_id": "87-286-8121",
   "type": "Brehaut",
-  "status": false
+  "status": false,
 }, {
   "id": 20,
   "invoice_id": "79-381-6418",
   "type": "Nelles",
-  "status": false
+  "status": false,
 }, {
   "id": 21,
   "invoice_id": "25-066-1848",
   "type": "Hyndley",
-  "status": true
+  "status": true,
 }, {
   "id": 22,
   "invoice_id": "93-551-8472",
   "type": "Berge",
-  "status": true
+  "status": true,
 }, {
   "id": 23,
   "invoice_id": "82-042-3436",
   "type": "Jaan",
-  "status": false
+  "status": false,
 }, {
   "id": 24,
   "invoice_id": "96-295-8341",
   "type": "Peppard",
-  "status": true
+  "status": true,
 }, {
   "id": 25,
   "invoice_id": "62-690-3386",
   "type": "Skeffington",
-  "status": true
+  "status": true,
 }, {
   "id": 26,
   "invoice_id": "83-072-9145",
   "type": "Tumulty",
-  "status": false
+  "status": false,
 }, {
   "id": 27,
   "invoice_id": "52-819-0462",
   "type": "Runcie",
-  "status": true
+  "status": true,
 }, {
   "id": 28,
   "invoice_id": "15-646-2557",
   "type": "Windle",
-  "status": false
+  "status": false,
 }, {
   "id": 29,
   "invoice_id": "74-285-4661",
   "type": "Burman",
-  "status": true
+  "status": true,
 }, {
   "id": 30,
   "invoice_id": "85-230-4123",
   "type": "Wyldes",
-  "status": true
+  "status": true,
 }, {
   "id": 31,
   "invoice_id": "69-873-0687",
   "type": "Dumingo",
-  "status": true
+  "status": true,
 }, {
   "id": 32,
   "invoice_id": "13-652-5246",
   "type": "Garrity",
-  "status": true
+  "status": true,
 }, {
   "id": 33,
   "invoice_id": "92-248-8462",
   "type": "Hopkynson",
-  "status": false
+  "status": false,
 }, {
   "id": 34,
   "invoice_id": "61-776-0502",
   "type": "Merit",
-  "status": false
+  "status": false,
 }, {
   "id": 35,
   "invoice_id": "88-190-8961",
   "type": "Trask",
-  "status": false
+  "status": false,
 }, {
   "id": 36,
   "invoice_id": "23-603-1669",
   "type": "Josefovic",
-  "status": false
+  "status": false,
 }, {
   "id": 37,
   "invoice_id": "89-203-7320",
   "type": "Nunes Nabarro",
-  "status": true
+  "status": true,
 }, {
   "id": 38,
   "invoice_id": "75-180-0536",
   "type": "Whitely",
-  "status": false
+  "status": false,
 }, {
   "id": 39,
   "invoice_id": "54-281-5616",
   "type": "Rotge",
-  "status": true
+  "status": true,
 }, {
   "id": 40,
   "invoice_id": "72-287-1284",
   "type": "Brougham",
-  "status": true
+  "status": true,
 }, {
   "id": 41,
   "invoice_id": "92-639-9050",
   "type": "McCoish",
-  "status": false
+  "status": false,
 }, {
   "id": 42,
   "invoice_id": "27-888-2112",
   "type": "Klimentyev",
-  "status": true
+  "status": true,
 }, {
   "id": 43,
   "invoice_id": "67-449-1668",
   "type": "Beadle",
-  "status": false
+  "status": false,
 }, {
   "id": 44,
   "invoice_id": "09-273-2083",
   "type": "Fletham",
-  "status": false
+  "status": false,
 }, {
   "id": 45,
   "invoice_id": "88-671-4667",
   "type": "Vassie",
-  "status": true
+  "status": true,
 }, {
   "id": 46,
   "invoice_id": "71-958-3772",
   "type": "Filippazzo",
-  "status": true
+  "status": true,
 }, {
   "id": 47,
   "invoice_id": "41-510-8619",
   "type": "Esche",
-  "status": false
+  "status": false,
 }, {
   "id": 48,
   "invoice_id": "66-022-8281",
   "type": "Giovanetti",
-  "status": true
+  "status": true,
 }, {
   "id": 49,
   "invoice_id": "79-276-9190",
   "type": "Scalera",
-  "status": true
+  "status": true,
 }, {
   "id": 50,
   "invoice_id": "35-693-3212",
   "type": "Elsie",
-  "status": true
-}]
+  "status": true,
+}];
 
 export const D_Orders = [{
   "id": 1,
   "user_id": "ZS7PM",
   "order_date": "2/22/2024",
   "order_status": true,
-  "total_amount": 3
+  "total_amount": 3,
 }, {
   "id": 2,
   "user_id": "D6NKX",
   "order_date": "5/4/2024",
   "order_status": true,
-  "total_amount": 2
+  "total_amount": 2,
 }, {
   "id": 3,
   "user_id": "YN1FS",
   "order_date": "1/23/2025",
   "order_status": false,
-  "total_amount": 7
+  "total_amount": 7,
 }, {
   "id": 4,
   "user_id": "3BMFZ",
   "order_date": "7/17/2024",
   "order_status": false,
-  "total_amount": 4
+  "total_amount": 4,
 }, {
   "id": 5,
   "user_id": "Z3K96",
   "order_date": "5/7/2024",
   "order_status": true,
-  "total_amount": 5
+  "total_amount": 5,
 }, {
   "id": 6,
   "user_id": "YQXNM",
   "order_date": "11/20/2024",
   "order_status": false,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 7,
   "user_id": "JPYYS",
   "order_date": "8/19/2024",
   "order_status": true,
-  "total_amount": 6
+  "total_amount": 6,
 }, {
   "id": 8,
   "user_id": "Q621M",
   "order_date": "12/9/2024",
   "order_status": false,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 9,
   "user_id": "Y1EF0",
   "order_date": "10/10/2024",
   "order_status": false,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 10,
   "user_id": "JW5JK",
   "order_date": "8/3/2024",
   "order_status": false,
-  "total_amount": 4
+  "total_amount": 4,
 }, {
   "id": 11,
   "user_id": "GG2YP",
   "order_date": "1/28/2025",
   "order_status": true,
-  "total_amount": 4
+  "total_amount": 4,
 }, {
   "id": 12,
   "user_id": "R38RR",
   "order_date": "8/4/2024",
   "order_status": true,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 13,
   "user_id": "GZ5B9",
   "order_date": "1/10/2025",
   "order_status": false,
-  "total_amount": 4
+  "total_amount": 4,
 }, {
   "id": 14,
   "user_id": "CAXDS",
   "order_date": "2/23/2024",
   "order_status": false,
-  "total_amount": 4
+  "total_amount": 4,
 }, {
   "id": 15,
   "user_id": "071YC",
   "order_date": "8/11/2024",
   "order_status": true,
-  "total_amount": 9
+  "total_amount": 9,
 }, {
   "id": 16,
   "user_id": "PQB1D",
   "order_date": "5/5/2024",
   "order_status": true,
-  "total_amount": 6
+  "total_amount": 6,
 }, {
   "id": 17,
   "user_id": "MVZ7W",
   "order_date": "5/7/2024",
   "order_status": false,
-  "total_amount": 9
+  "total_amount": 9,
 }, {
   "id": 18,
   "user_id": "ZBZ6X",
   "order_date": "11/28/2024",
   "order_status": false,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 19,
   "user_id": "H9X16",
   "order_date": "2/22/2024",
   "order_status": true,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 20,
   "user_id": "Y86JV",
   "order_date": "1/4/2025",
   "order_status": true,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 21,
   "user_id": "GMYKV",
   "order_date": "11/9/2024",
   "order_status": false,
-  "total_amount": 8
+  "total_amount": 8,
 }, {
   "id": 22,
   "user_id": "98G44",
   "order_date": "5/29/2024",
   "order_status": false,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 23,
   "user_id": "F0XC4",
   "order_date": "8/11/2024",
   "order_status": false,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 24,
   "user_id": "9YD9G",
   "order_date": "12/23/2024",
   "order_status": false,
-  "total_amount": 7
+  "total_amount": 7,
 }, {
   "id": 25,
   "user_id": "SAHHA",
   "order_date": "5/9/2024",
   "order_status": true,
-  "total_amount": 5
+  "total_amount": 5,
 }, {
   "id": 26,
   "user_id": "D7E0E",
   "order_date": "4/18/2024",
   "order_status": false,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 27,
   "user_id": "M64EK",
   "order_date": "5/17/2024",
   "order_status": true,
-  "total_amount": 6
+  "total_amount": 6,
 }, {
   "id": 28,
   "user_id": "F16QR",
   "order_date": "4/24/2024",
   "order_status": false,
-  "total_amount": 7
+  "total_amount": 7,
 }, {
   "id": 29,
   "user_id": "4BDCN",
   "order_date": "5/26/2024",
   "order_status": true,
-  "total_amount": 7
+  "total_amount": 7,
 }, {
   "id": 30,
   "user_id": "S2V77",
   "order_date": "9/19/2024",
   "order_status": false,
-  "total_amount": 8
+  "total_amount": 8,
 }, {
   "id": 31,
   "user_id": "M0KTV",
   "order_date": "9/18/2024",
   "order_status": false,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 32,
   "user_id": "PGZ29",
   "order_date": "3/16/2024",
   "order_status": false,
-  "total_amount": 7
+  "total_amount": 7,
 }, {
   "id": 33,
   "user_id": "08FAF",
   "order_date": "7/25/2024",
   "order_status": false,
-  "total_amount": 1
+  "total_amount": 1,
 }, {
   "id": 34,
   "user_id": "T3MVY",
   "order_date": "1/10/2025",
   "order_status": false,
-  "total_amount": 2
+  "total_amount": 2,
 }, {
   "id": 35,
   "user_id": "9XVEF",
   "order_date": "2/16/2024",
   "order_status": false,
-  "total_amount": 5
+  "total_amount": 5,
 }, {
   "id": 36,
   "user_id": "0GAK2",
   "order_date": "8/1/2024",
   "order_status": false,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 37,
   "user_id": "C8B1B",
   "order_date": "10/2/2024",
   "order_status": true,
-  "total_amount": 6
+  "total_amount": 6,
 }, {
   "id": 38,
   "user_id": "QCGRR",
   "order_date": "2/21/2024",
   "order_status": true,
-  "total_amount": 5
+  "total_amount": 5,
 }, {
   "id": 39,
   "user_id": "ZK4HG",
   "order_date": "10/26/2024",
   "order_status": false,
-  "total_amount": 5
+  "total_amount": 5,
 }, {
   "id": 40,
   "user_id": "8S23V",
   "order_date": "10/15/2024",
   "order_status": false,
-  "total_amount": 3
+  "total_amount": 3,
 }, {
   "id": 41,
   "user_id": "9K026",
   "order_date": "9/20/2024",
   "order_status": true,
-  "total_amount": 2
+  "total_amount": 2,
 }, {
   "id": 42,
   "user_id": "ETQQF",
   "order_date": "7/9/2024",
   "order_status": true,
-  "total_amount": 8
+  "total_amount": 8,
 }, {
   "id": 43,
   "user_id": "R13XQ",
   "order_date": "4/13/2024",
   "order_status": false,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 44,
   "user_id": "7W9F9",
   "order_date": "4/19/2024",
   "order_status": false,
-  "total_amount": 7
+  "total_amount": 7,
 }, {
   "id": 45,
   "user_id": "ER1H0",
   "order_date": "6/7/2024",
   "order_status": true,
-  "total_amount": 2
+  "total_amount": 2,
 }, {
   "id": 46,
   "user_id": "FEW8P",
   "order_date": "3/5/2024",
   "order_status": true,
-  "total_amount": 4
+  "total_amount": 4,
 }, {
   "id": 47,
   "user_id": "KGEHR",
   "order_date": "3/27/2024",
   "order_status": false,
-  "total_amount": 2
+  "total_amount": 2,
 }, {
   "id": 48,
   "user_id": "FD0GY",
   "order_date": "7/19/2024",
   "order_status": true,
-  "total_amount": 10
+  "total_amount": 10,
 }, {
   "id": 49,
   "user_id": "9STGX",
   "order_date": "4/15/2024",
   "order_status": true,
-  "total_amount": 5
+  "total_amount": 5,
 }, {
   "id": 50,
   "user_id": "V1A51",
   "order_date": "5/26/2024",
   "order_status": true,
-  "total_amount": 2
-}]
+  "total_amount": 2,
+}];
 
 export const D_Users = [{
   "id": 1,
@@ -561,7 +561,7 @@ export const D_Users = [{
   "address": "79 Grover Parkway",
   "township": "Pabedan",
   "region": "Bago",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 2,
   "name": "Feliza Ondrus",
@@ -571,7 +571,7 @@ export const D_Users = [{
   "address": "9 Elmside Point",
   "township": "TaungNyunt",
   "region": "Shan",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 3,
   "name": "Keelia Strelitz",
@@ -581,7 +581,7 @@ export const D_Users = [{
   "address": "698 Dayton Parkway",
   "township": "Thaketa",
   "region": "Shan",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 4,
   "name": "Obediah Keywood",
@@ -591,7 +591,7 @@ export const D_Users = [{
   "address": "6253 Crownhardt Hill",
   "township": "Thaketa",
   "region": "Mon",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 5,
   "name": "Barbabas Skelton",
@@ -601,7 +601,7 @@ export const D_Users = [{
   "address": "2 Arapahoe Trail",
   "township": "Bahan",
   "region": "Magway",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 6,
   "name": "Rina Fells",
@@ -611,7 +611,7 @@ export const D_Users = [{
   "address": "6 Southridge Point",
   "township": "Pabedan",
   "region": "Mon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 7,
   "name": "Bernardine Bent",
@@ -621,7 +621,7 @@ export const D_Users = [{
   "address": "56524 Eastwood Point",
   "township": "Sanchaung",
   "region": "Magway",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 8,
   "name": "Nert Minifie",
@@ -631,7 +631,7 @@ export const D_Users = [{
   "address": "15812 Longview Way",
   "township": "Thaketa",
   "region": "Mon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 9,
   "name": "Halsey Gillhespy",
@@ -641,7 +641,7 @@ export const D_Users = [{
   "address": "6 Bluestem Hill",
   "township": "Tamwe",
   "region": "Bago",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 10,
   "name": "Paulie Mendenhall",
@@ -651,7 +651,7 @@ export const D_Users = [{
   "address": "34 Forest Lane",
   "township": "Bahan",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 11,
   "name": "Felecia Quinn",
@@ -661,7 +661,7 @@ export const D_Users = [{
   "address": "541 Burrows Circle",
   "township": "TaungNyunt",
   "region": "Ayeyarwaddy",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 12,
   "name": "Benedick Jossum",
@@ -671,7 +671,7 @@ export const D_Users = [{
   "address": "699 Heffernan Lane",
   "township": "Hlaing",
   "region": "",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 13,
   "name": "Jandy Laingmaid",
@@ -681,7 +681,7 @@ export const D_Users = [{
   "address": "4 Prairie Rose Park",
   "township": "Thaketa",
   "region": "Magway",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 14,
   "name": "Juliann Alfonsetti",
@@ -691,7 +691,7 @@ export const D_Users = [{
   "address": "302 Crescent Oaks Avenue",
   "township": "Sanchaung",
   "region": "",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 15,
   "name": "Randy Coonan",
@@ -701,7 +701,7 @@ export const D_Users = [{
   "address": "4 Vahlen Point",
   "township": "Bahan",
   "region": "Mon",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 16,
   "name": "Jens Tankard",
@@ -711,7 +711,7 @@ export const D_Users = [{
   "address": "79780 Pawling Park",
   "township": "Hlaing",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 17,
   "name": "Trish Vakhonin",
@@ -721,7 +721,7 @@ export const D_Users = [{
   "address": "7 Holy Cross Avenue",
   "township": "TaungNyunt",
   "region": "Bago",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 18,
   "name": "Melany Harrowsmith",
@@ -731,7 +731,7 @@ export const D_Users = [{
   "address": "56 Russell Hill",
   "township": "Sanchaung",
   "region": "Ayeyarwaddy",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 19,
   "name": "Kippie Deyes",
@@ -741,7 +741,7 @@ export const D_Users = [{
   "address": "514 Union Crossing",
   "township": "Hlaing",
   "region": "Yangon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 20,
   "name": "Sena Hazeldine",
@@ -751,7 +751,7 @@ export const D_Users = [{
   "address": "35 Karstens Drive",
   "township": "Sanchaung",
   "region": "Magway",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 21,
   "name": "Sandy Fibbit",
@@ -761,7 +761,7 @@ export const D_Users = [{
   "address": "3216 Hintze Point",
   "township": "Sanchaung",
   "region": "Bago",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 22,
   "name": "Lurleen Roiz",
@@ -771,7 +771,7 @@ export const D_Users = [{
   "address": "431 Burning Wood Place",
   "township": "Tamwe",
   "region": "Shan",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 23,
   "name": "Wolfgang Blockwell",
@@ -781,7 +781,7 @@ export const D_Users = [{
   "address": "93126 Prairie Rose Way",
   "township": "Hlaing",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 24,
   "name": "Etan Kirwin",
@@ -791,7 +791,7 @@ export const D_Users = [{
   "address": "1651 Garrison Center",
   "township": "Sanchaung",
   "region": "Ayeyarwaddy",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 25,
   "name": "Ernesto Antat",
@@ -801,7 +801,7 @@ export const D_Users = [{
   "address": "43076 Paget Terrace",
   "township": "Thaketa",
   "region": "Ayeyarwaddy",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 26,
   "name": "Vallie Zwicker",
@@ -811,7 +811,7 @@ export const D_Users = [{
   "address": "69832 Sunfield Circle",
   "township": "Bahan",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 27,
   "name": "Jedidiah Kersley",
@@ -821,7 +821,7 @@ export const D_Users = [{
   "address": "83 Knutson Alley",
   "township": "Bahan",
   "region": "Magway",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 28,
   "name": "Aldric Heining",
@@ -831,7 +831,7 @@ export const D_Users = [{
   "address": "74 Oriole Way",
   "township": "Insein",
   "region": "Ayeyarwaddy",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 29,
   "name": "Terri-jo Michele",
@@ -841,7 +841,7 @@ export const D_Users = [{
   "address": "3 Hanson Road",
   "township": "Thaketa",
   "region": "Ayeyarwaddy",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 30,
   "name": "Aeriel Oliveras",
@@ -851,7 +851,7 @@ export const D_Users = [{
   "address": "31 Daystar Avenue",
   "township": "Tamwe",
   "region": "Ayeyarwaddy",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 31,
   "name": "Bord Relf",
@@ -861,7 +861,7 @@ export const D_Users = [{
   "address": "516 John Wall Lane",
   "township": "Pabedan",
   "region": "Yangon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 32,
   "name": "Ursula Hyett",
@@ -871,7 +871,7 @@ export const D_Users = [{
   "address": "85727 Calypso Street",
   "township": "Bahan",
   "region": "Mon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 33,
   "name": "Merilyn Roelofs",
@@ -881,7 +881,7 @@ export const D_Users = [{
   "address": "39025 Moose Pass",
   "township": "TaungNyunt",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 34,
   "name": "Sean Speeks",
@@ -891,7 +891,7 @@ export const D_Users = [{
   "address": "070 Marquette Plaza",
   "township": "Insein",
   "region": "Mon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 35,
   "name": "Myrlene Verlander",
@@ -901,7 +901,7 @@ export const D_Users = [{
   "address": "60 Cherokee Parkway",
   "township": "Pabedan",
   "region": "Yangon",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 36,
   "name": "Robbie Mullan",
@@ -911,7 +911,7 @@ export const D_Users = [{
   "address": "90945 Thompson Drive",
   "township": "Tamwe",
   "region": "Shan",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 37,
   "name": "Parke Goggins",
@@ -921,7 +921,7 @@ export const D_Users = [{
   "address": "504 Ludington Street",
   "township": "TaungNyunt",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 38,
   "name": "Emerson Wraighte",
@@ -931,7 +931,7 @@ export const D_Users = [{
   "address": "10856 South Center",
   "township": "Tamwe",
   "region": "Ayeyarwaddy",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 39,
   "name": "Kimball Gotcliff",
@@ -941,7 +941,7 @@ export const D_Users = [{
   "address": "781 Corry Road",
   "township": "TaungNyunt",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 40,
   "name": "Madel Meenehan",
@@ -951,7 +951,7 @@ export const D_Users = [{
   "address": "41323 Fairview Parkway",
   "township": "TaungNyunt",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 41,
   "name": "Lanae Lesaunier",
@@ -961,7 +961,7 @@ export const D_Users = [{
   "address": "0 Dryden Plaza",
   "township": "Hlaing",
   "region": "Bago",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 42,
   "name": "Davidson Pott",
@@ -971,7 +971,7 @@ export const D_Users = [{
   "address": "488 Pearson Way",
   "township": "Sanchaung",
   "region": "Mon",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 43,
   "name": "Yanaton Bucher",
@@ -981,7 +981,7 @@ export const D_Users = [{
   "address": "2 Mitchell Point",
   "township": "Insein",
   "region": "",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 44,
   "name": "Merla Kemwal",
@@ -991,7 +991,7 @@ export const D_Users = [{
   "address": "872 Pond Crossing",
   "township": "Thaketa",
   "region": "",
-  "role": "shop"
+  "role": "shop",
 }, {
   "id": 45,
   "name": "Kania Cheng",
@@ -1001,7 +1001,7 @@ export const D_Users = [{
   "address": "477 Redwing Terrace",
   "township": "Bahan",
   "region": "Magway",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 46,
   "name": "Xever Kemster",
@@ -1011,7 +1011,7 @@ export const D_Users = [{
   "address": "44695 Continental Park",
   "township": "Bahan",
   "region": "Magway",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 47,
   "name": "Gus Myhan",
@@ -1021,7 +1021,7 @@ export const D_Users = [{
   "address": "29 Muir Way",
   "township": "Thaketa",
   "region": "",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 48,
   "name": "Ethelred Gammel",
@@ -1031,7 +1031,7 @@ export const D_Users = [{
   "address": "93 Mesta Alley",
   "township": "Bahan",
   "region": "Mon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 49,
   "name": "Dionysus Croxall",
@@ -1041,7 +1041,7 @@ export const D_Users = [{
   "address": "7487 Tomscot Junction",
   "township": "Pabedan",
   "region": "Yangon",
-  "role": "user"
+  "role": "user",
 }, {
   "id": 50,
   "name": "Grissel Geillier",
@@ -1051,8 +1051,8 @@ export const D_Users = [{
   "address": "9 Eagan Court",
   "township": "Insein",
   "region": "Mon",
-  "role": "user"
-}]
+  "role": "user",
+}];
 
 export const D_ProductDetails = [{
   "id": 1,
@@ -1062,7 +1062,7 @@ export const D_ProductDetails = [{
   "price": 97.31,
   "description": "Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.",
   "discount": 0.05,
-  "warehouse_id": "e9eb1a51-78a3-41e1-831b-80b66bc4727f"
+  "warehouse_id": "e9eb1a51-78a3-41e1-831b-80b66bc4727f",
 }, {
   "id": 2,
   "name": "Samsung S5330 Wave533",
@@ -1071,7 +1071,7 @@ export const D_ProductDetails = [{
   "price": 64.19,
   "description": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.",
   "discount": 0.57,
-  "warehouse_id": "e0c69e15-b5e7-4376-8e85-87a6868e0d33"
+  "warehouse_id": "e0c69e15-b5e7-4376-8e85-87a6868e0d33",
 }, {
   "id": 3,
   "name": "Nokia C3-01 Touch and Type",
@@ -1080,7 +1080,7 @@ export const D_ProductDetails = [{
   "price": 53.73,
   "description": "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.",
   "discount": 0.68,
-  "warehouse_id": "5fd1efab-bf72-4692-8a74-c661e24becaf"
+  "warehouse_id": "5fd1efab-bf72-4692-8a74-c661e24becaf",
 }, {
   "id": 4,
   "name": "LG Q31",
@@ -1089,7 +1089,7 @@ export const D_ProductDetails = [{
   "price": 56.85,
   "description": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.",
   "discount": 0.3,
-  "warehouse_id": "597fa1da-d2f9-419c-84f0-2816061ea1f6"
+  "warehouse_id": "597fa1da-d2f9-419c-84f0-2816061ea1f6",
 }, {
   "id": 5,
   "name": "ZTE Blade Q Maxi",
@@ -1098,7 +1098,7 @@ export const D_ProductDetails = [{
   "price": 105.36,
   "description": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum.",
   "discount": 0.45,
-  "warehouse_id": "91e9cdd1-5e22-46df-b004-028f09e71a99"
+  "warehouse_id": "91e9cdd1-5e22-46df-b004-028f09e71a99",
 }, {
   "id": 6,
   "name": "Sony Ericsson W600",
@@ -1107,7 +1107,7 @@ export const D_ProductDetails = [{
   "price": 93.16,
   "description": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.",
   "discount": 0.66,
-  "warehouse_id": "73164cdb-aa75-4709-8e3f-3d35c7afb6ea"
+  "warehouse_id": "73164cdb-aa75-4709-8e3f-3d35c7afb6ea",
 }, {
   "id": 7,
   "name": "HTC Desire 20 Pro",
@@ -1116,7 +1116,7 @@ export const D_ProductDetails = [{
   "price": 50.15,
   "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
   "discount": 0.09,
-  "warehouse_id": "9f99d03b-7211-4543-a59f-6065ef2d6684"
+  "warehouse_id": "9f99d03b-7211-4543-a59f-6065ef2d6684",
 }, {
   "id": 8,
   "name": "Wiko Y80",
@@ -1125,7 +1125,7 @@ export const D_ProductDetails = [{
   "price": 108.87,
   "description": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
   "discount": 0.33,
-  "warehouse_id": "1cf380d7-8e1b-4b89-9419-61d918b9d613"
+  "warehouse_id": "1cf380d7-8e1b-4b89-9419-61d918b9d613",
 }, {
   "id": 9,
   "name": "Asus Zenfone Pegasus 3",
@@ -1134,7 +1134,7 @@ export const D_ProductDetails = [{
   "price": 63.1,
   "description": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.",
   "discount": 0.35,
-  "warehouse_id": "32f1060f-c5cb-4c0c-b304-5e006abb8fdf"
+  "warehouse_id": "32f1060f-c5cb-4c0c-b304-5e006abb8fdf",
 }, {
   "id": 10,
   "name": "Oppo A12s",
@@ -1143,7 +1143,7 @@ export const D_ProductDetails = [{
   "price": 59.65,
   "description": "Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
   "discount": 0.76,
-  "warehouse_id": "3cebd6ae-1623-46e0-8573-cba9301295b4"
+  "warehouse_id": "3cebd6ae-1623-46e0-8573-cba9301295b4",
 }, {
   "id": 11,
   "name": "Archos 55b Cobalt",
@@ -1152,7 +1152,7 @@ export const D_ProductDetails = [{
   "price": 34.95,
   "description": "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
   "discount": 0.73,
-  "warehouse_id": "0ccb5c5c-e454-4ce7-b7da-94e20506747b"
+  "warehouse_id": "0ccb5c5c-e454-4ce7-b7da-94e20506747b",
 }, {
   "id": 12,
   "name": "BQ  Aquaris M10",
@@ -1161,7 +1161,7 @@ export const D_ProductDetails = [{
   "price": 86.91,
   "description": "Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc.",
   "discount": 0.83,
-  "warehouse_id": "1d7029cf-859d-414f-82f8-18f12aa5d8fe"
+  "warehouse_id": "1d7029cf-859d-414f-82f8-18f12aa5d8fe",
 }, {
   "id": 13,
   "name": "Spice S-5010",
@@ -1170,7 +1170,7 @@ export const D_ProductDetails = [{
   "price": 106.0,
   "description": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.",
   "discount": 0.76,
-  "warehouse_id": "8fd82721-c098-4ea3-808d-c58f444ea4b3"
+  "warehouse_id": "8fd82721-c098-4ea3-808d-c58f444ea4b3",
 }, {
   "id": 14,
   "name": "Bird S661",
@@ -1179,7 +1179,7 @@ export const D_ProductDetails = [{
   "price": 110.88,
   "description": "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",
   "discount": 0.8,
-  "warehouse_id": "64e33796-aa29-498b-b8d8-e4c717737a87"
+  "warehouse_id": "64e33796-aa29-498b-b8d8-e4c717737a87",
 }, {
   "id": 15,
   "name": "Huawei Ascend G6",
@@ -1188,7 +1188,7 @@ export const D_ProductDetails = [{
   "price": 43.26,
   "description": "Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.",
   "discount": 0.49,
-  "warehouse_id": "bec56e9a-75ff-4350-8276-9d8c1ada12b3"
+  "warehouse_id": "bec56e9a-75ff-4350-8276-9d8c1ada12b3",
 }, {
   "id": 16,
   "name": "Dell Venue 7 8 GB",
@@ -1197,7 +1197,7 @@ export const D_ProductDetails = [{
   "price": 70.95,
   "description": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
   "discount": 0.54,
-  "warehouse_id": "a7c047a6-450d-4075-b168-53eb3032c2c5"
+  "warehouse_id": "a7c047a6-450d-4075-b168-53eb3032c2c5",
 }, {
   "id": 17,
   "name": "Honor 20",
@@ -1206,7 +1206,7 @@ export const D_ProductDetails = [{
   "price": 60.81,
   "description": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.",
   "discount": 0.03,
-  "warehouse_id": "cf7535f8-83f9-4f99-9e1d-aecb01967fe3"
+  "warehouse_id": "cf7535f8-83f9-4f99-9e1d-aecb01967fe3",
 }, {
   "id": 18,
   "name": "Spice Smart Pulse (M-9010)",
@@ -1215,7 +1215,7 @@ export const D_ProductDetails = [{
   "price": 44.43,
   "description": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
   "discount": 0.82,
-  "warehouse_id": "61de034d-32dc-434e-a60a-f33b30dc5d72"
+  "warehouse_id": "61de034d-32dc-434e-a60a-f33b30dc5d72",
 }, {
   "id": 19,
   "name": "Nokia 5.3",
@@ -1224,7 +1224,7 @@ export const D_ProductDetails = [{
   "price": 60.0,
   "description": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
   "discount": 0.85,
-  "warehouse_id": "b6e190b8-890a-4fa2-bd2e-e2d141e406c8"
+  "warehouse_id": "b6e190b8-890a-4fa2-bd2e-e2d141e406c8",
 }, {
   "id": 20,
   "name": "Philips X331",
@@ -1233,7 +1233,7 @@ export const D_ProductDetails = [{
   "price": 99.41,
   "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.",
   "discount": 0.3,
-  "warehouse_id": "106125a9-d507-43b7-91ef-038fbb4fe005"
+  "warehouse_id": "106125a9-d507-43b7-91ef-038fbb4fe005",
 }, {
   "id": 21,
   "name": "BLU Dash L2",
@@ -1242,7 +1242,7 @@ export const D_ProductDetails = [{
   "price": 64.49,
   "description": "Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.",
   "discount": 0.06,
-  "warehouse_id": "78f8d817-fa73-4892-b72e-50bb1bc83d10"
+  "warehouse_id": "78f8d817-fa73-4892-b72e-50bb1bc83d10",
 }, {
   "id": 22,
   "name": "LG GD550 Pure",
@@ -1251,7 +1251,7 @@ export const D_ProductDetails = [{
   "price": 117.69,
   "description": "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
   "discount": 0.18,
-  "warehouse_id": "11ef91ab-7d18-4e7a-9a78-097fad020837"
+  "warehouse_id": "11ef91ab-7d18-4e7a-9a78-097fad020837",
 }, {
   "id": 23,
   "name": "Samsung T700",
@@ -1260,7 +1260,7 @@ export const D_ProductDetails = [{
   "price": 71.47,
   "description": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
   "discount": 0.22,
-  "warehouse_id": "0e3b9c1a-b934-4ed0-b22b-098f924c3d8d"
+  "warehouse_id": "0e3b9c1a-b934-4ed0-b22b-098f924c3d8d",
 }, {
   "id": 24,
   "name": "Huawei Enjoy 6",
@@ -1269,7 +1269,7 @@ export const D_ProductDetails = [{
   "price": 43.92,
   "description": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
   "discount": 0.73,
-  "warehouse_id": "79034cf6-735e-462a-aba9-aa118778fd36"
+  "warehouse_id": "79034cf6-735e-462a-aba9-aa118778fd36",
 }, {
   "id": 25,
   "name": "BLU Samba Mini",
@@ -1278,7 +1278,7 @@ export const D_ProductDetails = [{
   "price": 64.69,
   "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
   "discount": 0.29,
-  "warehouse_id": "6913fe62-25b0-4616-9b84-e820ed02b1f5"
+  "warehouse_id": "6913fe62-25b0-4616-9b84-e820ed02b1f5",
 }, {
   "id": 26,
   "name": "BlackBerry Z10",
@@ -1287,7 +1287,7 @@ export const D_ProductDetails = [{
   "price": 86.86,
   "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.",
   "discount": 0.78,
-  "warehouse_id": "62b3ec2c-456f-4958-8504-110d68969df1"
+  "warehouse_id": "62b3ec2c-456f-4958-8504-110d68969df1",
 }, {
   "id": 27,
   "name": "BLU Studio 7.0 LTE",
@@ -1296,7 +1296,7 @@ export const D_ProductDetails = [{
   "price": 68.42,
   "description": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.",
   "discount": 0.9,
-  "warehouse_id": "9a207cd5-1dd7-47f7-b2db-e3114b09bbf6"
+  "warehouse_id": "9a207cd5-1dd7-47f7-b2db-e3114b09bbf6",
 }, {
   "id": 28,
   "name": "LG K41S",
@@ -1305,7 +1305,7 @@ export const D_ProductDetails = [{
   "price": 99.63,
   "description": "Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
   "discount": 0.1,
-  "warehouse_id": "027cac93-560d-4efd-9e55-04abace0af9d"
+  "warehouse_id": "027cac93-560d-4efd-9e55-04abace0af9d",
 }, {
   "id": 29,
   "name": "Samsung T200",
@@ -1314,7 +1314,7 @@ export const D_ProductDetails = [{
   "price": 88.77,
   "description": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.",
   "discount": 0.98,
-  "warehouse_id": "25985f48-aef8-4413-88b0-95ca0dd85861"
+  "warehouse_id": "25985f48-aef8-4413-88b0-95ca0dd85861",
 }, {
   "id": 30,
   "name": "verykool s470",
@@ -1323,7 +1323,7 @@ export const D_ProductDetails = [{
   "price": 78.46,
   "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
   "discount": 0.15,
-  "warehouse_id": "b59881ac-eb04-405c-8956-75c3c3e6cae9"
+  "warehouse_id": "b59881ac-eb04-405c-8956-75c3c3e6cae9",
 }, {
   "id": 31,
   "name": "LG Harmony",
@@ -1332,7 +1332,7 @@ export const D_ProductDetails = [{
   "price": 51.36,
   "description": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
   "discount": 0.55,
-  "warehouse_id": "8ddb85f0-3fce-43ef-bfdb-f298980f1602"
+  "warehouse_id": "8ddb85f0-3fce-43ef-bfdb-f298980f1602",
 }, {
   "id": 32,
   "name": "Motorola Moto X Force",
@@ -1341,7 +1341,7 @@ export const D_ProductDetails = [{
   "price": 114.19,
   "description": "Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
   "discount": 0.03,
-  "warehouse_id": "c0d2d530-62a1-40c6-8d21-61e1b15a160c"
+  "warehouse_id": "c0d2d530-62a1-40c6-8d21-61e1b15a160c",
 }, {
   "id": 33,
   "name": "Nokia 7020",
@@ -1350,7 +1350,7 @@ export const D_ProductDetails = [{
   "price": 56.26,
   "description": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
   "discount": 0.84,
-  "warehouse_id": "ad8e6172-b424-4e1c-9152-1ab747d1cc40"
+  "warehouse_id": "ad8e6172-b424-4e1c-9152-1ab747d1cc40",
 }, {
   "id": 34,
   "name": "Haier M2000",
@@ -1359,7 +1359,7 @@ export const D_ProductDetails = [{
   "price": 36.39,
   "description": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
   "discount": 0.78,
-  "warehouse_id": "0ea982fa-be3c-4772-bea6-5ef7502d5495"
+  "warehouse_id": "0ea982fa-be3c-4772-bea6-5ef7502d5495",
 }, {
   "id": 35,
   "name": "BLU Studio C",
@@ -1368,7 +1368,7 @@ export const D_ProductDetails = [{
   "price": 93.66,
   "description": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
   "discount": 0.57,
-  "warehouse_id": "21160c37-a412-49df-819e-42b260b5dbf0"
+  "warehouse_id": "21160c37-a412-49df-819e-42b260b5dbf0",
 }, {
   "id": 36,
   "name": "alcatel OT-385",
@@ -1377,7 +1377,7 @@ export const D_ProductDetails = [{
   "price": 75.53,
   "description": "In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
   "discount": 0.27,
-  "warehouse_id": "96551921-1851-4d71-93f2-234f3e774dcd"
+  "warehouse_id": "96551921-1851-4d71-93f2-234f3e774dcd",
 }, {
   "id": 37,
   "name": "LG G Pad 8.0",
@@ -1386,7 +1386,7 @@ export const D_ProductDetails = [{
   "price": 108.67,
   "description": "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.",
   "discount": 0.35,
-  "warehouse_id": "2fe5f62f-2e75-49ad-bda4-5ac9ac816347"
+  "warehouse_id": "2fe5f62f-2e75-49ad-bda4-5ac9ac816347",
 }, {
   "id": 38,
   "name": "Sony Ericsson C903",
@@ -1395,7 +1395,7 @@ export const D_ProductDetails = [{
   "price": 64.59,
   "description": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
   "discount": 0.93,
-  "warehouse_id": "70d92cae-2a8f-4a35-bd9e-cae5bacd816e"
+  "warehouse_id": "70d92cae-2a8f-4a35-bd9e-cae5bacd816e",
 }, {
   "id": 39,
   "name": "Micromax A99 Canvas Xpress",
@@ -1404,7 +1404,7 @@ export const D_ProductDetails = [{
   "price": 107.19,
   "description": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
   "discount": 0.82,
-  "warehouse_id": "6e1146d0-492c-4db9-84d5-700a9c3e446f"
+  "warehouse_id": "6e1146d0-492c-4db9-84d5-700a9c3e446f",
 }, {
   "id": 40,
   "name": "Honor 10 Lite",
@@ -1413,7 +1413,7 @@ export const D_ProductDetails = [{
   "price": 102.13,
   "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
   "discount": 0.69,
-  "warehouse_id": "24eaa512-1cb1-4689-93e5-49a9ba55b88d"
+  "warehouse_id": "24eaa512-1cb1-4689-93e5-49a9ba55b88d",
 }, {
   "id": 41,
   "name": "Celkon Q519",
@@ -1422,7 +1422,7 @@ export const D_ProductDetails = [{
   "price": 57.98,
   "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",
   "discount": 0.1,
-  "warehouse_id": "28c874d4-854b-4291-b2b1-3ac12e227dbf"
+  "warehouse_id": "28c874d4-854b-4291-b2b1-3ac12e227dbf",
 }, {
   "id": 42,
   "name": "Sagem my200C",
@@ -1431,7 +1431,7 @@ export const D_ProductDetails = [{
   "price": 63.48,
   "description": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
   "discount": 0.28,
-  "warehouse_id": "796fd7bd-d73a-4c85-9285-545cd7e12e54"
+  "warehouse_id": "796fd7bd-d73a-4c85-9285-545cd7e12e54",
 }, {
   "id": 43,
   "name": "Sagem my301X",
@@ -1440,7 +1440,7 @@ export const D_ProductDetails = [{
   "price": 55.38,
   "description": "Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
   "discount": 0.39,
-  "warehouse_id": "e54b463f-de22-44e1-b437-e95376146c45"
+  "warehouse_id": "e54b463f-de22-44e1-b437-e95376146c45",
 }, {
   "id": 44,
   "name": "ZTE Maven 2",
@@ -1449,7 +1449,7 @@ export const D_ProductDetails = [{
   "price": 34.78,
   "description": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.",
   "discount": 0.9,
-  "warehouse_id": "8eb03963-4a30-4eb4-8367-02e3b63b8a22"
+  "warehouse_id": "8eb03963-4a30-4eb4-8367-02e3b63b8a22",
 }, {
   "id": 45,
   "name": "Sony Ericsson Xperia active",
@@ -1458,7 +1458,7 @@ export const D_ProductDetails = [{
   "price": 39.92,
   "description": "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio.",
   "discount": 0.55,
-  "warehouse_id": "26734314-2db2-4111-97f4-1caf85e054df"
+  "warehouse_id": "26734314-2db2-4111-97f4-1caf85e054df",
 }, {
   "id": 46,
   "name": "Huawei nova 5z",
@@ -1467,7 +1467,7 @@ export const D_ProductDetails = [{
   "price": 68.16,
   "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
   "discount": 0.98,
-  "warehouse_id": "9791f9f3-b8bc-4121-be8c-5c8e6d3420b5"
+  "warehouse_id": "9791f9f3-b8bc-4121-be8c-5c8e6d3420b5",
 }, {
   "id": 47,
   "name": "Motorola Motoluxe XT389",
@@ -1476,7 +1476,7 @@ export const D_ProductDetails = [{
   "price": 102.87,
   "description": "Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
   "discount": 0.73,
-  "warehouse_id": "2852951f-8d72-4f8a-9e09-cdb20e6950f0"
+  "warehouse_id": "2852951f-8d72-4f8a-9e09-cdb20e6950f0",
 }, {
   "id": 48,
   "name": "Samsung E1085T",
@@ -1485,7 +1485,7 @@ export const D_ProductDetails = [{
   "price": 72.88,
   "description": "Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.",
   "discount": 0.05,
-  "warehouse_id": "03991e41-44c7-4f11-a50b-aab486bbb6a2"
+  "warehouse_id": "03991e41-44c7-4f11-a50b-aab486bbb6a2",
 }, {
   "id": 49,
   "name": "Motorola A780",
@@ -1494,7 +1494,7 @@ export const D_ProductDetails = [{
   "price": 88.19,
   "description": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
   "discount": 0.99,
-  "warehouse_id": "100e0cbc-c866-43c4-9add-8a19306f96cb"
+  "warehouse_id": "100e0cbc-c866-43c4-9add-8a19306f96cb",
 }, {
   "id": 50,
   "name": "O2 XDA Argon",
@@ -1503,6 +1503,6 @@ export const D_ProductDetails = [{
   "price": 101.52,
   "description": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo.",
   "discount": 0.45,
-  "warehouse_id": "56aa4cf6-c725-491e-8663-78a3b8348408"
-}]
+  "warehouse_id": "56aa4cf6-c725-491e-8663-78a3b8348408",
+}];
 

@@ -1,20 +1,21 @@
-'use client'
+"use client";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { ChevronUp, User2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
 
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+
 export default function AdminSidebarFooter() {
-  const { theme, setTheme } = useTheme()
-  console.log(theme)
+  const { theme, setTheme } = useTheme();
+  console.log(theme);
 
   useEffect(() => {
-    if (theme == 'system') {
-      setTheme('light')
+    if (theme == "system") {
+      setTheme("light");
     }
-  }, [theme, setTheme])
+  }, [theme, setTheme]);
 
   return (
     <SidebarFooter>
@@ -40,8 +41,8 @@ export default function AdminSidebarFooter() {
                   <DropdownMenuSubTrigger>Switch Theme</DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent>
-                      <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
@@ -54,5 +55,5 @@ export default function AdminSidebarFooter() {
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarFooter>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const AboutPage = () => {
     return (
@@ -9,7 +9,7 @@ const AboutPage = () => {
 
             <div className='block md:flex items-center md:p-10 gap-10 pb-4'>
                 <div className='w-full flex items-center justify-center p-4'>
-                    <img src={'/about-us/Myantech.png'} alt='MyanTech' className='w-full max-w-md' />
+                    <img src={"/about-us/Myantech.png"} alt='MyanTech' className='w-full max-w-md' />
                 </div>
                 <div>
                     <div className='flex flex-col md:flex-row items-center md:items-start justify-center md:justify-center md:pb-2'>
@@ -46,13 +46,13 @@ const AboutPage = () => {
                     </p>
                 </div>
                 <div className='w-1/3 hidden md:block'>
-                    <img src={'/about-us/what_we_do.png'} alt='what we do' className='' />
+                    <img src={"/about-us/what_we_do.png"} alt='what we do' className='' />
                 </div>
             </div>
 
             <div className='my-10 md:my-20 flex justify-evenly items-center w-full gap-6'>
                 <div className='w-1/3 hidden md:block'>
-                    <img src={'/about-us/why_choose_us.png'} alt='why choose us' className='' />
+                    <img src={"/about-us/why_choose_us.png"} alt='why choose us' className='' />
                 </div>
                 <div className='bg-white w-full md:w-1/3 border border-neutral-200 md:border-0  p-6 md:py-5'>
                     <h2 className='font-bold text-xl md:text-2xl text-center mb-2'>Why Choose Us?</h2>
@@ -66,7 +66,7 @@ const AboutPage = () => {
             </div>
         </section >
     );
-}
+};
 
 
-export default AboutPage
+export default AboutPage;

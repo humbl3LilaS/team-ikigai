@@ -1,9 +1,9 @@
 import { getApprovedOrdersCount, getFinishedOrdersCount, getUnfinishOrdersCount } from "@/dashboard/actions";
 
 export default async function DashboardPage() {
-    const finishedOrders = await getFinishedOrdersCount()
-    const unfinishedOrders = await getUnfinishOrdersCount()
-    const approvedOrders = await getApprovedOrdersCount()
+    const finishedOrders = await getFinishedOrdersCount();
+    const unfinishedOrders = await getUnfinishOrdersCount();
+    const approvedOrders = await getApprovedOrdersCount();
     return (
         <main className="w-full bg-background">
             <h1 className="admin-header pl-2">Dashboard</h1>
@@ -25,5 +25,5 @@ function DashboardCard({ num, title, color }: { num: number, title: string, colo
             <p className="text-3xl font-bold">{num}</p>
             <p className={color}>{title}</p>
         </div>
-    )
+    );
 }
