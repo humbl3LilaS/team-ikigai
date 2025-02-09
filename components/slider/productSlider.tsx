@@ -1,35 +1,21 @@
 "use client";
 
-import { SkipBack, SkipForward } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
-
 import { Button } from "../ui/button";
+import { SkipBack, SkipForward } from "lucide-react";
 
-const ProductSlider = () => {
-    const productImageData = [
-        {
-            src: "/lenovo.png",
-            title: "front",
-        },
-        {
-            src: "/backLenovo.png",
-            title: "back",
-        },
-        {
-            src: "/sideLenovo.avif",
-            title: "side",
-        },
-    ];
+interface Props {
+    images: string[];
+}
 
+const ProductSlider = ({ images }: Props) => {
     const [curIndex, setCurIndex] = useState(0);
     const handleGoBack = () => {
-        setCurIndex((prev) =>
-            prev - 1 < 0 ? productImageData.length - 1 : prev - 1,
-        );
+        setCurIndex((prev) => (prev - 1 < 0 ? images.length - 1 : prev - 1));
     };
     const handleGoForward = () => {
-        setCurIndex((prev) => (prev + 1) % productImageData.length);
+        setCurIndex((prev) => (prev + 1) % images.length);
     };
     const handleSetIndex = (id: number) => {
         setCurIndex(id);
@@ -37,11 +23,11 @@ const ProductSlider = () => {
     return (
         <>
             <div className="flex w-[70%] sm:w-[320px] h-[200px] sm:h-[250px] mx-auto p-5 relative">
-                {productImageData.map((item, index) => (
+                {images.map((item: string, index) => (
                     <Image
-                        key={item.src + index}
-                        src={item.src}
-                        alt={item.title}
+                        key={item + index}
+                        src={item}
+                        alt={"Product Image"}
                         className={` mx-auto ${curIndex === index ? "flex-1" : "hidden"}`}
                         width={100}
                         height={50}
@@ -61,7 +47,7 @@ const ProductSlider = () => {
                 </Button>
             </div>
             <div className="flex justify-center gap-2">
-                {productImageData.map((_, index) => (
+                {images.map((_, index) => (
                     <div
                         onClick={() => handleSetIndex(index)}
                         key={index}

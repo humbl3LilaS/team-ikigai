@@ -7,7 +7,7 @@ import {
     uuid,
     varchar,
 } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { relations } from "drizzle-orm";
 import { PRODUCT_CATEGORY } from "@/constants";
 
@@ -61,7 +61,7 @@ export const productDetails = pgTable("product_details", {
     price: integer("price").notNull(),
     description: text("description").notNull(),
     discount: integer("discount").default(0).notNull(),
-    imageUrl: text("image_url"),
+    imageUrl: text("image_url").notNull(),
 });
 
 export const productColors = pgTable("product_colors", {
@@ -342,3 +342,5 @@ export type IUserInsert = Zod.infer<typeof UserInsertSchema>;
 
 export type IProductCategory = (typeof CATEGORY.enumValues)[number];
 export type IOrderStatus = (typeof ORDER_STATUS.enumValues)[number];
+export const productDetailsSchema = createSelectSchema(productDetails);
+export type IProductDetails = Zod.infer<typeof productDetailsSchema>;

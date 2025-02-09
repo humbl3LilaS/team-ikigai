@@ -1,3 +1,5 @@
+import ProductSlider from "@/components/slider/productSlider";
+import { Button } from "@/components/ui/button";
 import {
     Battery,
     ComputerIcon,
@@ -6,24 +8,36 @@ import {
     Shrink,
 } from "lucide-react";
 import React from "react";
+import { getProductById } from "@/actions/get-product-by-id";
+import { notFound } from "next/navigation";
 
-import ProductSlider from "@/components/slider/productSlider";
-import { Button } from "@/components/ui/button";
+const ProductDetailPage = async ({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) => {
+    const { id } = await params;
 
-const page = () => {
+    if (!id) {
+        return notFound();
+    }
+
+    const productInfo = await getProductById(id);
+    if (!productInfo) {
+        return notFound();
+    }
     return (
         <section className="w-full flex flex-col md:flex-row">
             <div className="flex p-5 md:w-1/2 md:flex-1 gap-5 sm:gap-10 flex-col">
                 <div className="w-full flex flex-col gap-10">
-                    <ProductSlider images={"/lenovo.png"} />
+                    <ProductSlider images={[productInfo.imageUrl]} />
                 </div>
                 <div className="mx-auto flex flex-col items-center gap-4">
-                    <h1>Available in 5 colors</h1>
+                    <h1>Available in {productInfo.colors.length} colors</h1>
                     <div className="flex gap-2">
-                        <div className="w-2 h-2 rounded-full bg-black" />
-                        <div className="w-2 h-2 rounded-full bg-red-600" />
-                        <div className="w-2 h-2 rounded-full bg-white border border-gray-500" />
-                        <div className="w-2 h-2 rounded-full bg-gray-600" />
+                        {productInfo.colors.map((item) => (
+                            <span className={""} key={item.colorHex} />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -91,4 +105,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default ProductDetailPage;
