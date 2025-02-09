@@ -2,7 +2,6 @@
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -12,6 +11,7 @@ import {
 } from "@/components/ui/sidebar";
 import { adminSideBarItems } from "@/constants";
 import { usePathname } from "next/navigation";
+import AdminSidebarFooter from "./admin-side-bar-footer";
 
 const AppSideBar = () => {
     const path = usePathname();
@@ -43,10 +43,7 @@ const AppSideBar = () => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-
-            <SidebarFooter>
-                Footer
-            </SidebarFooter>
+        <AdminSidebarFooter />
         </Sidebar>
     );
 };

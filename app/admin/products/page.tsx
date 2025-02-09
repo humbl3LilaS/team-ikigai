@@ -1,3 +1,7 @@
+import ProductsTable from "@/features/admin/products/components/product-table";
+
 export default function ProductsPage() {
-    return <div>ProductsPage</div>;
+    return <section className="">
+        <ProductsTable />
+    </section>
 }
