@@ -11,7 +11,13 @@ import { createInsertSchema } from "drizzle-zod";
 import { relations } from "drizzle-orm";
 import { PRODUCT_CATEGORY } from "@/constants";
 
-export const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
+export const ROLE_ENUM = pgEnum("role", [
+    "USER",
+    "SALES",
+    "WAREHOUSE_MANAGER",
+    "DRIVER",
+    "FINANCE",
+]);
 export const CATEGORY = pgEnum("product_category", PRODUCT_CATEGORY);
 export const PAYMENT_METHOD = pgEnum("payment_method", ["KBZ_PAY", "WAVE_PAY"]);
 export const TYPE = pgEnum("type", ["REPAIR", "EXCHANGE"]);
@@ -26,6 +32,13 @@ export const INVOICE_STATUS = pgEnum("invoice_status", ["SUCCESS", "COMPLAIN"]);
 export const COMPLAIN_STATUS = pgEnum("compliance_status", [
     "EXCHANGE",
     "REPAIR",
+]);
+
+export const DELIVERY_STATUS = pgEnum("delivery_status", [
+    "PENDING",
+    "IN-TRANSIT",
+    "DELIVERED",
+    "FAILED",
 ]);
 
 export const users = pgTable("users", {
@@ -67,6 +80,9 @@ export const products = pgTable("products", {
         .references(() => warehouses.id)
         .notNull(),
     stock: integer("stock").notNull(),
+    createdAt: timestamp("created_at", {
+        withTimezone: true,
+    }),
 });
 
 export const orders = pgTable("orders", {
@@ -74,7 +90,7 @@ export const orders = pgTable("orders", {
     userId: uuid("user_id")
         .references(() => users.id)
         .notNull(),
-    orderDate: timestamp("order_date", {
+    createdAt: timestamp("created_at", {
         withTimezone: true,
     })
         .defaultNow()
@@ -118,9 +134,6 @@ export const complains = pgTable("complains", {
 
 export const warehouses = pgTable("warehouses", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    // userId: uuid("user_id")
-    //     .references(() => users.id)
-    //     .notNull(),
     phoneNumber: text("phone_number").notNull(),
     address: text("address"),
     city: text("city"),
@@ -129,9 +142,7 @@ export const warehouses = pgTable("warehouses", {
 
 export const drivers = pgTable("drivers", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    // userId: uuid("user_id")
-    //     .references(() => users.id)
-    //     .notNull(),
+    userId: uuid("user_id").references(() => users.id),
     vehiclePlateNumber: varchar("vehicle_plate_number", { length: 20 })
         .notNull()
         .unique(),
@@ -139,6 +150,22 @@ export const drivers = pgTable("drivers", {
     warehouseId: uuid("warehouse_id")
         .references(() => warehouses.id)
         .notNull(),
+    orderLimit: integer("order_limit").default(5),
+});
+
+export const deliveries = pgTable("deliveries", {
+    id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+    orderId: uuid("order_id")
+        .references(() => orders.id)
+        .notNull(),
+    driverId: uuid("driver_id").references(() => drivers.id),
+    deliveryStatus: DELIVERY_STATUS("delivery_status")
+        .default("PENDING")
+        .notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+        .defaultNow()
+        .notNull(),
+    deliveredDate: timestamp("delivered_date", { withTimezone: true }),
 });
 
 export const serviceCenters = pgTable("service_centers", {
