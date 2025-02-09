@@ -5,15 +5,15 @@ import {
     PaginationState,
     useReactTable,
 } from "@tanstack/react-table";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+
+import DataTableBody from "@/components/share/admin/data-table-body";
+import { Button } from "@/components/ui/button";
 import {
     columns,
     ORDER_PLACEHOLDER,
 } from "@/features/admin/order/columns/order-columns";
-
-import DataTableBody from "@/components/share/admin/data-table-body";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const OrderTable = () => {
     const [pagination, setPagination] = useState<PaginationState>({

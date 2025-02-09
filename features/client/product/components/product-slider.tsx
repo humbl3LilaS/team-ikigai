@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface Props {
     images: string[];
@@ -23,15 +24,18 @@ const ProductSlider = ({ images }: Props) => {
     };
     return (
         <>
-            <div className="flex w-[70%] sm:w-[320px] h-[200px] sm:h-[250px] mx-auto p-5 relative">
+            <div className="flex max-w-[400px] max-h-[400px] mx-auto  p-5 relative">
                 {images.map((item: string, index) => (
                     <Image
                         key={item + index}
                         src={item}
                         alt={"Product Image"}
-                        className={` mx-auto ${curIndex === index ? "flex-1" : "hidden"}`}
-                        width={100}
-                        height={50}
+                        className={cn(
+                            "mx-auto",
+                            curIndex === index ? "flex-1" : "hidden",
+                        )}
+                        width={500}
+                        height={500}
                     />
                 ))}
                 <Button
