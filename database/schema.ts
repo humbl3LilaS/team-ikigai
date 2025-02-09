@@ -278,29 +278,29 @@ export const driversToWarehouses = relations(drivers, ({ one }) => ({
 export type UserRole = (typeof ROLE_ENUM.enumValues)[number];
 
 export const UserInsertSchema = createInsertSchema(users, {
-    name: (schema) => schema.min(8),
-    email: (schema) => schema.email(),
+    name: (schema) =>
+        schema.min(8, { message: "Name must be at least 8 characters long" }),
+    email: (schema) => schema.email({ message: "Invalid email address" }),
     password: (schema) =>
         schema
-            .min(8, "Password must be at least 8 characters long")
-            .regex(
-                /[A-Z]/,
-                "Password must contain at least one uppercase letter",
-            )
-            .regex(
-                /[a-z]/,
-                "Password must contain at least one lowercase letter",
-            )
-            .regex(/[0-9]/, "Password must contain at least one number")
-            .regex(
-                /[^A-Za-z0-9]/,
-                "Password must contain at least one special character",
-            ),
+            .min(8, { message: "Password must be at least 8 characters long" })
+            .regex(/[A-Z]/, {
+                message: "Password must contain at least one uppercase letter",
+            })
+            .regex(/[a-z]/, {
+                message: "Password must contain at least one lowercase letter",
+            })
+            .regex(/[0-9]/, {
+                message: "Password must contain at least one number",
+            })
+            .regex(/[^A-Za-z0-9]/, {
+                message: "Password must contain at least one special character",
+            }),
     phoneNumber: (schema) =>
-        schema.regex(
-            /^09\d{9}$/,
-            "Phone number must start with 09 and have a total length of 11 digits",
-        ),
+        schema.regex(/^09\d{9}$/, {
+            message:
+                "Phone number must start with 09 and have a total length of 11 digits",
+        }),
 }).omit({
     id: true,
     address: true,

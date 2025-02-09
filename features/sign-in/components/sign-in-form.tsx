@@ -17,6 +17,14 @@ import PasswordField from "@/components/share/client/password-field";
 import { Input } from "@/components/ui/input";
 import { signInWithCredential } from "@/features/sign-in/actions/sign-in-actions";
 import { useToast } from "@/hooks/use-toast";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
 
 const SignInForm = () => {
     const form = useForm<SignInSchemaType>({
@@ -45,65 +53,82 @@ const SignInForm = () => {
         return router.push("/");
     };
     return (
-        <Form {...form}>
-            <div
-                className={
-                    "w-full max-w-screen-sm rounded-md bg-white p-10 shadow-md"
-                }
-            >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <FormField
-                        control={form.control}
-                        name={"email"}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder={"Eg: Superman"}
-                                        {...field}
-                                    />
-                                </FormControl>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name={"password"}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
-                                <FormControl>
-                                    <PasswordField
-                                        onChange={field.onChange}
-                                        value={field.value}
-                                    />
-                                </FormControl>
-                            </FormItem>
-                        )}
-                    />
-                    <Button
-                        className={"mt-4"}
-                        type={"submit"}
-                        disabled={
-                            form.formState.isSubmitting ||
-                            !form.formState.isValid
-                        }
-                    >
-                        {form.formState.isSubmitting ? (
-                            <>
-                                <Loader2
-                                    className={"mr-2 inline-block animate-spin"}
-                                />
-                                <span>Signing In..</span>
-                            </>
-                        ) : (
-                            <span>Sign In</span>
-                        )}
-                    </Button>
-                </form>
-            </div>
-        </Form>
+        <div className="flex h-screen w-full items-center justify-center px-4">
+            <Card className="mx-auto max-w-lg">
+                <CardHeader>
+                    <CardTitle className="text-2xl">Login</CardTitle>
+                    <CardDescription>
+                        Enter your email address and password to login to your
+                        account.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <FormField
+                                control={form.control}
+                                name={"email"}
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder={
+                                                    "Eg: super@gmail.com"
+                                                }
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name={"password"}
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <PasswordField
+                                                onChange={field.onChange}
+                                                value={field.value}
+                                            />
+                                        </FormControl>
+                                    </FormItem>
+                                )}
+                            />
+                            <Button
+                                className={"mt-4 w-full"}
+                                type={"submit"}
+                                disabled={
+                                    form.formState.isSubmitting ||
+                                    !form.formState.isValid
+                                }
+                            >
+                                {form.formState.isSubmitting ? (
+                                    <>
+                                        <Loader2
+                                            className={
+                                                "mr-2 inline-block animate-spin"
+                                            }
+                                        />
+                                        <span>Signing In..</span>
+                                    </>
+                                ) : (
+                                    <span>Sign In</span>
+                                )}
+                            </Button>
+                        </form>
+                    </Form>
+                    <div className="mt-4 text-center text-sm">
+                        Don&apos;t have an account?{" "}
+                        <Link href="/sign-up" className="font-bold">
+                            Sign up
+                        </Link>
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
     );
 };
 
