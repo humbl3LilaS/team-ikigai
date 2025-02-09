@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import QueryProvider from "@/providers/query-provider";
 
 const inter = localFont({
     src: "/fonts/InterVF.ttf",
@@ -32,7 +33,9 @@ export default function RootLayout({
             <body
                 className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
             >
-                <SessionProvider>{children}</SessionProvider>
+                <QueryProvider>
+                    <SessionProvider>{children}</SessionProvider>
+                </QueryProvider>
                 <Toaster />
             </body>
         </html>
