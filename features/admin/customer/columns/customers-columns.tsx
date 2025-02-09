@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { createColumnHelper } from "@tanstack/react-table";
 
 export type TCustomers = {
