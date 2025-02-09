@@ -1,0 +1,208 @@
+import { db } from "@/database/dirzzle";
+import {
+    drivers,
+    IOrderStatus,
+    IProductCategory,
+    ORDER_STATUS,
+    orderItems,
+    orders,
+    productColors,
+    productDetails,
+    products,
+    users,
+    warehouses,
+} from "@/database/schema";
+import { hash } from "bcryptjs";
+import { en, Faker } from "@faker-js/faker";
+import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
+import { subDays } from "date-fns";
+import { eq } from "drizzle-orm";
+
+async function main() {
+    console.log("Seeding Start");
+    const faker = new Faker({ locale: [en] });
+    const hashedPassword = await hash("P@ssword123", 10);
+
+    await db.delete(orderItems);
+    await db.delete(orders);
+    await db.delete(users);
+    const generatedUsers = Array.from(
+        {
+            length: 10,
+        },
+        () => {
+            const region = faker.helpers.arrayElement(REGION);
+            const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
+            return {
+                email: faker.internet.email(),
+                password: hashedPassword,
+                name: faker.internet.username(),
+                address: faker.location.streetAddress(),
+                region,
+                city,
+                phoneNumber: `09${faker.string.numeric(9)}`,
+            };
+        },
+    );
+    const createdUsers = await db
+        .insert(users)
+        .values(generatedUsers)
+        .returning({ id: users.id });
+    const newUserIds = createdUsers.map((item) => item.id);
+
+    await db.delete(products);
+    await db.delete(productDetails);
+    const generatedProductDetails = PRODUCT_PLACEHOLDER.map((item) => ({
+        ...item,
+        category: item.category as IProductCategory,
+        price: faker.helpers.rangeToNumber({ min: 1000, max: 3500 }),
+        description: faker.lorem.sentence(),
+    }));
+
+    const newProductDetails = await db
+        .insert(productDetails)
+        .values(generatedProductDetails)
+        .returning({ id: productDetails.id, price: productDetails.price });
+
+    const newProductDetailsId = newProductDetails.map((item) => item.id);
+
+    await db.delete(productColors);
+    const generatedProductColors = Array.from(
+        { length: PRODUCT_PLACEHOLDER.length * 3 },
+        () => ({
+            colorHex: faker.color.rgb(),
+        }),
+    );
+    const newProductColors = await db
+        .insert(productColors)
+        .values(generatedProductColors)
+        .returning({ id: productColors.id });
+
+    const newProductColorsId = newProductColors.map((item) => item.id);
+
+    await db.delete(drivers);
+    await db.delete(warehouses);
+    const generatedWareHouses = Array.from({ length: 10 }, () => {
+        const region = faker.helpers.arrayElement(REGION);
+        const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
+        return {
+            region,
+            city,
+            phoneNumber: `09${faker.string.numeric(9)}`,
+        };
+    });
+    const newWarehouses = await db
+        .insert(warehouses)
+        .values(generatedWareHouses)
+        .returning({ id: warehouses.id });
+
+    const newWareHousesId = newWarehouses.map((item) => item.id);
+
+    const generatedDrivers = Array.from({ length: 20 }, () => {
+        const region = faker.helpers.arrayElement(REGION);
+        const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
+        return {
+            deliveryRoute: city,
+            vehiclePlateNumber: faker.string.numeric(9),
+            warehouseId: faker.helpers.arrayElement(newWareHousesId),
+        };
+    });
+
+    const newDrivers = await db
+        .insert(drivers)
+        .values(generatedDrivers)
+        .returning({ id: drivers.id });
+
+    const newDriversId = newDrivers.map((item) => item.id);
+
+    const generatedProducts = newProductColorsId.map((item) => ({
+        detailId: faker.helpers.arrayElement(newProductDetailsId),
+        colorId: item,
+        warehouseId: faker.helpers.arrayElement(newWareHousesId),
+        stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
+    }));
+    const newProducts = await db
+        .insert(products)
+        .values(generatedProducts)
+        .returning({ id: products.id, detailId: products.detailId });
+    const newProductsId = newProducts.map((item) => item.id);
+
+    const generatedOrders = Array.from({ length: 60 }, () => {
+        return {
+            userId: faker.helpers.arrayElement(newUserIds),
+            orderDate: faker.date.between({
+                from: subDays(Date.now(), 60),
+                to: subDays(Date.now(), 1),
+            }),
+            status: faker.helpers.arrayElement(
+                ORDER_STATUS.enumValues,
+            ) as IOrderStatus,
+            totalAmount: 0,
+        };
+    });
+    let newOrders = await db
+        .insert(orders)
+        .values(generatedOrders)
+        .returning({ id: orders.id, totalAmount: orders.totalAmount });
+
+    const newOrdersId = newOrders.map((item) => item.id);
+
+    const generatedOrderItems = newOrdersId.map((orderId) => {
+        return Array.from({ length: 3 }, () => {
+            const productId = faker.helpers.arrayElement(newProductsId);
+            const detailId = newProducts.find(
+                (item) => item.id === productId,
+            )!.detailId;
+            const price = newProductDetails.find(
+                (item) => item.id === detailId,
+            )!.price;
+            const quantity = faker.helpers.rangeToNumber({ min: 1, max: 3 });
+            const initialTotalAmount = newOrders.find(
+                (item) => item.id === orderId,
+            )!.totalAmount;
+            const totalAmount = price * quantity;
+
+            newOrders = newOrders.map((item) => {
+                if (item.id === orderId) {
+                    return {
+                        ...item,
+                        totalAmount: totalAmount + initialTotalAmount,
+                    };
+                } else {
+                    return item;
+                }
+            });
+            return {
+                orderId,
+                productId,
+                quantity,
+            };
+        });
+    });
+
+    const priceUpdatePromise = newOrders.map(async (item) => {
+        return db
+            .update(orders)
+            .set({
+                totalAmount: item.totalAmount,
+            })
+            .where(eq(orders.id, item.id));
+    });
+
+    await Promise.all(priceUpdatePromise);
+
+    await db
+        .insert(orderItems)
+        .values(generatedOrderItems.flat())
+        .returning({ id: orderItems.id });
+
+    console.log("Seeding End");
+}
+
+try {
+    await main();
+} catch (err) {
+    console.log(err);
+}
+
+export {};

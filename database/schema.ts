@@ -8,19 +8,25 @@ import {
     varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { relations } from "drizzle-orm";
+import { PRODUCT_CATEGORY } from "@/constants";
 
 export const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
-export const CATEGORY = pgEnum("product_category", ["LAPTOP", "TABLET"]);
+export const CATEGORY = pgEnum("product_category", PRODUCT_CATEGORY);
 export const PAYMENT_METHOD = pgEnum("payment_method", ["KBZ_PAY", "WAVE_PAY"]);
 export const TYPE = pgEnum("type", ["REPAIR", "EXCHANGE"]);
 export const ORDER_STATUS = pgEnum("order_status", [
     "PENDING",
-    "CANCLE",
+    "CANCEL",
     "APPROVE",
     "ON_THE_WAY",
     "FINISH",
 ]);
 export const INVOICE_STATUS = pgEnum("invoice_status", ["SUCCESS", "COMPLAIN"]);
+export const COMPLAIN_STATUS = pgEnum("compliance_status", [
+    "EXCHANGE",
+    "REPAIR",
+]);
 
 export const users = pgTable("users", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
@@ -41,7 +47,7 @@ export const productDetails = pgTable("product_details", {
     brand: varchar("brand", { length: 255 }).notNull(),
     price: integer("price").notNull(),
     description: text("description").notNull(),
-    discount: integer("discount").notNull(),
+    discount: integer("discount").default(0).notNull(),
 });
 
 export const productColors = pgTable("product_colors", {
@@ -74,7 +80,7 @@ export const orders = pgTable("orders", {
         .defaultNow()
         .notNull(),
     status: ORDER_STATUS("order_status").notNull(),
-    totalAmount: integer("total_amount").notNull(),
+    totalAmount: integer("total_amount").default(0).notNull(),
 });
 
 export const orderItems = pgTable("order_items", {
@@ -107,28 +113,32 @@ export const complains = pgTable("complains", {
         .notNull(),
     type: TYPE("type"),
     issues: text("issues").notNull(),
-    status: varchar("status", { length: 255 }).notNull(),
+    status: COMPLAIN_STATUS("complain_status").notNull(),
 });
 
 export const warehouses = pgTable("warehouses", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    userId: uuid("user_id")
-        .references(() => users.id)
-        .notNull(),
-    driverId: uuid("driver_id")
-        .references(() => drivers.id)
-        .notNull(),
+    // userId: uuid("user_id")
+    //     .references(() => users.id)
+    //     .notNull(),
+    phoneNumber: text("phone_number").notNull(),
+    address: text("address"),
+    city: text("city"),
+    region: text("region"),
 });
 
 export const drivers = pgTable("drivers", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    userId: uuid("user_id")
-        .references(() => users.id)
-        .notNull(),
-    vehiclePlateNumber: varchar("verhicle_plate_number", { length: 20 })
+    // userId: uuid("user_id")
+    //     .references(() => users.id)
+    //     .notNull(),
+    vehiclePlateNumber: varchar("vehicle_plate_number", { length: 20 })
         .notNull()
         .unique(),
     deliveryRoute: varchar("delivery_route", { length: 100 }).notNull(),
+    warehouseId: uuid("warehouse_id")
+        .references(() => warehouses.id)
+        .notNull(),
 });
 
 export const serviceCenters = pgTable("service_centers", {
@@ -137,8 +147,133 @@ export const serviceCenters = pgTable("service_centers", {
     address: text("address").notNull(),
     city: text("city").notNull(),
     region: text("region").notNull(),
-    contact: text("contact").notNull(),
+    phoneNumber: text("phone_number").notNull(),
 });
+
+/**
+ *
+ * Relationships
+ *
+ */
+
+export const ordersToUsers = relations(orders, ({ one }) => ({
+    userId: one(users, {
+        fields: [orders.userId],
+        references: [users.id],
+    }),
+}));
+
+export const usersToOrders = relations(users, ({ many }) => ({
+    orders: many(orders),
+}));
+
+export const productDetailsToProducts = relations(
+    productDetails,
+    ({ many }) => ({
+        products: many(products),
+    }),
+);
+
+export const productColorsToProduct = relations(productColors, ({ many }) => ({
+    products: many(products),
+}));
+
+export const productToProductDetails = relations(products, ({ one }) => ({
+    detailId: one(productDetails, {
+        fields: [products.detailId],
+        references: [productDetails.id],
+    }),
+}));
+
+export const productToProductColor = relations(products, ({ one }) => ({
+    colorId: one(productColors, {
+        fields: [products.colorId],
+        references: [productColors.id],
+    }),
+}));
+
+export const ordersToOrderItems = relations(orders, ({ many }) => ({
+    orderItems: many(orderItems),
+}));
+
+export const orderItemsToOrders = relations(orderItems, ({ one }) => ({
+    orderId: one(orders, {
+        fields: [orderItems.orderId],
+        references: [orders.id],
+    }),
+}));
+
+export const usersToInvoices = relations(users, ({ many }) => ({
+    invoices: many(invoices),
+}));
+
+export const invoicesToUsers = relations(invoices, ({ one }) => ({
+    user: one(users, {
+        fields: [invoices.userId],
+        references: [users.id],
+    }),
+}));
+
+export const warehousesToProducts = relations(warehouses, ({ many }) => ({
+    products: many(products),
+}));
+
+export const productsToWarehouses = relations(products, ({ one }) => ({
+    warehouses: one(warehouses, {
+        fields: [products.warehouseId],
+        references: [warehouses.id],
+    }),
+}));
+
+export const ordersToInvoices = relations(orders, ({ one }) => ({
+    invoice: one(invoices),
+}));
+
+export const invoicesToOrders = relations(invoices, ({ one }) => ({
+    orders: one(orders, {
+        fields: [invoices.orderId],
+        references: [orders.id],
+    }),
+}));
+
+export const invoicesToComplains = relations(invoices, ({ one }) => ({
+    complain: one(complains),
+}));
+
+export const complainsToInvoices = relations(complains, ({ one }) => ({
+    invoice: one(invoices, {
+        fields: [complains.invoiceId],
+        references: [invoices.id],
+    }),
+}));
+
+export const productsToOrderItem = relations(products, ({ one }) => ({
+    orderItem: one(orderItems),
+}));
+
+export const orderItemToProducts = relations(orderItems, ({ one }) => ({
+    product: one(products, {
+        fields: [orderItems.productId],
+        references: [products.id],
+    }),
+}));
+
+export const warehousesToDrives = relations(warehouses, ({ many }) => ({
+    drives: many(drivers),
+}));
+
+export const driversToWarehouses = relations(drivers, ({ one }) => ({
+    warehouse: one(warehouses, {
+        fields: [drivers.warehouseId],
+        references: [warehouses.id],
+    }),
+}));
+
+/**
+ *
+ * Zod Schema and Types
+ *
+ */
 
 export type UserRole = (typeof ROLE_ENUM.enumValues)[number];
 
@@ -174,3 +309,6 @@ export const UserInsertSchema = createInsertSchema(users, {
 });
 
 export type IUserInsert = Zod.infer<typeof UserInsertSchema>;
+
+export type IProductCategory = (typeof CATEGORY.enumValues)[number];
+export type IOrderStatus = (typeof ORDER_STATUS.enumValues)[number];

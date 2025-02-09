@@ -10,7 +10,8 @@
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
         "db:studio": "drizzle-kit studio",
-        "format": "pnpm exec prettier . --write"
+        "format": "pnpm exec prettier . --write",
+        "seed": "bun database/seed.ts"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.10.0",
@@ -22,9 +23,12 @@
         "@radix-ui/react-toast": "^1.2.6",
         "@radix-ui/react-tooltip": "^1.1.8",
         "@tailwindcss/typography": "^0.5.16",
+        "@tanstack/react-table": "^8.20.6",
+        "@tanstack/table-core": "^8.20.5",
         "bcryptjs": "^2.4.3",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
+        "date-fns": "^4.1.0",
         "dotenv": "^16.4.7",
         "drizzle-orm": "^0.39.2",
         "drizzle-zod": "^0.7.0",
@@ -43,6 +47,7 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3",
         "@eslint/js": "^9.20.0",
+        "@faker-js/faker": "^9.4.0",
         "@types/bcryptjs": "^2.4.6",
         "@types/node": "^20",
         "@types/react": "^19",
