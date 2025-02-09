@@ -9,9 +9,10 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { relations } from "drizzle-orm";
+import { PRODUCT_CATEGORY } from "@/constants";
 
 export const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
-export const CATEGORY = pgEnum("product_category", ["LAPTOP", "TABLET"]);
+export const CATEGORY = pgEnum("product_category", PRODUCT_CATEGORY);
 export const PAYMENT_METHOD = pgEnum("payment_method", ["KBZ_PAY", "WAVE_PAY"]);
 export const TYPE = pgEnum("type", ["REPAIR", "EXCHANGE"]);
 export const ORDER_STATUS = pgEnum("order_status", [
@@ -79,7 +80,7 @@ export const orders = pgTable("orders", {
         .defaultNow()
         .notNull(),
     status: ORDER_STATUS("order_status").notNull(),
-    totalAmount: integer("total_amount").notNull(),
+    totalAmount: integer("total_amount").default(0).notNull(),
 });
 
 export const orderItems = pgTable("order_items", {
@@ -117,23 +118,27 @@ export const complains = pgTable("complains", {
 
 export const warehouses = pgTable("warehouses", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    userId: uuid("user_id")
-        .references(() => users.id)
-        .notNull(),
-    driverId: uuid("driver_id")
-        .references(() => drivers.id)
-        .notNull(),
+    // userId: uuid("user_id")
+    //     .references(() => users.id)
+    //     .notNull(),
+    phoneNumber: text("phone_number").notNull(),
+    address: text("address"),
+    city: text("city"),
+    region: text("region"),
 });
 
 export const drivers = pgTable("drivers", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    userId: uuid("user_id")
-        .references(() => users.id)
-        .notNull(),
+    // userId: uuid("user_id")
+    //     .references(() => users.id)
+    //     .notNull(),
     vehiclePlateNumber: varchar("vehicle_plate_number", { length: 20 })
         .notNull()
         .unique(),
     deliveryRoute: varchar("delivery_route", { length: 100 }).notNull(),
+    warehouseId: uuid("warehouse_id")
+        .references(() => warehouses.id)
+        .notNull(),
 });
 
 export const serviceCenters = pgTable("service_centers", {
@@ -253,6 +258,17 @@ export const orderItemToProducts = relations(orderItems, ({ one }) => ({
     }),
 }));
 
+export const warehousesToDrives = relations(warehouses, ({ many }) => ({
+    drives: many(drivers),
+}));
+
+export const driversToWarehouses = relations(drivers, ({ one }) => ({
+    warehouse: one(warehouses, {
+        fields: [drivers.warehouseId],
+        references: [warehouses.id],
+    }),
+}));
+
 /**
  *
  * Zod Schema and Types
@@ -293,3 +309,6 @@ export const UserInsertSchema = createInsertSchema(users, {
 });
 
 export type IUserInsert = Zod.infer<typeof UserInsertSchema>;
+
+export type IProductCategory = (typeof CATEGORY.enumValues)[number];
+export type IOrderStatus = (typeof ORDER_STATUS.enumValues)[number];
