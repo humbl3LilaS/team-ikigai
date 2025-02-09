@@ -35,16 +35,16 @@ export default function AdminSidebarFooter() {
                 <span>Account</span>
               </DropdownMenuItem >
               {/* <DropdownMenuItem> */}
-                {/* <button className="w-full h-full text-left" type="button" onClick={switchTheme}>Switch Theme</button> */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Switch Theme</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
+              {/* <button className="w-full h-full text-left" type="button" onClick={switchTheme}>Switch Theme</button> */}
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Switch Theme</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
               {/* </DropdownMenuItem> */}
               <DropdownMenuItem>
                 <span>Logout</span>
