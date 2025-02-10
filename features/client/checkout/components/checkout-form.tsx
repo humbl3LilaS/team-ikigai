@@ -1,12 +1,9 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { getProfileData } from "@/actions/get-profile-data";
 import { Button } from "@/components/ui/button";
 import {
     Form,

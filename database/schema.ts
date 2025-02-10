@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { InferSelectModel, relations } from "drizzle-orm";
 import {
     integer,
     pgEnum,
@@ -335,10 +335,8 @@ export const UserInsertSchema = createInsertSchema(users, {
     region: true,
 });
 
-export const userSchema = createSelectSchema(users);
-
 export type IUserInsert = Zod.infer<typeof UserInsertSchema>;
-export type IUserInfo = Zod.infer<typeof userSchema>;
+export type IUserInfo = InferSelectModel<typeof users>;
 
 // Orders
 export type IOrderStatus = (typeof ORDER_STATUS.enumValues)[number];
@@ -357,6 +355,7 @@ export const orderInsertSchema = createInsertSchema(orders, {
     createdAt: true,
 });
 
+export type TOrder = InferSelectModel<typeof orders>;
 export type IOrderInsert = Zod.infer<typeof orderInsertSchema>;
 
 // Products

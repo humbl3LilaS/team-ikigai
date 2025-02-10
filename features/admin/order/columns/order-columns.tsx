@@ -1,9 +1,12 @@
 "use client";
 
 import { createColumnHelper } from "@tanstack/react-table";
-const columnHelper = createColumnHelper();
+import Link from "next/link";
 
+import { TOrderInfo } from "@/features/admin/order/actions/get-orders";
 import { cn } from "@/lib/utils";
+
+const columnHelper = createColumnHelper<TOrderInfo>();
 
 export const orderColumns = [
     columnHelper.accessor("id", {
@@ -13,9 +16,14 @@ export const orderColumns = [
         ),
     }),
     columnHelper.accessor("userId", {
-        header: () => <span>User ID</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        header: () => <span>User</span>,
+        cell: ({ getValue, row }) => (
+            <Link
+                className={"max-w-[200px] line-clamp-1"}
+                href={`/admin/customers/${getValue()}`}
+            >
+                {row.original.username}
+            </Link>
         ),
     }),
     columnHelper.accessor("totalAmount", {
@@ -28,16 +36,18 @@ export const orderColumns = [
         header: () => <span>Status</span>,
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1 text-xs"}>
-                <span className={cn("font-medium px-1 py-0.5 rounded-sm",
+                <span
+                    className={cn(
+                        "font-medium px-1 py-0.5 rounded-sm",
                         getValue() === "CANCEL"
-                        ? "admin-cancel-status"
+                            ? "admin-cancel-status"
                             : getValue() === "ON_THE_WAY"
-                            ? "admin-ontheway-status"
-                                : getValue() === "PENDING"
+                              ? "admin-ontheway-status"
+                              : getValue() === "PENDING"
                                 ? "admin-pending-status"
-                                    : getValue() === "FINISH"
-                                    ? "admin-finish-status"
-                                        : "admin-approve-status",
+                                : getValue() === "FINISH"
+                                  ? "admin-finish-status"
+                                  : "admin-approve-status",
                     )}
                 >
                     {getValue()}
