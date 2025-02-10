@@ -11,10 +11,16 @@ import ProductSearch from "@/components/searchs/product-search";
 import { Button } from "@/components/ui/button";
 
 import MobileNav from "./mobile-nav";
+import { useCartStore } from "@/features/client/cart/hooks/use-cart-store";
 
 const Header = () => {
     const pathname = usePathname();
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+    const cart = useCartStore((state)=>state.cart);
+    const totalQuantities = cart.reduce((sum,item)=> sum + item.q , 0);
+    const chars = totalQuantities.toString().slice();
+    
     const handleSearch = () => {
         if (!isSearchOpen) {
             setIsSearchOpen(!isSearchOpen);
@@ -63,29 +69,27 @@ const Header = () => {
                 {isSearchOpen && <ProductSearch />}
 
                 <Button
-                    className="bg-transparent text-black border hover:bg-blue-200 "
+                    className="bg-transparent hover:bg-transparent hover:text-blue-500 text-black border"
                     onClick={handleSearch}
                 >
                     <Search />
                 </Button>
-                <Link
-                    href={"/cart"}
-                    className="bg-transparent text-black border px-3 py-1 shadow-sm rounded-md gap-5 items-center font-semibold hidden sm:flex hover:bg-blue-200"
-                >
+                <Button className="bg-transparent text-black hover:bg-transparent hover:text-blue-500 relative border">
                     <ShoppingCartIcon />
-                </Link>
+                    {totalQuantities > 0 && <span className={`absolute -top-2 w-5 h-5 -right-2 text-white bg-red-500 rounded-full ${chars.length < 3 ? 'text-[12px]' : 'text-[10px]'} `}>{totalQuantities}</span>}
+                </Button>
                 {session?.user && (
                     <Link
                         href={"/profile"}
-                        className="bg-transparent text-black border px-3 py-1 shadow-sm rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-blue-200"
+                        className="bg-transparent text-black border px-2 py-1 rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-white hover:text-blue-500"
                     >
-                        <User />
+                        <User className="size-6" />
                     </Link>
                 )}
                 {!session?.user && (
                     <Link
                         href={"/sign-up"}
-                        className="text-black hidden sm:flex font-semibold px-4 py-1 items-center border-2 border-black hover:black hover:text-white hover:bg-black rounded-sm"
+                        className="text-black hidden sm:flex font-semibold py-1 items-center border-2 border-black hover:black hover:text-blue-500 hover:bg-transparent rounded-sm"
                     >
                         Get started
                     </Link>
