@@ -14,7 +14,6 @@ import {
 interface Product {
     name: string;
     price: number;
-    // any additional fields
 }
 
 export interface OrderItem {
@@ -52,6 +51,9 @@ const NestedOrderItemsTable: React.FC<NestedOrderItemsTableProps> = ({
                             <TableCell>{item.product.price}</TableCell>
                         </TableRow>
                     ))}
+                    <TableRow>
+                        <TableCell></TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </div>

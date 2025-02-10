@@ -1,5 +1,3 @@
-// pages/order-list.tsx
-
 import OrderListPage from "@/features/profile/components/orderList";
 
 import { order } from "../userdata";

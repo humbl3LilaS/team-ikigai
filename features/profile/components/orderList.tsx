@@ -12,15 +12,8 @@ import {
     TableCell,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { SendToBack } from "lucide-react";
+import { CircleChevronLeft } from "lucide-react";
 import Link from "next/link";
-
-// Define your data types
-interface Product {
-    name: string;
-    price: number;
-}
-
 export interface Order {
     id: string;
     orderDate: string;
@@ -47,33 +40,35 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ orders }) => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8 mt-[10vh]">
-            <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center space-x-2">
+        <div className="w-full sm:w-3/4 mx-auto mt-4">
+            <div className="">
+                <div className="flex items-center">
                     <Button variant="link">
                         <Link href="/profile">
-                            <SendToBack className="size-10" />
+                            <CircleChevronLeft
+                                style={{
+                                    width: "1.5rem",
+                                    height: "1.5rem",
+                                }}
+                            />
                         </Link>
                     </Button>
-
                     <h1 className="text-2xl font-bold">Order List</h1>
                 </div>
             </div>
 
             {/* Ensure the parent container has a fixed height & overflow */}
-            <div className="overflow-y-auto max-h-[70vh] border rounded-lg shadow-md">
-                <Table className="min-w-full bg-white divide-y divide-gray-200">
-                    {/* Sticky Header Fix */}
-                    <TableHeader className="bg-gray-50 top-0 z-20 shadow-md sticky">
-                        <TableRow className="divide-x divide-gray-200 hover:bg-blue-300 bg-blue-300 h-[50px]">
+            <div className="overflow-y-auto max-h-[500px] p-4">
+                <Table className="">
+                    <TableHeader className="sticky top-0 z-10 bg-white shadow-md">
+                        <TableRow className="divide-x divide-gray-200 bg-blue-300 h-[50px]">
                             <TableHead>Order ID</TableHead>
                             <TableHead>Order Date</TableHead>
                             <TableHead>Total Amount</TableHead>
                             <TableHead>Status</TableHead>
                         </TableRow>
                     </TableHeader>
-
-                    <TableBody className="overflow-y-hidden h-[5vh]">
+                    <TableBody>
                         {orders.map((order) => (
                             <React.Fragment key={order.id}>
                                 <TableRow
@@ -91,7 +86,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ orders }) => {
                                     <TableCell>{order.totalAmount}</TableCell>
                                     <TableCell>
                                         <h4
-                                            className={`py-1.5 text-center rounded-full 
+                                            className={`p-2 text-center rounded-full 
                                     ${order.status === "Shipped" ? "bg-green-300" : ""} 
                                     ${order.status === "Processing" ? "bg-yellow-300" : ""} 
                                     ${order.status === "Pending" ? "bg-blue-300" : ""}`}
