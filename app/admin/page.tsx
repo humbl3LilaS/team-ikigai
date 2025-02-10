@@ -1,5 +1,5 @@
+import { PopularItemsChart } from "@/components/share/admin/dashboard-popular-items-piechart";
 import { SaleChart } from "@/components/share/admin/dashboard-sale-chart";
-import { TotalSaleChart } from "@/components/share/admin/dashboard-total-sale-pichart";
 import { getApprovedOrdersCount, getFinishedOrdersCount, getUnfinishOrdersCount } from "@/dashboard/actions";
 
 
@@ -21,7 +21,7 @@ export default async function DashboardPage() {
 
             <section className="p-2 flex flex-col sm:flex-row gap-5 *:basis-1/2">
                 <SaleChart />
-                <TotalSaleChart />
+                <PopularItemsChart />
             </section>
         </main>
     );

@@ -1,8 +1,11 @@
 "use client";
 
+import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
+import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -17,7 +20,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { getFinishedSales } from "@/dashboard/actions";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { getFinishedMonthlySales, getFinishedWeeklySales } from "@/dashboard/actions";
+import { Tdata } from "@/dashboard/types";
+import { processChartData } from "@/dashboard/visualizer";
 // const chartData = [
 //   { day: "9", sale: 186 },
 //   { day: "10", sale: 305 },
@@ -35,25 +41,51 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function SaleChart() {
-  // type Tdata = InferSelectModel<typeof Orders>[]
-  type Tdata = {
-    status: "PENDING" | "CANCEL" | "APPROVE" | "ON_THE_WAY" | "FINISH";
-    totalAmount: number,
-    createdAt: number;
+
+  const [data, setData] = useState<Tdata[]>();
+  const [period, setPeriod] = useState<"weekly" | "monthly">("weekly");
+
+  function getWeeklyData() {
+    setPeriod("weekly");
+    getFinishedWeeklySales().then(sales =>
+      setData(processChartData(sales)),
+    );
   }
-  const [data, setData] = useState<Tdata[] | undefined>();
+
+  function getPreviousData() {
+    setPeriod("monthly");
+    getFinishedMonthlySales().then(sales =>
+      setData(processChartData(sales)),
+    );
+  }
 
   useEffect(() => {
-    getFinishedSales().then(sales =>
-      setData(sales),
-    );
+    getWeeklyData();
   }, []);
+
+  // console.log(data);
 
   return (
     <Card className="w-screen-sm max-w-screen-md">
       <CardHeader>
-        <CardTitle>Total Sales</CardTitle>
-        <CardDescription>9-15 February </CardDescription>
+        <CardTitle>
+          <span className="mr-2">Total Sales</span>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant='outline' size='sm'>
+                {period}
+                <ChevronDownIcon className="ml-auto" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-background">
+              <DropdownMenuItem onClick={() => getWeeklyData()}>weekly</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => getPreviousData()}>monthly</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </CardTitle>
+        <CardDescription>
+          Showing {period == "monthly" ? "previous month" : "previous 7 days"} data.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -68,10 +100,11 @@ export function SaleChart() {
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="createdAt"
-              tickLine={false}
+              tickLine={true}
               axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value}
+              tickMargin={5}
+              tickFormatter={(value) => value.getDate()}
+              tickSize={2}
             />
             <ChartTooltip
               cursor={false}
@@ -89,7 +122,7 @@ export function SaleChart() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Total Sales this week.
+          Total Sales.
         </div>
       </CardFooter>
     </Card>
