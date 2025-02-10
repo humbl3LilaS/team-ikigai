@@ -1,5 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import React from "react";
 
 import {
@@ -18,12 +19,13 @@ import AdminSidebarFooter from "./admin-side-bar-footer";
 
 const AppSideBar = () => {
     const path = usePathname();
+        const auth = useSession();
 
     return (
         <Sidebar collapsible="icon">
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Admin</SidebarGroupLabel>
+                    <SidebarGroupLabel>{auth.data?.user.role} Department</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {adminSideBarItems.map((item) => (

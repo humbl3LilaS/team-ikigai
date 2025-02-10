@@ -1,6 +1,8 @@
 "use client";
 
 import { ChevronUp, User2 } from "lucide-react";
+import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
 
@@ -9,6 +11,7 @@ import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "
 
 export default function AdminSidebarFooter() {
   const { theme, setTheme } = useTheme();
+  const auth = useSession();
 
   useEffect(() => {
     if (theme == "system") {
@@ -23,7 +26,7 @@ export default function AdminSidebarFooter() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                <User2 /> Username
+                <User2 /> {auth.data?.user.name}
                 <ChevronUp className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
@@ -32,7 +35,7 @@ export default function AdminSidebarFooter() {
               className="w-[--radix-popper-anchor-width]"
             >
               <DropdownMenuItem>
-                <span>Account</span>
+                <Link className="w-full h-full text-left" href="/admin/account">Account</Link>
               </DropdownMenuItem >
               {/* <DropdownMenuItem> */}
                 {/* <button className="w-full h-full text-left" type="button" onClick={switchTheme}>Switch Theme</button> */}
@@ -47,7 +50,7 @@ export default function AdminSidebarFooter() {
                 </DropdownMenuSub>
               {/* </DropdownMenuItem> */}
               <DropdownMenuItem>
-                <span>Logout</span>
+                <button type="button" className="w-full text-left" onClick={() => signOut()}>Logout</button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
     integer,
     pgEnum,
@@ -8,7 +9,7 @@ import {
     varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { relations } from "drizzle-orm";
+
 import { PRODUCT_CATEGORY } from "@/constants";
 
 export const ROLE_ENUM = pgEnum("role", [

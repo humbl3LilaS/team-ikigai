@@ -1,18 +1,12 @@
 "use client";
 import { createColumnHelper } from "@tanstack/react-table";
+import { InferSelectModel } from "drizzle-orm";
+import { ArrowUpDown } from "lucide-react";
 
-export type TCustomers = {
-  id: number;
-  name: string;
-  password: string;
-  email: string;
-  phone: string;
-  address: string;
-  township: string;
-  region: string;
-  role: string;
-};
+import { Button } from "@/components/ui/button";
+import { users } from "@/database/schema";
 
+type TCustomers = InferSelectModel<typeof users>;
 const columnHelper = createColumnHelper<TCustomers>();
 
 export const CustomersColumns = [
@@ -23,7 +17,17 @@ export const CustomersColumns = [
         ),
     }),
     columnHelper.accessor("name", {
-        header: () => <span>Name</span>,
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                Email
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            );
+          },
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
@@ -34,11 +38,24 @@ export const CustomersColumns = [
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
-    columnHelper.accessor("phone", {
+    columnHelper.accessor("phoneNumber", {
         header: () => <span>Phone</span>,
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }), 
+    columnHelper.accessor("address", {
+        header: () => <span>Address</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
+    columnHelper.accessor("region", {
+        header: () => <span>Region</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),  
+
 ];
 
