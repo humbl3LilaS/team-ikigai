@@ -8,8 +8,8 @@ import { IProductDetails } from "@/database/schema";
 
 const ProductCard = ({ data }: { data: IProductDetails }) => {
     return (
-        <div className="bg-black/5 p-3 sm:p-5 min-w-52 rounded-md w-full">
-            <Link href={`/product/${data.id}`} className="block w-full">
+        <div className="flex justify-between flex-col p-3 sm:p-5 min-w-52 rounded-md mt-10 border border-gray-200 w-full">
+            <Link href={`/product/${data.id}`} className="block w-full ">
                 <Image
                     src={data.imageUrl}
                     alt={data.name}
@@ -18,7 +18,7 @@ const ProductCard = ({ data }: { data: IProductDetails }) => {
                     className={"w-full max-h-[250px]"}
                 />
             </Link>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 font-space-grotesk">
                 <Link href="/product/4">
                     <h1 className="font-semibold py-2">{data.name}</h1>
                 </Link>
