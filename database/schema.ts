@@ -8,10 +8,9 @@ import {
     uuid,
     varchar,
 } from "drizzle-orm/pg-core";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { createInsertSchema } from "drizzle-zod";
 
 import { PRODUCT_CATEGORY, REGION } from "@/constants";
-import paymentMethod from "@/features/admin/invoice/components/payment-method";
 
 export const ROLE_ENUM = pgEnum("role", [
     "USER",
@@ -361,8 +360,7 @@ export type IOrderInsert = Zod.infer<typeof orderInsertSchema>;
 
 // Products
 export type IProductCategory = (typeof CATEGORY.enumValues)[number];
-export const productDetailsSchema = createSelectSchema(productDetails);
-export type IProductDetails = Zod.infer<typeof productDetailsSchema>;
+export type IProductDetails = InferSelectModel<typeof productDetails>;
 
 // Invoices
 export type IInvoice = InferSelectModel<typeof invoices>;
