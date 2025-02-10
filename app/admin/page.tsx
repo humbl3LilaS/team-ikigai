@@ -1,6 +1,5 @@
 import { getApprovedOrdersCount, getFinishedOrdersCount, getUnfinishOrdersCount } from "@/dashboard/actions";
 
-import DashboartSaleChart from "@/components/share/admin/dashboard-sale-chart";
 
 export default async function DashboardPage() {
     const finishedOrders = await getFinishedOrdersCount();
@@ -19,7 +18,6 @@ export default async function DashboardPage() {
             </section>
 
             <section className="p-2">
-                <DashboartSaleChart />
             </section>
         </main>
     );
