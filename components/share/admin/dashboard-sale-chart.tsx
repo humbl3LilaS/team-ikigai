@@ -1,8 +1,9 @@
 "use client";
 
 import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronDownIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
 import { Button } from "@/components/ui/button";
@@ -21,17 +22,9 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getFinishedMonthlySales, getFinishedWeeklySales } from "@/dashboard/actions";
-import { Tdata } from "@/dashboard/types";
 import { processChartData } from "@/dashboard/visualizer";
-// const chartData = [
-//   { day: "9", sale: 186 },
-//   { day: "10", sale: 305 },
-//   { day: "11", sale: 237 },
-//   { day: "12", sale: 73 },
-//   { day: "13", sale: 209 },
-//   { day: "14", sale: 214 },
-// ];
 
 const chartConfig = {
   desktop: {
@@ -42,26 +35,20 @@ const chartConfig = {
 
 export function SaleChart() {
 
-  const [data, setData] = useState<Tdata[]>();
   const [period, setPeriod] = useState<"weekly" | "monthly">("weekly");
 
-  function getWeeklyData() {
-    setPeriod("weekly");
-    getFinishedWeeklySales().then(sales =>
-      setData(processChartData(sales)),
-    );
-  }
+  const fetchSalesData = async () => {
+    const sales = period === "weekly" ? await getFinishedWeeklySales() : await getFinishedMonthlySales();
+    return processChartData(sales);
+  };
 
-  function getPreviousData() {
-    setPeriod("monthly");
-    getFinishedMonthlySales().then(sales =>
-      setData(processChartData(sales)),
-    );
-  }
+  const { data, isLoading } = useQuery({
+    queryKey: ["salesData", period],
+    queryFn: fetchSalesData,
+    staleTime: 1000 * 60 * 5,
+  });
 
-  useEffect(() => {
-    getWeeklyData();
-  }, []);
+  const totalSales = data?.reduce((sum, item) => sum + item.total, 0) || 0;
 
   // console.log(data);
 
@@ -78,8 +65,8 @@ export function SaleChart() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-background">
-              <DropdownMenuItem onClick={() => getWeeklyData()}>weekly</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => getPreviousData()}>monthly</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setPeriod("weekly")}>weekly</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setPeriod("monthly")}>monthly</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </CardTitle>
@@ -88,41 +75,45 @@ export function SaleChart() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <LineChart
-            accessibilityLayer
-            data={data}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="createdAt"
-              tickLine={true}
-              axisLine={false}
-              tickMargin={5}
-              tickFormatter={(value) => value.getDate()}
-              tickSize={2}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Line
-              dataKey="total"
-              type="linear"
-              stroke="var(--color-desktop)"
-              strokeWidth={2}
-              dot={true}
-            />
-          </LineChart>
-        </ChartContainer>
+        {
+          isLoading ? <Skeleton />
+            :
+            <ChartContainer config={chartConfig}>
+              <LineChart
+                accessibilityLayer
+                data={data}
+                margin={{
+                  left: 12,
+                  right: 12,
+                }}
+              >
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="createdAt"
+                  tickLine={true}
+                  axisLine={false}
+                  tickMargin={5}
+                  tickFormatter={(value) => value.getDate()}
+                  tickSize={2}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <Line
+                  dataKey="total"
+                  type="linear"
+                  stroke="var(--color-desktop)"
+                  strokeWidth={2}
+                  dot={true}
+                />
+              </LineChart>
+            </ChartContainer>
+        }
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Total Sales.
+          Total Sales: <span className="bg-muted px-1 py-0.5 mx-1 rounded-sm">${totalSales.toLocaleString()}</span>{period == "weekly" ? "for this week." : "for previous month."}
         </div>
       </CardFooter>
     </Card>
