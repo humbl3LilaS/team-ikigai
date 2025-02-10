@@ -7,5 +7,6 @@ export const useGetCartItemInfo = (pid: string, cid: string) => {
         queryKey: ["cart-item", pid, cid],
         queryFn: () => getCartItemInfo(pid, cid),
         enabled: !!pid && !!cid,
+        staleTime: 60 * 60 * 1000,
     });
 };

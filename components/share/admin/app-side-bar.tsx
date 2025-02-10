@@ -12,7 +12,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { adminSideBarItems } from "@/constants";
+import { adminSideBarItems } from "@/constants/ui-constants";
 
 import AdminSidebarFooter from "./admin-side-bar-footer";
 
