@@ -1,84 +1,58 @@
 "use client";
 
 import { createColumnHelper } from "@tanstack/table-core";
+import Link from "next/link";
 
-type TInvoice = {
-    id: string,
-    orderId: string,
-    userId: string,
-    status: string,
-    payment_method: string
-};
+import { TInvoiceInfo } from "@/features/admin/invoice/actions/get-invoices";
+import PaymentMethod from "@/features/admin/invoice/components/payment-method";
 
-export const INVOICE_PLACEHOLDER: TInvoice[] = [
-    {
-        id: "1",
-        orderId: "3",
-        userId: "5",
-        status: "Pending",
-        payment_method: "1",
-    },
-    {
-        id: "2",
-        orderId: "3",
-        userId: "2",
-        status: "Accept",
-        payment_method: "3",
-    },
-    {
-        id: "3",
-        orderId: "6",
-        userId: "5",
-        status: "Pending",
-        payment_method: "1",
-    },
-    {
-        id: "4",
-        orderId: "7",
-        userId: "2",
-        status: "Accept",
-        payment_method: "5",
-    },
-    {
-        id: "5",
-        orderId: "9",
-        userId: "3",
-        status: "Pending",
-        payment_method: "6",
-    },
-];
-
-const columnHelper = createColumnHelper<TInvoice>();
+const columnHelper = createColumnHelper<TInvoiceInfo>();
 
 export const columns = [
     columnHelper.accessor("id", {
         header: () => <span>ID</span>,
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+            <Link
+                href={`/admin/invoices/${getValue()}`}
+                className={"max-w-[200px] line-clamp-1"}
+            >
+                {getValue()}
+            </Link>
         ),
     }),
     columnHelper.accessor("orderId", {
         header: () => <span>Order ID</span>,
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+            <Link
+                href={`/admin/orders/${getValue()}`}
+                className={"max-w-[150px] line-clamp-1"}
+            >
+                {getValue()}
+            </Link>
         ),
     }),
     columnHelper.accessor("userId", {
-        header: () => <span>User ID</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        header: () => <span>User</span>,
+        cell: ({ getValue, row }) => (
+            <Link
+                className={"max-w-[200px] line-clamp-1"}
+                href={`/admin/customers/${getValue()}`}
+            >
+                {row.original.username}
+            </Link>
         ),
     }),
-    columnHelper.accessor("status", {
-        header: () => <span>Status</span>,
+    columnHelper.accessor("totalAmount", {
+        header: () => <span>Amount</span>,
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+            <p className={"flex gap-x-1 items-baseline"}>
+                <span className={"font-semibold text-xs"}>$</span>
+                <span className={" line-clamp-1 font-bold "}>{getValue()}</span>
+            </p>
         ),
     }),
-    columnHelper.accessor("payment_method", {
+    columnHelper.accessor("paymentMethod", {
         header: () => <span>Payment Method</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
-        ),
+        cell: ({ getValue }) => <PaymentMethod method={getValue()} />,
     }),
 ];
