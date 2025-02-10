@@ -6,7 +6,9 @@ import { eq } from "drizzle-orm";
 import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
 import { db } from "@/database/dirzzle";
 import {
+    deliveries,
     drivers,
+    invoices,
     IOrderStatus,
     IProductCategory,
     ORDER_STATUS,
@@ -15,6 +17,7 @@ import {
     productColors,
     productDetails,
     products,
+    serviceCenters,
     users,
     warehouses,
 } from "@/database/schema";
@@ -23,6 +26,9 @@ async function main() {
     const faker = new Faker({ locale: [en] });
     const hashedPassword = await hash("P@ssword123", 10);
 
+    console.log("seeding start....");
+
+    await db.delete(invoices);
     await db.delete(orderItems);
     await db.delete(orders);
     await db.delete(users);
@@ -108,20 +114,23 @@ async function main() {
         };
     });
 
-    await db
+    const newDrivers = await db
         .insert(drivers)
         .values(generatedDrivers)
         .returning({ id: drivers.id });
+    const newDriversId = newDrivers.map((item) => item.id);
 
-    const generatedProducts = newProductColorsId.map((item) => ({
-        detailId: faker.helpers.arrayElement(newProductDetailsId),
-        colorId: item,
-        warehouseId: faker.helpers.arrayElement(newWareHousesId),
-        stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
-    }));
+    const generatedProducts = newProductDetailsId.map((item) => {
+        return Array.from({ length: 3 }, () => ({
+            detailId: item,
+            colorId: faker.helpers.arrayElement(newProductColorsId),
+            warehouseId: faker.helpers.arrayElement(newWareHousesId),
+            stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
+        }));
+    });
     const newProducts = await db
         .insert(products)
-        .values(generatedProducts)
+        .values(generatedProducts.flat())
         .returning({ id: products.id, detailId: products.detailId });
     const newProductsId = newProducts.map((item) => item.id);
 
@@ -144,10 +153,7 @@ async function main() {
             contactNumber: `09${faker.string.numeric(9)}`,
         };
     });
-    let newOrders = await db
-        .insert(orders)
-        .values(generatedOrders)
-        .returning({ id: orders.id, totalAmount: orders.totalAmount });
+    let newOrders = await db.insert(orders).values(generatedOrders).returning();
 
     const newOrdersId = newOrders.map((item) => item.id);
 
@@ -199,10 +205,47 @@ async function main() {
         .insert(orderItems)
         .values(generatedOrderItems.flat())
         .returning({ id: orderItems.id });
+
+    const finishedOrdersId = newOrders
+        .filter((item) => item.status === "FINISH")
+        .map((item) => ({
+            orderId: item.id,
+        }));
+
+    await db.insert(invoices).values(finishedOrdersId);
+
+    await db.delete(deliveries);
+    const onTheWayOrdersId = newOrders
+        .filter((item) => item.status === "ON_THE_WAY")
+        .map((item) => item.id);
+
+    const generatedDeliveries = onTheWayOrdersId.map((item) => ({
+        orderId: item,
+        driverId: faker.helpers.arrayElement(newDriversId),
+    }));
+
+    await db.insert(deliveries).values(generatedDeliveries).returning();
+
+    await db.delete(serviceCenters);
+    const generatedServiceCenter = Array.from({ length: 10 }, () => {
+        const city = faker.helpers.arrayElement(TOWNSHIPS["Yangon"]);
+        return {
+            centerName: faker.company.name(),
+            address: faker.location.streetAddress(),
+            city,
+            region: "Yangon",
+            phoneNumber: `09${faker.string.numeric(9)}`,
+        };
+    });
+    await db.insert(serviceCenters).values(generatedServiceCenter).returning();
+
+    console.log("seeding end");
 }
 
 try {
     await main();
-} catch {}
+} catch (err) {
+    console.log(err);
+}
 
 export {};
