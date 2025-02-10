@@ -11,13 +11,13 @@ import {
     invoices,
     IOrderStatus,
     IProductCategory,
-    ORDER_STATUS,
     orderItems,
     orders,
     productColors,
     productDetails,
     products,
     serviceCenters,
+    UserRole,
     users,
     warehouses,
 } from "@/database/schema";
@@ -28,6 +28,7 @@ async function main() {
 
     console.log("seeding start....");
 
+    await db.delete(deliveries);
     await db.delete(invoices);
     await db.delete(orderItems);
     await db.delete(orders);
@@ -50,6 +51,7 @@ async function main() {
             };
         },
     );
+
     const createdUsers = await db
         .insert(users)
         .values(generatedUsers)
@@ -104,15 +106,35 @@ async function main() {
 
     const newWareHousesId = newWarehouses.map((item) => item.id);
 
-    const generatedDrivers = Array.from({ length: 20 }, () => {
-        const region = faker.helpers.arrayElement(REGION);
-        const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
-        return {
-            deliveryRoute: city,
-            vehiclePlateNumber: faker.string.numeric(9),
-            warehouseId: faker.helpers.arrayElement(newWareHousesId),
-        };
-    });
+    const generatedUserDrivers = Array.from(
+        {
+            length: 8,
+        },
+        () => {
+            const city = faker.helpers.arrayElement(TOWNSHIPS["Yangon"]);
+            return {
+                email: faker.internet.email(),
+                password: hashedPassword,
+                name: faker.internet.username(),
+                address: faker.location.streetAddress(),
+                region: "Yangon",
+                city,
+                phoneNumber: `09${faker.string.numeric(9)}`,
+                role: "DRIVER" as UserRole,
+            };
+        },
+    );
+    const createdUserDrivers = await db
+        .insert(users)
+        .values(generatedUserDrivers)
+        .returning({ id: users.id, region: users.region });
+
+    const generatedDrivers = createdUserDrivers.map((item) => ({
+        userId: item.id,
+        vehiclePlateNumber: faker.string.numeric(9),
+        deliveryRoute: item.region!,
+        warehouseId: faker.helpers.arrayElement(newWareHousesId),
+    }));
 
     const newDrivers = await db
         .insert(drivers)
@@ -134,18 +156,21 @@ async function main() {
         .returning({ id: products.id, detailId: products.detailId });
     const newProductsId = newProducts.map((item) => item.id);
 
-    const generatedOrders = Array.from({ length: 60 }, () => {
+    const generatedOrders = Array.from({ length: 120 }, () => {
         const region = faker.helpers.arrayElement(REGION);
         const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
         return {
             userId: faker.helpers.arrayElement(newUserIds),
-            orderDate: faker.date.between({
+            createdAt: faker.date.between({
                 from: subDays(Date.now(), 60),
                 to: subDays(Date.now(), 1),
             }),
-            status: faker.helpers.arrayElement(
-                ORDER_STATUS.enumValues,
-            ) as IOrderStatus,
+            status: faker.helpers.arrayElement([
+                "APPROVE",
+                "FINISH",
+                "PENDING",
+                "ON_THE_WAY",
+            ]) as IOrderStatus,
             totalAmount: 0,
             region,
             city,
@@ -158,7 +183,7 @@ async function main() {
     const newOrdersId = newOrders.map((item) => item.id);
 
     const generatedOrderItems = newOrdersId.map((orderId) => {
-        return Array.from({ length: 3 }, () => {
+        return Array.from({ length: 2 }, () => {
             const productId = faker.helpers.arrayElement(newProductsId);
             const detailId = newProducts.find(
                 (item) => item.id === productId,
@@ -214,7 +239,6 @@ async function main() {
 
     await db.insert(invoices).values(finishedOrdersId);
 
-    await db.delete(deliveries);
     const onTheWayOrdersId = newOrders
         .filter((item) => item.status === "ON_THE_WAY")
         .map((item) => item.id);

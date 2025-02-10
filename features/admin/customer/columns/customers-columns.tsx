@@ -1,35 +1,35 @@
 "use client";
 import { createColumnHelper } from "@tanstack/react-table";
-import { InferSelectModel } from "drizzle-orm";
 import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { users } from "@/database/schema";
+import { TCustomerInfo } from "@/features/admin/customer/actions/get-customers";
 
-type TCustomers = InferSelectModel<typeof users>;
-const columnHelper = createColumnHelper<TCustomers>();
+const columnHelper = createColumnHelper<TCustomerInfo>();
 
 export const CustomersColumns = [
-    columnHelper.accessor("id", {
-        header: () => <span>ID</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
-        ),
-    }),
     columnHelper.accessor("name", {
         header: ({ column }) => {
             return (
-              <Button
-                variant="ghost"
-                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-              >
-                Email
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-              </Button>
+                <Button
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Name
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
             );
-          },
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        },
+        cell: ({ getValue, row }) => (
+            <Link
+                href={`/admin/customers/${row.original.id}`}
+                className={"max-w-[200px] line-clamp-1"}
+            >
+                {getValue()}
+            </Link>
         ),
     }),
     columnHelper.accessor("email", {
@@ -43,7 +43,7 @@ export const CustomersColumns = [
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
-    }), 
+    }),
     columnHelper.accessor("address", {
         header: () => <span>Address</span>,
         cell: ({ getValue }) => (
@@ -55,6 +55,5 @@ export const CustomersColumns = [
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
-    }),  
-
+    }),
 ];
