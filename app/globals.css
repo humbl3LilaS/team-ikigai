@@ -94,4 +94,19 @@ body {
     .admin-secondary-header {
         @apply text-xl font-bold leading-9 pl-2 text-foreground/70;
     }
+    .admin-cancel-status {
+        @apply bg-red-300/20 text-red-500;
+    }
+    .admin-finish-status {
+        @apply bg-green-300/20 text-green-500;
+    }
+    .admin-ontheway-status {
+        @apply bg-neutral-300/20 text-neutral-500;
+    }
+    .admin-pending-status {
+        @apply bg-yellow-300/20 text-yellow-500;
+    }
+    .admin-approve-status {
+        @apply bg-blue-300/20 text-blue-500;
+    }
 }
