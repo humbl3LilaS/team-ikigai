@@ -4,12 +4,12 @@ import Link from "next/link";
 
 const UpgradeAccount = () => {
     return (
-        <div className="flex justify-center items-center bg-blue-50 p-4 rounded-lg shadow-md max-w-sm mx-auto mt-8">
+        <div className="flex justify-center items-center bg-blue-50 p-4 rounded-lg shadow-md mx-auto">
             <div className="text-center">
                 <h3 className="text-lg font-semibold text-blue-700">
                     Upgrade to Business Account
                 </h3>
-                <p className="text-sm text-blue-600 mt-2">
+                <p className="text-sm text-blue-600 mt-2 px-4 max-w-[450px]">
                     Unlock premium features, increased limits, and more. Upgrade
                     today and take your business to the next level!
                 </p>
