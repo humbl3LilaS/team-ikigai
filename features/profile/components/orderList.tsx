@@ -44,7 +44,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ orders }) => {
             <div className="">
                 <div className="flex items-center">
                     <Button variant="link">
-                        <Link href="/profile">
+                        <Link href="/category">
                             <CircleChevronLeft
                                 style={{
                                     width: "1.5rem",
@@ -61,7 +61,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ orders }) => {
             <div className="overflow-y-auto max-h-[500px] p-4">
                 <Table className="">
                     <TableHeader className="sticky top-0 z-10 bg-white shadow-md">
-                        <TableRow className="divide-x divide-gray-200 bg-blue-300 h-[50px]">
+                        <TableRow className="divide-x divide-gray-200  h-[50px]">
                             <TableHead>Order ID</TableHead>
                             <TableHead>Order Date</TableHead>
                             <TableHead>Total Amount</TableHead>
@@ -87,9 +87,9 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ orders }) => {
                                     <TableCell>
                                         <h4
                                             className={`p-2 text-center rounded-full 
-                                    ${order.status === "Shipped" ? "bg-green-300" : ""} 
-                                    ${order.status === "Processing" ? "bg-yellow-300" : ""} 
-                                    ${order.status === "Pending" ? "bg-blue-300" : ""}`}
+                                    ${order.status === "ON_THE_WAY" ? "bg-green-500" : ""} 
+                                    ${order.status === "APPROVE" ? "bg-green-300" : ""} 
+                                    ${order.status === "PENDING" ? "bg-blue-300" : ""}`}
                                         >
                                             {order.status}
                                         </h4>

@@ -20,20 +20,6 @@ const ProfileCard = () => {
                             </h5>
                         </Link>
                     </li>
-                    <li>
-                        <Link href="/profile/history">
-                            <h5 className="block px-4 py-2 rounded hover:bg-gray-200 text-gray-700 text-start">
-                                History
-                            </h5>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/profile/wishlist">
-                            <h5 className="block px-4 py-2 rounded hover:bg-gray-200 text-gray-700 text-start">
-                                Wishlist
-                            </h5>
-                        </Link>
-                    </li>
                 </ul>
             </nav>
         </div>

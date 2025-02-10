@@ -1,9 +1,16 @@
+import { auth } from "@/auth";
 import OrderListPage from "@/features/profile/components/orderList";
+import { getUserOrders } from "../actions/get-order-data";
 
-import { order } from "../userdata";
+const OrderList = async () => {
+    const session = await auth();
 
-const OrderList = () => {
-    return <OrderListPage orders={order} />;
+    if (!session) {
+        throw new Error("User is not authenticated");
+    }
+
+    const orders = (await getUserOrders(session.user.id)) ?? [];
+    return <OrderListPage orders={orders} />;
 };
 
 export default OrderList;

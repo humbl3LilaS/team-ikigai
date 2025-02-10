@@ -5,6 +5,7 @@ import ProfileCard from "@/features/profile/components/profile_nav";
 import UpgradeAccount from "@/features/profile/components/upgradeAccount";
 import UserInfo from "@/features/profile/components/user_info";
 import WarningBox from "@/features/profile/components/warningtoupdate";
+import TotalSpend from "@/features/profile/components/totalspend";
 
 import { getUserData } from "./actions/get-user-data";
 const ProfilePage = async () => {
@@ -21,7 +22,7 @@ const ProfilePage = async () => {
 
     return (
         <>
-            <div className="">
+            <div className="p-5">
                 <div className=" flex justify-center items-center">
                     <div className="min-w-full sm:min-w-[500px] flex flex-col justify-center items-center  p-5 bg-white shadow rounded-lg md:p-6">
                         <UserInfo
@@ -31,7 +32,7 @@ const ProfilePage = async () => {
                             phone={userinfo.phoneNumber}
                             address={userinfo.address || ""}
                         />
-                        <h1>{userinfo.totalSpend}</h1>
+                        <TotalSpend totalSpend={userinfo.totalSpend} />
                         <div>{userinfo.address ? "" : <WarningBox />}</div>
 
                         <div className="border-b-2 border-gray-200 w-full mb-4 mt-2"></div>

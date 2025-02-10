@@ -92,7 +92,6 @@ export default function ProfileDetails({ userinfo }: { userinfo: IUser }) {
                                                 ? "bg-gray-100 border-0 cursor-not-allowed"
                                                 : ""
                                         }
-                                        value={user?.name ?? ""}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -115,7 +114,6 @@ export default function ProfileDetails({ userinfo }: { userinfo: IUser }) {
                                                 ? "bg-gray-100 border-0 cursor-not-allowed"
                                                 : ""
                                         }
-                                        value={user?.email ?? ""}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -138,7 +136,6 @@ export default function ProfileDetails({ userinfo }: { userinfo: IUser }) {
                                                 ? "bg-gray-100 border-0 cursor-not-allowed"
                                                 : ""
                                         }
-                                        value={user.phoneNumber ?? ""}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -161,7 +158,6 @@ export default function ProfileDetails({ userinfo }: { userinfo: IUser }) {
                                                 ? "bg-gray-100 border-0 cursor-not-allowed"
                                                 : ""
                                         }
-                                        value={user.address ?? ""}
                                     />
                                 </FormControl>
                                 <FormMessage />
