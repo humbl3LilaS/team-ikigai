@@ -1,6 +1,6 @@
 "use client";
 
-import { CarTaxiFrontIcon, Search, User } from "lucide-react";
+import { Search, ShoppingCartIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,7 +25,7 @@ const Header = () => {
 
     return (
         <nav className="flex justify-between gap-2 bg-white items-center text-white p-4 sm:px-10 sm:py-6">
-            <div className="cursor-pointer">
+            <Link href={"/"}>
                 <Image
                     src="/brandLogo.png"
                     width={72}
@@ -33,7 +33,7 @@ const Header = () => {
                     alt="logo"
                     className=""
                 />
-            </div>
+            </Link>
 
             <div className={`sm:hidden max-w-md`}>
                 <ProductSearch />
@@ -62,16 +62,19 @@ const Header = () => {
                 </div>
                 {isSearchOpen && <ProductSearch />}
 
-                <Button className="" onClick={handleSearch}>
+                <Button
+                    className="bg-transparent text-black border"
+                    onClick={handleSearch}
+                >
                     <Search />
                 </Button>
-                <Button className="">
-                    <CarTaxiFrontIcon />
+                <Button className="bg-transparent text-black border">
+                    <ShoppingCartIcon />
                 </Button>
                 {session?.user && (
                     <Link
                         href={"/profile"}
-                        className="text-white bg-black px-2 py-1 rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-neutral-800"
+                        className="bg-transparent text-black border px-2 py-1 rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-neutral-800"
                     >
                         <User />
                     </Link>
