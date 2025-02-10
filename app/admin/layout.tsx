@@ -31,5 +31,5 @@ export default async function RootLayout({
                 <AdminSideBar>{children}</AdminSideBar>
             </ThemeProvider>
         </SessionProvider>
-        );
+    );
 }

@@ -18,6 +18,11 @@ export const getApprovedOrdersCount = async () => {
   return (await db.select({count: count()}).from(orders).where(eq(orders.status, "APPROVE")))[0];
 };
 
+export const getFinishedSales = async () => {
+  return (await db.select({status: orders.status, total: orders.totalAmount, createdAt: orders.createdAt}).from(orders).where(eq(orders.status, "FINISH")));
+  // const res = await db.select({sataus: orders.status, total: orders.totalAmount, createdAt: orders.createdAt})
+};
+
 
 // Order Page
 export const getOrders = async () => {

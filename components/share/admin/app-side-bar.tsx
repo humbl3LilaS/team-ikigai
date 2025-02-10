@@ -19,7 +19,7 @@ import AdminSidebarFooter from "./admin-side-bar-footer";
 
 const AppSideBar = () => {
     const path = usePathname();
-        const auth = useSession();
+    const auth = useSession();
 
     return (
         <Sidebar collapsible="icon">
