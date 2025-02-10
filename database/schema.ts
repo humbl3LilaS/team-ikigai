@@ -11,6 +11,7 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { PRODUCT_CATEGORY, REGION } from "@/constants";
+import paymentMethod from "@/features/admin/invoice/components/payment-method";
 
 export const ROLE_ENUM = pgEnum("role", [
     "USER",
@@ -362,3 +363,7 @@ export type IOrderInsert = Zod.infer<typeof orderInsertSchema>;
 export type IProductCategory = (typeof CATEGORY.enumValues)[number];
 export const productDetailsSchema = createSelectSchema(productDetails);
 export type IProductDetails = Zod.infer<typeof productDetailsSchema>;
+
+// Invoices
+export type IInvoice = InferSelectModel<typeof invoices>;
+export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];
