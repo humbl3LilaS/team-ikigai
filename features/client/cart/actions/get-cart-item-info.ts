@@ -8,16 +8,16 @@ export const getCartItemInfo = async (pid: string, cid: string) => {
     try {
         const [productInfo] = await db
             .select({
-                id: productDetails.id,
-                name: productDetails.name,
+                id: products.id,
                 imageUrl: productDetails.imageUrl,
+                name: productDetails.name,
                 colorHex: productColors.colorHex,
                 price: productDetails.price,
             })
-            .from(productDetails)
-            .innerJoin(products, eq(products.detailId, productDetails.id))
+            .from(products)
+            .innerJoin(productDetails, eq(products.detailId, productDetails.id))
             .innerJoin(productColors, eq(products.colorId, productColors.id))
-            .where(and(eq(productDetails.id, pid), eq(productColors.id, cid)));
+            .where(and(eq(products.id, pid), eq(productColors.id, cid)));
 
         if (!productInfo) {
             return undefined;

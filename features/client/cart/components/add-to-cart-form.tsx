@@ -26,19 +26,22 @@ const AddToCartForm = ({ data }: { data: RProductInfo }) => {
     const form = useForm<CheckoutFormSchemaType>({
         resolver: zodResolver(CheckoutFormSchema),
         defaultValues: {
-            colorId: data.colors[0].id,
-            productId: data.id,
+            colorId: data.variants[0].colorId,
             quantity: 1,
         },
     });
 
     const { toast } = useToast();
-    const onSubmit: SubmitHandler<CheckoutFormSchemaType> = (data) => {
+    const onSubmit: SubmitHandler<CheckoutFormSchemaType> = (values) => {
+        const pid = data.variants.find(
+            (item) => item.colorId === values.colorId,
+        )!.productId;
         const newItem = {
-            pid: data.productId,
-            cid: data.colorId,
-            q: data.quantity,
+            pid,
+            cid: values.colorId,
+            q: values.quantity,
         };
+        console.log(newItem);
         const isInCart = cart.find(
             (item) => item.pid === newItem.pid && item.cid === newItem.cid,
         );
@@ -64,7 +67,7 @@ const AddToCartForm = ({ data }: { data: RProductInfo }) => {
                             </FormLabel>
                             <FormControl>
                                 <ColorSelector
-                                    options={data.colors}
+                                    options={data.variants}
                                     onChange={field.onChange}
                                     value={field.value}
                                 />

@@ -4,7 +4,12 @@ import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type ColorSelectorProps = {
-    options: Array<{ id: string; colorHex: string; stock: number }>;
+    options: Array<{
+        colorId: string;
+        colorHex: string;
+        stock: number;
+        productId: string;
+    }>;
     onChange: (value: string) => void;
     value: string | undefined;
 };
@@ -15,7 +20,7 @@ const ColorSelector = ({ options, onChange, value }: ColorSelectorProps) => {
                 {options.map((item) => (
                     <FormItem key={item.colorHex}>
                         <FormControl className={"hidden"}>
-                            <RadioGroupItem value={item.id} />
+                            <RadioGroupItem value={item.colorId} />
                         </FormControl>
                         <FormLabel
                             className={"block size-10 rounded-full relative"}
@@ -24,7 +29,7 @@ const ColorSelector = ({ options, onChange, value }: ColorSelectorProps) => {
                             }}
                         >
                             <span className={"sr-only"}>#{item.colorHex}</span>
-                            {value === item.id && (
+                            {value === item.colorId && (
                                 <Check
                                     color="#ffffff"
                                     strokeWidth={2.5}
@@ -40,7 +45,7 @@ const ColorSelector = ({ options, onChange, value }: ColorSelectorProps) => {
             {value && (
                 <p>
                     <span className={"font-bold"}>
-                        {options.find((item) => item.id === value)!.stock}
+                        {options.find((item) => item.colorId === value)!.stock}
                         items
                     </span>
                     &nbsp;in stock.

@@ -10,7 +10,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
-import { PRODUCT_CATEGORY } from "@/constants";
+import { PRODUCT_CATEGORY, REGION } from "@/constants";
 
 export const ROLE_ENUM = pgEnum("role", [
     "USER",
@@ -30,7 +30,7 @@ export const ORDER_STATUS = pgEnum("order_status", [
     "FINISH",
 ]);
 export const INVOICE_STATUS = pgEnum("invoice_status", ["SUCCESS", "COMPLAIN"]);
-export const COMPLAIN_STATUS = pgEnum("compliance_status", [
+export const COMPLAIN_STATUS = pgEnum("complain_status", [
     "EXCHANGE",
     "REPAIR",
 ]);
@@ -99,8 +99,12 @@ export const orders = pgTable("orders", {
     })
         .defaultNow()
         .notNull(),
-    status: ORDER_STATUS("order_status").notNull(),
+    status: ORDER_STATUS("order_status").default("PENDING").notNull(),
     totalAmount: integer("total_amount").default(0).notNull(),
+    contactNumber: text("contact_number").notNull(),
+    address: text("address").notNull(),
+    city: text("city").notNull(),
+    region: text("region").notNull(),
 });
 
 export const orderItems = pgTable("order_items", {
@@ -306,6 +310,7 @@ export const driversToWarehouses = relations(drivers, ({ one }) => ({
  *
  */
 
+// Users
 export type UserRole = (typeof ROLE_ENUM.enumValues)[number];
 
 export const UserInsertSchema = createInsertSchema(users, {
@@ -339,9 +344,31 @@ export const UserInsertSchema = createInsertSchema(users, {
     region: true,
 });
 
-export type IUserInsert = Zod.infer<typeof UserInsertSchema>;
+export const userSchema = createSelectSchema(users);
 
-export type IProductCategory = (typeof CATEGORY.enumValues)[number];
+export type IUserInsert = Zod.infer<typeof UserInsertSchema>;
+export type IUserInfo = Zod.infer<typeof userSchema>;
+
+// Orders
 export type IOrderStatus = (typeof ORDER_STATUS.enumValues)[number];
+
+export const orderInsertSchema = createInsertSchema(orders, {
+    contactNumber: (schema) =>
+        schema.regex(/^09\d{9}$/, {
+            message:
+                "Phone number must start with 09 and have a total length of 11 digits",
+        }),
+    region: (schema) => schema.refine((value) => REGION.includes(value)),
+    city: (schema) => schema.min(1),
+}).omit({
+    id: true,
+    status: true,
+    createdAt: true,
+});
+
+export type IOrderInsert = Zod.infer<typeof orderInsertSchema>;
+
+// Products
+export type IProductCategory = (typeof CATEGORY.enumValues)[number];
 export const productDetailsSchema = createSelectSchema(productDetails);
 export type IProductDetails = Zod.infer<typeof productDetailsSchema>;
