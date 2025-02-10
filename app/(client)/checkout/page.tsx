@@ -23,7 +23,7 @@ const CheckoutPage = async () => {
         >
             <CheckoutSummaryDropDown />
             <div className={"overflow-y-scroll"}>
-                <CheckoutForm />
+                <CheckoutForm defaultValues={profile} />
             </div>
             <section className={"hidden md:block lg:pr-25 lg:pl-10"}>
                 <h3 className={"font-bold text-2xl mb-4"}>Order Summary</h3>

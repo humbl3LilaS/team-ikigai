@@ -1,7 +1,7 @@
 "use server";
 
-import { SignInSchemaType } from "@/validation";
 import { signIn } from "@/auth";
+import { SignInSchemaType } from "@/validation";
 
 export type Cause = {
     reason: string;

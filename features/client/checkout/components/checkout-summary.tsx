@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useCartStore } from "@/features/client/cart/hooks/use-cart-store";
 import CheckoutDetails from "@/features/client/checkout/components/checkout-details";

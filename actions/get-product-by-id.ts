@@ -15,9 +15,10 @@ export const getProductById = async (id: string) => {
             return undefined;
         }
 
-        const colors = await db
+        const variants = await db
             .select({
-                id: productColors.id,
+                productId: products.id,
+                colorId: productColors.id,
                 colorHex: productColors.colorHex,
                 stock: products.stock,
             })
@@ -26,7 +27,7 @@ export const getProductById = async (id: string) => {
             .where(eq(products.detailId, id));
         return {
             ...product,
-            colors,
+            variants,
         };
     } catch {
         return undefined;

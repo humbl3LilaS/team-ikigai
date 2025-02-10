@@ -1,3 +1,9 @@
+import { en, Faker } from "@faker-js/faker";
+import { hash } from "bcryptjs";
+import { subDays } from "date-fns";
+import { eq } from "drizzle-orm";
+
+import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
 import { db } from "@/database/dirzzle";
 import {
     drivers,
@@ -12,14 +18,8 @@ import {
     users,
     warehouses,
 } from "@/database/schema";
-import { hash } from "bcryptjs";
-import { en, Faker } from "@faker-js/faker";
-import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
-import { subDays } from "date-fns";
-import { eq } from "drizzle-orm";
 
 async function main() {
-    console.log("Seeding Start");
     const faker = new Faker({ locale: [en] });
     const hashedPassword = await hash("P@ssword123", 10);
 
@@ -108,12 +108,10 @@ async function main() {
         };
     });
 
-    const newDrivers = await db
+    await db
         .insert(drivers)
         .values(generatedDrivers)
         .returning({ id: drivers.id });
-
-    const newDriversId = newDrivers.map((item) => item.id);
 
     const generatedProducts = newProductColorsId.map((item) => ({
         detailId: faker.helpers.arrayElement(newProductDetailsId),
@@ -128,6 +126,8 @@ async function main() {
     const newProductsId = newProducts.map((item) => item.id);
 
     const generatedOrders = Array.from({ length: 60 }, () => {
+        const region = faker.helpers.arrayElement(REGION);
+        const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
         return {
             userId: faker.helpers.arrayElement(newUserIds),
             orderDate: faker.date.between({
@@ -138,6 +138,10 @@ async function main() {
                 ORDER_STATUS.enumValues,
             ) as IOrderStatus,
             totalAmount: 0,
+            region,
+            city,
+            address: faker.location.streetAddress(),
+            contactNumber: `09${faker.string.numeric(9)}`,
         };
     });
     let newOrders = await db
@@ -195,14 +199,10 @@ async function main() {
         .insert(orderItems)
         .values(generatedOrderItems.flat())
         .returning({ id: orderItems.id });
-
-    console.log("Seeding End");
 }
 
 try {
     await main();
-} catch (err) {
-    console.log(err);
-}
+} catch {}
 
 export {};
