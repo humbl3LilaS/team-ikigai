@@ -4,7 +4,7 @@ import { createColumnHelper } from "@tanstack/table-core";
 
 type TDriver = {
     id: string,
-    user_id: string,
+    userId: string,
     vehiclePlateNumber: string,
     deliveryRoute: string,
     warehouseId: string,
@@ -14,7 +14,7 @@ type TDriver = {
 export const DRIVER_PLACEHOLDER: TDriver[] = [
     {
         id: "1",
-        user_id: "1",
+        userId: "1",
         vehiclePlateNumber: "3H-0912",
         deliveryRoute: "Hlaing",
         warehouseId: "1",
@@ -22,7 +22,7 @@ export const DRIVER_PLACEHOLDER: TDriver[] = [
     },
     {
         id: "2",
-        user_id: "2",
+        userId: "2",
         vehiclePlateNumber: "3H-0912",
         deliveryRoute: "Mayangone",
         warehouseId: "1",
@@ -30,7 +30,7 @@ export const DRIVER_PLACEHOLDER: TDriver[] = [
     },
     {
         id: "3",
-        user_id: "3",
+        userId: "3",
         vehiclePlateNumber: "3H-0912",
         deliveryRoute: "Pyay",
         warehouseId: "1",
@@ -38,7 +38,7 @@ export const DRIVER_PLACEHOLDER: TDriver[] = [
     },
     {
         id: "4",
-        user_id: "4",
+        userId: "4",
         vehiclePlateNumber: "3H-1912",
         deliveryRoute: "Hlaing",
         warehouseId: "2",
@@ -46,7 +46,7 @@ export const DRIVER_PLACEHOLDER: TDriver[] = [
     },
     {
         id: "5",
-        user_id: "5",
+        userId: "5",
         vehiclePlateNumber: "3H-0912",
         deliveryRoute: "Hlaing",
         warehouseId: "2",
@@ -63,7 +63,7 @@ export const columns = [
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
-    columnHelper.accessor("user_id", {
+    columnHelper.accessor("userId", {
         header: () => <span>User ID</span>,
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>

@@ -1,9 +1,11 @@
 import {
     ArrowRightLeft,
+    Car,
     ChartLine,
     Home,
     Laptop,
     ShoppingCart,
+    Truck,
     Users,
 } from "lucide-react";
 
@@ -46,8 +48,18 @@ export const adminSideBarItems = [
         icon: <ChartLine />,
     },
     {
-        title: "Transactions",
-        url: "/admin/transactions",
+        title: "Invoice",
+        url: "/admin/invoices",
         icon: <ArrowRightLeft />,
+    },
+    {
+        title: "Drivers",
+        url: "/admin/drivers",
+        icon: <Car />,
+    },
+    {
+        title: "Deliveries",
+        url: "/admin/deliveries",
+        icon: <Truck />,
     },
 ];
