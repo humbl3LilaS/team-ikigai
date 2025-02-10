@@ -20,7 +20,11 @@ export const ROLE_ENUM = pgEnum("role", [
     "FINANCE",
 ]);
 export const CATEGORY = pgEnum("product_category", PRODUCT_CATEGORY);
-export const PAYMENT_METHOD = pgEnum("payment_method", ["KBZ_PAY", "WAVE_PAY"]);
+export const PAYMENT_METHOD = pgEnum("payment_method", [
+    "KBZ_PAY",
+    "WAVE_PAY",
+    "CASH_ON_DELIVERY",
+]);
 export const TYPE = pgEnum("type", ["REPAIR", "EXCHANGE"]);
 export const ORDER_STATUS = pgEnum("order_status", [
     "PENDING",
@@ -123,11 +127,9 @@ export const invoices = pgTable("invoices", {
     orderId: uuid("order_id")
         .references(() => orders.id)
         .notNull(),
-    userId: uuid("user_id")
-        .references(() => users.id)
+    paymentMethod: PAYMENT_METHOD("payment_method")
+        .default("CASH_ON_DELIVERY")
         .notNull(),
-    status: INVOICE_STATUS("invoice_status").notNull(),
-    paymentMethod: PAYMENT_METHOD("payment_method").notNull(),
 });
 
 export const complains = pgTable("complains", {
@@ -235,17 +237,6 @@ export const orderItemsToOrders = relations(orderItems, ({ one }) => ({
     orderId: one(orders, {
         fields: [orderItems.orderId],
         references: [orders.id],
-    }),
-}));
-
-export const usersToInvoices = relations(users, ({ many }) => ({
-    invoices: many(invoices),
-}));
-
-export const invoicesToUsers = relations(invoices, ({ one }) => ({
-    user: one(users, {
-        fields: [invoices.userId],
-        references: [users.id],
     }),
 }));
 

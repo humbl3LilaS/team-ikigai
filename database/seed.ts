@@ -23,6 +23,7 @@ async function main() {
     const faker = new Faker({ locale: [en] });
     const hashedPassword = await hash("P@ssword123", 10);
 
+    console.log("seeding start....");
     await db.delete(orderItems);
     await db.delete(orders);
     await db.delete(users);
@@ -113,15 +114,23 @@ async function main() {
         .values(generatedDrivers)
         .returning({ id: drivers.id });
 
-    const generatedProducts = newProductColorsId.map((item) => ({
-        detailId: faker.helpers.arrayElement(newProductDetailsId),
-        colorId: item,
-        warehouseId: faker.helpers.arrayElement(newWareHousesId),
-        stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
-    }));
+    // const generatedProducts = newProductColorsId.map((item) => ({
+    //     detailId: faker.helpers.arrayElement(newProductDetailsId),
+    //     colorId: item,
+    //     warehouseId: faker.helpers.arrayElement(newWareHousesId),
+    //     stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
+    // }));
+    const generatedProducts = newProductDetailsId.map((item) => {
+        return Array.from({ length: 3 }, () => ({
+            detailId: item,
+            colorId: faker.helpers.arrayElement(newProductColorsId),
+            warehouseId: faker.helpers.arrayElement(newWareHousesId),
+            stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
+        }));
+    });
     const newProducts = await db
         .insert(products)
-        .values(generatedProducts)
+        .values(generatedProducts.flat())
         .returning({ id: products.id, detailId: products.detailId });
     const newProductsId = newProducts.map((item) => item.id);
 
@@ -199,10 +208,13 @@ async function main() {
         .insert(orderItems)
         .values(generatedOrderItems.flat())
         .returning({ id: orderItems.id });
+    console.log("seeding end");
 }
 
 try {
     await main();
-} catch {}
+} catch (err) {
+    console.log(err);
+}
 
 export {};
