@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { getProfileData } from "@/actions/get-profile-data";
 import { auth } from "@/auth";
@@ -13,7 +13,7 @@ const CheckoutPage = async () => {
     }
     const profile = await getProfileData(session.user.id);
     if (!profile) {
-        return redirect("/sign-in");
+        return notFound();
     }
     return (
         <div
