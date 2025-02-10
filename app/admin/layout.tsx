@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { SessionProvider } from "next-auth/react";
 
 import { auth } from "@/auth";
 import { AdminSideBar } from "@/components/share/admin/admin-side-bar";
@@ -20,12 +21,15 @@ export default async function RootLayout({
         redirect("/");
     }
     return (
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            disableTransitionOnChange
-        >
-            <AdminSideBar>{children}</AdminSideBar>
-        </ThemeProvider>);
+        <SessionProvider>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem={false}
+                disableTransitionOnChange
+            >
+                <AdminSideBar>{children}</AdminSideBar>
+            </ThemeProvider>
+        </SessionProvider>
+        );
 }

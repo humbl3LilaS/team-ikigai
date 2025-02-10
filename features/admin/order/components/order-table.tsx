@@ -5,25 +5,30 @@ import {
     PaginationState,
     useReactTable,
 } from "@tanstack/react-table";
+import { InferSelectModel } from "drizzle-orm";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DataTableBody from "@/components/share/admin/data-table-body";
 import { Button } from "@/components/ui/button";
+import { getOrders } from "@/dashboard/actions";
+import { orders } from "@/database/schema";
 import {
-    columns,
-    ORDER_PLACEHOLDER,
+    orderColumns,
 } from "@/features/admin/order/columns/order-columns";
 
 const OrderTable = () => {
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: 10,
     });
 
+    type TOrder = InferSelectModel<typeof orders>;
+    const [dbOrders, setDbOrders] = useState<TOrder[]>([]);
+
     const table = useReactTable({
-        data: ORDER_PLACEHOLDER,
-        columns: columns,
+        data: dbOrders,
+        columns: orderColumns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onPaginationChange: setPagination,
@@ -31,10 +36,15 @@ const OrderTable = () => {
             pagination,
         },
     });
+
+    useEffect(() => {
+        getOrders().then(data => setDbOrders(data));
+    }, []);
+
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
             <div>
-                <DataTableBody table={table} data={ORDER_PLACEHOLDER} />
+                <DataTableBody table={table} data={dbOrders} />
                 <div className="flex items-center justify-between space-x-2 py-4">
                     <p className={"text-foreground text-sm font-semibold"}>
                         Page {pagination.pageIndex + 1} of{" "}
