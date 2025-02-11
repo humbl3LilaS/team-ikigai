@@ -4,6 +4,7 @@ import { subDays } from "date-fns";
 import { eq } from "drizzle-orm";
 
 import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
+import { cleanUp } from "@/database/db-cleanup";
 import { db } from "@/database/dirzzle";
 import {
     deliveries,
@@ -19,6 +20,7 @@ import {
     serviceCenters,
     UserRole,
     users,
+    warehouseManagers,
     warehouses,
 } from "@/database/schema";
 
@@ -27,12 +29,7 @@ async function main() {
     const hashedPassword = await hash("P@ssword123", 10);
 
     console.log("seeding start....");
-
-    await db.delete(deliveries);
-    await db.delete(invoices);
-    await db.delete(orderItems);
-    await db.delete(orders);
-    await db.delete(users);
+    await cleanUp();
     const generatedUsers = Array.from(
         {
             length: 10,
@@ -88,9 +85,6 @@ async function main() {
 
     const newProductColorsId = newProductColors.map((item) => item.id);
 
-    await db.delete(drivers);
-    await db.delete(warehouses);
-
     const generatedUserWarehouseManagers = Array.from(
         {
             length: 10,
@@ -110,13 +104,29 @@ async function main() {
         },
     );
 
-    const generatedWareHouses = Array.from({ length: 10 }, () => {
+    const newWarehouseManagerUsers = await db
+        .insert(users)
+        .values(generatedUserWarehouseManagers)
+        .returning({ id: users.id });
+
+    const generatedWarehouseManagers = newWarehouseManagerUsers.map((item) => ({
+        userId: item.id,
+    }));
+    const newWarehouseManagers = await db
+        .insert(warehouseManagers)
+        .values(generatedWarehouseManagers)
+        .returning({ id: warehouseManagers.id });
+
+    const generatedWareHouses = newWarehouseManagers.map((item) => {
         const region = faker.helpers.arrayElement(REGION);
         const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
         return {
             region,
             city,
             phoneNumber: `09${faker.string.numeric(9)}`,
+            managerId: item.id,
+            address: faker.location.streetAddress(),
+            name: faker.company.name(),
         };
     });
     const newWarehouses = await db
