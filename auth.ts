@@ -42,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }),
     ],
     pages: {
-        signIn: "/sign-in",
+        signIn: `${process.env.NEXT_PUBLIC_ENDPOINT}/sign-in`,
     },
     callbacks: {
         async jwt({ token, user }) {

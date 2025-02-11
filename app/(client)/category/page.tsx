@@ -1,22 +1,30 @@
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import FilterSidebar from "@/features/category/components/filter-sidebar";
-import Pagination from "@/features/category/components/pagination";
 import ProductGrid from "@/features/category/components/product-grid";
-import { ProductProvider } from "@/features/category/contexts/product-context";
-
-export default function Home() {
+interface Filters {
+    searchParams: Promise<{
+        category?: string;
+        brand?: string;
+        min?: number;
+        max?: number;
+    }>;
+}
+export default async function Home({ searchParams }: Filters) {
+    const filters = await searchParams;
     return (
-        <ProductProvider>
-            <div className="flex flex-col">
-                <main className="flex-grow container mx-auto px-4 py-8">
-                    <div className="flex flex-col md:flex-row gap-8">
-                        <FilterSidebar />
-                        <div className="flex-grow">
-                            <ProductGrid />
-                            <Pagination />
-                        </div>
-                    </div>
-                </main>
+        <SidebarProvider className="w-full z-40">
+            <FilterSidebar />
+            <div className="fixed top-50 right-0 z-50">
+                <SidebarTrigger />
             </div>
-        </ProductProvider>
+            <main className="p-4 mx-auto">
+                <ProductGrid
+                    category={filters.category}
+                    brand={filters.brand}
+                    min={filters.min}
+                    max={filters.max}
+                />
+            </main>
+        </SidebarProvider>
     );
 }

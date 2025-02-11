@@ -27,7 +27,7 @@ const CartItem = ({ data }: { data: ICartItem }) => {
             queryKey: ["cart-item", data.pid, data.cid],
         });
     };
-    console.log(productInfo);
+
     return (
         <>
             {isLoading && (

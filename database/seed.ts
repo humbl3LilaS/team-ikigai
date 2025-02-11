@@ -4,6 +4,7 @@ import { subDays } from "date-fns";
 import { eq } from "drizzle-orm";
 
 import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
+import { cleanUp } from "@/database/db-cleanup";
 import { db } from "@/database/dirzzle";
 import {
     deliveries,
@@ -17,8 +18,10 @@ import {
     productDetails,
     products,
     serviceCenters,
+    stocks,
     UserRole,
     users,
+    warehouseManagers,
     warehouses,
 } from "@/database/schema";
 
@@ -27,12 +30,7 @@ async function main() {
     const hashedPassword = await hash("P@ssword123", 10);
 
     console.log("seeding start....");
-
-    await db.delete(deliveries);
-    await db.delete(invoices);
-    await db.delete(orderItems);
-    await db.delete(orders);
-    await db.delete(users);
+    await cleanUp();
     const generatedUsers = Array.from(
         {
             length: 10,
@@ -58,8 +56,6 @@ async function main() {
         .returning({ id: users.id });
     const newUserIds = createdUsers.map((item) => item.id);
 
-    await db.delete(products);
-    await db.delete(productDetails);
     const generatedProductDetails = PRODUCT_PLACEHOLDER.map((item) => ({
         ...item,
         category: item.category as IProductCategory,
@@ -88,15 +84,48 @@ async function main() {
 
     const newProductColorsId = newProductColors.map((item) => item.id);
 
-    await db.delete(drivers);
-    await db.delete(warehouses);
-    const generatedWareHouses = Array.from({ length: 10 }, () => {
+    const generatedUserWarehouseManagers = Array.from(
+        {
+            length: 10,
+        },
+        () => {
+            const city = faker.helpers.arrayElement(TOWNSHIPS["Yangon"]);
+            return {
+                email: faker.internet.email(),
+                password: hashedPassword,
+                name: faker.internet.username(),
+                address: faker.location.streetAddress(),
+                region: "Yangon",
+                city,
+                phoneNumber: `09${faker.string.numeric(9)}`,
+                role: "WAREHOUSE_MANAGER" as UserRole,
+            };
+        },
+    );
+
+    const newWarehouseManagerUsers = await db
+        .insert(users)
+        .values(generatedUserWarehouseManagers)
+        .returning({ id: users.id });
+
+    const generatedWarehouseManagers = newWarehouseManagerUsers.map((item) => ({
+        userId: item.id,
+    }));
+    const newWarehouseManagers = await db
+        .insert(warehouseManagers)
+        .values(generatedWarehouseManagers)
+        .returning({ id: warehouseManagers.id });
+
+    const generatedWareHouses = newWarehouseManagers.map((item) => {
         const region = faker.helpers.arrayElement(REGION);
         const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
         return {
             region,
             city,
             phoneNumber: `09${faker.string.numeric(9)}`,
+            managerId: item.id,
+            address: faker.location.streetAddress(),
+            name: faker.company.name(),
         };
     });
     const newWarehouses = await db
@@ -146,8 +175,6 @@ async function main() {
         return Array.from({ length: 3 }, () => ({
             detailId: item,
             colorId: faker.helpers.arrayElement(newProductColorsId),
-            warehouseId: faker.helpers.arrayElement(newWareHousesId),
-            stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
         }));
     });
     const newProducts = await db
@@ -155,6 +182,14 @@ async function main() {
         .values(generatedProducts.flat())
         .returning({ id: products.id, detailId: products.detailId });
     const newProductsId = newProducts.map((item) => item.id);
+
+    const generatedProductStocks = newProductsId.map((item) => ({
+        warehouseId: faker.helpers.arrayElement(newWareHousesId),
+        productId: item,
+        stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
+    }));
+
+    await db.insert(stocks).values(generatedProductStocks);
 
     const generatedOrders = Array.from({ length: 120 }, () => {
         const region = faker.helpers.arrayElement(REGION);
@@ -262,7 +297,14 @@ async function main() {
         };
     });
     await db.insert(serviceCenters).values(generatedServiceCenter).returning();
-
+    const adminPassword = await hash("Admin123!", 10);
+    await db.insert(users).values({
+        email: "admin123@gmail.com",
+        password: adminPassword,
+        phoneNumber: "09773643961",
+        role: "USER" as UserRole,
+        name: "admin123",
+    });
     console.log("seeding end");
 }
 
