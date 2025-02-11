@@ -368,14 +368,21 @@ export type IOrderInsert = Zod.infer<typeof orderInsertSchema>;
 // Products
 export type IProductCategory = (typeof CATEGORY.enumValues)[number];
 export type IProductDetails = InferSelectModel<typeof productDetails>;
-export const productInsertSchema = createInsertSchema(productDetails)
+export const ProductInsertSchema = createInsertSchema(productDetails, {
+    name: (schema) =>
+        schema.min(5, { message: "Name must be at least 8 characters long" }),
+
+    price: z.coerce.number().min(1, { message: "Price cannot be zero" }),
+    discount: z.coerce.number().optional(),
+})
+    .omit({
+        id: true,
+        imageUrl: true,
+    })
     .extend({
         colorHex: z.string().min(7),
-    })
-    .omit({ id: true });
-
-export type ProductInsertSchema = Zod.infer<typeof productInsertSchema>;
-
+    });
+export type TProductInsertSchema = Zod.infer<typeof ProductInsertSchema>;
 // Invoices
 export type IInvoice = InferSelectModel<typeof invoices>;
 export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];

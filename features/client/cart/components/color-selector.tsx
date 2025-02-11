@@ -17,8 +17,8 @@ const ColorSelector = ({ options, onChange, value }: ColorSelectorProps) => {
     return (
         <RadioGroup onValueChange={onChange} defaultValue={value}>
             <div className={"flex gap-x-2"}>
-                {options.map((item) => (
-                    <FormItem key={item.colorHex}>
+                {options.map((item, idx) => (
+                    <FormItem key={item.colorId + idx}>
                         <FormControl className={"hidden"}>
                             <RadioGroupItem value={item.colorId} />
                         </FormControl>
