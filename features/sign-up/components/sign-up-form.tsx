@@ -58,7 +58,7 @@ const SignUpForm = () => {
         return router.push("/");
     };
     return (
-        <div className="flex h-screen w-full items-center justify-center px-4">
+        <div className="flex w-full items-center justify-center px-4">
             <Card className="mx-auto max-w-lg">
                 <CardHeader>
                     <CardTitle className="text-2xl">Registration</CardTitle>

@@ -63,18 +63,21 @@ const Header = () => {
                 {isSearchOpen && <ProductSearch />}
 
                 <Button
-                    className="bg-transparent text-black border"
+                    className="bg-transparent text-black border hover:bg-blue-200 "
                     onClick={handleSearch}
                 >
                     <Search />
                 </Button>
-                <Button className="bg-transparent text-black border">
+                <Link
+                    href={"/cart"}
+                    className="bg-transparent text-black border px-3 py-1 shadow-sm rounded-md gap-5 items-center font-semibold hidden sm:flex hover:bg-blue-200"
+                >
                     <ShoppingCartIcon />
-                </Button>
+                </Link>
                 {session?.user && (
                     <Link
                         href={"/profile"}
-                        className="bg-transparent text-black border px-2 py-1 rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-neutral-800"
+                        className="bg-transparent text-black border px-3 py-1 shadow-sm rounded-sm gap-5 items-center font-semibold hidden sm:flex hover:bg-blue-200"
                     >
                         <User />
                     </Link>

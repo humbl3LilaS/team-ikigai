@@ -20,7 +20,7 @@ const ProductCard = ({ data }: { data: IProductDetails }) => {
                 />
             </Link>
             <div className="flex flex-col gap-2 font-space-grotesk">
-                <Link href="/product/4">
+                <Link href={`/product/${data.id}`}>
                     <h1 className="font-semibold py-2">{data.name}</h1>
                 </Link>
                 <p className="text-blue-600 cursor-pointer">
@@ -28,9 +28,9 @@ const ProductCard = ({ data }: { data: IProductDetails }) => {
                         &nbsp;${data.price}
                     </span>
                 </p>
-                <Button className="px-10" asChild={true}>
+                {/* <Button className="px-10" asChild={true}>
                     <Link href={`/product/${data.id}`}>View Details</Link>
-                </Button>
+                </Button> */}
             </div>
         </div>
     );

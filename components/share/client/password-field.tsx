@@ -30,7 +30,7 @@ const PasswordField = ({ onChange, value }: PasswordFieldProps) => {
                 type={"button"}
                 onClick={onFieldTypeChange}
             >
-                {isPasswordField ? "Hide" : "Show"}
+                {isPasswordField ? "Show" : "Hide"}
             </button>
         </div>
     );
