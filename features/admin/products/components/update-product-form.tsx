@@ -1,6 +1,7 @@
-"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { SubmitHandler, UseFormReturn } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,45 +22,54 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { PRODUCT_CATEGORY } from "@/constants";
-import { TProductInsertSchema } from "@/database/schema";
-import ColorPicker from "@/features/admin/products/components/color-picker";
-import CoverImageUploader from "@/features/admin/products/components/cover-image-uploader";
-import { useGetWarehouses } from "@/features/admin/warehouses/hooks/use-get-warehouses";
+import { ProductUpdateSchema, TProductUpdateSchema } from "@/database/schema";
+import { updateProductById } from "@/features/admin/products/actions/update-product-by-id";
+import { useUpdateProductSheet } from "@/features/admin/products/hooks/use-update-product-sheet";
+import { useToast } from "@/hooks/use-toast";
+import { getDirtyField } from "@/lib/utils";
 
-type ProductFormBaseProps = {
-    form: UseFormReturn<TProductInsertSchema, unknown, undefined>;
-    onSubmit: SubmitHandler<TProductInsertSchema>;
-    mode?: "edit" | "new";
-};
-const ProductFromBase = ({ form, onSubmit, mode }: ProductFormBaseProps) => {
-    const disable =
-        !form.formState.isValid ||
-        form.formState.isSubmitting ||
-        (mode === "edit" && !form.formState.isDirty);
-    const { data: warehouses, isLoading } = useGetWarehouses();
+const UpdateProductForm = ({
+    defaultValues,
+    onDelete,
+    isDeleting,
+}: {
+    defaultValues: TProductUpdateSchema;
+    onDelete: () => void;
+    isDeleting: boolean;
+}) => {
+    const form = useForm<TProductUpdateSchema>({
+        resolver: zodResolver(ProductUpdateSchema),
+        defaultValues: { ...defaultValues },
+    });
+    const onOpenChange = useUpdateProductSheet((state) => state.onOpenChange);
+
+    const { toast } = useToast();
+    const router = useRouter();
+
+    const onSubmit: SubmitHandler<TProductUpdateSchema> = async (values) => {
+        const dirtyFields = getDirtyField(values, form.formState.dirtyFields);
+        const res = await updateProductById(defaultValues.id!, dirtyFields);
+        if (!res.success) {
+            return toast({
+                title: "Failed To Update The product",
+                description: res.cause.reason,
+                variant: "destructive",
+            });
+        }
+        toast({
+            title: "Successfully Updated Product",
+        });
+
+        router.refresh();
+        onOpenChange(false);
+        return;
+    };
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-                {mode === "new" && (
-                    <FormField
-                        name={"image"}
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem className={"col-span-2"}>
-                                <FormLabel className={"sr-only"}>
-                                    ProductImage
-                                </FormLabel>
-                                <FormMessage />
-                                <FormControl>
-                                    <CoverImageUploader
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
-                                </FormControl>
-                            </FormItem>
-                        )}
-                    />
-                )}
+            <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className={"overflow-y-scroll"}
+            >
                 <FormField
                     name={"name"}
                     control={form.control}
@@ -131,24 +141,6 @@ const ProductFromBase = ({ form, onSubmit, mode }: ProductFormBaseProps) => {
                         </FormItem>
                     )}
                 />
-
-                <FormField
-                    name={"colorHex"}
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem className={"col-span-2"}>
-                            <FormLabel>Description</FormLabel>
-                            <FormMessage />
-                            <FormControl>
-                                <ColorPicker
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                />
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-
                 <FormField
                     name={"category"}
                     control={form.control}
@@ -186,7 +178,7 @@ const ProductFromBase = ({ form, onSubmit, mode }: ProductFormBaseProps) => {
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Product Label</FormLabel>
+                            <FormLabel>Product Brand</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
@@ -197,79 +189,63 @@ const ProductFromBase = ({ form, onSubmit, mode }: ProductFormBaseProps) => {
                         </FormItem>
                     )}
                 />
-
                 <FormField
-                    name={"warehouseId"}
+                    name={"detail"}
                     control={form.control}
                     render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>WarehouseId</FormLabel>
-                            <Select
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                            >
-                                <FormControl>
-                                    <SelectTrigger disabled={isLoading}>
-                                        <SelectValue
-                                            placeholder={"Select Warehouse"}
-                                        />
-                                    </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                    {warehouses &&
-                                        warehouses.map((item, idx) => (
-                                            <SelectItem
-                                                value={item.id}
-                                                key={item.id}
-                                                className={
-                                                    "w-full flex items-center gap-x-4"
-                                                }
-                                            >
-                                                <span>Warehouse#{idx + 1}</span>
-                                            </SelectItem>
-                                        ))}
-                                </SelectContent>
-                            </Select>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    name={"stock"}
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Product In Stock</FormLabel>
+                        <FormItem className={"col-span-2"}>
+                            <FormLabel>Product Details</FormLabel>
+                            <FormMessage />
                             <FormControl>
-                                <Input
+                                <Textarea
                                     {...field}
-                                    placeholder={"Stock Qty..."}
-                                    type={"number"}
-                                    min={0}
+                                    placeholder={"Product Description..."}
+                                    value={field.value ?? 0}
+                                    className={"h-[200px]"}
                                 />
                             </FormControl>
-                            <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button
-                    className={"mt-4 w-48"}
-                    type={"submit"}
-                    disabled={disable}
-                >
-                    {form.formState.isSubmitting ? (
-                        <>
-                            <Loader2 className="animate-spin" />
-                            <span>
-                                {mode === "new" ? "Submitting" : "Editing"}
-                            </span>
-                        </>
-                    ) : (
-                        <span>Submit</span>
-                    )}
-                </Button>
+                <div>
+                    <Button
+                        type={"button"}
+                        className={"bg-red-600 text-white"}
+                        onClick={onDelete}
+                        disabled={isDeleting}
+                    >
+                        {isDeleting ? (
+                            <>
+                                <Loader2 className={"animate-spin"} />
+                                <span>Deleting</span>
+                            </>
+                        ) : (
+                            <span>Delete</span>
+                        )}
+                    </Button>
+                    <Button
+                        className={"mt-4 ml-4"}
+                        type={"submit"}
+                        disabled={
+                            form.formState.isSubmitting ||
+                            !form.formState.isValid ||
+                            !form.formState.isDirty ||
+                            isDeleting
+                        }
+                    >
+                        {form.formState.isSubmitting ? (
+                            <>
+                                <Loader2 className="animate-spin" />
+                                <span>Updating</span>
+                            </>
+                        ) : (
+                            <span>Update</span>
+                        )}
+                    </Button>
+                </div>
             </form>
         </Form>
     );
 };
 
-export default ProductFromBase;
+export default UpdateProductForm;

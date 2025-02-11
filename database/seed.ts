@@ -60,7 +60,8 @@ async function main() {
         ...item,
         category: item.category as IProductCategory,
         price: faker.helpers.rangeToNumber({ min: 1000, max: 3500 }),
-        description: faker.lorem.sentence(),
+        description: faker.lorem.paragraph(6),
+        detail: faker.lorem.paragraphs(10),
     }));
 
     const newProductDetails = await db
@@ -302,7 +303,7 @@ async function main() {
         email: "admin123@gmail.com",
         password: adminPassword,
         phoneNumber: "09773643961",
-        role: "USER" as UserRole,
+        role: "SALES" as UserRole,
         name: "admin123",
     });
     console.log("seeding end");

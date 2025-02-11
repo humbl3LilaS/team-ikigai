@@ -1,11 +1,22 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import { Button } from "@/components/ui/button";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import { ProductInsertSchema, TProductInsertSchema } from "@/database/schema";
 import { uploadNewProduct } from "@/features/admin/products/actions/upload-new-product";
-import ProductFromBase from "@/features/admin/products/components/product-from-base";
+import CoverImageUploader from "@/features/admin/products/components/cover-image-uploader";
+import ProductFormBase from "@/features/admin/products/components/product-form-base";
 import { useToast } from "@/hooks/use-toast";
 
 const NewProductForm = () => {
@@ -41,8 +52,49 @@ const NewProductForm = () => {
         });
         return router.push(`/admin/products/${res.newProductId}`);
     };
+    return (
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                    name={"image"}
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem className={"col-span-2"}>
+                            <FormLabel className={"sr-only"}>
+                                ProductImage
+                            </FormLabel>
+                            <FormMessage />
+                            <FormControl>
+                                <CoverImageUploader
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
 
-    return <ProductFromBase form={form} onSubmit={onSubmit} mode={"new"} />;
+                <ProductFormBase form={form} />
+
+                <Button
+                    className={"mt-4 w-48"}
+                    type={"submit"}
+                    disabled={
+                        form.formState.isSubmitting || !form.formState.isValid
+                    }
+                >
+                    {form.formState.isSubmitting ? (
+                        <>
+                            <Loader2 className="animate-spin" />
+                            <span>Submitting</span>
+                        </>
+                    ) : (
+                        <span>Submit</span>
+                    )}
+                </Button>
+            </form>
+        </Form>
+    );
 };
 
 export default NewProductForm;

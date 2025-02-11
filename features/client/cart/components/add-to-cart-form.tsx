@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ShoppingCartIcon } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { RProductInfo } from "@/actions/get-product-by-id";
+import { TProductDetailInfo } from "@/actions/get-product-by-id";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -18,7 +18,7 @@ import { useCartStore } from "@/features/client/cart/hooks/use-cart-store";
 import { useToast } from "@/hooks/use-toast";
 import { CheckoutFormSchema, CheckoutFormSchemaType } from "@/validation";
 
-const AddToCartForm = ({ data }: { data: RProductInfo }) => {
+const AddToCartForm = ({ data }: { data: TProductDetailInfo }) => {
     const increaseQty = useCartStore((state) => state.increaseQuantity);
     const addToCart = useCartStore((state) => state.addToCart);
     const cart = useCartStore((state) => state.cart);
