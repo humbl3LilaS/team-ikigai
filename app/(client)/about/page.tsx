@@ -13,14 +13,15 @@ const AboutPage = () => {
                     <Image
                         src={"/about-us/Myantech.png"}
                         alt="MyanTech"
-                        className="w-full max-w-md"
+                        className="w-full max-w-md rounded-tl-[150px] rounded-br-[150px]"
+                        width={500}
+                        height={500}
                     />
                 </div>
                 <div>
                     <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-center md:pb-2">
-                        <span className="text-sm md:text-2xl">Welcome to</span>
                         <h1 className="font-bold text-3xl md:text-5xl">
-                            &nbsp; MyanTech
+                            Welcome to MyanTech
                         </h1>
                     </div>
                     <p className="text-xs md:text-lg mt-2">
@@ -71,7 +72,9 @@ const AboutPage = () => {
                     <Image
                         src={"/about-us/what_we_do.png"}
                         alt="what we do"
-                        className=""
+                        className="rounded-br-[150px] rounded-tl-[150px] border-2 border-black"
+                        width={500}
+                        height={500}
                     />
                 </div>
             </div>
@@ -81,7 +84,9 @@ const AboutPage = () => {
                     <Image
                         src={"/about-us/why_choose_us.png"}
                         alt="why choose us"
-                        className=""
+                        className="rounded-tl-[150px] rounded-br-[150px] border-2 border-black"
+                        width={500}
+                        height={500}
                     />
                 </div>
                 <div className="bg-white w-full md:w-1/3 border border-neutral-200 md:border-0  p-6 md:py-5">
