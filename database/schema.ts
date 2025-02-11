@@ -381,6 +381,11 @@ export const ProductInsertSchema = createInsertSchema(productDetails, {
     })
     .extend({
         colorHex: z.string().min(7),
+        image: z.custom<File | null>(),
+        warehouseId: z
+            .string()
+            .min(1, { message: "Warehouse Id Cannot be null" }),
+        stock: z.coerce.number().min(1, { message: "Stock cannot be null" }),
     });
 export type TProductInsertSchema = Zod.infer<typeof ProductInsertSchema>;
 // Invoices

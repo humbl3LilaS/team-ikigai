@@ -23,6 +23,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { PRODUCT_CATEGORY } from "@/constants";
 import { TProductInsertSchema } from "@/database/schema";
 import ColorPicker from "@/features/admin/products/components/color-picker";
+import CoverImageUploader from "@/features/admin/products/components/cover-image-uploader";
+import { useGetWarehouses } from "@/features/admin/warehouses/hooks/use-get-warehouses";
 
 type ProductFormBaseProps = {
     form: UseFormReturn<TProductInsertSchema, unknown, undefined>;
@@ -34,9 +36,30 @@ const ProductFromBase = ({ form, onSubmit, mode }: ProductFormBaseProps) => {
         !form.formState.isValid ||
         form.formState.isSubmitting ||
         (mode === "edit" && !form.formState.isDirty);
+    const { data: warehouses, isLoading } = useGetWarehouses();
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
+                {mode === "new" && (
+                    <FormField
+                        name={"image"}
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem className={"col-span-2"}>
+                                <FormLabel className={"sr-only"}>
+                                    ProductImage
+                                </FormLabel>
+                                <FormMessage />
+                                <FormControl>
+                                    <CoverImageUploader
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                )}
                 <FormField
                     name={"name"}
                     control={form.control}
@@ -175,6 +198,59 @@ const ProductFromBase = ({ form, onSubmit, mode }: ProductFormBaseProps) => {
                     )}
                 />
 
+                <FormField
+                    name={"warehouseId"}
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>WarehouseId</FormLabel>
+                            <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                            >
+                                <FormControl>
+                                    <SelectTrigger disabled={isLoading}>
+                                        <SelectValue
+                                            placeholder={"Select Warehouse"}
+                                        />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {warehouses &&
+                                        warehouses.map((item, idx) => (
+                                            <SelectItem
+                                                value={item.id}
+                                                key={item.id}
+                                                className={
+                                                    "w-full flex items-center gap-x-4"
+                                                }
+                                            >
+                                                <span>Warehouse#{idx + 1}</span>
+                                            </SelectItem>
+                                        ))}
+                                </SelectContent>
+                            </Select>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name={"stock"}
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Product In Stock</FormLabel>
+                            <FormControl>
+                                <Input
+                                    {...field}
+                                    placeholder={"Stock Qty..."}
+                                    type={"number"}
+                                    min={0}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <Button
                     className={"mt-4 w-48"}
                     type={"submit"}
