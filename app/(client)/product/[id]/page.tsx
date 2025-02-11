@@ -1,8 +1,23 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getProductById } from "@/actions/get-product-by-id";
 import AddToCartForm from "@/features/client/cart/components/add-to-cart-form";
 import ProductSlider from "@/features/client/product/components/product-slider";
+
+export async function generateMetadata({params}:{params:Promise<{id:string}>}):Promise<Metadata>{
+    const {id} = await params;
+    const product = await (getProductById(id));
+    return{
+        title:product?.brand,
+        description:"product description",
+        openGraph:{
+            title:product?.name,
+            description:product?.description,
+            images:[product?.imageUrl as string],
+        },
+    };
+}
 
 const ProductDetailPage = async ({
     params,

@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     title: "MyanTech Store",
     description:
         "Shop top-quality laptops, desktops, printers, copiers, and more at MyanTech. Your one-stop destination for the latest electoronics at unbeatable prices!",
+    openGraph:{
+        title:"MyanTech Store",
+        description:"Best place to buy electronic devices online",
+        images:["/logos/logo.svg"],
+    },
 };
 
 export default function RootLayout({
