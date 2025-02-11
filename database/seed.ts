@@ -297,7 +297,14 @@ async function main() {
         };
     });
     await db.insert(serviceCenters).values(generatedServiceCenter).returning();
-
+    const adminPassword = await hash("Admin123!", 10);
+    await db.insert(users).values({
+        email: "admin123@gmail.com",
+        password: adminPassword,
+        phoneNumber: "09773643961",
+        role: "USER" as UserRole,
+        name: "admin123",
+    });
     console.log("seeding end");
 }
 

@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/database/dirzzle";
-import { productColors, products } from "@/database/schema";
+import { productColors, products, stocks } from "@/database/schema";
 import { Cause } from "@/features/sign-in/actions/sign-in-actions";
 
 type Payload = {
@@ -13,8 +13,8 @@ type Payload = {
 export const addNewVariant = async ({
     detailId,
     colorHex,
-    quantity,
     warehouseId,
+    quantity,
 }: Payload): Promise<{ success: true } | { success: false; cause: Cause }> => {
     try {
         const [newColor] = await db
@@ -36,8 +36,6 @@ export const addNewVariant = async ({
             .values({
                 colorId: newColor.id,
                 detailId,
-                warehouseId,
-                stock: quantity,
             })
             .returning();
 
@@ -46,6 +44,23 @@ export const addNewVariant = async ({
                 success: false,
                 cause: {
                     reason: "Adding Variant Failed",
+                },
+            };
+        }
+
+        const [newStock] = await db
+            .insert(stocks)
+            .values({
+                productId: newProduct.id,
+                warehouseId,
+                stock: quantity,
+            })
+            .returning();
+        if (!newStock) {
+            return {
+                success: false,
+                cause: {
+                    reason: "Creating Stock Failed",
                 },
             };
         }
