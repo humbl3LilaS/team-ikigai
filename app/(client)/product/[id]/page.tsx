@@ -3,6 +3,21 @@ import { notFound } from "next/navigation";
 import { getProductById } from "@/actions/get-product-by-id";
 import AddToCartForm from "@/features/client/cart/components/add-to-cart-form";
 import ProductSlider from "@/features/client/product/components/product-slider";
+import { Metadata } from "next";
+
+// export async function generateMetada({params}:{params:Promise<{id:string}>}):Promise<Metadata>{
+//     const {id} = await params;
+//     const product = await (getProductById(id));
+//     return{
+//         title:product?.brand,
+//         description:'product description',
+//         openGraph:{
+//             title:product?.name,
+//             description:product?.description,
+//             images:[product?.imageUrl as string]
+//         }
+//     }
+// }
 
 const ProductDetailPage = async ({
     params,
@@ -19,6 +34,7 @@ const ProductDetailPage = async ({
     if (!productInfo) {
         return notFound();
     }
+    console.log(productInfo);
     return (
         <section className="w-full p-6 md:p-10 lg:p-24">
             <div className={"w-full grid grid-cols-1 md:grid-cols-2"}>
