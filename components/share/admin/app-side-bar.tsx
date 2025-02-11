@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import React from "react";
@@ -37,7 +38,7 @@ const AppSideBar = () => {
                                             path == item.url ? true : false
                                         }
                                     >
-                                        <a
+                                        <Link
                                             href={item.url}
                                             className="flex items-center gap-2 p-2"
                                         >
@@ -46,7 +47,7 @@ const AppSideBar = () => {
                                             })} */}
                                             <span>{item.icon}</span>
                                             <span>{item.title}</span>
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}

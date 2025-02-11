@@ -48,7 +48,7 @@ export function SaleChart() {
     staleTime: 1000 * 60 * 5,
   });
 
-  const totalSales = data?.reduce((sum, item) => sum + item.total, 0) || 0;
+  const totalSales = data?.reduce((sum, sale) => sum + sale.total, 0) || 0;
 
   // console.log(data);
 
@@ -76,7 +76,7 @@ export function SaleChart() {
       </CardHeader>
       <CardContent>
         {
-          isLoading ? <Skeleton />
+          isLoading ? <Skeleton className="w-full min-h-32 h-full" />
             :
             <ChartContainer config={chartConfig}>
               <LineChart
@@ -113,7 +113,7 @@ export function SaleChart() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Total Sales: <span className="bg-muted px-1 py-0.5 mx-1 rounded-sm">${totalSales.toLocaleString()}</span>{period == "weekly" ? "for this week." : "for previous month."}
+          Total Sales: <span className="bg-muted font-medium px-1 py-0.5 mx-1 rounded-sm">${totalSales.toLocaleString()}</span>{period == "weekly" ? "for this week." : "for previous month."}
         </div>
       </CardFooter>
     </Card>

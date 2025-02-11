@@ -1,6 +1,6 @@
 "use server";
 
-import { and, count, desc, eq, gte, lt, or, sql, sum } from "drizzle-orm";
+import { and, count, desc, eq, gte, lt, or, sql } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
 import { orderItems, orders, productDetails, products, users } from "@/database/schema";
@@ -68,15 +68,14 @@ export const getFinishedMonthlySales = async () => {
 export async function getPopularItems() {
   const popularItems = await db
     .select({
-      productName: productDetails.name,
-      totalQuantity: sum(orderItems.quantity),
+      product: productDetails.name,
+      quantity: sql<number>`SUM(${orderItems.quantity})`.as("quantity_sold"),
     })
     .from(orderItems)
     .innerJoin(products, eq(orderItems.productId, products.id))
     .innerJoin(productDetails, eq(products.detailId, productDetails.id))
     .groupBy(productDetails.name)
-    .orderBy(desc(sum(orderItems.quantity)))
-    .limit(10);
+    .orderBy(desc(sql`quantity_sold`));
 
   return popularItems;
 }
