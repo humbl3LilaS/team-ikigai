@@ -3,7 +3,7 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { products } from "@/database/schema";
+import { stocks } from "@/database/schema";
 import { Cause } from "@/features/sign-in/actions/sign-in-actions";
 
 export const restockProduct = async (
@@ -12,11 +12,11 @@ export const restockProduct = async (
 ): Promise<{ success: true } | { success: false; cause: Cause }> => {
     try {
         const res = await db
-            .update(products)
+            .update(stocks)
             .set({
                 stock: quantity,
             })
-            .where(eq(products.id, productId))
+            .where(eq(stocks.productId, productId))
             .returning();
         if (!res) {
             return {
