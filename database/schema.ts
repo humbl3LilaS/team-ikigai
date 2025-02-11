@@ -140,11 +140,20 @@ export const complains = pgTable("complains", {
     type: TYPE("type"),
     issues: text("issues").notNull(),
     status: COMPLAIN_STATUS("complain_status").notNull(),
+    reason: text("reason").notNull(),
+});
+export const warehouseManagers = pgTable("warehouse_managers", {
+    id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+    userId: uuid("user_id")
+        .references(() => users.id)
+        .notNull(),
 });
 
 export const warehouses = pgTable("warehouses", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+    managerId: uuid("manager_id").references(() => warehouseManagers.id),
     phoneNumber: text("phone_number").notNull(),
+    name: text("name"),
     address: text("address"),
     city: text("city"),
     region: text("region"),
@@ -152,7 +161,9 @@ export const warehouses = pgTable("warehouses", {
 
 export const drivers = pgTable("drivers", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    userId: uuid("user_id").references(() => users.id),
+    userId: uuid("user_id")
+        .references(() => users.id)
+        .notNull(),
     vehiclePlateNumber: varchar("vehicle_plate_number", { length: 20 })
         .notNull()
         .unique(),

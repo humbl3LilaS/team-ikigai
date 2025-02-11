@@ -1,0 +1,52 @@
+import Image from "next/image";
+import { notFound } from "next/navigation";
+
+import { getProductById } from "@/actions/get-product-by-id";
+import AddVariantDialog from "@/features/admin/products/components/add-variant-dialog";
+import ColorVariants from "@/features/admin/products/components/color-variants";
+import RestockDialog from "@/features/admin/products/components/restock-dialog";
+
+const ProductDetailPage = async ({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}) => {
+    const { slug } = await params;
+    const product = await getProductById(slug);
+    if (!product) {
+        return notFound();
+    }
+    return (
+        <section className={"p-10"}>
+            <div className={"grid grid-cols-2 gap-x-6"}>
+                <div>
+                    <Image
+                        src={product.imageUrl}
+                        alt={product.name}
+                        width={400}
+                        height={400}
+                        className={"ml-auto"}
+                    />
+                </div>
+                <div className={"pl-4 py-6"}>
+                    <h2 className={"text-lg font-bold"}>{product.name}</h2>
+                    <p className={"mt-4"}>
+                        <span className={"font-semibold text-black/60"}>
+                            Category:
+                        </span>
+                        <span className={"ml-2 font-bold"}>
+                            {product.category}
+                        </span>
+                    </p>
+                    <ColorVariants variants={product.variants} />
+                    <div className={"mt-4 flex items-center gap-x-4"}>
+                        <RestockDialog variants={product.variants} />
+                        <AddVariantDialog detailId={product.id} />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default ProductDetailPage;

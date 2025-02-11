@@ -1,9 +1,10 @@
+import { compare } from "bcryptjs";
+import { eq } from "drizzle-orm";
 import NextAuth, { User } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
+
 import { db } from "@/database/dirzzle";
 import { UserRole, users } from "@/database/schema";
-import { eq } from "drizzle-orm";
-import { compare } from "bcryptjs";
 export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: "jwt",
@@ -41,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }),
     ],
     pages: {
-        signIn: "/sign-in",
+        signIn: `${process.env.NEXT_PUBLIC_ENDPOINT}/sign-in`,
     },
     callbacks: {
         async jwt({ token, user }) {
