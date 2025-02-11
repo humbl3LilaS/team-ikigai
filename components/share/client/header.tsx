@@ -9,11 +9,10 @@ import { useState } from "react";
 
 import ProductSearch from "@/components/searchs/product-search";
 import { Button } from "@/components/ui/button";
+import { ProductProvider } from "@/features/category/contexts/product-context";
 import { useCartStore } from "@/features/client/cart/hooks/use-cart-store";
 
 import MobileNav from "./mobile-nav";
-import { Input } from "@/components/ui/input";
-
 
 const Header = () => {
     const pathname = usePathname();
@@ -24,10 +23,9 @@ const Header = () => {
     const chars = totalQuantities.toString().slice();
     
     const handleSearch = () => {
-       
+           if(isSearchOpen){
             setIsSearchOpen(!isSearchOpen);
-        
-        // implement searching function here
+           }
     };
 
     const { data: session } = useSession();
@@ -45,9 +43,9 @@ const Header = () => {
             </Link>
 
             <div className={`flex bg-black/25 gap-2 md:hidden px-2 items-center rounded-lg`}>
-                {/* <ProductSearch handleSearch={handleSearch} /> */}
                 <Search/>
-                <input className="bg-transparent text-black focus:outline-none py-1 w-full" />
+                {!isSearchOpen && <input onFocus={()=>setIsSearchOpen(true)} className="bg-transparent peer text-black focus:outline-none py-1 w-full" />}
+                {isSearchOpen && <ProductProvider><ProductSearch handleSearch={handleSearch} /></ProductProvider>}
             </div>
 
             <div className="md:hidden">
@@ -56,7 +54,7 @@ const Header = () => {
 
             <div className="hidden md:flex justify-between gap-5">
                 <div
-                    className={`${isSearchOpen ? "sm:hidden" : ""} gap-5 items-center text-black hidden sm:flex font-semibold`}
+                    className={`gap-5 items-center text-black hidden sm:flex font-semibold`}
                 >
                     <Link
                         href="/"
@@ -71,13 +69,18 @@ const Header = () => {
                         Contact Us
                     </Link>
                 </div>
-                {isSearchOpen && <ProductSearch handleSearch={handleSearch}  />}
+                {isSearchOpen && 
+                <div className="hidden sm:block">
+                    <ProductProvider>
+                    <ProductSearch handleSearch={handleSearch}  />
+                    </ProductProvider>
+                </div>}
 
                 <Button
                     className="bg-transparent hover:bg-transparent hover:text-blue-500 text-black border"
-                    onClick={handleSearch}
+                    onClick={()=>setIsSearchOpen(!isSearchOpen)}
                 >
-                    <Search />
+                    <ProductProvider><Search /></ProductProvider>
                 </Button>
                 <Button className="bg-transparent text-black hover:bg-transparent hover:text-blue-500 relative border">
                     <ShoppingCartIcon />

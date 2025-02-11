@@ -5,7 +5,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import type { CATEGORY } from "@/database/schema";
 import { getFeatureProducts } from "@/features/client/product/actions/get-feature-products";
 
-interface Product {
+export interface Product {
     id: string;
     name: string;
     category: (typeof CATEGORY.enumValues)[number];
