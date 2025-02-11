@@ -1,4 +1,4 @@
-import WarehouseTable from "@/features/admin/warehouse/components/warehouse-table"
+import WarehouseTable from "@/features/admin/warehouse/components/warehouse-table";
 
 export default function WarehousePage() {
     return (
@@ -6,5 +6,5 @@ export default function WarehousePage() {
             <h2 className={"mb-4 font-bold text-xl"}>Warehouse Table</h2>
             <WarehouseTable />
         </section>
-    )
+    );
 }
