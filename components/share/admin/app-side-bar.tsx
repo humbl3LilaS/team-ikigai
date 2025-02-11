@@ -20,37 +20,47 @@ import AdminSidebarFooter from "./admin-side-bar-footer";
 
 const AppSideBar = () => {
     const path = usePathname();
-    const auth = useSession();
+    const session = useSession();
+
+    const role = session.data?.user.role;
 
     return (
         <Sidebar collapsible="icon">
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>{auth.data?.user.role} Department</SidebarGroupLabel>
+                    <SidebarGroupLabel>{role} Department</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {adminSideBarItems.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton
-                                        size="lg"
-                                        asChild
-                                        isActive={
-                                            path == item.url ? true : false
-                                        }
-                                    >
-                                        <Link
-                                            href={item.url}
-                                            className="flex items-center gap-2 p-2"
-                                        >
-                                            {/* {React.createElement(item.icon, {
+                            {adminSideBarItems.map((item) => {
+                                if (!item.role.includes(role!)) {
+                                    return;
+                                }
+                                else {
+                                    return (
+                                        <SidebarMenuItem key={item.title}>
+                                            <SidebarMenuButton
+                                                size="lg"
+                                                asChild
+                                                isActive={
+                                                    path == item.url ? true : false
+                                                }
+                                            >
+                                                <Link
+                                                    href={item.url}
+                                                    className="flex items-center gap-2 p-2"
+                                                >
+                                                    {/* {React.createElement(item.icon, {
                                                 className: "w-5 h-5",
                                             })} */}
-                                            <span>{item.icon}</span>
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
+                                                    <span>{item.icon}</span>
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    );
+
+                                }
+                            })}
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
