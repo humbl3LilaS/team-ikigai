@@ -1,5 +1,9 @@
+import { notFound } from "next/navigation";
+
+import { auth } from "@/auth";
 import { PopularItemsChart } from "@/components/share/admin/dashboard-popular-items-piechart";
 import { SaleChart } from "@/components/share/admin/dashboard-sale-chart";
+import { adminSideBarItems } from "@/constants/ui-constants";
 import { getApprovedOrdersCount, getFinishedOrdersCount, getUnfinishOrdersCount } from "@/dashboard/actions";
 
 
@@ -7,6 +11,15 @@ export default async function DashboardPage() {
     const finishedOrders = await getFinishedOrdersCount();
     const unfinishedOrders = await getUnfinishOrdersCount();
     const approvedOrders = await getApprovedOrdersCount();
+    const role = (await auth())?.user.role;
+    const acceptRoles = adminSideBarItems.find(() => "Dashboard");
+    const isValidate = acceptRoles?.role.includes(role!);
+
+    // console.log(acceptRoles);
+    if (!isValidate) {
+        notFound();
+    }
+
     return (
         <main className="w-full bg-background">
             <h1 className="admin-header pl-2">Dashboard</h1>

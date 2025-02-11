@@ -47,7 +47,7 @@ const ProductsTable = () => {
                 <Link
                     href={"/admin/products/new"}
                     className={
-                        "absolute px-5 py-2 bg-black rounded-lg text-white"
+                        "absolute px-3 py-1 bg-foreground rounded-lg text-background "
                     }
                 >
                     Add New Product
