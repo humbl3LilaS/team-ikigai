@@ -3,3 +3,10 @@ export type Tdata = {
     total: number,
     createdAt: Date;
   }
+
+
+export type TChartData = {
+    quantity: number,
+    product: string,
+    fill?: string,
+  }

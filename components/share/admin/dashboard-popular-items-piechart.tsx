@@ -1,7 +1,6 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { TrendingUp } from "lucide-react";
 import { Pie, PieChart } from "recharts";
 
 import {
@@ -20,17 +19,13 @@ import {
 } from "@/components/ui/chart";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPopularItems } from "@/dashboard/actions";
+import { TChartData } from "@/dashboard/types";
 
-
-const chartConfig = {
-  quantity: {
-    label: "Quantity Sold",
-  },
-} satisfies ChartConfig;
 
 export function PopularItemsChart() {
-  const { data: chartData, isLoading } = useQuery({
-    queryKey: ["popular-items"],
+
+  const { data: chartData, isLoading, isSuccess } = useQuery({
+    queryKey: ["quantity"],
     queryFn: getPopularItems,
   });
 
@@ -38,7 +33,28 @@ export function PopularItemsChart() {
     return <Skeleton className="w-full min-h-32" />;
   }
 
+  if (isSuccess) {
+    const colors = ["red", "blue", "green", "cyan", "pink"];
+    chartData.map((data: TChartData, i) => {
+      data["fill"] = colors[i];
+    });
+  }
+
   // console.log(chartData);
+
+  // const data = [
+  //   { product: "chrome", quantity: 275, fill: "red" },
+  //   { product: "safari", quantity: 200, fill: "blue" },
+  //   { product: "firefox", quantity: 187, fill: "cyan" },
+  //   { product: "edge", quantity: 173, fill: "pink" },
+  //   { product: "other", quantity: 90, fill: "teal" },
+  // ];
+
+  const chartConfig = {
+    quantity: {
+      label: "quantity",
+    },
+  } satisfies ChartConfig;
 
   return (
     <Card className="flex flex-col">
@@ -62,10 +78,7 @@ export function PopularItemsChart() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing top-selling items
+          Top 5 most popular items.
         </div>
       </CardFooter>
     </Card>

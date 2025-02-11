@@ -65,7 +65,13 @@ export const getFinishedMonthlySales = async () => {
   );
 };
 
+
 export async function getPopularItems() {
+  type TItems = {
+    product: string;
+    quantity: number;
+  };
+
   const popularItems = await db
     .select({
       product: productDetails.name,
@@ -75,9 +81,13 @@ export async function getPopularItems() {
     .innerJoin(products, eq(orderItems.productId, products.id))
     .innerJoin(productDetails, eq(products.detailId, productDetails.id))
     .groupBy(productDetails.name)
+    .limit(5)
     .orderBy(desc(sql`quantity_sold`));
 
-  return popularItems;
+  return popularItems.map((item) => ({
+    ...item,
+    quantity: Number(item.quantity),
+  })) satisfies TItems[];
 }
 
 
