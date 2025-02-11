@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { auth } from "@/auth";
+import { InventoryChart } from "@/components/share/admin/dashboard-inventory-chart";
 import { PopularItemsChart } from "@/components/share/admin/dashboard-popular-items-piechart";
 import { SaleChart } from "@/components/share/admin/dashboard-sale-chart";
 import { adminSideBarItems } from "@/constants/ui-constants";
@@ -12,10 +13,8 @@ export default async function DashboardPage() {
     const unfinishedOrders = await getUnfinishOrdersCount();
     const approvedOrders = await getApprovedOrdersCount();
     const role = (await auth())?.user.role;
-    const acceptRoles = adminSideBarItems.find(() => "Dashboard");
+    const acceptRoles = adminSideBarItems.find(({ title }) => title == "Dashboard");
     const isValidate = acceptRoles?.role.includes(role!);
-
-    // console.log(acceptRoles);
     if (!isValidate) {
         notFound();
     }
@@ -32,9 +31,13 @@ export default async function DashboardPage() {
                 </div>
             </section>
 
-            <section className="p-2 flex flex-col sm:flex-row gap-5 *:basis-1/2">
+            <section className="p-2 flex flex-col sm:flex-row gap-5">
                 <SaleChart />
                 <PopularItemsChart />
+            </section>
+
+            <section className="">
+                <InventoryChart />
             </section>
         </main>
     );

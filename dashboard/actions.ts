@@ -108,3 +108,19 @@ export const getCustomerByOrderId = async (id: string) => {
   return res;
 };
 
+
+export const fetchProductsByCategory = async () => {
+  const res = (await db
+    .select({
+      category: productDetails.category,
+      product: productDetails.name,
+      stock: products.stock,
+    })
+    .from(products)
+    .innerJoin(productDetails, eq(products.detailId, productDetails.id))
+    .orderBy(productDetails.category));
+    console.log(res);
+    return res;
+};
+
+

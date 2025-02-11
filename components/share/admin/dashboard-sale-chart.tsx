@@ -53,7 +53,7 @@ export function SaleChart() {
   // console.log(data);
 
   return (
-    <Card className="w-screen-sm max-w-screen-md">
+    <Card className="w-screen-sm">
       <CardHeader>
         <CardTitle>
           <span className="mr-2">Total Sales</span>
