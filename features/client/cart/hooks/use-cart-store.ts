@@ -14,7 +14,7 @@ type Store = {
     increaseQuantity: (payload: {
         pid: string;
         cid: string;
-        q: number;
+        qty?: number;
     }) => void;
     reduceQuantity: (payload: ICartItem) => void;
     removeFromCart: (item: Omit<ICartItem, "q">) => void;
@@ -40,7 +40,7 @@ export const useCartStore = create<Store>()(
                     if (item.pid === payload.pid && item.cid === payload.cid) {
                         return {
                             ...item,
-                            q: item.q + payload.q,
+                            q: item.q + (payload.qty ?? 1),
                         };
                     }
                     return item;
