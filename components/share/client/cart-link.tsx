@@ -17,7 +17,7 @@ const CartLink = () => {
             localStorage.getItem("cart") ?? `[]`,
         ) as ICartItem[];
         bulkAdd(localCart);
-    }, []);
+    }, [bulkAdd]);
 
     return (
         <Button

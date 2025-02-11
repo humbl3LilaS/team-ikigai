@@ -5,6 +5,7 @@ import { getProductById } from "@/actions/get-product-by-id";
 import AddVariantDialog from "@/features/admin/products/components/add-variant-dialog";
 import ColorVariants from "@/features/admin/products/components/color-variants";
 import RestockDialog from "@/features/admin/products/components/restock-dialog";
+import UpdateProductSheet from "@/features/admin/products/components/update-product-sheet";
 
 const ProductDetailPage = async ({
     params,
@@ -18,7 +19,7 @@ const ProductDetailPage = async ({
     }
     return (
         <section className={"p-10"}>
-            <div className={"grid grid-cols-2 gap-x-6"}>
+            <div className={"grid grid-cols-2 gap-x-6 gap-y-8"}>
                 <div>
                     <Image
                         src={product.imageUrl}
@@ -29,7 +30,10 @@ const ProductDetailPage = async ({
                     />
                 </div>
                 <div className={"pl-4 py-6"}>
-                    <h2 className={"text-lg font-bold"}>{product.name}</h2>
+                    <div className={"flex items-center gap-x-4"}>
+                        <h2 className={"text-lg font-bold"}>{product.name}</h2>
+                        <UpdateProductSheet data={product} />
+                    </div>
                     <p className={"mt-4"}>
                         <span className={"font-semibold text-black/60"}>
                             Category:
@@ -51,6 +55,18 @@ const ProductDetailPage = async ({
                         <RestockDialog variants={product.variants} />
                         <AddVariantDialog detailId={product.id} />
                     </div>
+                </div>
+                <div
+                    className={
+                        "p-6 rounded-2xl border border-black/80 md:p-10 md:col-span-2"
+                    }
+                >
+                    <h3 className={"mb-3 text-lg font-bold md:text-xl"}>
+                        About This Product
+                    </h3>
+                    <p className={"font-semibold text-black/60"}>
+                        {product.detail}
+                    </p>
                 </div>
             </div>
         </section>

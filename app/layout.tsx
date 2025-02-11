@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import QueryProvider from "@/providers/query-provider";
 
@@ -22,10 +23,10 @@ export const metadata: Metadata = {
     title: "MyanTech Store",
     description:
         "Shop top-quality laptops, desktops, printers, copiers, and more at MyanTech. Your one-stop destination for the latest electoronics at unbeatable prices!",
-    openGraph:{
-        title:"MyanTech Store",
-        description:"Best place to buy electronic devices online",
-        images:["/logos/logo.svg"],
+    openGraph: {
+        title: "MyanTech Store",
+        description: "Best place to buy electronic devices online",
+        images: ["/logos/logo.svg"],
     },
 };
 
@@ -43,6 +44,7 @@ export default function RootLayout({
                     <SessionProvider>{children}</SessionProvider>
                 </QueryProvider>
                 <Toaster />
+                <Sonner />
             </body>
         </html>
     );
