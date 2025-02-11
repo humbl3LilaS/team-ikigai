@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
+
 import type { CATEGORY } from "@/database/schema";
 import { getFeatureProducts } from "@/features/client/product/actions/get-feature-products";
 
