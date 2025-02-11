@@ -90,6 +90,26 @@ async function main() {
 
     await db.delete(drivers);
     await db.delete(warehouses);
+
+    const generatedUserWarehouseManagers = Array.from(
+        {
+            length: 10,
+        },
+        () => {
+            const city = faker.helpers.arrayElement(TOWNSHIPS["Yangon"]);
+            return {
+                email: faker.internet.email(),
+                password: hashedPassword,
+                name: faker.internet.username(),
+                address: faker.location.streetAddress(),
+                region: "Yangon",
+                city,
+                phoneNumber: `09${faker.string.numeric(9)}`,
+                role: "WAREHOUSE_MANAGER" as UserRole,
+            };
+        },
+    );
+
     const generatedWareHouses = Array.from({ length: 10 }, () => {
         const region = faker.helpers.arrayElement(REGION);
         const city = faker.helpers.arrayElement(TOWNSHIPS[region]);
