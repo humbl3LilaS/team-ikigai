@@ -3,7 +3,12 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { productColors, productDetails, products } from "@/database/schema";
+import {
+    productColors,
+    productDetails,
+    products,
+    stocks,
+} from "@/database/schema";
 
 export const getProductById = async (id: string) => {
     try {
@@ -20,10 +25,11 @@ export const getProductById = async (id: string) => {
                 productId: products.id,
                 colorId: productColors.id,
                 colorHex: productColors.colorHex,
-                stock: products.stock,
+                stock: stocks.stock,
             })
             .from(products)
             .innerJoin(productColors, eq(productColors.id, products.colorId))
+            .innerJoin(stocks, eq(stocks.productId, products.id))
             .where(eq(products.detailId, id));
         return {
             ...product,

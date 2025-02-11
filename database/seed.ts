@@ -18,6 +18,7 @@ import {
     productDetails,
     products,
     serviceCenters,
+    stocks,
     UserRole,
     users,
     warehouseManagers,
@@ -55,8 +56,6 @@ async function main() {
         .returning({ id: users.id });
     const newUserIds = createdUsers.map((item) => item.id);
 
-    await db.delete(products);
-    await db.delete(productDetails);
     const generatedProductDetails = PRODUCT_PLACEHOLDER.map((item) => ({
         ...item,
         category: item.category as IProductCategory,
@@ -176,8 +175,6 @@ async function main() {
         return Array.from({ length: 3 }, () => ({
             detailId: item,
             colorId: faker.helpers.arrayElement(newProductColorsId),
-            warehouseId: faker.helpers.arrayElement(newWareHousesId),
-            stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
         }));
     });
     const newProducts = await db
@@ -185,6 +182,14 @@ async function main() {
         .values(generatedProducts.flat())
         .returning({ id: products.id, detailId: products.detailId });
     const newProductsId = newProducts.map((item) => item.id);
+
+    const generatedProductStocks = newProductsId.map((item) => ({
+        warehouseId: faker.helpers.arrayElement(newWareHousesId),
+        productId: item,
+        stock: faker.helpers.rangeToNumber({ min: 50, max: 100 }),
+    }));
+
+    await db.insert(stocks).values(generatedProductStocks);
 
     const generatedOrders = Array.from({ length: 120 }, () => {
         const region = faker.helpers.arrayElement(REGION);

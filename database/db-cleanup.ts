@@ -9,6 +9,7 @@ import {
     productDetails,
     products,
     serviceCenters,
+    stocks,
     users,
     warehouseManagers,
     warehouses,
@@ -20,7 +21,7 @@ export async function cleanUp() {
     await db.delete(invoices);
     await db.delete(orderItems);
     await db.delete(orders);
-
+    await db.delete(stocks);
     await db.delete(products);
 
     await db.delete(productColors);

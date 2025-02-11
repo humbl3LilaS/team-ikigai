@@ -9,6 +9,7 @@ import {
     varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 
 import { PRODUCT_CATEGORY, REGION } from "@/constants";
 
@@ -82,10 +83,6 @@ export const products = pgTable("products", {
     colorId: uuid("color_id")
         .references(() => productColors.id)
         .notNull(),
-    warehouseId: uuid("warehouse_id")
-        .references(() => warehouses.id)
-        .notNull(),
-    stock: integer("stock").notNull(),
     createdAt: timestamp("created_at", {
         withTimezone: true,
     })
@@ -93,6 +90,16 @@ export const products = pgTable("products", {
         .notNull(),
 });
 
+export const stocks = pgTable("stocks", {
+    id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+    warehouseId: uuid("warehouse_id")
+        .references(() => warehouses.id)
+        .notNull(),
+    productId: uuid("product_id")
+        .references(() => products.id)
+        .notNull(),
+    stock: integer("stock").notNull(),
+});
 export const orders = pgTable("orders", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
     userId: uuid("user_id")
@@ -134,8 +141,8 @@ export const invoices = pgTable("invoices", {
 
 export const complains = pgTable("complains", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    invoiceId: uuid("invoice_id")
-        .references(() => invoices.id)
+    orderItemId: uuid("invoice_id")
+        .references(() => orderItems.id)
         .notNull(),
     type: TYPE("type"),
     issues: text("issues").notNull(),
@@ -251,17 +258,6 @@ export const orderItemsToOrders = relations(orderItems, ({ one }) => ({
     }),
 }));
 
-export const warehousesToProducts = relations(warehouses, ({ many }) => ({
-    products: many(products),
-}));
-
-export const productsToWarehouses = relations(products, ({ one }) => ({
-    warehouses: one(warehouses, {
-        fields: [products.warehouseId],
-        references: [warehouses.id],
-    }),
-}));
-
 export const ordersToInvoices = relations(orders, ({ one }) => ({
     invoice: one(invoices),
 }));
@@ -273,14 +269,14 @@ export const invoicesToOrders = relations(invoices, ({ one }) => ({
     }),
 }));
 
-export const invoicesToComplains = relations(invoices, ({ one }) => ({
+export const orderItemToComplains = relations(orderItems, ({ one }) => ({
     complain: one(complains),
 }));
 
-export const complainsToInvoices = relations(complains, ({ one }) => ({
-    invoice: one(invoices, {
-        fields: [complains.invoiceId],
-        references: [invoices.id],
+export const complainsToOrderItem = relations(complains, ({ one }) => ({
+    invoice: one(orderItems, {
+        fields: [complains.orderItemId],
+        references: [orderItems.id],
     }),
 }));
 
@@ -372,6 +368,13 @@ export type IOrderInsert = Zod.infer<typeof orderInsertSchema>;
 // Products
 export type IProductCategory = (typeof CATEGORY.enumValues)[number];
 export type IProductDetails = InferSelectModel<typeof productDetails>;
+export const productInsertSchema = createInsertSchema(productDetails)
+    .extend({
+        colorHex: z.string().min(7),
+    })
+    .omit({ id: true });
+
+export type ProductInsertSchema = Zod.infer<typeof productInsertSchema>;
 
 // Invoices
 export type IInvoice = InferSelectModel<typeof invoices>;
