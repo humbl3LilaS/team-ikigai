@@ -13,7 +13,7 @@ export const uploadImage = async (
         const result = await cloudinary.uploader.upload(
             `data:image/png;base64,${imageBase64}`,
             {
-                folder: "shop-co",
+                folder: "myan_tech",
             },
         );
         if (!result) {

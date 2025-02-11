@@ -66,6 +66,7 @@ export const productDetails = pgTable("product_details", {
     brand: varchar("brand", { length: 255 }).notNull(),
     price: integer("price").notNull(),
     description: text("description").notNull(),
+    detail: text("detail"),
     discount: integer("discount").default(0).notNull(),
     imageUrl: text("image_url").notNull(),
 });

@@ -23,9 +23,9 @@ const ProductDetailPage = async ({
                     <Image
                         src={product.imageUrl}
                         alt={product.name}
-                        width={400}
-                        height={400}
-                        className={"ml-auto"}
+                        width={350}
+                        height={350}
+                        className={"ml-auto size-[350px]"}
                     />
                 </div>
                 <div className={"pl-4 py-6"}>
@@ -36,6 +36,14 @@ const ProductDetailPage = async ({
                         </span>
                         <span className={"ml-2 font-bold"}>
                             {product.category}
+                        </span>
+                    </p>
+                    <p className={"mt-4"}>
+                        <span className={"font-semibold text-black/60"}>
+                            Price:
+                        </span>
+                        <span className={"ml-2 font-bold"}>
+                            ${product.price}
                         </span>
                     </p>
                     <ColorVariants variants={product.variants} />
