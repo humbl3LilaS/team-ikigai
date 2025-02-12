@@ -67,7 +67,7 @@ export function InventoryChart() {
     <Card className="w-full">
       <CardHeader>
         <CardTitle>
-          Inventory Products
+          <span className="mr-2">Inventory Products</span>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='outline' size='sm'>

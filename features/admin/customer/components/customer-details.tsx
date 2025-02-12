@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 
 const CustomerDetails = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-    const showProductDetails = () => {
-        setIsVisible(!isVisible);
-    }
+    // const showProductDetails = () => {
+    //     setIsVisible(!isVisible);
+    // };
 
 
     return (
         <>
             <section className="w-full flex flex-col items-center justify-center p-4">
-                <div className="border border-black w-36 h-36 rounded-full flex items-center justify-center text-xl mb-4">
+                <div className="border border-foreground bg-muted w-36 h-36 rounded-full flex items-center justify-center text-xl mb-4">
                     Profile Image
                 </div>
                 <p className="flex items-center justify-center mb-2">
@@ -53,66 +53,66 @@ const CustomerDetails = () => {
                 </div>
                 <div className="h-full w-full md:w-1/2 flex justify-between items-start p-4 border-2 border-orange-400 rounded-md gap-4 mb-4 shadow-lg">
                     <div className="w-full flex flex-col">
-                        <p className="flex items-center justify-between text-gray-700 mb-2">
+                        <p className="flex items-center justify-between text-muted-foreground mb-2">
                             <span className="font-semibold">Order ID:</span>
                             <span>15131123</span>
                         </p>
-                        <p className="flex items-center justify-between text-gray-700 mb-2">
+                        <p className="flex items-center justify-between text-muted-foreground mb-2">
                             <span className="font-semibold">Order Date:</span>
                             <span>16/2/2025</span>
                         </p>
-                        <p className="flex items-center justify-between text-gray-700 mb-2">
+                        <p className="flex items-center justify-between text-muted-foreground mb-2">
                             <span className="font-semibold">Status</span>
                             <span className="text-orange-500">Pending</span>
                         </p>
                         {isVisible && (
                             <div className="">
-                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                     <span className="font-semibold">Total Items:</span>
                                     <span>7</span>
                                 </p>
-                                <p className="flex items-center justify-between text-gray-700 mb-4">
+                                <p className="flex items-center justify-between text-muted-foreground mb-4">
                                     <span className="font-semibold">Total Price:</span>
                                     <span>$699</span>
                                 </p>
 
                                 <hr />
                                 <div className="mb-2">
-                                    <span className="font-semibold text-xl text-gray-800">Products</span>
+                                    <span className="font-semibold text-xl text-foreground">Products</span>
                                     <div>
                                         <div className="flex items-center justify-start gap-5 my-4">
-                                            <div className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center bg-gray-100">
+                                            <div className="w-24 h-24 border border-muted-foreground rounded-md flex items-center justify-center bg-muted">
                                                 image
                                             </div>
                                             <div className="w-3/4 flex flex-col">
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Product Name:</span>
                                                     <span>ASUS laptop</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Color:</span>
                                                     <span>Red</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Quantity:</span>
                                                     <span>7</span>
                                                 </p>
                                             </div>
                                         </div>
                                         <div className="flex items-center justify-start gap-5 my-4">
-                                            <div className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center bg-gray-100">
+                                            <div className="w-24 h-24 border border-muted-foreground rounded-md flex items-center justify-center bg-muted">
                                                 image
                                             </div>
                                             <div className="w-3/4 flex flex-col">
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Product Name:</span>
                                                     <span>ASUS GPU</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Color:</span>
                                                     <span>Black</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Quantity:</span>
                                                     <span>2</span>
                                                 </p>
@@ -124,71 +124,71 @@ const CustomerDetails = () => {
                         )}
                     </div>
 
-                    <button className="hover:bg-gray-100 w-7 h-7 flex items-center justify-center rounded-full" onClick={() => setIsVisible(!isVisible)}> {isVisible ? <p className="flex"> < ChevronUp /></p> : <p className="flex">< ChevronDown /></p>}</button>
+                    <button className="hover:bg-muted w-7 h-7 flex items-center justify-center rounded-full" onClick={() => setIsVisible(!isVisible)}> {isVisible ? <p className="flex"> < ChevronUp /></p> : <p className="flex">< ChevronDown /></p>}</button>
 
                 </div>
                 <div className="h-full w-full md:w-1/2 flex justify-between items-start p-4 border-2 border-green-400 rounded-md gap-4 mb-4 shadow-lg">
                     <div className="w-full flex flex-col">
-                        <p className="flex items-center justify-between text-gray-700 mb-2">
+                        <p className="flex items-center justify-between text-muted-foreground mb-2">
                             <span className="font-semibold">Order ID:</span>
                             <span>350290181</span>
                         </p>
-                        <p className="flex items-center justify-between text-gray-700 mb-2">
+                        <p className="flex items-center justify-between text-muted-foreground mb-2">
                             <span className="font-semibold">Order Date:</span>
                             <span>17/2/2025</span>
                         </p>
-                        <p className="flex items-center justify-between text-gray-700 mb-2">
+                        <p className="flex items-center justify-between text-muted-foreground mb-2">
                             <span className="font-semibold">Status</span>
                             <span className="text-green-500">Delivered</span>
                         </p>
                         {isVisible && (
                             <div className="">
-                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                     <span className="font-semibold">Total Items:</span>
                                     <span>7</span>
                                 </p>
-                                <p className="flex items-center justify-between text-gray-700 mb-4">
+                                <p className="flex items-center justify-between text-muted-foreground mb-4">
                                     <span className="font-semibold">Total Price:</span>
                                     <span>$699</span>
                                 </p>
 
                                 <hr />
                                 <div className="mb-2">
-                                    <span className="font-semibold text-xl text-gray-800">Products</span>
+                                    <span className="font-semibold text-xl text-foreground">Products</span>
                                     <div>
                                         <div className="flex items-center justify-start gap-5 my-4">
-                                            <div className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center bg-gray-100">
+                                            <div className="w-24 h-24 border border-muted-foreground rounded-md flex items-center justify-center bg-muted">
                                                 image
                                             </div>
                                             <div className="w-3/4 flex flex-col">
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Product Name:</span>
                                                     <span>ASUS laptop</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Color:</span>
                                                     <span>Red</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Quantity:</span>
                                                     <span>7</span>
                                                 </p>
                                             </div>
                                         </div>
                                         <div className="flex items-center justify-start gap-5 my-4">
-                                            <div className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center bg-gray-100">
+                                            <div className="w-24 h-24 border border-muted-foreground rounded-md flex items-center justify-center bg-muted">
                                                 image
                                             </div>
                                             <div className="w-3/4 flex flex-col">
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Product Name:</span>
                                                     <span>ASUS GPU</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Color:</span>
                                                     <span>Black</span>
                                                 </p>
-                                                <p className="flex items-center justify-between text-gray-700 mb-2">
+                                                <p className="flex items-center justify-between text-muted-foreground mb-2">
                                                     <span className="font-semibold">Quantity:</span>
                                                     <span>2</span>
                                                 </p>
@@ -205,6 +205,6 @@ const CustomerDetails = () => {
                 </div>
             </section>
         </>
-    )
-}
+    );
+};
 export default CustomerDetails;

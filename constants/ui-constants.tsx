@@ -31,7 +31,7 @@ export const adminSideBarItems = [
     },
     {
         title: "Orders",
-        role: ["SALES", "FINANCE"],
+        role: ["SALES", "FINANCE", "WAREHOUSE_MANAGER"],
         url: "/admin/orders",
         icon: <ShoppingCart />,
     },
