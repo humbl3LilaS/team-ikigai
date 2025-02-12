@@ -201,7 +201,7 @@ const FilterForm = ({
                         type={"submit"}
                         className={"mt-6 w-full rounded-3xl"}
                         disabled={
-                            !form.formState.isValid || form.formState.isDirty
+                            !form.formState.isValid || !form.formState.isDirty
                         }
                     >
                         Apply Filter
