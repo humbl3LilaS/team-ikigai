@@ -1,17 +1,15 @@
 "use server";
+
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-
 import { db } from "@/database/dirzzle";
 import { users } from "@/database/schema";
-
-import { IUser } from "../userdata";
+import { IUser } from "../type/usertype";
 
 export const updateUser = async (id: string, data: IUser) => {
     try {
         if (!id) throw new Error("User ID is required");
 
-        // Update user data
         await db.update(users)
             .set({
                 name: data.name,
@@ -22,7 +20,6 @@ export const updateUser = async (id: string, data: IUser) => {
             })
             .where(eq(users.id, id));
 
-        // Revalidate the cache for this user's profile page
         revalidatePath("/profile");
 
         return { success: true, message: "Profile updated successfully!" };

@@ -1,6 +1,6 @@
 "use server";
 
-import { eq, sum } from "drizzle-orm";
+import { eq, sum, desc } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
 import { users, orders } from "@/database/schema";
@@ -9,7 +9,6 @@ export const getUserData = async (userId: string) => {
     try {
         if (!userId) throw new Error("User ID is required");
 
-        // Fetch user data along with total spend in a single query
         const [userData] = await db
             .select({
                 id: users.id,
@@ -21,27 +20,23 @@ export const getUserData = async (userId: string) => {
                 city: users.city ?? "No City",
                 region: users.region ?? "No Region",
                 totalSpend: sum(orders.totalAmount).as("totalSpend"),
+                latestOrderStatus: orders.status,
             })
             .from(users)
             .leftJoin(orders, eq(users.id, orders.userId))
             .where(eq(users.id, userId))
-            .groupBy(users.id);
+            .orderBy(desc(orders.createdAt))
+            .groupBy(users.id, orders.status, orders.createdAt)
+            .limit(1);
 
         if (!userData) return null;
 
         return {
-            id: userData.id,
-            name: userData.name,
-            email: userData.email,
-            role: userData.role,
-            phoneNumber: userData.phoneNumber,
-            address: userData.address,
-            city: userData.city,
-            region: userData.region,
-            totalSpend: userData.totalSpend || 10000,
+            ...userData,
+            totalSpend: Number(userData.totalSpend),
         };
     } catch (error) {
-        console.error("Error fetching user profile:", error);
+        console.error("Error fetching user data:", error);
         return null;
     }
 };

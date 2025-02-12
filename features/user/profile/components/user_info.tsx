@@ -1,20 +1,18 @@
 import React from "react";
+import { UserRole } from "@/database/schema";
 
-interface UserInfoProps {
-    avatarUrl?: string;
+export interface IUser {
+    id: string;
     name: string;
     email: string;
-    phone: string;
-    address: string;
+    role: UserRole;
+    phoneNumber: string;
+    address: string | null;
+    city: string | null;
+    region: string | null;
 }
 
-const UserInfo: React.FC<UserInfoProps> = ({
-    avatarUrl,
-    name,
-    email,
-    phone,
-    address,
-}) => {
+const UserInfo: React.FC<IUser> = ({ name, email, phoneNumber }) => {
     return (
         <>
             {" "}
