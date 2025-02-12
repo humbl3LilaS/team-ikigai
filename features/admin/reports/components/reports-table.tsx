@@ -39,7 +39,7 @@ import { columns } from "../columns/reports-column";
 import { useGetSaleReports } from "../hooks/use-get-products";
 
 const ReportTable = () => {
-    const [date, setDate] = useState<Date>((new Date()));
+    const [date, setDate] = useState<string>(new Date().toDateString());
 
     const FormSchema = z.object({
         date: z.date({
@@ -51,7 +51,7 @@ const ReportTable = () => {
     });
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        setDate(data.date);
+        setDate(data.date.toDateString());
     }
 
     const { data: report } = useGetSaleReports(date);
@@ -69,6 +69,7 @@ const ReportTable = () => {
             columnFilters,
         },
     });
+    // console.log(report);
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
             <div className="">
@@ -125,11 +126,18 @@ const ReportTable = () => {
             </div>
             <div>
                 {!report && <DataTableSkeleton paginationOn={true} />}
-                <p className="">{date.toDateString()}</p>
+                <p className="">{date}</p>
                 {report && (
                     <DataTableBody table={table} data={report ?? []} />
                 )}
+                <div className="w-full bg-muted flex gap-2 py-2 mt-2 pl-2">
+                    <p className="">Total Sales: </p>
+                    <p className="font-medium">
+                        {report && report.reduce((sum, item) => sum + Number(item.totalSum), 0).toLocaleString()}
+                    </p>
+                </div>
             </div>
+
         </div>
     );
 };

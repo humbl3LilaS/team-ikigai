@@ -3,7 +3,7 @@
 import { and, count, desc, eq, gte, lt, or, sql } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { orderItems, orders, productDetails, products, stocks, users } from "@/database/schema";
+import { orderItems, orders, productDetails, products, stocks, users, warehouses } from "@/database/schema";
 
 // Dashboard Page
 export const getFinishedOrdersCount = async () => {
@@ -114,7 +114,29 @@ export const getCustomerByOrderId = async (id: string) => {
   return res;
 };
 
-export async function getProductsCategory() {
+export async function getProductsCategory(warehouse:string) {
+  const productStocks = await db
+    .select({
+      category: productDetails.category,
+      stock: sql<number>`SUM(${stocks.stock})`.as("total_stock"),
+      warehouse: warehouses.name,
+    })
+    .from(stocks)
+    .innerJoin(products, eq(stocks.productId, products.id))
+    .innerJoin(productDetails, eq(products.detailId, productDetails.id))
+    .innerJoin(warehouses, eq(warehouses.id, stocks.warehouseId))
+    .where(eq(warehouses.name, warehouse))
+    .groupBy(productDetails.category, warehouses.name);
+
+    // console.log(productStocks);
+
+  return productStocks.map(({ category, stock }) => ({
+    category,
+    count: stock,
+  }));
+}
+
+export async function getAllWarehouseCategory() {
   const productStocks = await db
     .select({
       category: productDetails.category,
@@ -125,6 +147,7 @@ export async function getProductsCategory() {
     .innerJoin(productDetails, eq(products.detailId, productDetails.id))
     .groupBy(productDetails.category);
 
+    // console.log(productStocks);
   return productStocks.map(({ category, stock }) => ({
     category,
     count: stock,
