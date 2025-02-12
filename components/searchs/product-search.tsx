@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
 import {  Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { getAllProducts } from "@/features/client/category/actions/get-products";
 import {
     Product,
 } from "@/features/client/category/contexts/product-context";
-import { getAllProducts } from "@/features/client/category/actions/get-products";
 
 
 const ProductSearch = () => {
     const [searchValue, setSearchValue] = useState("");
     const [openSearch ,setOpenSearch] = useState(false);
-    const [products,setProducts] = useState<Product[]>([])
+    const [products,setProducts] = useState<Product[]>([]);
     const router = useRouter();
     const [filterProducts, setFilterProducts] = useState<Product[]>([]);
     
@@ -21,14 +21,14 @@ const ProductSearch = () => {
     useEffect(() => {
         const fetchProduct = async ()=>{
             const products = await getAllProducts();
-            setProducts(products as Product[])
-        }
+            setProducts(products as Product[]);
+        };
        fetchProduct();
     }, []);
 
     const handleNavigate = (route: string) => {
         router.push(`/product/${route}`);
-        setOpenSearch(!openSearch)
+        setOpenSearch(!openSearch);
     };
 
     const handleSearchFunc = (e: string) => {
@@ -62,7 +62,7 @@ const ProductSearch = () => {
 
     const handleOpenSearch = ()=>{
         setOpenSearch(!openSearch);
-    }
+    };
 
     return (
         <>

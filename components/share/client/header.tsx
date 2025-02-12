@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { auth } from "@/auth";
+import ProductSearch from "@/components/searchs/product-search";
 import CartLink from "@/components/share/client/cart-link";
+import { ProductProvider } from "@/features/client/category/contexts/product-context";
 
 import MobileNav from "./mobile-nav";
-import ProductSearch from "@/components/searchs/product-search";
-import { ProductProvider } from "@/features/client/category/contexts/product-context";
 import RouteLink from "./route-link";
 
 const Header = async () => {
