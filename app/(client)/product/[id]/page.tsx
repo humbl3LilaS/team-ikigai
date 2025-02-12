@@ -36,7 +36,7 @@ const ProductDetailPage = async ({
     }
     return (
         <section className="w-full p-6 md:p-10 lg:p-24">
-            <div className={"w-full grid grid-cols-1 md:grid-cols-2"}>
+            <div className={"w-full grid grid-cols-1 gap-y-8 md:grid-cols-2 "}>
                 <div className="flex p-5 place-items-end  gap-5 sm:gap-10 flex-col">
                     <div className="w-full flex flex-col gap-10">
                         <ProductSlider images={[productInfo.imageUrl]} />
@@ -53,16 +53,19 @@ const ProductDetailPage = async ({
                         <span>$</span>
                         <span>{productInfo.price}</span>
                     </p>
-                    <p
-                        className={
-                            "py-3 max-w-[60%] text-black/50 font-semibold"
-                        }
-                    >
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Alias atque dicta fugit illum impedit mollitia
-                        nihil non sed sint sit! Commodi,
-                    </p>
                     <AddToCartForm data={productInfo} />
+                </div>
+                <div
+                    className={
+                        "p-6 rounded-2xl border border-black/80 md:p-10 md:col-span-2"
+                    }
+                >
+                    <h3 className={"mb-3 text-lg font-bold md:text-xl"}>
+                        About This Product
+                    </h3>
+                    <p className={"font-semibold text-black/60"}>
+                        {productInfo.detail}
+                    </p>
                 </div>
             </div>
         </section>

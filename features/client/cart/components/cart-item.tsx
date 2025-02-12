@@ -22,7 +22,7 @@ const CartItem = ({ data }: { data: ICartItem }) => {
     const removeFromCart = useCartStore((state) => state.removeFromCart);
 
     const removeHandler = () => {
-        removeFromCart({ pid: data.pid, cid: data.cid });
+        removeFromCart({ ...data });
         queryClient.removeQueries({
             queryKey: ["cart-item", data.pid, data.cid],
         });

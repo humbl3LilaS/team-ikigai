@@ -40,6 +40,6 @@ export const getProductById = async (id: string) => {
     }
 };
 
-export type RProductInfo = NonNullable<
+export type TProductDetailInfo = NonNullable<
     Awaited<ReturnType<typeof getProductById>>
 >;

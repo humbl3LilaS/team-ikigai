@@ -5,7 +5,6 @@ import { useCartStore } from "@/features/client/cart/hooks/use-cart-store";
 import { cn } from "@/lib/utils";
 
 const CartList = () => {
-    // retrieval and mutationFn of cart data store in the session storage
     const cart = useCartStore((state) => state.cart);
     return (
         <div

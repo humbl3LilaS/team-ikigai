@@ -34,6 +34,7 @@ export const uploadNewProduct = async (
                 brand: payload.brand,
                 discount: payload.discount ?? 0,
                 name: payload.name,
+                detail: payload.detail,
             })
             .returning();
 
