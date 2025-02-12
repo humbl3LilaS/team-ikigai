@@ -19,7 +19,10 @@ export type CheckoutFormSchemaType = Zod.infer<typeof CheckoutFormSchema>;
 export const FilterFormSchema = z.object({
     priceRange: z
         .custom<[number, number]>()
-        .refine((arg) => arg[0] >= 0 && arg[1] <= 10000),
+        .refine((arg) => arg[0] >= 0 && arg[1] <= 10000)
+        .refine((arg) => arg[0] < arg[1], {
+            message: "Min value cannot be greater than max",
+        }),
     categories: z
         .string()
         .refine((arg) =>

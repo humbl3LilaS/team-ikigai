@@ -41,14 +41,13 @@ const AddToCartForm = ({ data }: { data: TProductDetailInfo }) => {
             cid: values.colorId,
             q: values.quantity,
         };
-        console.log(newItem);
         const isInCart = cart.find(
             (item) => item.pid === newItem.pid && item.cid === newItem.cid,
         );
         if (!isInCart) {
             addToCart(newItem);
         } else {
-            increaseQty(newItem);
+            increaseQty({ ...newItem, qty: newItem.q });
         }
         toast({
             title: "Product Added To Cart",
