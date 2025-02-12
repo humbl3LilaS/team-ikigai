@@ -286,4 +286,17 @@ export const PRODUCT_PLACEHOLDER = [
     },
 ];
 
+export const WAREHOUSES = [
+    "Ullrich LLC",
+    "Reichert, Murphy and Beatty",
+    "Bergstrom - Turner",
+    "Olson and Sons",
+    "Schulist - Schamberger",
+    "Kiehn, Kunze and Borer",
+    "Sanford, Reichert and Olson",
+    "Wintheiser and Sons",
+    "Barton - Cummerata",
+    "Koelpin, Hickle and Mertz",
+];
+
 export const BRAND = PRODUCT_PLACEHOLDER.map((item) => item.brand);

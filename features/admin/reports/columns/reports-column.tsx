@@ -13,7 +13,7 @@ export const columns = [
     columnHelper.accessor("id", {
         header: () => {
             return (
-                <span className="">Id</span>
+                <span>Id</span>
             );
         },
         cell: ({ getValue }) => (
@@ -115,7 +115,7 @@ export const columns = [
         header: ({ column }) => {
             return (
                 <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Quantity <ArrowUpDown className="ml-2 h-4 w-4" />
+                    Qty <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
         },
@@ -124,7 +124,7 @@ export const columns = [
         ),
     }),
 
-    columnHelper.accessor("total", {
+    columnHelper.accessor("totalSum", {
         header: ({ column }) => {
             return (
                 <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
