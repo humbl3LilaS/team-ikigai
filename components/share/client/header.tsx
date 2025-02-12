@@ -22,10 +22,6 @@ const Header = async () => {
                 <Image src="/brandLogo.png" width={72} height={30} alt="logo" />
             </Link>
 
-                <ProductProvider>
-                        <div className="md:hidden"><ProductSearch/></div>    
-                </ProductProvider>
-
             <div className="md:hidden">
                 <MobileNav />
             </div>
@@ -35,9 +31,9 @@ const Header = async () => {
                     className={`gap-5 items-center text-black hidden sm:flex font-semibold`}
                 >
                    <ProductProvider>
-                        <div className="hidden md:block"><ProductSearch/></div>    
+                        <div className="hidden md:block"><ProductSearch/></div>
                    </ProductProvider>
-                   
+
                     <CartLink />
                     {session ? (
                         <Link
@@ -53,7 +49,7 @@ const Header = async () => {
                         >
                             Get started
                         </Link>
-                      )} 
+                      )}
                 </div>
             </div>
         </nav>
