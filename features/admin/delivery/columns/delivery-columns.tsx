@@ -12,7 +12,12 @@ export const deliveryColumns = [
     columnHelper.accessor("id", {
         header: () => <span>ID</span>,
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+            <Link
+                href={`/admin/deliveries/${getValue()}`}
+                className={"max-w-[200px] line-clamp-1"}
+            >
+                {getValue()}
+            </Link>
         ),
     }),
     columnHelper.accessor("orderId", {

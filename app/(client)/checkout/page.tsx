@@ -16,13 +16,9 @@ const CheckoutPage = async () => {
         return redirect("/sign-in");
     }
     return (
-        <div
-            className={
-                "p-6 lg:grid grid-cols-2 lg:h-[90vh] lg:py-8 lg:overflow-y-scroll lg:px-24"
-            }
-        >
+        <div className={"p-6 lg:grid grid-cols-2 lg:py-8 lg:px-24"}>
             <CheckoutSummaryDropDown />
-            <div className={"overflow-y-scroll"}>
+            <div>
                 <CheckoutForm defaultValues={profile} />
             </div>
             <section className={"hidden md:block lg:pr-25 lg:pl-10"}>

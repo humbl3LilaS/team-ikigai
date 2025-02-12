@@ -18,7 +18,7 @@ const DeliveryTable = () => {
     const { data: deliveries } = useGetDeliveries();
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: 10,
     });
 
     const table = useReactTable({
