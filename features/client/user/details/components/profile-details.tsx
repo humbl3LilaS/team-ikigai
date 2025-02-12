@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleChevronLeft, ChevronDown } from "lucide-react";
+import { CircleChevronLeft, ChevronDown, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -370,8 +370,19 @@ export default function ProfileDetails({ userid }: ProfileDetailsProps) {
                                 <Button
                                     type="submit"
                                     onClick={form.handleSubmit(onSubmit)}
+                                    disabled={
+                                        form.formState.isSubmitting ||
+                                        !form.formState.isValid
+                                    }
                                 >
-                                    Update
+                                    {form.formState.isSubmitting ? (
+                                        <>
+                                            <Loader2 className="animate-spin" />
+                                            <span>Updating</span>
+                                        </>
+                                    ) : (
+                                        "Update"
+                                    )}
                                 </Button>
                             </div>
                         )}
