@@ -1,6 +1,7 @@
 "use server";
 
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 import { auth } from "@/auth";
 import { db } from "@/database/dirzzle";
@@ -15,7 +16,7 @@ export async function updateUsername(newUsername: string) {
       .update(users)
       .set({ name: newUsername })
       .where(eq(users.id, session.user.id));
-
+    revalidatePath("/admin/account");
     return { success: true };
   } catch (error) {
     console.error("Error updating username:", error);

@@ -125,3 +125,12 @@ export async function getProductsCategory() {
   }));
 }
 
+export async function getUserNameFromDb(id:string) {
+  const res = await db
+    .select({ name: users.name })
+    .from(users)
+    .where(eq(users.id, id));
+    return res[0];
+}
+
+

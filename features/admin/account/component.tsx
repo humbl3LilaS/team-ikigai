@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "@/hooks/use-toast";
 
 import { updateUsername } from "./action";
 
@@ -15,6 +16,20 @@ export function AdminAccountForm({ currentUsername }: { currentUsername: string 
 
   const mutation = useMutation({
     mutationFn: updateUsername,
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Username updated successfully!",
+        variant: "default",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update username. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
