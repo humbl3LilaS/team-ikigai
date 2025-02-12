@@ -1,18 +1,21 @@
+import { notFound } from "next/navigation";
 import React from "react";
-import UserInfo from "@/features/user/profile/components/user_info";
+
+import { getUserData } from "@/features/user/actions/get-user-data";
 import LatestOrderStatus from "@/features/user/profile/components/latest-order-status";
 import { ProfileCard } from "@/features/user/profile/components/profile_nav";
 import TotalSpend from "@/features/user/profile/components/totalspend";
-import { getUserData } from "@/features/user/actions/get-user-data";
+import UserInfo from "@/features/user/profile/components/user_info";
+
 import Logout from "./logout";
 interface ProfileLayoutProps {
     userId: string;
 }
 
-const ProfileLayout: React.FC<ProfileLayoutProps> = async ({ userId }) => {
+const ProfileLayout = async ({ userId }: ProfileLayoutProps) => {
     const userinfo = await getUserData(userId);
     if (!userinfo) {
-        throw new Error("User information could not be retrieved");
+        return notFound();
     }
     return (
         <div className="p-5 flex justify-center items-center">
@@ -27,13 +30,13 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = async ({ userId }) => {
                     city={userinfo.city}
                     region={userinfo.region}
                 />
-                <div className="w-full my-2"></div>
-                <LatestOrderStatus status={userinfo.latestOrderStatus} />
-                <div className="w-full my-2"></div>
-                <TotalSpend totalSpend={userinfo.totalSpend} />
-                <div className="w-full my-2"></div>
+                <hr className="my-2" />
+                <LatestOrderStatus userId={userinfo.id} />
+                <hr className="my-2" />
+                <TotalSpend userId={userinfo.id} />
+                <hr className="my-2" />
                 <ProfileCard userRole={userinfo.role} />
-                <div className="w-full my-2"></div>
+                <hr className="my-2" />
                 <Logout />
             </div>
         </div>

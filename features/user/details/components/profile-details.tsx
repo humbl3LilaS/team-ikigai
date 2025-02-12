@@ -2,9 +2,11 @@
 
 import { CircleChevronLeft, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import Loading from "@/app/(client)/loading";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -22,13 +24,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { REGION, TOWNSHIPS } from "@/constants";
+import { getUserData } from "@/features/user/actions/get-user-data";
+import { useToast } from "@/hooks/use-toast";
 
 import { updateUser } from "../actions/update-user-data";
 import { IUser } from "../type/usertype";
-import { getUserData } from "../actions/get-user-data";
-import Loading from "@/app/(client)/loading";
-import { toast, useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 
 type UserData = Awaited<ReturnType<typeof getUserData>>;
 

@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { IOrderStatus } from "@/database/schema";
+
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
@@ -47,3 +49,7 @@ export function fieldArrayOnChange<T>(
         callback([...array, value]);
     }
 }
+
+export const parseOrderStatus = <T extends string>(status: T) => {
+    return status.split("_").join(" ").toLowerCase();
+};

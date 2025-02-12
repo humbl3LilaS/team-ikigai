@@ -1,10 +1,11 @@
-import Link from "next/link";
 import {
     User2Icon,
     ShoppingCart,
     MessageCircleDashed,
     BriefcaseBusiness,
 } from "lucide-react";
+import Link from "next/link";
+
 import { UserRole } from "@/database/schema";
 
 interface ProfileCardProps {

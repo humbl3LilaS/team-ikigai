@@ -1,12 +1,14 @@
+import { DollarSign } from "lucide-react";
 import React from "react";
 
-import { DollarSign } from "lucide-react";
+import { getUserTotalSpending } from "@/features/user/actions/get-user-total-spending";
 
 interface TotalSpendProps {
-    totalSpend: number;
+    userId: string;
 }
 
-const TotalSpend: React.FC<TotalSpendProps> = ({ totalSpend }) => {
+const TotalSpend: React.FC<TotalSpendProps> = async ({ userId }) => {
+    const res = await getUserTotalSpending(userId);
     return (
         <div className="w-full bg-gray-100 rounded-lg p-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
@@ -16,7 +18,7 @@ const TotalSpend: React.FC<TotalSpendProps> = ({ totalSpend }) => {
                 <div className="flex items-center gap-2">
                     <span className="text-3xl font-bold text-primary">
                         $
-                        {totalSpend.toLocaleString("en-US", {
+                        {(res?.totalSpending ?? 0).toLocaleString("en-US", {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                         })}

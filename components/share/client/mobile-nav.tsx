@@ -53,15 +53,26 @@ const MobileNav = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                 </nav>
                 <div className="flex flex-col gap-3">
                     {isLoggedIn ? (
-                        <Button
-                            className="bg-gray-300 hover:bg-blue-200 hover:text-white hover:font-bold text-black font-bold flex gap-2"
-                            onClick={async () => {
-                                await signOut({ redirectTo: "/" });
-                            }}
-                        >
-                            <LogOut />
-                            <span>Logout</span>
-                        </Button>
+                        <>
+                            <Button
+                                className="bg-gray-300 hover:bg-blue-200 hover:text-white hover:font-bold text-black font-bold flex gap-2"
+                                asChild={true}
+                            >
+                                <Link href="/profile">
+                                    <User />
+                                    Profile
+                                </Link>
+                            </Button>
+                            <Button
+                                className="bg-gray-300 hover:bg-blue-200 hover:text-white hover:font-bold text-black font-bold flex gap-2"
+                                onClick={async () => {
+                                    await signOut({ redirectTo: "/" });
+                                }}
+                            >
+                                <LogOut />
+                                <span>Logout</span>
+                            </Button>
+                        </>
                     ) : (
                         <Button
                             className="bg-gray-300 hover:bg-blue-200 hover:text-white hover:font-bold text-black font-bold flex gap-2"
