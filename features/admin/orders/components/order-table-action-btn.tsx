@@ -1,5 +1,6 @@
 "use client";
 import { EllipsisVertical } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,7 +10,6 @@ import {
 } from "@/components/ui/popover";
 import { IOrderStatus } from "@/database/schema";
 import { useChangeOrderStatus } from "@/features/admin/orders/hooks/use-change-order-status";
-import { parseOrderStatus } from "@/lib/utils";
 
 const OrderTableActionBtn = ({
     orderId,
@@ -18,6 +18,10 @@ const OrderTableActionBtn = ({
     orderId: string;
     status: IOrderStatus;
 }) => {
+    const { data: session } = useSession();
+
+    const role = session && session?.user.role;
+
     const getNextAction = (status: IOrderStatus): IOrderStatus | undefined => {
         switch (status) {
             case "PENDING":
@@ -30,9 +34,13 @@ const OrderTableActionBtn = ({
     const nextStatus = getNextAction(status);
     const { mutateAsync, isPending } = useChangeOrderStatus();
 
-    const onStatusChange = async () => {
-        await mutateAsync({ orderId, payload: nextStatus! });
-    };
+    if (role === "SALES" && (status === "ON_THE_WAY" || status === "APPROVE")) {
+        return <></>;
+    }
+
+    if (role === "WAREHOUSE_MANAGER" && status === "PENDING") {
+        return <></>;
+    }
 
     return (
         <Popover>
@@ -42,17 +50,20 @@ const OrderTableActionBtn = ({
                 </Button>
             </PopoverTrigger>
             <PopoverContent className={"w-fit"}>
-                <Button
-                    className={"capitalize"}
-                    disabled={isPending}
-                    onClick={onStatusChange}
-                >
-                    {nextStatus === "ON_THE_WAY" ? (
-                        <span>Delivery</span>
-                    ) : (
-                        <span>{parseOrderStatus(nextStatus!)}</span>
-                    )}
-                </Button>
+                {status === "PENDING" && (
+                    <Button
+                        disabled={isPending}
+                        onClick={async () => {
+                            await mutateAsync({
+                                orderId,
+                                payload: "APPROVE" as IOrderStatus,
+                            });
+                        }}
+                    >
+                        Approve
+                    </Button>
+                )}
+                {status === "APPROVE" && <Button>Dispatch</Button>}
             </PopoverContent>
         </Popover>
     );

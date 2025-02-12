@@ -5,14 +5,16 @@ import { adminSideBarItems } from "@/constants/ui-constants";
 import { IOrderStatus, UserRole } from "@/database/schema";
 import OrderTable from "@/features/admin/orders/components/order-table";
 
+const WRITE_PERMISSION: UserRole[] = ["SALES", "WAREHOUSE_MANAGER"];
+
 const getOrderTableActionPermission = (
     role: UserRole,
 ): IOrderStatus | undefined => {
     switch (role) {
         case "SALES":
             return "PENDING";
-        case "DRIVER":
-            return "ON_THE_WAY";
+        case "WAREHOUSE_MANAGER":
+            return "APPROVE";
     }
 };
 
@@ -34,9 +36,13 @@ export default async function OrderPage() {
 
     return (
         <section className={"flex-1 p-6"}>
-            <h2 className={"p-6 font-bold text-xl"}>Pending Orders</h2>
-            <OrderTable status={permittedStatus} />
-            <hr />
+            {WRITE_PERMISSION.includes(role) && (
+                <>
+                    <h2 className={"p-6 font-bold text-xl"}>Pending Orders</h2>
+                    <OrderTable status={permittedStatus} />
+                    <hr />
+                </>
+            )}
             <h2 className={" p-6 font-bold text-xl"}>All Orders</h2>
             <OrderTable />
         </section>

@@ -3,7 +3,9 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { getSession } from "next-auth/react";
 
+import { IOrderStatus } from "@/database/schema";
 import { TOrderInfo } from "@/features/admin/orders/actions/get-orders";
 import OrderTableActionBtn from "@/features/admin/orders/components/order-table-action-btn";
 import { cn } from "@/lib/utils";
@@ -79,15 +81,20 @@ export const orderColumns = [
     columnHelper.accessor("userId", {
         header: () => <span className={"sr-only"}>Action Button List</span>,
         cell: ({ row }) => {
-            if (row.original.status === "PENDING") {
-                return (
-                    <OrderTableActionBtn
-                        orderId={row.original.id}
-                        status={row.original.status}
-                    />
-                );
+            const notAllowed: IOrderStatus[] = [
+                "CANCEL",
+                "FINISH",
+                "ON_THE_WAY",
+            ];
+            if (notAllowed.includes(row.original.status)) {
+                return <></>;
             }
-            return <></>;
+            return (
+                <OrderTableActionBtn
+                    orderId={row.original.id}
+                    status={row.original.status}
+                />
+            );
         },
     }),
 ];
