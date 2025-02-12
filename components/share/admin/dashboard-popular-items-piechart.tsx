@@ -21,7 +21,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getPopularItems } from "@/dashboard/actions";
 import { TChartData } from "@/dashboard/types";
 
-
 export function PopularItemsChart() {
 
   const { data: chartData, isLoading, isSuccess } = useQuery({
@@ -47,18 +46,6 @@ export function PopularItemsChart() {
       });
     }
 
-    // console.log(chartData);
-
-    // const data = [
-    //   { product: "chrome", quantity: 275, fill: "red" },
-    //   { product: "safari", quantity: 200, fill: "blue" },
-    //   { product: "firefox", quantity: 187, fill: "cyan" },
-    //   { product: "edge", quantity: 173, fill: "pink" },
-    //   { product: "other", quantity: 90, fill: "teal" },
-    // ];
-
-
-
     return (
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
@@ -70,23 +57,24 @@ export function PopularItemsChart() {
         <CardContent className="flex-1 pb-0">
           <ChartContainer
             config={chartConfig}
-            className="mx-auto aspect-square max-h-[250px]"
+            className="mx-auto w-full"
           >
             <PieChart>
               <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent hideLabel />}
               />
-              <Pie data={chartData} dataKey="quantity" nameKey="product" />
-              <LabelList
-                dataKey="quantity"
-                className="fill-background"
-                stroke="none"
-                fontSize={12}
-                formatter={(value: keyof typeof chartConfig) =>
-                  chartConfig[value]?.label
-                }
-              />
+              <Pie data={chartData} dataKey="quantity" nameKey="product">
+                <LabelList
+                  dataKey="product"
+                  position="outside"
+                  className="fill-muted-foreground"
+                  stroke="none"
+                  fontSize={10}
+                  angle={0}
+                  offset={5}
+                />
+              </Pie>
             </PieChart>
           </ChartContainer>
         </CardContent>

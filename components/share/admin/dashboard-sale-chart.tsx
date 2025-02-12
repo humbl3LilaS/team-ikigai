@@ -60,18 +60,18 @@ export function SaleChart() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='outline' size='sm'>
-                {period}
+                {period == "monthly" ? "Previous Month" : "Previous Week"}
                 <ChevronDownIcon className="ml-auto" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-background">
-              <DropdownMenuItem onClick={() => setPeriod("weekly")}>weekly</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setPeriod("monthly")}>monthly</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setPeriod("weekly")}>Previous Week</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setPeriod("monthly")}>Previous Month</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </CardTitle>
         <CardDescription>
-          Showing {period == "monthly" ? "previous month" : "previous 7 days"} data.
+          Showing data for {period == "monthly" ? "previous month" : "previous 7 days"}.
         </CardDescription>
       </CardHeader>
       <CardContent>

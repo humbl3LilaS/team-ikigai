@@ -14,6 +14,9 @@
         "format": "pnpm exec prettier . --write",
         "seed": "bun database/seed.ts"
     },
+    "overrides": {
+        "react-is": "^19.0.0-rc-69d4b800-20241021"
+    },
     "dependencies": {
         "@hookform/resolvers": "^3.10.0",
         "@neondatabase/serverless": "^0.10.4",
