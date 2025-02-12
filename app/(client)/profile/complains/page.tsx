@@ -1,4 +1,4 @@
-import CustomerComplaintForm from "@/features/user/complains/components/customer-complain-form";
+import CustomerComplaintForm from "@/features/client/user/complains/components/customer-complain-form";
 
 export default async function ComplaintsPage() {
     return (

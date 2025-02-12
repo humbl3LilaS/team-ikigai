@@ -14,6 +14,7 @@ export const CLIENT_NAV_ITEMS = [
         title: "Home",
         href: "/",
     },
+    { title: "Products", href: "/category" },
     { title: "About", href: "/about" },
     {
         title: "Contact Us",
