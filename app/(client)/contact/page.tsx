@@ -1,29 +1,35 @@
 const ContactPage = () => {
     return (
-        <section className="p-5">
+        <section className="py-2 px-4">
             <div className="flex items-center justify-center">
                 <h3 className="text-3xl font-bold">Contact Us</h3>
             </div>
 
-            <div className="block md:flex items-center justify-around md:p-10 gap-10 pb-4 mt-6">
-                <div>
-                    <h1 className="font-bold flex items-center justify-center text-3xl md:text-5xl mb-4 pb-4 md:pb-10">
+            <div className="flex flex-col h-full md:h-[500px] gap-5 md:flex-row items-start justify-between  md:p-10 pb-4 mt-6">
+                <div className="py-5 w-full md:w-2/3 lg:w-3/4 px-10 h-full border">
+                    <h1 className="font-bold flex pb-5 items-center justify-center text-xl md:text-3xl">
                         Get In Touch
                     </h1>
-                    <p className="text-xs md:text-sm">
+                    <p className="text-sm sm:text-lg font-semibold">
                         Have any questions or need assistance? Contact us
                         through the form below or reach out via phone or email.
                     </p>
-                    <div className="mt-4">
-                        <p className="font-semibold">📍 Address:</p>
-                        <p>123 Tech Street, Yangon, Myanmar</p>
-                        <p className="font-semibold mt-2">📞 Phone:</p>
-                        <p>+95 9 123 456 789</p>
-                        <p className="font-semibold mt-2">✉ Email:</p>
-                        <p>support@myantech.com</p>
+                    <div className="mt-4 flex flex-col gap-5">
+                        <div>
+                            <p className="font-semibold">📍 Address:</p>
+                            <p>123 Tech Street, Yangon, Myanmar</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold mt-2">📞 Phone:</p>
+                            <p>+95 9 123 456 789</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold mt-2">✉ Email:</p>
+                            <p>support@myantech.com</p>
+                        </div>
                     </div>
                 </div>
-                <div className="mt-6 w-full md:w-1/3 bg-white p-6 border border-neutral-200 rounded-2xl shadow-md">
+                <div className="w-full bg-white md:w-1/2 lg:w-2/4 p-6 border border-neutral-200 rounded-2xl shadow-md">
                     <h2 className="font-bold text-xl md:text-2xl text-center mb-4">
                         Send Us a Message
                     </h2>

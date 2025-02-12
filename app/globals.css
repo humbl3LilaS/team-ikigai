@@ -5,6 +5,13 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+body,html{
+    overflow:auto;
+    scrollbar-width:none;
+}
+body::-webkit-scrollbar {
+    display: none;
+  }
 
 @layer base {
     :root {
