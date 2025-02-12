@@ -5,6 +5,6 @@ const DriverDetailsPage = () => {
         <>
             <DriverDetails />
         </>
-    )
-}
+    );
+};
 export default DriverDetailsPage;

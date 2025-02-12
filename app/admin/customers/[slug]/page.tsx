@@ -3,7 +3,7 @@ import CustomerDetails from "@/features/admin/customer/components/customer-detai
 const CustomerDetailsPage = () => {
     return (
         <CustomerDetails />
-    )
-}
+    );
+};
 
 export default CustomerDetailsPage;
