@@ -19,6 +19,7 @@ export const ROLE_ENUM = pgEnum("role", [
     "WAREHOUSE_MANAGER",
     "DRIVER",
     "FINANCE",
+    "ADMIN",
 ]);
 export const CATEGORY = pgEnum("product_category", PRODUCT_CATEGORY);
 export const PAYMENT_METHOD = pgEnum("payment_method", [
