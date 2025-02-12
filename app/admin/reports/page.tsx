@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { auth } from "@/auth";
 import { adminSideBarItems } from "@/constants/ui-constants";
+import ReportTable from "@/features/admin/reports/components/reports-table";
 
 export default async function ReportPage() {
     const role = (await auth())?.user.role;
@@ -10,5 +11,13 @@ export default async function ReportPage() {
     if (!isValidate) {
         notFound();
     }
-    return <div>ReportPage</div>;
+
+    // const res = await getSaleReports();
+
+    return (
+        <section className="">
+            PAGE
+            <ReportTable />
+        </section>
+    );
 }
