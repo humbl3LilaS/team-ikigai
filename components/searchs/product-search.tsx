@@ -1,26 +1,34 @@
-import { X } from "lucide-react";
+"use client";
+
+import {  Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { getAllProducts } from "@/features/client/category/actions/get-products";
 import {
     Product,
-    useProductContext,
 } from "@/features/client/category/contexts/product-context";
-interface Props {
-    handleSearch: () => void;
-}
 
-const ProductSearch = ({ handleSearch }: Props) => {
+
+const ProductSearch = () => {
     const [searchValue, setSearchValue] = useState("");
+    const [openSearch ,setOpenSearch] = useState(false);
+    const [products,setProducts] = useState<Product[]>([]);
     const router = useRouter();
     const [filterProducts, setFilterProducts] = useState<Product[]>([]);
-    const { products } = useProductContext();
+    
+
     useEffect(() => {
-        setFilterProducts(products);
-    }, [products]);
+        const fetchProduct = async ()=>{
+            const products = await getAllProducts();
+            setProducts(products as Product[]);
+        };
+       fetchProduct();
+    }, []);
+
     const handleNavigate = (route: string) => {
-        handleSearch();
         router.push(`/product/${route}`);
+        setOpenSearch(!openSearch);
     };
 
     const handleSearchFunc = (e: string) => {
@@ -52,15 +60,25 @@ const ProductSearch = ({ handleSearch }: Props) => {
         e.stopPropagation();
     };
 
+    const handleOpenSearch = ()=>{
+        setOpenSearch(!openSearch);
+    };
+
     return (
         <>
-            <div
-                className="bg-black/5 fixed backdrop-blur-lg inset-0 z-50 px-5"
-                onClick={handleSearch}
+            <button className="flex gap-1 md:gap-3 w-full bg-gray-100 items-center md:bg-white md:border md:py-1.5 md:px-3 py-1 px-2 rounded-md" onClick={handleOpenSearch}>
+                <input className="md:hidden focus:outline-none w-full bg-transparent " placeholder="search..." />
+                <Search className="text-gray-400 size-5 hover:text-blue-600" />
+            </button>
+            {
+                openSearch &&
+                <div
+                className="bg-black/5 fixed backdrop-blur-lg inset-0 z-50"
+                onClick={handleOpenSearch}
             >
                 <div
                     onClick={handleClick}
-                    className="absolute w-full py-10 px-10 h-3/5 items-center max-w-lg rounded-lg flex flex-col gap-5 top-14 left-[50%] translate-x-[-50%]"
+                    className="absolute w-[90%] md:w-full p-2 items-center max-h-[450px] md:max-h-[500px] max-w-lg rounded-lg flex flex-col gap-5 top-14 left-[50%] translate-x-[-50%]"
                 >
                     <div className="flex gap-2 w-full px-4 bg-white rounded-lg">
                         <input
@@ -68,15 +86,17 @@ const ProductSearch = ({ handleSearch }: Props) => {
                             placeholder="Search..."
                             value={searchValue}
                             onChange={(e) => handleSearchFunc(e.target.value)}
-                            // onFocus={()=>setSearchOpen(true)}
                             autoFocus
                         />
-                        <button onClick={() => setSearchValue("")}>
+                        {
+                            searchValue.length > 0 && 
+                            <button onClick={() => setSearchValue("")}>
                             <X className="p-1 size-7 text-red-600 cursor-pointer" />
                         </button>
+                        }
                     </div>
 
-                    <div className="max-w-lg p-2 bg-white w-full rounded-md mx-auto">
+                    <div className="max-w-lg p-2 bg-white py-5 h-full max-h-[450px]  md:max-h-[500px] overflow-auto w-full rounded-md mx-auto">
                         <ul className="flex flex-col gap-3">
                             {searchValue.length > 0 &&
                             filterProducts.length <= 0 ? (
@@ -89,10 +109,10 @@ const ProductSearch = ({ handleSearch }: Props) => {
                                     <li
                                         key={item.id}
                                         onClick={() => handleNavigate(item.id)}
-                                        className="px-5 py-3 text-black rounded-sm font-bold hover:bg-gray-200 text-sm border-b-[1px] sm:text-md hover:text-blue-500 flex justify-between cursor-pointer"
+                                        className="px-5 py-3 text-black rounded-sm font-bold hover:bg-gray-100 text-sm border-b-[1px] sm:text-md hover:text-blue-500 flex justify-between cursor-pointer"
                                     >
                                         <p>{item.name}</p>
-                                        <p>{item.category}</p>
+                                        <p className="hidden sm:block text-gray-400">{item.category}</p>
                                     </li>
                                 ))
                             ) : searchValue.length <= 0 ||
@@ -101,10 +121,10 @@ const ProductSearch = ({ handleSearch }: Props) => {
                                     <li
                                         key={item.id}
                                         onClick={() => handleNavigate(item.id)}
-                                        className="px-5 py-3 text-black rounded-sm font-bold hover:bg-gray-200 text-sm border-b-[1px] sm:text-md hover:text-blue-500 flex justify-between cursor-pointer"
+                                        className="px-5 py-3 text-black rounded-sm font-bold hover:bg-gray-100 text-sm border-b-[1px] sm:text-md hover:text-blue-500 flex justify-between cursor-pointer"
                                     >
                                         <p>{item.name}</p>
-                                        <p>{item.category}</p>
+                                        <p className="hidden sm:block text-gray-400">{item.category}</p>
                                     </li>
                                 ))
                             ) : (
@@ -114,6 +134,7 @@ const ProductSearch = ({ handleSearch }: Props) => {
                     </div>
                 </div>
             </div>
+            }
         </>
     );
 };
