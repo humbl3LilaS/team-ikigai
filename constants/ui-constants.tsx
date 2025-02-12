@@ -32,7 +32,7 @@ export const adminSideBarItems = [
     {
         title: "Orders",
         role: ["SALES", "FINANCE"],
-        url: "/admin/order",
+        url: "/admin/orders",
         icon: <ShoppingCart />,
     },
     {

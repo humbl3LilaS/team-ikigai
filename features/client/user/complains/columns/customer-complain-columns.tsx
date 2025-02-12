@@ -100,10 +100,10 @@ export const dummyCustomerComplains: IComplain[] = [
     },
 ];
 
-// --- Dummy Orders Data (simulate user's order history) ---
+// --- Dummy Orders Data (simulate user's orders history) ---
 export const dummyOrders = [
     {
-        id: "order-1",
+        id: "orders-1",
         orderNumber: "ORD-001",
         date: "2025-01-01",
         items: [
@@ -112,7 +112,7 @@ export const dummyOrders = [
         ],
     },
     {
-        id: "order-2",
+        id: "orders-2",
         orderNumber: "ORD-002",
         date: "2025-01-15",
         items: [

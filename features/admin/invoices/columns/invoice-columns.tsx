@@ -3,8 +3,8 @@
 import { createColumnHelper } from "@tanstack/table-core";
 import Link from "next/link";
 
-import { TInvoiceInfo } from "@/features/admin/invoice/actions/get-invoices";
-import PaymentMethod from "@/features/admin/invoice/components/payment-method";
+import { TInvoiceInfo } from "@/features/admin/invoices/actions/get-invoices";
+import PaymentMethod from "@/features/admin/invoices/components/payment-method";
 
 const columnHelper = createColumnHelper<TInvoiceInfo>();
 

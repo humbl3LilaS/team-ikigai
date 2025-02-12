@@ -7,6 +7,7 @@ import { TOrderInfo } from "@/features/admin/order/actions/get-orders";
 import { cn } from "@/lib/utils";
 
 const columnHelper = createColumnHelper<TOrderInfo>();
+import { format } from "date-fns";
 
 export const orderColumns = [
     columnHelper.accessor("id", {
@@ -27,9 +28,17 @@ export const orderColumns = [
         ),
     }),
     columnHelper.accessor("totalAmount", {
-        header: () => <span>Date</span>,
+        header: () => <span>Total Amount</span>,
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
+    columnHelper.accessor("createdAt", {
+        header: () => <span>Order Date</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>
+                {format(getValue(), "do MMM yyyy")}
+            </span>
         ),
     }),
     columnHelper.accessor("status", {

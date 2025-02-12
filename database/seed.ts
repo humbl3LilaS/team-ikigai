@@ -271,6 +271,10 @@ async function main() {
         .filter((item) => item.status === "FINISH")
         .map((item) => ({
             orderId: item.id,
+            createdAt: faker.date.between({
+                from: subDays(new Date(), 8),
+                to: subDays(Date.now(), 1),
+            }),
         }));
 
     await db.insert(invoices).values(finishedOrdersId);

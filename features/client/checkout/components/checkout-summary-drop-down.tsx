@@ -21,12 +21,12 @@ const CheckoutSummaryDropDown = () => {
                     onValueChange={(value) => setActive(value)}
                     collapsible={true}
                 >
-                    <AccordionItem value={"order-summary"}>
+                    <AccordionItem value={"orders-summary"}>
                         <div className={"flex items-center justify-between"}>
                             <AccordionTrigger className={"shadow-none"}>
                                 {active
                                     ? "Hide Order Summary"
-                                    : "Show order Summary"}
+                                    : "Show orders Summary"}
                             </AccordionTrigger>
                             <div>
                                 {summary ? `$${summary.totalPrice}` : "..."}

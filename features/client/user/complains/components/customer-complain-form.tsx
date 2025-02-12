@@ -1,8 +1,19 @@
 "use client";
 
+import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
+import { ChevronDown, CircleChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+
 import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
     Form,
     FormControl,
@@ -12,15 +23,6 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ChevronDown, CircleChevronLeft } from "lucide-react";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Link from "next/link";
-import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import {
     Table,
     TableBody,
@@ -31,14 +33,14 @@ import {
 } from "@/components/ui/table";
 
 // Import the columns and dummy data for complaints.
+import { useToast } from "@/hooks/use-toast";
+
 import {
     CustomerComplainsColumns,
     dummyCustomerComplains,
     IComplain,
     dummyOrders,
 } from "../columns/customer-complain-columns";
-import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 
 // --- Complain Types ---
 const COMPLAIN_TYPES = ["REPAIR", "EXCHANGE"];
@@ -75,12 +77,12 @@ export default function CustomerComplaintForm() {
     const { toast } = useToast();
     const router = useRouter();
 
-    // Dropdown open states for the order selection and complain type fields.
+    // Dropdown open states for the orders selection and complain type fields.
     const [orderDropdownOpen, setOrderDropdownOpen] = useState(false);
     const [complainTypeDropdownOpen, setComplainTypeDropdownOpen] =
         useState(false);
 
-    // Watch the selected order ID so we can show its items for multi-selection.
+    // Watch the selected orders ID so we can show its items for multi-selection.
     const selectedOrderId = watch("orderId");
     const selectedOrder = dummyOrders.find(
         (order) => order.id === selectedOrderId,
@@ -91,20 +93,20 @@ export default function CustomerComplaintForm() {
         dummyCustomerComplains,
     );
 
-    // Handle form submission: for each selected order item, create a complaint record.
+    // Handle form submission: for each selected orders item, create a complaint record.
     const onSubmit = (data: ComplaintFormData) => {
         if (!selectedOrder) {
             toast({
-                title: "Please select a valid order.",
-                description: "Please select a valid order.",
+                title: "Please select a valid orders.",
+                description: "Please select a valid orders.",
                 variant: "destructive",
             });
             return;
         }
         if (data.selectedOrderItems.length === 0) {
             toast({
-                title: "Please select at least one order item.",
-                description: "Please select at least one order item.",
+                title: "Please select at least one orders item.",
+                description: "Please select at least one orders item.",
                 variant: "destructive",
             });
             return;
@@ -177,7 +179,7 @@ export default function CustomerComplaintForm() {
                                                             selectedOrder
                                                                 ? `${selectedOrder.orderNumber} - ${selectedOrder.date}`
                                                                 : field.value ||
-                                                                  "Select an order"
+                                                                  "Select an orders"
                                                         }
                                                         className="cursor-pointer text-sm min-w-full"
                                                     />
