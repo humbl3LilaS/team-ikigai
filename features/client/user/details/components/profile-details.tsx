@@ -86,8 +86,6 @@ export default function ProfileDetails({ userid }: ProfileDetailsProps) {
         if (response.success) {
             setUser({
                 ...data,
-                totalSpend: user.totalSpend,
-                latestOrderStatus: user.latestOrderStatus,
             });
             setEditing(false);
             toast({
