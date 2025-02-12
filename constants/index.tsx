@@ -285,3 +285,5 @@ export const PRODUCT_PLACEHOLDER = [
             "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074683/HyperX_Cloud_Alpha_Headset_qfgttb.png",
     },
 ];
+
+export const BRAND = PRODUCT_PLACEHOLDER.map((item) => item.brand);
