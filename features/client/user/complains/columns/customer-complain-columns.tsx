@@ -1,9 +1,10 @@
 "use client";
 
 import { createColumnHelper } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 // 1. Define the type for a customer complain record.
 export interface IComplain {

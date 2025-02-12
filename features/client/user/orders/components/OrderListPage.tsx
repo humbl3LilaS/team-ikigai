@@ -1,6 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import NestedOrderItemsTable from "@/features/user/orderlist/components/NestedOrderItemsTable";
+import { format } from "date-fns";
+import { CircleChevronLeft } from "lucide-react";
+import Link from "next/link";
+import React, { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
     Table,
     TableHeader,
@@ -9,34 +14,35 @@ import {
     TableHead,
     TableCell,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { CircleChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { getUserOrders } from "../actions/get-orders";
-import { Order, dummyOrders } from "../type/order-type";
+import { useGetOrdersByUserId } from "@/features/client/user/hooks/use-get-orders-by-user-id";
+import NestedOrderItemsTable from "@/features/client/user/orders/components/NestedOrderItemsTable";
+import { parseOrderStatus } from "@/lib/utils";
 
 interface OrderListPageProps {
     userId: string;
 }
 
 const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
-    const [orders, setOrders] = useState<Order[]>(dummyOrders);
+    const { data: orders, isLoading } = useGetOrdersByUserId(userId);
     const [expandedOrders, setExpandedOrders] = useState<{
         [key: string]: boolean;
     }>({});
 
-    useEffect(() => {
-        async function fetchOrders() {
-            const data = await getUserOrders(userId);
-            // setOrders(data ?? dummyOrders);
-        }
-        fetchOrders();
-    }, [userId]);
-
     const toggleOrderExpansion = (orderId: string) => {
         setExpandedOrders((prev) => ({ ...prev, [orderId]: !prev[orderId] }));
     };
-
+    const getStatusBgColor = (status: string) => {
+        switch (status) {
+            case "ON_THE_WAY":
+                return "bg-blue-300";
+            case "APPROVE":
+                return "bg-green-200";
+            case "PENDING":
+                return "bg-yellow-200";
+            case "FINISH":
+                return "bg-green-200";
+        }
+    };
     return (
         <div className="w-full flex justify-center items-start sm:p-5">
             <div className="w-full sm:w-3/4 mx-auto">
@@ -62,7 +68,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {orders.length === 0 ? (
+                            {orders && orders.length === 0 ? (
                                 <TableRow>
                                     <TableCell
                                         colSpan={4}
@@ -72,6 +78,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
                                     </TableCell>
                                 </TableRow>
                             ) : (
+                                orders &&
                                 orders.map((order) => (
                                     <React.Fragment key={order.id}>
                                         <TableRow
@@ -80,31 +87,32 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
                                             }
                                             className="cursor-pointer hover:bg-gray-100 transition"
                                         >
-                                            <TableCell>{order.id}</TableCell>
+                                            <TableCell
+                                                className={
+                                                    "line-clamp-1 max-w-[100px] md:max-w-[150px]"
+                                                }
+                                            >
+                                                {order.id.substring(0, 8)}
+                                            </TableCell>
                                             <TableCell>
-                                                {new Date(
-                                                    order.orderDate,
-                                                ).toLocaleString()}
+                                                {format(
+                                                    order.createdAt,
+                                                    "do MMM yyyy",
+                                                )}
                                             </TableCell>
                                             <TableCell>
                                                 ${order.totalAmount}
                                             </TableCell>
                                             <TableCell>
                                                 <span
-                                                    className={`px-3 py-1 text-center rounded-full ${
-                                                        order.status ===
-                                                        "ON_THE_WAY"
-                                                            ? "bg-green-300"
-                                                            : order.status ===
-                                                                "APPROVE"
-                                                              ? "bg-green-200"
-                                                              : order.status ===
-                                                                  "PENDING"
-                                                                ? "bg-yellow-200"
-                                                                : ""
-                                                    }`}
+                                                    className={`px-3 py-1 text-center rounded-full capitalize ${getStatusBgColor(order.status)}`}
                                                 >
-                                                    {order.status}
+                                                    {order.status ===
+                                                    "ON_THE_WAY"
+                                                        ? "delivering"
+                                                        : parseOrderStatus(
+                                                              order.status,
+                                                          )}
                                                 </span>
                                             </TableCell>
                                         </TableRow>
@@ -118,9 +126,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
                                     ${order.status === "PENDING" ? "bg-yellow-200" : ""}`}
                                                 >
                                                     <NestedOrderItemsTable
-                                                        orderItems={
-                                                            order.orderItems
-                                                        }
+                                                        orderId={order.id}
                                                     />
                                                 </TableCell>
                                             </TableRow>
@@ -130,6 +136,13 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
                             )}
                         </TableBody>
                     </Table>
+                    {!orders && isLoading && (
+                        <div className={"mt-2 flex flex-col gap-y-2"}>
+                            {Array.from({ length: 10 }, (_, idx) => (
+                                <Skeleton className={"w-full h-10"} key={idx} />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

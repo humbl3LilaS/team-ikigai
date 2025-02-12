@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { getUserData } from "@/features/user/actions/get-user-data";
+
+import { getUserData } from "@/features/client/user/actions/get-user-data";
 
 export type IUser = {
     id: string;
@@ -33,7 +34,7 @@ export const useUserStore = create<UserStore>()(
             const userData = await getUserData(userId);
 
             if (userData) {
-                set({ user:  userData as IUser });
+                set({ user: userData as IUser });
             }
 
             set({ isLoading: false });
@@ -45,5 +46,5 @@ export const useUserStore = create<UserStore>()(
                     state.user = { ...state.user, ...updatedData };
                 }
             }),
-    }))
+    })),
 );

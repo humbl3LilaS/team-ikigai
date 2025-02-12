@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import ProfileDetails from "@/features/user/details/components/profile-details";
+import ProfileDetails from "@/features/client/user/details/components/profile-details";
 
 export default async function ProfilePage() {
     const session = await auth();

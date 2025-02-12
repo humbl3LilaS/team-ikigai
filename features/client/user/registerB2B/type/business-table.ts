@@ -1,11 +1,6 @@
+import { pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import * as z from "zod";
-import {
-    pgTable,
-    text,
-    timestamp,
-    uuid,
-    varchar,
-} from "drizzle-orm/pg-core";   
+
 import { users } from "@/database/schema";
 
 export const businessAccounts = pgTable("business_accounts", {
@@ -23,7 +18,9 @@ export const businessAccounts = pgTable("business_accounts", {
 
 // 🚀 Business Registration Validation Schema
 export const BusinessRegistrationSchema = z.object({
-    businessName: z.string().min(2, "Business name must be at least 2 characters long"),
+    businessName: z
+        .string()
+        .min(2, "Business name must be at least 2 characters long"),
     businessSize: z.enum(["Small", "Medium", "Large"], {
         errorMap: () => ({ message: "Select a valid business size" }),
     }),
@@ -39,4 +36,6 @@ export const BusinessRegistrationSchema = z.object({
 });
 
 // ✅ TypeScript Type for Business Registration
-export type BusinessRegistrationType = z.infer<typeof BusinessRegistrationSchema>;
+export type BusinessRegistrationType = z.infer<
+    typeof BusinessRegistrationSchema
+>;

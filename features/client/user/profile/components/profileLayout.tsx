@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import React from "react";
 
-import { getUserData } from "@/features/user/actions/get-user-data";
-import LatestOrderStatus from "@/features/user/profile/components/latest-order-status";
-import { ProfileCard } from "@/features/user/profile/components/profile_nav";
-import TotalSpend from "@/features/user/profile/components/totalspend";
-import UserInfo from "@/features/user/profile/components/user_info";
+import { getUserData } from "@/features/client/user/actions/get-user-data";
+import LatestOrderStatus from "@/features/client/user/profile/components/latest-order-status";
+import { ProfileCard } from "@/features/client/user/profile/components/profile_nav";
+import TotalSpend from "@/features/client/user/profile/components/totalspend";
+import UserInfo from "@/features/client/user/profile/components/user_info";
 
 import Logout from "./logout";
 interface ProfileLayoutProps {

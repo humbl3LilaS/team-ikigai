@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { REGION, TOWNSHIPS } from "@/constants";
-import { getUserData } from "@/features/user/actions/get-user-data";
+import { getUserData } from "@/features/client/user/actions/get-user-data";
 import { useToast } from "@/hooks/use-toast";
 
 import { updateUser } from "../actions/update-user-data";

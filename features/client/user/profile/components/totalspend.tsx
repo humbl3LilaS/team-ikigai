@@ -1,7 +1,7 @@
 import { DollarSign } from "lucide-react";
 import React from "react";
 
-import { getUserTotalSpending } from "@/features/user/actions/get-user-total-spending";
+import { getUserTotalSpending } from "@/features/client/user/actions/get-user-total-spending";
 
 interface TotalSpendProps {
     userId: string;

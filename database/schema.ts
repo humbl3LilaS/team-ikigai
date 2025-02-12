@@ -350,6 +350,7 @@ export type IUserInfo = InferSelectModel<typeof users>;
 
 // Orders
 export type IOrderStatus = (typeof ORDER_STATUS.enumValues)[number];
+export type IOrder = InferSelectModel<typeof orders>;
 
 export const orderInsertSchema = createInsertSchema(orders, {
     contactNumber: (schema) =>

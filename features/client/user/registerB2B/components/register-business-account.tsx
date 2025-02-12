@@ -1,11 +1,11 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDown, CircleChevronLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,12 +31,13 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { REGION, TOWNSHIPS } from "@/constants";
+import { useToast } from "@/hooks/use-toast";
+
+import { registerBusiness } from "../actions/register-business-account";
 import {
     BusinessRegistrationSchema,
     BusinessRegistrationType,
 } from "../type/business-table";
-import { registerBusiness } from "../actions/register-business-account";
-import { useState } from "react";
 
 export default function BusinessRegistrationForm() {
     const form = useForm<BusinessRegistrationType>({

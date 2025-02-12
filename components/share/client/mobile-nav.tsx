@@ -1,10 +1,9 @@
 "use client";
 
-import { LogOut, Menu, ShoppingCartIcon, User } from "lucide-react";
+import { LogOut, Menu, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
-import { useCallback } from "react";
+import { signOut } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import {

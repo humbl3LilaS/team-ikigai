@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-import { getLastOrderByUserId } from "@/features/user/actions/get-last-order-by-user-id";
+import { getLastOrderByUserId } from "@/features/client/user/actions/get-last-order-by-user-id";
 import { parseOrderStatus } from "@/lib/utils";
 
 interface LatestOrderStatusProps {
