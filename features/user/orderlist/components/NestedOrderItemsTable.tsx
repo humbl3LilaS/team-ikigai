@@ -1,5 +1,3 @@
-// components/NestedOrderItemsTable.tsx
-
 import React from "react";
 import {
     Table,
@@ -8,19 +6,8 @@ import {
     TableRow,
     TableHead,
     TableCell,
-} from "@/components/ui/table"; // adjust the import path as needed
-
-// Define your data types
-interface Product {
-    name: string;
-    price: number;
-}
-
-export interface OrderItem {
-    id: string;
-    quantity: number;
-    product: Product;
-}
+} from "@/components/ui/table";
+import { OrderItem } from "../type/order-type";
 
 interface NestedOrderItemsTableProps {
     orderItems: OrderItem[];
@@ -30,7 +17,7 @@ const NestedOrderItemsTable: React.FC<NestedOrderItemsTableProps> = ({
     orderItems,
 }) => {
     return (
-        <div className="p-4">
+        <div className="rounded-lg">
             <h2 className="text-xl font-medium mb-2">Order Items</h2>
             <Table>
                 <TableHeader>
@@ -44,16 +31,13 @@ const NestedOrderItemsTable: React.FC<NestedOrderItemsTableProps> = ({
                     {orderItems.map((item) => (
                         <TableRow
                             key={item.id}
-                            className="cursor-pointer divide-gray-300 hover:bg-gray-100 transition h-[50px]"
+                            className="hover:bg-gray-100 transition"
                         >
                             <TableCell>{item.product.name}</TableCell>
                             <TableCell>{item.quantity}</TableCell>
-                            <TableCell>{item.product.price}</TableCell>
+                            <TableCell>${item.product.price}</TableCell>
                         </TableRow>
                     ))}
-                    <TableRow>
-                        <TableCell></TableCell>
-                    </TableRow>
                 </TableBody>
             </Table>
         </div>
