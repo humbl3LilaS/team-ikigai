@@ -1,8 +1,9 @@
 "use client";
 
-import {  Search, X } from "lucide-react";
+import debounce from "debounce";
+import { Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { getAllProducts } from "@/features/client/category/actions/get-products";
 import {
@@ -26,34 +27,44 @@ const ProductSearch = () => {
        fetchProduct();
     }, []);
 
+    useEffect(()=>{
+        if(!openSearch){
+            setSearchValue("");
+        }
+    },[openSearch]);
+
     const handleNavigate = (route: string) => {
         router.push(`/product/${route}`);
         setOpenSearch(!openSearch);
     };
 
-    const handleSearchFunc = (e: string) => {
-        setSearchValue(e);
-
-        const value = e.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
-        const existProduct = products.filter(
-            (product) =>
-                product.brand
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .toLowerCase()
-                    .includes(value) ||
-                product.category
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .toLowerCase()
-                    .includes(value) ||
-                product.name
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .toLowerCase()
-                    .includes(value),
-        );
-
-        if (existProduct) {
+    const handleDebounceSearch = useCallback(
+        debounce((e: string) => {
+            const value = e.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+            const existProduct = products.filter(
+                (product) =>
+                    product.brand
+                        .replace(/[^a-zA-Z0-9]/g, "")
+                        .toLowerCase()
+                        .includes(value) ||
+                    product.category
+                        .replace(/[^a-zA-Z0-9]/g, "")
+                        .toLowerCase()
+                        .includes(value) ||
+                    product.name
+                        .replace(/[^a-zA-Z0-9]/g, "")
+                        .toLowerCase()
+                        .includes(value),
+            );
             setFilterProducts(existProduct);
-        }
+            
+        }, 600), 
+        [products],
+    );
+
+    const handleSearchFunc = (e:string)=>{
+        setSearchValue(e);
+        handleDebounceSearch(e);
     };
 
     const handleClick = (e: React.MouseEvent) => {
@@ -98,7 +109,7 @@ const ProductSearch = () => {
 
                     <div className="max-w-lg p-2 bg-white py-5 h-full max-h-[450px]  md:max-h-[500px] overflow-auto w-full rounded-md mx-auto">
                         <ul className="flex flex-col gap-3">
-                            {searchValue.length > 0 &&
+                            { searchValue.length > 0 &&
                             filterProducts.length <= 0 ? (
                                 <li className="text-gray-400 text-sm">
                                     No Product Found

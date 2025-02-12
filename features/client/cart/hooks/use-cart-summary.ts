@@ -3,7 +3,9 @@ import { useGetCartSummaryInfo } from "@/features/client/cart/hooks/use-get-cart
 
 export const useCartSummary = () => {
     const cart = useCartStore((state) => state.cart);
+
     const pids = Array.from(new Set(cart.map((item) => item.pid)));
+
     const { data, isFetching, isError } = useGetCartSummaryInfo(pids);
     if (isFetching || isError) {
         return undefined;

@@ -16,6 +16,9 @@ const RouteLink = () => {
         <Link href="/contact" className={`${pathname === "/contact" ? "text-blue-600 underline underline-offset-4" : "text-black"}`}>
             Contact
         </Link>
+        <Link href="/category" className={`${pathname === "/category" ? "text-blue-600 underline underline-offset-4" : "text-black"}`}>
+            Shop
+        </Link>
     </>
   );
 };
