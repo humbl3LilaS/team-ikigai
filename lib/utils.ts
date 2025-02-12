@@ -47,3 +47,7 @@ export function fieldArrayOnChange<T>(
         callback([...array, value]);
     }
 }
+
+export const parseOrderStatus = <T extends string>(status: T) => {
+    return status.split("_").join(" ").toLowerCase();
+};
