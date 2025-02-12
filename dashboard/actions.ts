@@ -94,7 +94,13 @@ export async function getPopularItems() {
 
 // Order Page
 export const getOrders = async () => {
-  const res = await db.select().from(orders).orderBy(orders.createdAt);
+  const res = await db.select().from(orders).orderBy(orders.createdAt).where(
+    or(
+      eq(orders.status, "PENDING"),
+      eq(orders.status, "ON_THE_WAY"),
+      eq(orders.status, "APPROVE"),
+    ),
+  );
   return res;
 };
 

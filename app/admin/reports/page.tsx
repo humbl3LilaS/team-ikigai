@@ -15,8 +15,8 @@ export default async function ReportPage() {
     // const res = await getSaleReports();
 
     return (
-        <section className="">
-            PAGE
+        <section>
+            <h1 className="admin-header ml-3">Daily Sales Report</h1>
             <ReportTable />
         </section>
     );
