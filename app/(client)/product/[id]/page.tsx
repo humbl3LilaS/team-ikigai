@@ -9,10 +9,10 @@ export async function generateMetadata({params}:{params:Promise<{id:string}>}):P
     const {id} = await params;
     const product = await (getProductById(id));
     return{
-        title:product?.brand,
-        description:"product description",
+        title:product?.name,
+        description:product?.description,
         openGraph:{
-            title:product?.name,
+            title:product?.brand,
             description:product?.description,
             images:[product?.imageUrl as string],
         },

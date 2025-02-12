@@ -6,14 +6,25 @@ import { auth } from "@/auth";
 import CartLink from "@/components/share/client/cart-link";
 
 import MobileNav from "./mobile-nav";
+import ProductSearch from "@/components/searchs/product-search";
+import { ProductProvider } from "@/features/client/category/contexts/product-context";
+import RouteLink from "./route-link";
 
 const Header = async () => {
     const session = await auth();
     return (
-        <nav className="flex max-h-32 justify-between gap-2 bg-white items-center text-white p-4 sm:px-10 sm:py-6">
+        <nav className="flex max-h-32 justify-between select-none gap-7 md:gap-2 py-4 sm:px-8 px-3 bg-white items-center text-white">
+            <div className="text-black hidden md:flex font-semibold md:gap-5 lg:gap-8">
+                <RouteLink/>
+            </div>
+
             <Link href={"/"}>
                 <Image src="/brandLogo.png" width={72} height={30} alt="logo" />
             </Link>
+
+                <ProductProvider>
+                        <div className="md:hidden"><ProductSearch/></div>    
+                </ProductProvider>
 
             <div className="md:hidden">
                 <MobileNav />
@@ -23,13 +34,10 @@ const Header = async () => {
                 <div
                     className={`gap-5 items-center text-black hidden sm:flex font-semibold`}
                 >
-                    <Link href="/">Home</Link>
-                    <Link href="/about" className="">
-                        About
-                    </Link>
-                    <Link href="/contact" className="">
-                        Contact Us
-                    </Link>
+                   <ProductProvider>
+                        <div className="hidden md:block"><ProductSearch/></div>    
+                   </ProductProvider>
+                   
                     <CartLink />
                     {session ? (
                         <Link
@@ -41,11 +49,11 @@ const Header = async () => {
                     ) : (
                         <Link
                             href={"/sign-up"}
-                            className="text-black hidden sm:flex font-semibold py-1 px-2 text-[16px] items-center border-2 hover:black hover:text-blue-500 hover:bg-transparent rounded-sm"
+                            className="text-black hidden sm:flex font-semibold py-1.5 px-3 text-[14px] items-center border hover:black hover:text-blue-500 hover:bg-transparent rounded-sm"
                         >
                             Get started
                         </Link>
-                    )}
+                      )} 
                 </div>
             </div>
         </nav>
