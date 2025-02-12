@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getInvoices } from "@/features/admin/invoice/actions/get-invoices";
+import { getInvoices } from "@/features/admin/invoices/actions/get-invoices";
 
 export const useGetInvoices = () => {
     return useQuery({
