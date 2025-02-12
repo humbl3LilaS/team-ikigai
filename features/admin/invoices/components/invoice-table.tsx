@@ -11,8 +11,8 @@ import { useState } from "react";
 import DataTableBody from "@/components/share/admin/data-table-body";
 import DataTableSkeleton from "@/components/share/admin/data-table-skeleton";
 import { Button } from "@/components/ui/button";
-import { columns } from "@/features/admin/invoice/columns/invoice-columns";
-import { useGetInvoices } from "@/features/admin/invoice/hooks/use-get-invoices";
+import { columns } from "@/features/admin/invoices/columns/invoice-columns";
+import { useGetInvoices } from "@/features/admin/invoices/hooks/use-get-invoices";
 
 const InvoiceTable = () => {
     const { data } = useGetInvoices();

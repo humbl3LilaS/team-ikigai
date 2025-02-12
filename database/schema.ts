@@ -138,6 +138,9 @@ export const invoices = pgTable("invoices", {
     paymentMethod: PAYMENT_METHOD("payment_method")
         .default("CASH_ON_DELIVERY")
         .notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+        .defaultNow()
+        .notNull(),
 });
 
 export const complains = pgTable("complains", {
