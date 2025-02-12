@@ -3,7 +3,7 @@
 import { and, count, desc, eq, gte, lt, or, sql } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { orderItems, orders, productDetails, products, users } from "@/database/schema";
+import { orderItems, orders, productDetails, products, stocks, users } from "@/database/schema";
 
 // Dashboard Page
 export const getFinishedOrdersCount = async () => {
@@ -107,4 +107,30 @@ export const getCustomerByOrderId = async (id: string) => {
   const res = (await db.select().from(users).where(eq(users.id, id)))[0];
   return res;
 };
+
+export async function getProductsCategory() {
+  const productStocks = await db
+    .select({
+      category: productDetails.category,
+      stock: sql<number>`SUM(${stocks.stock})`.as("total_stock"),
+    })
+    .from(stocks)
+    .innerJoin(products, eq(stocks.productId, products.id))
+    .innerJoin(productDetails, eq(products.detailId, productDetails.id))
+    .groupBy(productDetails.category);
+
+  return productStocks.map(({ category, stock }) => ({
+    category,
+    count: stock,
+  }));
+}
+
+export async function getUserNameFromDb(id:string) {
+  const res = await db
+    .select({ name: users.name })
+    .from(users)
+    .where(eq(users.id, id));
+    return res[0];
+}
+
 

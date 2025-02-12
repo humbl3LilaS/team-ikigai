@@ -4,7 +4,7 @@ import { ChevronUp, User2 } from "lucide-react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import {
   DropdownMenu,
@@ -22,16 +22,18 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { getUserNameFromDb } from "@/dashboard/actions";
 
 export default function AdminSidebarFooter() {
-  const { theme, setTheme } = useTheme();
-  const auth = useSession();
+  const { setTheme } = useTheme();
+  const session = useSession();
+  const [userName, setUserName] = useState(session.data?.user.name);
 
   useEffect(() => {
-    if (theme == "system") {
-      setTheme("light");
+    if (session.data?.user.id) {
+      getUserNameFromDb(session.data?.user.id).then(name => setUserName(name.name));
     }
-  }, [theme, setTheme]);
+  }, [userName, setUserName, session.data?.user.id]);
 
   return (
     <SidebarFooter>
@@ -40,7 +42,7 @@ export default function AdminSidebarFooter() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                <User2 /> {auth.data?.user.name}
+                <User2 /> {userName?.toString()}
                 <ChevronUp className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
