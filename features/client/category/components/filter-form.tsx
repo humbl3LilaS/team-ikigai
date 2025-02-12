@@ -17,6 +17,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { BRAND, PRODUCT_CATEGORY } from "@/constants";
 import AccordionField from "@/features/client/category/components/accordion-field";
+import PriceRangeSelector from "@/features/client/category/components/price-range-selector";
 import { useFilterSheet } from "@/features/client/category/hooks/use-filter-sheet";
 import { arrayToSlug, fieldArrayOnChange } from "@/lib/utils";
 import { FilterFormSchema, TFilterFormSchema } from "@/validation";
@@ -32,7 +33,6 @@ const FilterForm = ({
         defaultValues: { ...defaultValues },
     });
 
-    console.log(defaultValues);
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -61,7 +61,6 @@ const FilterForm = ({
         //  Toggle the filter-sheet's state
         setOpen(false);
 
-        console.log(params);
         // push the searchParam to the current route
         router.push(`${pathname}?${params.toString()}`);
     };
@@ -135,20 +134,18 @@ const FilterForm = ({
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        {/*<PriceRangeSelector*/}
-                                        {/*    value={field.value}*/}
-                                        {/*    onChange={field.onChange}*/}
-                                        {/*    step={50}*/}
-                                        {/*    min={0}*/}
-                                        {/*    max={400}*/}
-                                        {/*/>*/}
+                                        <PriceRangeSelector
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                        />
                                     </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </AccordionField>
 
-                    <AccordionField title={"Size"}>
+                    <AccordionField title={"Brand"}>
                         <FormField
                             name={"brands"}
                             control={form.control}
@@ -203,6 +200,9 @@ const FilterForm = ({
                     <Button
                         type={"submit"}
                         className={"mt-6 w-full rounded-3xl"}
+                        disabled={
+                            !form.formState.isValid || form.formState.isDirty
+                        }
                     >
                         Apply Filter
                     </Button>
