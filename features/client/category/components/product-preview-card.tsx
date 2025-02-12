@@ -1,15 +1,12 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { IProductDetails } from "@/database/schema";
 
-const ProductCard = ({ data }: { data: IProductDetails }) => {
+const ProductPreviewCard = ({ data }: { data: IProductDetails }) => {
     return (
-        <div className="flex justify-between flex-col p-3 sm:p-5 min-w-52 rounded-md mt-10 border border-gray-200 w-full">
+        <article className="flex justify-between flex-col p-3 sm:p-5 min-w-52 rounded-md  border border-gray-200 w-full">
             <Link href={`/product/${data.id}`} className="block w-full ">
                 <Image
                     src={data.imageUrl}
@@ -21,10 +18,13 @@ const ProductCard = ({ data }: { data: IProductDetails }) => {
             </Link>
             <div className="flex flex-col gap-2 font-space-grotesk">
                 <Link href={`/product/${data.id}`}>
-                    <h1 className="font-semibold py-2">{data.name}</h1>
+                    <h2 className="font-semibold py-2">{data.name}</h2>
                 </Link>
                 <p className="text-blue-600 cursor-pointer">
-                    <span className="font-semibold text-sm text-black hover:text-blue-500">
+                    <span
+                        className="font-semibold text-sm text-black hover:text-blue-500"
+                        aria-label={`Price: ${data.price}`}
+                    >
                         &nbsp;${data.price}
                     </span>
                 </p>
@@ -32,8 +32,8 @@ const ProductCard = ({ data }: { data: IProductDetails }) => {
                     <Link href={`/product/${data.id}`}>View Details</Link>
                 </Button>
             </div>
-        </div>
+        </article>
     );
 };
 
-export default ProductCard;
+export default ProductPreviewCard;
