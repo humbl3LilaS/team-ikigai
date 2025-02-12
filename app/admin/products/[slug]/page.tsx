@@ -35,7 +35,7 @@ const ProductDetailPage = async ({
                         <UpdateProductSheet data={product} />
                     </div>
                     <p className={"mt-4"}>
-                        <span className={"font-semibold text-black/60"}>
+                        <span className={"font-semibold text-foreground/60"}>
                             Category:
                         </span>
                         <span className={"ml-2 font-bold"}>
@@ -43,7 +43,7 @@ const ProductDetailPage = async ({
                         </span>
                     </p>
                     <p className={"mt-4"}>
-                        <span className={"font-semibold text-black/60"}>
+                        <span className={"font-semibold text-foreground/60"}>
                             Price:
                         </span>
                         <span className={"ml-2 font-bold"}>
@@ -58,13 +58,13 @@ const ProductDetailPage = async ({
                 </div>
                 <div
                     className={
-                        "p-6 rounded-2xl border border-black/80 md:p-10 md:col-span-2"
+                        "p-6 rounded-2xl border border-foreground/80 md:p-10 md:col-span-2"
                     }
                 >
                     <h3 className={"mb-3 text-lg font-bold md:text-xl"}>
                         About This Product
                     </h3>
-                    <p className={"font-semibold text-black/60"}>
+                    <p className={"font-semibold text-foreground/60"}>
                         {product.detail}
                     </p>
                 </div>

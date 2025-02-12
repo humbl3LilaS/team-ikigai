@@ -43,7 +43,7 @@ export const adminSideBarItems = [
     },
     {
         title: "Products",
-        role: ["SALES", "FINANCE"],
+        role: ["SALES", "FINANCE", "WAREHOUSE_MANAGER"],
         url: "/admin/products",
         icon: <Laptop />,
     },
