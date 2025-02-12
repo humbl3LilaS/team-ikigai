@@ -47,8 +47,8 @@ const OrderListPage: React.FC<OrderListPageProps> = ({ userId }) => {
         <div className="w-full flex justify-center items-start sm:p-5">
             <div className="w-full sm:w-3/4 mx-auto">
                 <div className="flex items-center">
-                    <Button variant="link">
-                        <Link href="/category">
+                    <Button variant="link" asChild={true}>
+                        <Link href="/profile">
                             <CircleChevronLeft
                                 style={{ width: "1.5rem", height: "1.5rem" }}
                             />

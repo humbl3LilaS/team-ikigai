@@ -1,5 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -36,6 +37,7 @@ const CheckoutForm = ({ defaultValues }: { defaultValues: IUserInfo }) => {
     const emptyCart = useCartStore((state) => state.emptyCart);
 
     const { toast } = useToast();
+    const queryClient = useQueryClient();
 
     const form = useForm<IOrderInsert>({
         resolver: zodResolver(orderInsertSchema),
@@ -64,7 +66,10 @@ const CheckoutForm = ({ defaultValues }: { defaultValues: IUserInfo }) => {
             title: "Checkout Success",
         });
         emptyCart();
-        router.push("/profile/orders");
+        await queryClient.invalidateQueries({
+            queryKey: ["orders"],
+        });
+        router.replace("/profile/orders");
     };
 
     const region = form.watch("region");
