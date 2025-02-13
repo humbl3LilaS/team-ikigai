@@ -1,9 +1,15 @@
 import DriverDetails from "@/features/admin/driver/components/driver-details";
 
-const DriverDetailsPage = () => {
+const DriverDetailsPage = async ({
+    params,
+}: {
+    params: Promise<{ slug: string }>
+
+}) => {
+    const { slug } = await params;
     return (
         <>
-            <DriverDetails />
+            <DriverDetails id={slug} />
         </>
     );
 };
