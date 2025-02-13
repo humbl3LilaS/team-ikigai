@@ -1,6 +1,12 @@
 import { Writeable, z } from "zod";
 
 import { BRAND, PRODUCT_CATEGORY } from "@/constants";
+import {
+    COMPLAIN_STATUS,
+    COMPLAIN_TYPE,
+    IComplainStatus,
+    IComplainType,
+} from "@/database/schema";
 
 export const SignInSchema = z.object({
     email: z.string().email(),
@@ -36,3 +42,23 @@ export const FilterFormSchema = z.object({
 });
 
 export type TFilterFormSchema = Zod.infer<typeof FilterFormSchema>;
+
+export const ComplainFormSchema = z.object({
+    orderId: z.string().min(1),
+    orderDetailsId: z
+        .string()
+        .array()
+        .refine((arg) => arg.length > 0, {
+            message: "Please select at least one item",
+        }),
+    type: z
+        .string()
+        .refine((arg) =>
+            COMPLAIN_TYPE.enumValues.includes(arg as IComplainType),
+        ),
+    issue: z.string().min(10, {
+        message: "Issue must be at least 10 characters long",
+    }),
+});
+
+export type TComplainFormSchema = Zod.infer<typeof ComplainFormSchema>;

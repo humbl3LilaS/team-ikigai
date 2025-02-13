@@ -27,7 +27,6 @@ export const PAYMENT_METHOD = pgEnum("payment_method", [
     "WAVE_PAY",
     "CASH_ON_DELIVERY",
 ]);
-export const TYPE = pgEnum("type", ["REPAIR", "EXCHANGE"]);
 export const ORDER_STATUS = pgEnum("order_status", [
     "PENDING",
     "CANCEL",
@@ -35,12 +34,12 @@ export const ORDER_STATUS = pgEnum("order_status", [
     "ON_THE_WAY",
     "FINISH",
 ]);
-export const INVOICE_STATUS = pgEnum("invoice_status", ["SUCCESS", "COMPLAIN"]);
 export const COMPLAIN_STATUS = pgEnum("complain_status", [
-    "EXCHANGE",
-    "REPAIR",
+    "PENDING",
+    "APPROVE",
+    "SOLVED",
 ]);
-
+export const COMPLAIN_TYPE = pgEnum("complain_type", ["EXCHANGE", "REPAIR"]);
 export const DELIVERY_STATUS = pgEnum("delivery_status", [
     "PENDING",
     "IN-TRANSIT",
@@ -146,13 +145,16 @@ export const invoices = pgTable("invoices", {
 
 export const complains = pgTable("complains", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    orderItemId: uuid("invoice_id")
+    orderItemId: uuid("order_item_id")
         .references(() => orderItems.id, { onDelete: "cascade" })
         .notNull(),
-    type: TYPE("type"),
+    type: COMPLAIN_TYPE("type").notNull(),
     issues: text("issues").notNull(),
-    status: COMPLAIN_STATUS("complain_status").notNull(),
-    reason: text("reason").notNull(),
+    status: COMPLAIN_STATUS("complain_status").default("PENDING").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+        .defaultNow()
+        .notNull(),
+    resolvedAt: timestamp("resolved_at", { withTimezone: true }),
 });
 export const warehouseManagers = pgTable("warehouse_managers", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
@@ -417,3 +419,8 @@ export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];
 export type IDeliveryStatus = (typeof DELIVERY_STATUS.enumValues)[number];
 export type IDelivery = InferSelectModel<typeof deliveries>;
 export type IWarehouses = InferSelectModel<typeof warehouses>;
+
+// Complains
+export type IComplainType = (typeof COMPLAIN_TYPE.enumValues)[number];
+export type IComplainStatus = (typeof COMPLAIN_STATUS.enumValues)[number];
+export type IComplain = InferSelectModel<typeof complains>;

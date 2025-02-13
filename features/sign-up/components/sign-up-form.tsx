@@ -1,8 +1,20 @@
 "use client";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { IUserInsert, UserInsertSchema } from "@/database/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import PasswordField from "@/components/share/client/password-field";
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 import {
     Form,
     FormControl,
@@ -12,20 +24,9 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import PasswordField from "@/components/share/client/password-field";
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { IUserInsert, UserInsertSchema } from "@/database/schema";
 import { signUp } from "@/features/sign-up/actions/sign-up-action";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import Link from "next/link";
 
 const SignUpForm = () => {
     const form = useForm<IUserInsert>({
