@@ -6,11 +6,6 @@ import { useState } from "react";
 const CustomerDetails = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-    // const showProductDetails = () => {
-    //     setIsVisible(!isVisible);
-    // };
-
-
     return (
         <>
             <section className="w-full flex flex-col items-center justify-center p-4">
