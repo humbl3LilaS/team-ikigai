@@ -25,6 +25,7 @@ export async function cleanUp() {
     await db.delete(products);
 
     await db.delete(productColors);
+
     await db.delete(productDetails);
 
     await db.delete(drivers);
