@@ -35,7 +35,7 @@ const ProfileLayout = async ({ userId }: ProfileLayoutProps) => {
                 <hr className="my-2" />
                 <TotalSpend userId={userinfo.id} />
                 <hr className="my-2" />
-                <ProfileCard userRole={userinfo.role} />
+                <ProfileCard />
                 <hr className="my-2" />
                 <Logout />
             </div>
