@@ -15,7 +15,6 @@ import {
 
 import { getDriverDetailsById } from "../actions/get-driver-details-by-id";
 
-
 const DriverDetails = async ({ id }: { id: string }) => {
     const driverInfo = await getDriverDetailsById(id);
     if (!driverInfo) {
