@@ -3,7 +3,7 @@ import DriverDeliveriesTable from "./driver-deliveries-table";
 const DriverDetails = () => {
     return (
         <>
-            <section className="w-full flex flex-col items-center justify-center md:p-4">
+            <section className="flex flex-col items-center justify-center md:p-4">
                 <div className="border border-black w-36 h-36 rounded-full flex items-center justify-center text-xl mb-4 ">
                     Profile Image
                 </div>

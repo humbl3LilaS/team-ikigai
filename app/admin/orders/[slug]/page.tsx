@@ -1,5 +1,5 @@
 
-import OrderDetails from "@/features/admin/order/components/order-details";
+import OrderDetails from "@/features/admin/orders/components/order-details";
 
 const OrderPage = async () => {
     return (
