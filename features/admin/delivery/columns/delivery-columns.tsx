@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 
 import { TDeliveryInfo } from "@/features/admin/delivery/actions/get-deliveries";
+import DeliveryStatus from "../components/delivery-status";
 
 const columnHelper = createColumnHelper<TDeliveryInfo>();
 
@@ -44,9 +45,7 @@ export const deliveryColumns = [
     }),
     columnHelper.accessor("status", {
         header: () => <span>Delivery Status</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
-        ),
+        cell: ({ getValue }) => <DeliveryStatus status={getValue()} />,
     }),
     columnHelper.accessor("createdAt", {
         header: () => <span>Created At</span>,

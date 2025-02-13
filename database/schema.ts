@@ -410,3 +410,4 @@ export type TProductUpdateSchema = Zod.infer<typeof ProductUpdateSchema>;
 // Invoices
 export type IInvoice = InferSelectModel<typeof invoices>;
 export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];
+export type IDeliveryStatus = (typeof DELIVERY_STATUS.enumValues)[number];
