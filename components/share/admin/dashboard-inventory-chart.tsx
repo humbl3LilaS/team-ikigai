@@ -98,6 +98,8 @@ export function InventoryChart() {
               accessibilityLayer
               data={formattedData}
               layout="vertical"
+              barSize={formattedData.length > 5 ? 40 : 30}
+              barCategoryGap={formattedData.length > 5 ? "20%" : "50%"}
               margin={{
                 right: 16,
               }}

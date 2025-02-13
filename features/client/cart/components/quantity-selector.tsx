@@ -24,7 +24,7 @@ const QuantitySelector = ({
             >
                 <Minus />
             </Button>
-            <span>{value}</span>
+            <span className="tabular-nums">{value}</span>
             <Button
                 variant={"link"}
                 type={"button"}

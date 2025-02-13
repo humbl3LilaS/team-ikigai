@@ -1,4 +1,6 @@
-import React from "react";
+import Image from "next/image";
+
+import { auth } from "@/auth";
 import { UserRole } from "@/database/schema";
 
 export interface IUser {
@@ -12,15 +14,19 @@ export interface IUser {
     region: string | null;
 }
 
-const UserInfo: React.FC<IUser> = ({ name, email, phoneNumber }) => {
+const UserInfo: React.FC<IUser> = async ({ name, email }) => {
+    const session = await auth();
+    const UID = session?.user.id;
     return (
         <>
             {" "}
             <div className=" px-6 w-full flex flex-col sm:justify-center sm:items-start justify-center items-center bg-transparent overflow-hidden">
                 {/* User Avatar */}
                 <div className="sm:mr-6">
-                    <img
-                        src="https://avatar.iran.liara.run/public"
+                    <Image
+                        src={`https://robohash.org/${UID}?set=set3`}
+                        width={120}
+                        height={120}
                         alt="User avatar"
                         className="w-24 h-24 border rounded-full mx-auto"
                     />

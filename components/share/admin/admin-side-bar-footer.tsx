@@ -30,7 +30,6 @@ export default function AdminSidebarFooter() {
   const session = useSession();
   const userId = session.data?.user.id;
 
-
   const { data, isLoading } = useQuery({
     queryKey: ["dbId"],
     queryFn: () => getUserNameFromDb(userId!),
@@ -56,8 +55,9 @@ export default function AdminSidebarFooter() {
               <DropdownMenuItem>
                 <Link className="w-full h-full text-left" href="/admin/account">Account</Link>
               </DropdownMenuItem >
-              {/* <DropdownMenuItem> */}
-              {/* <button className="w-full h-full text-left" type="button" onClick={switchTheme}>Switch Theme</button> */}
+              {/* <DropdownMenuItem>
+                <Link replace={true} prefetch={false} href="/">Home Page</Link>
+              </DropdownMenuItem> */}
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>Switch Theme</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
@@ -67,7 +67,6 @@ export default function AdminSidebarFooter() {
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
-              {/* </DropdownMenuItem> */}
               <DropdownMenuItem>
                 <button type="button" className="w-full text-left" onClick={() => signOut()}>Logout</button>
               </DropdownMenuItem>

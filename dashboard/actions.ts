@@ -6,9 +6,9 @@ import { db } from "@/database/dirzzle";
 import { orderItems, orders, productDetails, products, stocks, users, warehouses } from "@/database/schema";
 
 // Dashboard Page
-export const getFinishedOrdersCount = async () => {
+export const getDeliveringOrders = async () => {
   try {
-    return (await db.select({ count: count() }).from(orders).where(eq(orders.status, "FINISH")))[0];
+    return (await db.select({ count: count() }).from(orders).where(eq(orders.status, "ON_THE_WAY")))[0];
   } catch {
     return { count: 0 };
   }

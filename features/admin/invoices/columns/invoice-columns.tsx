@@ -46,8 +46,8 @@ export const columns = [
         header: () => <span>Amount</span>,
         cell: ({ getValue }) => (
             <p className={"flex gap-x-1 items-baseline"}>
+                <span className={" line-clamp-1 font-bold text-right w-full"}>{getValue().toLocaleString()}</span>
                 <span className={"font-semibold text-xs"}>$</span>
-                <span className={" line-clamp-1 font-bold "}>{getValue()}</span>
             </p>
         ),
     }),

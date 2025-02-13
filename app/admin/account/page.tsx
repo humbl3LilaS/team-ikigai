@@ -31,6 +31,7 @@ export default async function AccountPage() {
             <h1 className="">{getUserName?.name}</h1>
             <p className="bg-muted px-2 py-0.5 rounded-md text-xs ml-2 cursor-default select-none">{session?.user.role}</p>
           </div>
+          <p className="text-sm text-muted-foreground">{session?.user.email}</p>
         </section>
 
         <section className="flex items-center justify-center">

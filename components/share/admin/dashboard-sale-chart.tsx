@@ -71,7 +71,7 @@ export function SaleChart() {
           </DropdownMenu>
         </CardTitle>
         <CardDescription>
-          Showing data for {period == "monthly" ? "previous month" : "previous 7 days"}.
+          Showing Sale data for {period == "monthly" ? "last month" : "previous 7 days"}.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -113,7 +113,7 @@ export function SaleChart() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Total Sales: <span className="bg-muted font-medium px-1 py-0.5 mx-1 rounded-sm">${totalSales.toLocaleString()}</span>{period == "weekly" ? "for this week." : "for previous month."}
+          Total Sales: <span className="bg-muted font-medium px-1 py-0.5 mx-1 rounded-sm">${totalSales.toLocaleString()}</span>{period == "weekly" ? "for this week." : "for last month."}
         </div>
       </CardFooter>
     </Card>
