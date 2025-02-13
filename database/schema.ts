@@ -416,3 +416,4 @@ export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];
 
 export type IDeliveryStatus = (typeof DELIVERY_STATUS.enumValues)[number];
 export type IDelivery = InferSelectModel<typeof deliveries>;
+export type IWarehouses = InferSelectModel<typeof warehouses>;

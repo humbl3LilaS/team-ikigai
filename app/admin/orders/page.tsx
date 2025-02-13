@@ -1,7 +1,4 @@
-import { notFound, redirect } from "next/navigation";
-
-import { auth } from "@/auth";
-import { adminSideBarItems } from "@/constants/ui-constants";
+import { handleAdminRoutes } from "@/dashboard/handle-admin-routes";
 import { IOrderStatus, UserRole } from "@/database/schema";
 import OrderTable from "@/features/admin/orders/components/order-table";
 
@@ -19,24 +16,14 @@ const getOrderTableActionPermission = (
 };
 
 export default async function OrderPage() {
-    const session = await auth();
-    if (!session) {
-        redirect("/sign-in");
-    }
-    const role = session.user.role;
-    const acceptRoles = adminSideBarItems.find(
-        ({ title }) => title == "Orders",
-    );
-    const isValidate = acceptRoles?.role.includes(role!);
-    if (!isValidate) {
-        notFound();
-    }
+    const session = await handleAdminRoutes("Orders");
+    const role = session?.user.role;
 
-    const permittedStatus = getOrderTableActionPermission(role);
+    const permittedStatus = role ? getOrderTableActionPermission(role) : undefined;
 
     return (
         <section className={"flex-1 p-6"}>
-            {WRITE_PERMISSION.includes(role) && (
+            {role && WRITE_PERMISSION.includes(role) && (
                 <>
                     <h2 className={"p-6 font-bold text-xl"}>Pending Orders</h2>
                     <OrderTable status={permittedStatus} />

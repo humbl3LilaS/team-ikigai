@@ -12,15 +12,20 @@ import DataTableBody from "@/components/share/admin/data-table-body";
 import { Button } from "@/components/ui/button";
 import {
     columns,
-    WAREHOUSE_PLACEHOLDER,
 } from "@/features/admin/warehouses/columns/warehouse-column";
+
+import { useGetWarehouses } from "../hooks/use-get-warehouses";
+
+
+
 const DeliveryTable = () => {
+    const { data } = useGetWarehouses();
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: 510,
     });
     const table = useReactTable({
-        data: WAREHOUSE_PLACEHOLDER,
+        data: data ?? [],
         columns: columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
@@ -32,7 +37,7 @@ const DeliveryTable = () => {
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
             <div>
-                <DataTableBody table={table} data={WAREHOUSE_PLACEHOLDER} />
+                <DataTableBody table={table} data={data} />
                 <div className="flex items-center justify-between space-x-2 py-4">
                     <p className={"text-foreground text-sm font-semibold"}>
                         Page {pagination.pageIndex + 1} of{" "}

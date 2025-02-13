@@ -7,6 +7,7 @@ import {
     ShoppingCart,
     Truck,
     Users,
+    Warehouse,
 } from "lucide-react";
 
 export const CLIENT_NAV_ITEMS = [
@@ -25,50 +26,66 @@ export const CLIENT_NAV_ITEMS = [
 export const adminSideBarItems = [
     {
         title: "Dashboard",
-        role: ["SALES", "FINANCE"],
-        url: "/admin",
+        role: ["ADMIN", "SALES", "FINANCE"],
+        url: "/admin/dashboard",
         icon: <Home />,
     },
     {
         title: "Orders",
-        role: ["SALES", "FINANCE", "WAREHOUSE_MANAGER"],
+        role: ["ADMIN", "SALES", "FINANCE", "WAREHOUSE_MANAGER"],
         url: "/admin/orders",
         icon: <ShoppingCart />,
     },
     {
         title: "Customers",
-        role: ["SALES", "FINANCE"],
+        role: ["ADMIN", "SALES", "FINANCE"],
         url: "/admin/customers",
         icon: <Users />,
     },
     {
         title: "Products",
-        role: ["SALES", "FINANCE", "WAREHOUSE_MANAGER"],
+        role: ["ADMIN", "SALES", "FINANCE", "WAREHOUSE_MANAGER"],
         url: "/admin/products",
         icon: <Laptop />,
     },
     {
         title: "Reports",
-        role: ["SALES", "FINANCE"],
+        role: ["ADMIN", "SALES", "FINANCE"],
         url: "/admin/reports",
         icon: <ChartLine />,
     },
     {
         title: "Invoice",
-        role: ["SALES", "FINANCE"],
+        role: ["ADMIN", "SALES", "FINANCE"],
         url: "/admin/invoices",
         icon: <ArrowRightLeft />,
     },
     {
         title: "Drivers",
-        role: ["WAREHOUSE_MANAGER"],
+        role: ["ADMIN", "WAREHOUSE_MANAGER"],
         url: "/admin/drivers",
         icon: <Car />,
     },
     {
         title: "Deliveries",
-        role: ["DRIVER", "WAREHOUSE_MANAGER"],
+        role: ["ADMIN", "DRIVER", "WAREHOUSE_MANAGER"],
         url: "/admin/deliveries",
         icon: <Truck />,
     },
+    {
+        title: "Warehouses",
+        role: ["ADMIN", "WAREHOUSE_MANAGER"],
+        url: "/admin/warehouses",
+        icon: <Warehouse />,
+    },
 ];
+export type TAdminRoutes =
+    "Dashboard" |
+    "Orders" |
+    "Customers" |
+    "Products" |
+    "Reports" |
+    "Invoice" |
+    "Drivers" |
+    "Deliveries" |
+    "Warehouses";
