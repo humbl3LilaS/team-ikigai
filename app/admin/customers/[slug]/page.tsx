@@ -1,8 +1,14 @@
 import CustomerDetails from "@/features/admin/customer/components/customer-details";
 
-const CustomerDetailsPage = () => {
+const CustomerDetailsPage = async ({
+    params,
+}: {
+    params: Promise<{ slug: string }>
+
+}) => {
+    const { slug } = await params;
     return (
-        <CustomerDetails />
+        <CustomerDetails id={slug} />
     );
 };
 
