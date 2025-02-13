@@ -14,13 +14,16 @@ const Header = async () => {
     const session = await auth();
     return (
         <nav className="flex max-h-32 justify-between select-none gap-7 md:gap-2 py-4 sm:px-8 px-3 bg-white items-center text-white">
-            <div className="text-black hidden md:flex font-semibold md:gap-5 lg:gap-8">
-                <RouteLink />
-            </div>
 
             <Link href={"/"}>
                 <Image src="/brandLogo.png" width={72} height={30} alt="logo" />
             </Link>
+
+            <div className="text-black h-full hidden md:flex gap-3">
+                <RouteLink />
+            </div>
+
+            
 
             <div className="md:hidden">
                 <MobileNav isLoggedIn={!!session} />

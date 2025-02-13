@@ -19,6 +19,12 @@ const spaceGrotesk = localFont({
     weight: "500 600 700 800 900",
 });
 
+const oswald = localFont({
+    src:"/fonts/Oswald-VariableFont_wght.ttf",
+    variable:"--font-oswald",
+    weight:"200 300 400 500 600 700",
+});
+
 export const metadata: Metadata = {
     title: "MyanTech Store",
     description:
@@ -38,7 +44,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
+                className={`${inter.className} ${spaceGrotesk.variable} ${oswald.variable} antialiased`}
             >
                 <QueryProvider>
                     <SessionProvider>{children}</SessionProvider>
