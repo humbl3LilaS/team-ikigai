@@ -6,7 +6,7 @@ export default async function DeliveriesPage() {
     const role = session?.user.role;
     return (
         <section className={"flex-1 p-6"}>
-            {role === "WAREHOUSE_MANAGER" && (
+            {(role === "WAREHOUSE_MANAGER" || role === "ADMIN") && (
                 <>
                     <h2 className={"mb-4 font-bold text-xl"}>
                         Deliveries Table

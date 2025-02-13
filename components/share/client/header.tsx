@@ -14,7 +14,6 @@ const Header = async () => {
     const session = await auth();
     return (
         <nav className="flex max-h-32 justify-between select-none gap-7 md:gap-2 py-4 sm:px-8 px-3 bg-white items-center text-white">
-
             <Link href={"/"}>
                 <Image src="/brandLogo.png" width={72} height={30} alt="logo" />
             </Link>
@@ -23,10 +22,8 @@ const Header = async () => {
                 <RouteLink />
             </div>
 
-            
-
             <div className="md:hidden">
-                <MobileNav isLoggedIn={!!session} />
+                <MobileNav isLoggedIn={!!session} role={session?.user.role} />
             </div>
 
             <div className="hidden md:flex justify-between gap-5">
@@ -53,6 +50,14 @@ const Header = async () => {
                             className="text-black hidden sm:flex font-semibold py-1.5 px-3 text-[14px] items-center border hover:black hover:text-blue-500 hover:bg-transparent rounded-sm"
                         >
                             Get started
+                        </Link>
+                    )}
+                    {session?.user.role !== "USER" && (
+                        <Link
+                            href={"/admin"}
+                            className="text-black hidden sm:flex font-semibold py-1.5 px-3 text-[14px] items-center border hover:black hover:text-blue-500 hover:bg-transparent rounded-sm"
+                        >
+                            Go to Dashboard
                         </Link>
                     )}
                 </div>
