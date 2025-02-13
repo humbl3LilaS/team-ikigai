@@ -2,6 +2,7 @@
 
 import { db } from "@/database/dirzzle";
 import { IOrderInsert, orderItems, orders } from "@/database/schema";
+import { updateStock } from "@/features/client/cart/actions/update-stock";
 import { ICartItem } from "@/features/client/cart/hooks/use-cart-store";
 import { Cause } from "@/features/sign-in/actions/sign-in-actions";
 
@@ -27,7 +28,14 @@ export const submitCheckout = async (
                 quantity: item.q,
             });
         });
+
         await Promise.all(orderItemsPromise);
+
+        const warehousePromise = cart.map((item) => {
+            return updateStock(item.pid, item.q);
+        });
+
+        await Promise.all(warehousePromise);
         return { success: true };
     } catch {
         return {

@@ -33,9 +33,23 @@ const AddToCartForm = ({ data }: { data: TProductDetailInfo }) => {
 
     const { toast } = useToast();
     const onSubmit: SubmitHandler<CheckoutFormSchemaType> = (values) => {
-        const pid = data.variants.find(
+        const product = data.variants.find(
             (item) => item.colorId === values.colorId,
-        )!.productId;
+        );
+        if (!product) {
+            return toast({
+                title: "Error Adding Items to Cart",
+            });
+        }
+        const pid = product.productId;
+        const stock = product.stock;
+        if (values.quantity > stock) {
+            return toast({
+                title: "Error Adding Items to Cart",
+                description: "Invalid quantity.",
+                variant: "destructive",
+            });
+        }
         const newItem = {
             pid,
             cid: values.colorId,
@@ -47,6 +61,13 @@ const AddToCartForm = ({ data }: { data: TProductDetailInfo }) => {
         if (!isInCart) {
             addToCart(newItem);
         } else {
+            if (isInCart.q + newItem.q > stock) {
+                return toast({
+                    title: "Error Adding Items to Cart",
+                    description: "Invalid quantity.",
+                    variant: "destructive",
+                });
+            }
             increaseQty({ ...newItem, qty: newItem.q });
         }
         toast({

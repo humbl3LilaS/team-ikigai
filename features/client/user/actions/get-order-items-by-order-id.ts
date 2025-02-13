@@ -9,6 +9,7 @@ export const getOrderItemsByOrderId = async (orderId: string) => {
         const res = await db
             .select({
                 id: products.id,
+                orderItemId: orderItems.id,
                 name: productDetails.name,
                 price: productDetails.price,
                 quantity: orderItems.quantity,
