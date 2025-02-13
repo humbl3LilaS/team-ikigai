@@ -1,10 +1,10 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import { ChevronUp, User2 } from "lucide-react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 import {
   DropdownMenu,
@@ -22,18 +22,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getUserNameFromDb } from "@/dashboard/actions";
 
 export default function AdminSidebarFooter() {
   const { setTheme } = useTheme();
   const session = useSession();
-  const [userName, setUserName] = useState(session.data?.user.name);
+  const userId = session.data?.user.id;
 
-  useEffect(() => {
-    if (session.data?.user.id) {
-      getUserNameFromDb(session.data?.user.id).then(name => setUserName(name.name));
-    }
-  }, [userName, setUserName, session.data?.user.id]);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["dbId"],
+    queryFn: () => getUserNameFromDb(userId!),
+    staleTime: 1000 * 60 * 30,
+    enabled: !!userId,
+  });
 
   return (
     <SidebarFooter>
@@ -42,7 +45,7 @@ export default function AdminSidebarFooter() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                <User2 /> {userName?.toString()}
+                <User2 /> {isLoading ? <Skeleton className="w-full h-full" /> : data?.name}
                 <ChevronUp className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>

@@ -61,7 +61,7 @@ export const adminSideBarItems = [
     },
     {
         title: "Drivers",
-        role: ["FINANCE", "DRIVER", "WAREHOUSE_MANAGER"],
+        role: ["WAREHOUSE_MANAGER"],
         url: "/admin/drivers",
         icon: <Car />,
     },
