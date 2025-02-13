@@ -1,18 +1,7 @@
-import {
-    User2Icon,
-    ShoppingCart,
-    MessageCircleDashed,
-    BriefcaseBusiness,
-} from "lucide-react";
+import { User2Icon, ShoppingCart, MessageCircleDashed } from "lucide-react";
 import Link from "next/link";
 
-import { UserRole } from "@/database/schema";
-
-interface ProfileCardProps {
-    userRole: UserRole;
-}
-
-export const ProfileCard = ({ userRole }: ProfileCardProps) => {
+export const ProfileCard = () => {
     return (
         <div className="w-[100%] bg-gray-100 rounded-lg p-4 text-center">
             {/* Navigation Links */}
@@ -51,19 +40,6 @@ export const ProfileCard = ({ userRole }: ProfileCardProps) => {
                             </h5>
                         </Link>
                     </li>
-                    {userRole === "USER" && (
-                        <li>
-                            <Link href="/profile/register" className="">
-                                <h5 className="w-full flex p-1 rounded hover:bg-gray-200 text-gray-700 text-start   ">
-                                    <BriefcaseBusiness
-                                        size={25}
-                                        className="mr-3"
-                                    ></BriefcaseBusiness>{" "}
-                                    B2B
-                                </h5>
-                            </Link>
-                        </li>
-                    )}
                 </ul>
             </nav>
         </div>
