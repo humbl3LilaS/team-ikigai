@@ -13,6 +13,20 @@ body::-webkit-scrollbar {
     display: none;
   }
 
+.small-scollbar::-webkit-scrollbar {
+    width: 5px; 
+    height: 5px;
+  }
+  
+.small-scrollbar::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px; 
+  }
+  
+.small-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -116,4 +130,18 @@ body::-webkit-scrollbar {
     .admin-approve-status {
         @apply bg-blue-300/20 text-blue-500;
     }
+    .bg-conic-custom{
+        background: conic-gradient(from 0deg, #cbe0f4, #ccd1ec, #df9dd4)
+    }
+    .transition-hero{
+        @apply transition-all duration-300;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+      
 }

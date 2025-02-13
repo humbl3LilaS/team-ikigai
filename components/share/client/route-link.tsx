@@ -7,18 +7,30 @@ const RouteLink = () => {
     const pathname = usePathname();
   return (
     <>
-        <Link href="/" className={`${pathname === "/" ? "text-blue-600 underline underline-offset-4" : "text-black"}`}>
+        <Link href="/" className={`${pathname === "/" && "font-semibold"} text-[#2c3e50] tracking-wider text-[15px]`}>
             Home
         </Link>
-        <Link href="/about" className={`${pathname === "/about" ? "text-blue-600 underline underline-offset-4" : "text-black"}`}>
-            About
-        </Link>
-        <Link href="/contact" className={`${pathname === "/contact" ? "text-blue-600 underline underline-offset-4" : "text-black"}`}>
-            Contact
-        </Link>
-        <Link href="/category" className={`${pathname === "/category" ? "text-blue-600 underline underline-offset-4" : "text-black"}`}>
+
+        <div className="w-[1px] bg-[#b4b4b4] opacity-45 py-2" />
+
+        <Link href="/category" className={`${pathname === "/category" && "font-semibold"} text-[#2c3e50] tracking-wide text-[15px]`}>
             Shop
         </Link>
+
+        <div className="w-[1px] bg-[#b4b4b4] opacity-45" />
+
+        <Link href="/about" className={`${pathname === "/about" && "font-semibold"} text-[#2c3e50] tracking-wide text-[15px]`}>
+            About
+        </Link>
+
+        <div className="w-[1px] bg-[#b4b4b4] opacity-45" />
+
+        <Link href="/contact" className={`${pathname === "/contact" && "font-semibold"} text-[#2c3e50] tracking-wide text-[15px]`}>
+            Contact
+        </Link>
+
+
+        
     </>
   );
 };

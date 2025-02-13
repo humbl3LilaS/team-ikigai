@@ -97,8 +97,14 @@ export default {
     			],
     			'space-grotesk': [
     				'var(--font-space-grotesk)'
-    			]
-    		}
+    			],
+				oswald:[
+					'var(--font-oswald)'
+				]
+    		},
+			screens:{
+				xs:'480px'
+			}
     	}
     },
     plugins: [tailwindCssAnimate, typography],
