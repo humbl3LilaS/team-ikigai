@@ -12,7 +12,6 @@ export const getDrivers = async () => {
                 id: drivers.id,
                 name: users.name,
                 deliveryRoute: drivers.deliveryRoute,
-                orderLimit: drivers.orderLimit,
                 vehiclePlateNumber: drivers.vehiclePlateNumber,
             })
             .from(drivers)

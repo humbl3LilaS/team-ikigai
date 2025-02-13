@@ -9,6 +9,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { IOrderStatus } from "@/database/schema";
+import DispatchDeliveriesDialog from "@/features/admin/orders/components/dispatch-deliveries-dialog";
 import { useChangeOrderStatus } from "@/features/admin/orders/hooks/use-change-order-status";
 
 const OrderTableActionBtn = ({
@@ -22,16 +23,6 @@ const OrderTableActionBtn = ({
 
     const role = session && session?.user.role;
 
-    const getNextAction = (status: IOrderStatus): IOrderStatus | undefined => {
-        switch (status) {
-            case "PENDING":
-                return "APPROVE";
-            case "APPROVE":
-                return "ON_THE_WAY";
-        }
-    };
-
-    const nextStatus = getNextAction(status);
     const { mutateAsync, isPending } = useChangeOrderStatus();
 
     if (role === "SALES" && (status === "ON_THE_WAY" || status === "APPROVE")) {
@@ -63,7 +54,9 @@ const OrderTableActionBtn = ({
                         Approve
                     </Button>
                 )}
-                {status === "APPROVE" && <Button>Dispatch</Button>}
+                {status === "APPROVE" && (
+                    <DispatchDeliveriesDialog orderId={orderId} />
+                )}
             </PopoverContent>
         </Popover>
     );

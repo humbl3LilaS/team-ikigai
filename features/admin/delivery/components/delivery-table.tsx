@@ -14,8 +14,8 @@ import { Button } from "@/components/ui/button";
 import { deliveryColumns } from "@/features/admin/delivery/columns/delivery-columns";
 import { useGetDeliveries } from "@/features/admin/delivery/hooks/use-get-deliveries";
 
-const DeliveryTable = () => {
-    const { data: deliveries } = useGetDeliveries();
+const DeliveryTable = ({ userId }: { userId?: string }) => {
+    const { data: deliveries } = useGetDeliveries(userId);
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
         pageSize: 10,
