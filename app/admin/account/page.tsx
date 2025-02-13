@@ -1,4 +1,5 @@
-import { ArrowUpRight, User } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -6,7 +7,7 @@ import { auth } from "@/auth";
 import { adminSideBarItems } from "@/constants/ui-constants";
 import { getUserNameFromDb } from "@/dashboard/actions";
 import { AdminAccountForm } from "@/features/admin/account/component";
-import Logout from "@/features/admin/account/logout-btn";
+import { LogoutBtn } from "@/features/admin/account/logout-btn";
 
 export default async function AccountPage() {
   const session = await auth();
@@ -22,8 +23,9 @@ export default async function AccountPage() {
     <section className="p-3 h-[calc(100dvh-40px)] flex flex-col justify-between">
       <section className="">
         <section className="flex items-center flex-col gap-2">
-          <div className="size-24 rounded-full bg-muted flex items-center justify-center border-2 border-muted-foreground/20">
-            <User className="text-7xl size-14 text-muted-foreground" />
+          <div className="size-24 rounded-full bg-muted overflow-hidden flex items-center justify-center border-2 border-muted-foreground/20">
+            {/* <User className="text-7xl size-14 text-muted-foreground" /> */}
+            <Image draggable={false} src={`https://robohash.org/${session?.user.id}?set=set3`} alt="user avatar" width={96} height={96} />
           </div>
           <div className="flex">
             <h1 className="">{getUserName?.name}</h1>
@@ -35,7 +37,7 @@ export default async function AccountPage() {
           <AdminAccountForm currentUsername={getUserName?.name || ""} />
         </section>
 
-        <Logout />
+        <LogoutBtn />
 
       </section>
 

@@ -32,6 +32,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
 
@@ -40,6 +41,7 @@ import { useGetSaleReports } from "../hooks/use-get-products";
 
 const ReportTable = () => {
     const [date, setDate] = useState<string>(new Date().toDateString());
+    const { open, isMobile } = useSidebar();
 
     const FormSchema = z.object({
         date: z.date({
@@ -70,11 +72,12 @@ const ReportTable = () => {
         },
     });
     // console.log(report);
+
     return (
-        <div className={"p-6 bg-background rounded-2xl relative"}>
+        <div className={"p-6 bg-background rounded-2xl relative print:-[8.3in] print:w-[11.7in]"}>
             <div className="">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-2 mb-3 items-center">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex print:hidden gap-2 mb-3 items-center">
                         <FormField
                             control={form.control}
                             name="date"
@@ -125,17 +128,20 @@ const ReportTable = () => {
                 </Form>
             </div>
             <div>
-                {!report && <DataTableSkeleton paginationOn={true} />}
                 <p className="">{date}</p>
+                {!report && <DataTableSkeleton paginationOn={true} />}
                 {report && (
-                    <DataTableBody table={table} data={report ?? []} />
+                    <section className={`w-screen pr-3 print:w-full ${!isMobile && open ? "md:w-[calc(100vw-280px)]" : "md:w-[calc(100vw-100px)]"}`}>
+                        <DataTableBody table={table} data={report ?? []} />
+                        <div className="w-full bg-muted flex gap-2 py-2 mt-2 pl-2 ">
+                            <p className="">Total Sales: </p>
+                            <p className="font-medium">
+                                {report && report.reduce((sum, item) => sum + Number(item.totalSum), 0).toLocaleString()}
+                            </p>
+                        </div>
+                    </section>
                 )}
-                <div className="w-full bg-muted flex gap-2 py-2 mt-2 pl-2">
-                    <p className="">Total Sales: </p>
-                    <p className="font-medium">
-                        {report && report.reduce((sum, item) => sum + Number(item.totalSum), 0).toLocaleString()}
-                    </p>
-                </div>
+
             </div>
 
         </div>

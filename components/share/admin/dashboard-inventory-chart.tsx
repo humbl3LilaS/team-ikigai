@@ -52,11 +52,12 @@ export function InventoryChart() {
   const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["products", { warehouse, all }],
     queryFn: all ? getAllWarehouseCategory : () => getProductsCategory(warehouse),
+    staleTime: 1000 * 60 * 30,
   });
 
 
   let formattedData: TData[] = [];
-  if (isSuccess) {
+  if (isSuccess && data) {
     formattedData = data.map(item => ({
       ...item,
       count: Number(item.count),
@@ -71,12 +72,12 @@ export function InventoryChart() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='outline' size='sm'>
-                {all ? "all" : warehouse}
+                {all ? "All Warehouses" : warehouse}
                 <ChevronDownIcon className="ml-auto" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-background">
-              <DropdownMenuItem onClick={() => setAll(true)}>all</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setAll(true)}>All Warehouses</DropdownMenuItem>
               {
                 WAREHOUSES.map((warehouse, i) => (
                   <DropdownMenuItem key={i} onClick={() => {
@@ -145,7 +146,7 @@ export function InventoryChart() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm my01">
         <div className="flex gap-2 font-medium leading-none text-muted-foreground">
-          Showing {data?.length} categories from inventory.
+          Showing {data?.length} categories from warehouse.
         </div>
       </CardFooter>
     </Card>

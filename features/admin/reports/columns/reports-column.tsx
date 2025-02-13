@@ -146,7 +146,7 @@ export const columns = [
             );
         },
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1 text-xs"}>{getValue()}</span>
+            <span className={"max-w-[200px] line-clamp-1 text-xs"}>{getValue() == "ON_THE_WAY" ? "DELIVERING" : getValue()}</span>
         ),
     }),
 

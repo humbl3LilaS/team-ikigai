@@ -39,7 +39,7 @@ export function SaleChart() {
 
   const fetchSalesData = async () => {
     const sales = period === "weekly" ? await getFinishedWeeklySales() : await getFinishedMonthlySales();
-    return processChartData(sales);
+    return processChartData(sales || []);
   };
 
   const { data, isLoading } = useQuery({
@@ -60,13 +60,13 @@ export function SaleChart() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='outline' size='sm'>
-                {period == "monthly" ? "Previous Month" : "Previous Week"}
+                {period == "monthly" ? "Last Month" : "This Week"}
                 <ChevronDownIcon className="ml-auto" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-background">
-              <DropdownMenuItem onClick={() => setPeriod("weekly")}>Previous Week</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setPeriod("monthly")}>Previous Month</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setPeriod("weekly")}>This Week</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setPeriod("monthly")}>Last Month</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </CardTitle>

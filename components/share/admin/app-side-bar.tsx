@@ -25,10 +25,10 @@ const AppSideBar = () => {
     const role = session.data?.user.role;
 
     return (
-        <Sidebar collapsible="icon">
+        <Sidebar collapsible="icon" className="print:hidden">
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>{role} Department</SidebarGroupLabel>
+                    <SidebarGroupLabel>{role == "WAREHOUSE_MANAGER" ? "WAREHOUSE MANAGE" : role}</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {adminSideBarItems.map((item) => {

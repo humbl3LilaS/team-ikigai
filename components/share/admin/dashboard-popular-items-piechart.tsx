@@ -28,9 +28,6 @@ export function PopularItemsChart() {
     queryFn: getPopularItems,
   });
 
-  if (isLoading) {
-    return <Skeleton className="w-full min-h-32" />;
-  }
 
   const chartConfig = {
     quantity: {
@@ -55,28 +52,32 @@ export function PopularItemsChart() {
           <CardDescription>Top-selling products</CardDescription>
         </CardHeader>
         <CardContent className="flex-1 pb-0">
-          <ChartContainer
-            config={chartConfig}
-            className="mx-auto w-full"
-          >
-            <PieChart>
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Pie data={chartData} dataKey="quantity" nameKey="product">
-                <LabelList
-                  dataKey="product"
-                  position="outside"
-                  className="fill-muted-foreground"
-                  stroke="none"
-                  fontSize={10}
-                  angle={0}
-                  offset={5}
-                />
-              </Pie>
-            </PieChart>
-          </ChartContainer>
+          {
+            isLoading ?
+              <Skeleton className="w-full min-h-32" />
+              :
+              <ChartContainer
+                config={chartConfig}
+                className="mx-auto w-full"
+              >
+                <PieChart>
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent hideLabel />}
+                  />
+                  <Pie data={chartData} dataKey="quantity" nameKey="product">
+                    <LabelList
+                      dataKey="product"
+                      position="outside"
+                      className="fill-muted-foreground"
+                      stroke="none"
+                      fontSize={10}
+                      angle={0}
+                      offset={5}
+                    />
+                  </Pie>
+                </PieChart>
+              </ChartContainer>}
         </CardContent>
         <CardFooter className="flex-col gap-2 text-sm">
           <div className="flex items-center gap-2 font-medium leading-none">

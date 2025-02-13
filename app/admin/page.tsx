@@ -24,10 +24,10 @@ export default async function DashboardPage() {
             <h1 className="admin-header pl-2">Dashboard</h1>
             <section className="mb-2">
                 <h2 className="admin-secondary-header">Orders</h2>
-                <div className="flex gap-3 w-full items-center px-2 mx-auto">
-                    <OrderCard num={unfinishedOrders.count} title="Pending" color="bg-red-500/20 border-red-400 text-red-600 dark:text-red-200" />
-                    <OrderCard num={finishedOrders.count} title="Finished" color="bg-yellow-500/20 border-yellow-400 text-yellow-600 dark:text-yellow-200" />
-                    <OrderCard num={approvedOrders.count} title="Approved" color="bg-green-500/20 border-green-400 text-green-600 dark:text-green-200" />
+                <div className="flex gap-3 w-full items-center px-2 max-w-screen-lg">
+                    <OrderCard num={unfinishedOrders.count} title="Pending" color="bg-red-500/10 border-red-400/30 text-red-600 dark:text-red-100" />
+                    <OrderCard num={finishedOrders.count} title="Finished" color="bg-yellow-500/10 border-yellow-400/30 text-yellow-600 dark:text-yellow-100" />
+                    <OrderCard num={approvedOrders.count} title="Approved" color="bg-green-500/10 border-green-400/30 text-green-600 dark:text-green-100" />
                 </div>
             </section>
 
@@ -46,7 +46,7 @@ export default async function DashboardPage() {
 function OrderCard({ num, title, color }: { num: number, title: string, color: string }) {
     return (
         <div
-            className={`border max-w-72 p-3 lg:py-5 rounded-md text-center ring-secondary ring-1 basis-1/3 ${color}`}
+            className={`border p-3 lg:py-5 rounded-md text-center ring-secondary ring-1 basis-1/3 ${color}`}
         >
             <p className="text-3xl lg:text-5xl font-bold">{num}</p>
             <p>{title}</p>
