@@ -1,5 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -40,6 +41,7 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
     });
 
     const { toast } = useToast();
+    const queryClient = useQueryClient();
 
     const { data: orders, isLoading } = useGetOrdersByUserId(userId);
     const onSubmit: SubmitHandler<TComplainFormSchema> = async (values) => {
@@ -53,6 +55,9 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
         }
         toast({
             title: "Complaint Successfully Filed",
+        });
+        await queryClient.invalidateQueries({
+            queryKey: ["complains"],
         });
         form.reset();
     };
