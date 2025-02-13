@@ -1,7 +1,6 @@
 "use client";
 
 import { createColumnHelper } from "@tanstack/react-table";
-import { ArrowUpDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -21,10 +20,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("name", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Name <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Name
                 </Button>
             );
         },
@@ -34,10 +33,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("address", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Address <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Address
                 </Button>
             );
         },
@@ -47,10 +46,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("region", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Region <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Region
                 </Button>
             );
         },
@@ -60,10 +59,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("itemName", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Item <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Item
                 </Button>
             );
         },
@@ -73,10 +72,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("itemBrand", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Brand <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Brand
                 </Button>
             );
         },
@@ -86,10 +85,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("itemCategory", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Category <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Category
                 </Button>
             );
         },
@@ -99,10 +98,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("price", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Price <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Price
                 </Button>
             );
         },
@@ -112,10 +111,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("quantity", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Qty <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Qty
                 </Button>
             );
         },
@@ -125,10 +124,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("totalSum", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Total <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Total
                 </Button>
             );
         },
@@ -138,10 +137,10 @@ export const columns = [
     }),
 
     columnHelper.accessor("orderStatus", {
-        header: ({ column }) => {
+        header: () => {
             return (
-                <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Status <ArrowUpDown className="ml-2 h-4 w-4" />
+                <Button variant="ghost">
+                    Status
                 </Button>
             );
         },

@@ -3,7 +3,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
-import { getSession } from "next-auth/react";
 
 import { IOrderStatus } from "@/database/schema";
 import { TOrderInfo } from "@/features/admin/orders/actions/get-orders";
@@ -86,6 +85,7 @@ export const orderColumns = [
                 "FINISH",
                 "ON_THE_WAY",
             ];
+
             if (notAllowed.includes(row.original.status)) {
                 return <></>;
             }
