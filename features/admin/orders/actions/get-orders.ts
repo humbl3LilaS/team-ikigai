@@ -1,11 +1,11 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { orders, users } from "@/database/schema";
+import { IOrderStatus, orders, users } from "@/database/schema";
 
-export const getOrders = async () => {
+export const getOrders = async (status?: IOrderStatus) => {
     try {
         const res = await db
             .select({
@@ -21,7 +21,9 @@ export const getOrders = async () => {
                 address: orders.address,
             })
             .from(orders)
-            .innerJoin(users, eq(orders.userId, users.id));
+            .innerJoin(users, eq(orders.userId, users.id))
+            .where(status ? eq(orders.status, status) : undefined)
+            .orderBy(desc(orders.createdAt), desc(orders.totalAmount));
         if (!res) {
             return undefined;
         }

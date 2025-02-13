@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
     getCoreRowModel,
     getPaginationRowModel,
@@ -7,17 +7,18 @@ import {
 } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+
 import DataTableBody from "@/components/share/admin/data-table-body";
 import { Button } from "@/components/ui/button";
 import {
     columns,
     WAREHOUSE_PLACEHOLDER,
-} from "@/features/admin/warehouse/columns/warehouse-column";
+} from "@/features/admin/warehouses/columns/warehouse-column";
 const DeliveryTable = () => {
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 5
-    })
+        pageSize: 5,
+    });
     const table = useReactTable({
         data: WAREHOUSE_PLACEHOLDER,
         columns: columns,
@@ -59,6 +60,6 @@ const DeliveryTable = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 export default DeliveryTable;

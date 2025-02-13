@@ -32,10 +32,4 @@ export const columns = [
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
-    columnHelper.accessor("orderLimit", {
-        header: () => <span>Order Limit</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
-        ),
-    }),
 ];
