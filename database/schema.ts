@@ -19,6 +19,7 @@ export const ROLE_ENUM = pgEnum("role", [
     "WAREHOUSE_MANAGER",
     "DRIVER",
     "FINANCE",
+    "ADMIN",
 ]);
 export const CATEGORY = pgEnum("product_category", PRODUCT_CATEGORY);
 export const PAYMENT_METHOD = pgEnum("payment_method", [
@@ -410,4 +411,8 @@ export type TProductUpdateSchema = Zod.infer<typeof ProductUpdateSchema>;
 // Invoices
 export type IInvoice = InferSelectModel<typeof invoices>;
 export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];
+
+// Deliveries
+
 export type IDeliveryStatus = (typeof DELIVERY_STATUS.enumValues)[number];
+export type IDelivery = InferSelectModel<typeof deliveries>;

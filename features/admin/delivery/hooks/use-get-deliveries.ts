@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getDeliveries } from "@/features/admin/delivery/actions/get-deliveries";
 
-export const useGetDeliveries = () => {
+export const useGetDeliveries = (driverId?: string) => {
     return useQuery({
-        queryKey: ["deliveries"],
-        queryFn: getDeliveries,
+        queryKey: ["deliveries", driverId ? { driverId } : "all"],
+        queryFn: () => getDeliveries(driverId),
         staleTime: 60 * 60 * 1000,
     });
 };
