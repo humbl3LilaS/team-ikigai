@@ -1,4 +1,4 @@
-import WarehouseTable from "@/features/admin/warehouse/components/warehouse-table";
+import WarehouseTable from "@/features/admin/warehouses/components/warehouse-table";
 
 export default function WarehousePage() {
     return (

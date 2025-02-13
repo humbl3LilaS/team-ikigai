@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/database/dirzzle";
 import { deliveries, drivers, users } from "@/database/schema";
 
-export const getDeliveries = async () => {
+export const getDeliveries = async (userId?: string) => {
     try {
         const res = await db
             .select({
@@ -18,7 +18,9 @@ export const getDeliveries = async () => {
             })
             .from(deliveries)
             .innerJoin(drivers, eq(deliveries.driverId, drivers.id))
-            .innerJoin(users, eq(drivers.userId, users.id));
+            .innerJoin(users, eq(drivers.userId, users.id))
+            .where(userId ? eq(users.id, userId) : undefined);
+
         if (!res) {
             return undefined;
         }

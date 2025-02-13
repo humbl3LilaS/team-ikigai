@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 
 import { TDeliveryInfo } from "@/features/admin/delivery/actions/get-deliveries";
+import DeliveryTableActionBtn from "@/features/admin/delivery/components/delivery-table-action-btn";
 
 const columnHelper = createColumnHelper<TDeliveryInfo>();
 
@@ -42,12 +43,7 @@ export const deliveryColumns = [
             </Link>
         ),
     }),
-    columnHelper.accessor("status", {
-        header: () => <span>Delivery Status</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
-        ),
-    }),
+
     columnHelper.accessor("createdAt", {
         header: () => <span>Created At</span>,
         cell: ({ getValue }) => (
@@ -64,6 +60,21 @@ export const deliveryColumns = [
                     ? format(getValue()!, "do MMM yyyy")
                     : "Not Delivered"}
             </span>
+        ),
+    }),
+    columnHelper.accessor("status", {
+        header: () => <span>Delivery Status</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
+    columnHelper.accessor("driverId", {
+        header: () => <span className={"sr-only"}>Action Button</span>,
+        cell: ({ row }) => (
+            <DeliveryTableActionBtn
+                deliveryId={row.original.id}
+                currentStatus={row.original.status}
+            />
         ),
     }),
 ];

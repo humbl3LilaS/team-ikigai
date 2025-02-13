@@ -102,6 +102,7 @@ export const stocks = pgTable("stocks", {
         .notNull(),
     stock: integer("stock").notNull(),
 });
+
 export const orders = pgTable("orders", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
     userId: uuid("user_id")
@@ -185,7 +186,6 @@ export const drivers = pgTable("drivers", {
     warehouseId: uuid("warehouse_id")
         .references(() => warehouses.id, { onDelete: "set null" })
         .notNull(),
-    orderLimit: integer("order_limit").default(5),
 });
 
 export const deliveries = pgTable("deliveries", {
@@ -411,3 +411,8 @@ export type TProductUpdateSchema = Zod.infer<typeof ProductUpdateSchema>;
 // Invoices
 export type IInvoice = InferSelectModel<typeof invoices>;
 export type IPaymentMethod = (typeof PAYMENT_METHOD.enumValues)[number];
+
+// Deliveries
+
+export type IDeliveryStatus = (typeof DELIVERY_STATUS.enumValues)[number];
+export type IDelivery = InferSelectModel<typeof deliveries>;
