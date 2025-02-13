@@ -13,8 +13,15 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { CLIENT_NAV_ITEMS } from "@/constants/ui-constants";
+import { UserRole } from "@/database/schema";
 
-const MobileNav = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+const MobileNav = ({
+    isLoggedIn,
+    role,
+}: {
+    isLoggedIn: boolean;
+    role?: UserRole;
+}) => {
     return (
         <Sheet>
             <SheetTrigger
@@ -53,6 +60,14 @@ const MobileNav = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                 <div className="flex flex-col gap-3">
                     {isLoggedIn ? (
                         <>
+                            {role !== "USER" && (
+                                <Button
+                                    className="bg-gray-300 hover:bg-blue-200 hover:text-white hover:font-bold text-black font-bold flex gap-2"
+                                    asChild={true}
+                                >
+                                    <Link href="/admin">Go to Dashboard</Link>
+                                </Button>
+                            )}
                             <Button
                                 className="bg-gray-300 hover:bg-blue-200 hover:text-white hover:font-bold text-black font-bold flex gap-2"
                                 asChild={true}
