@@ -550,16 +550,16 @@ export const PRODUCT_PLACEHOLDER = [
 ];
 
 export const WAREHOUSES = [
-    "Grimes - Will",
-    "Harris, Veum and Dach",
-    "Kilback Inc",
-    "Kunde Group",
-    "Marvin - Balistreri",
-    "Quitzon LLC",
-    "Rath - Franecki",
-    "Rau, Emard and Kuhn",
-    "Reinger, Kunze and Kassulke",
-    "Roob - Braun",
+    "Kyi Myin Dine Branch",
+    "Kabar Aye Branch",
+    "Lanmadaw Branch",
+    "Bahan Branch",
+    "Hlaing Thayar Branch",
+    "Dagon Branch",
+    "Lathar Branch",
+    "Thingangyun Branch",
+    "Thaketa Branch",
+    "Hlaing Branch",
 ];
 
 export const BRAND = PRODUCT_PLACEHOLDER.map((item) => item.brand);

@@ -91,7 +91,7 @@ export const orderColumns = [
                         getOrderStatusClass(getValue()),
                     )}
                 >
-                    {getValue()}
+                    {getValue() == "ON_THE_WAY" ? "DELIVERING" : getValue()}
                 </span>
             </span>
         ),

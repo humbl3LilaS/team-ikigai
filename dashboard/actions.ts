@@ -51,6 +51,7 @@ export const getFinishedWeeklySales = async () => {
             or(
               eq(orders.status, "FINISH"),
               eq(orders.status, "APPROVE"),
+              eq(orders.status, "ON_THE_WAY"),
             ),
           ),
         )
@@ -140,7 +141,7 @@ export const getOrders = async () => {
 
 export const getCustomers = async () => {
   try {
-    const res = await db.select().from(users).orderBy(users.name);
+    const res = await db.select().from(users).where(eq(users.role, "USER")).orderBy(users.name);
     return res;
   } catch {
     return;
