@@ -64,7 +64,7 @@ export default async function CategoryPage({ searchParams }: PageProps) {
                     )}
                     <div
                         className={
-                            "grid  grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5"
+                            "grid  grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5"
                         }
                     >
                         {products &&

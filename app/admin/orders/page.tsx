@@ -19,7 +19,9 @@ export default async function OrderPage() {
     const session = await handleAdminRoutes("Orders");
     const role = session?.user.role;
 
-    const permittedStatus = role ? getOrderTableActionPermission(role) : undefined;
+    const permittedStatus = role
+        ? getOrderTableActionPermission(role)
+        : undefined;
 
     return (
         <section className={"flex-1 p-6"}>
@@ -27,6 +29,13 @@ export default async function OrderPage() {
                 <>
                     <h2 className={"p-6 font-bold text-xl"}>Pending Orders</h2>
                     <OrderTable status={permittedStatus} />
+                    <hr />
+                </>
+            )}
+            {role === "ADMIN" && (
+                <>
+                    <h2 className={"p-6 font-bold text-xl"}>Pending Orders</h2>
+                    <OrderTable status={"PENDING"} />
                     <hr />
                 </>
             )}

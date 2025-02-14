@@ -36,7 +36,10 @@ const FilterSheet = ({ defaultValues }: FilterSheetProps) => {
             </SheetTrigger>
             <SheetContent
                 side={isMobile ? "bottom" : "right"}
-                className={cn("h-4/5", isMobile && "overflow-y-scroll")}
+                className={cn(
+                    "h-4/5 md:h-full",
+                    isMobile && "overflow-y-scroll",
+                )}
             >
                 <SheetHeader>
                     <SheetTitle>Filter</SheetTitle>
