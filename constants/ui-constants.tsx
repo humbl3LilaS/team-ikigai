@@ -4,6 +4,7 @@ import {
     ChartLine,
     Home,
     Laptop,
+    ScrollText,
     ShoppingCart,
     Truck,
     Users,
@@ -78,14 +79,21 @@ export const adminSideBarItems = [
         url: "/admin/warehouses",
         icon: <Warehouse />,
     },
+    {
+        title: "Complains",
+        role: ["ADMIN", "SALES"],
+        url: "/admin/complains",
+        icon: <ScrollText />,
+    },
 ];
 export type TAdminRoutes =
-    "Dashboard" |
-    "Orders" |
-    "Customers" |
-    "Products" |
-    "Reports" |
-    "Invoice" |
-    "Drivers" |
-    "Deliveries" |
-    "Warehouses";
+    | "Dashboard"
+    | "Orders"
+    | "Customers"
+    | "Products"
+    | "Reports"
+    | "Invoice"
+    | "Drivers"
+    | "Deliveries"
+    | "Warehouses"
+    | "Complains";
