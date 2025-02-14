@@ -22,7 +22,8 @@ const Header = async () => {
                 <RouteLink />
             </div>
 
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center gap-x-4">
+                <CartLink />
                 <MobileNav isLoggedIn={!!session} role={session?.user.role} />
             </div>
 
