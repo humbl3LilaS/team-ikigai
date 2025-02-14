@@ -13,12 +13,18 @@ import RouteLink from "./route-link";
 const Header = async () => {
     const session = await auth();
     return (
-        <nav className="flex max-h-32 justify-between select-none gap-7 md:gap-2 py-4 sm:px-8 px-3 bg-white items-center text-white">
-            <Link href={"/"}>
+        <nav className="flex max-h-32 justify-between select-none md:gap-2 py-4 sm:px-8 px-3 items-center bg-white gap-2 text-white">
+            <Link className="" href={"/"}>
                 <Image src="/brandLogo.png" width={72} height={30} alt="logo" />
             </Link>
 
-            <div className="text-black h-full hidden md:flex gap-3">
+            <ProductProvider>
+                <div className="md:hidden">
+                    <ProductSearch />
+                </div>
+            </ProductProvider>
+
+            <div className="text-black justify-center h-full hidden md:flex gap-3">
                 <RouteLink />
             </div>
 
@@ -26,6 +32,7 @@ const Header = async () => {
                 <CartLink />
                 <MobileNav isLoggedIn={!!session} role={session?.user.role} />
             </div>
+
 
             <div className="hidden md:flex justify-between gap-5">
                 <div

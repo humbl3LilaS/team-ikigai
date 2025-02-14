@@ -3,7 +3,9 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { users, warehouseManagers, warehouses } from "@/database/schema";
+import { warehouses,products, stocks, productDetails, users, warehouseManagers } from "@/database/schema";
+
+
 
 export const getWarehouses = async () => {
     try {
@@ -27,6 +29,27 @@ export const getWarehouses = async () => {
     }
 };
 
+
+export const getWareHouseById = async (id: string) => {
+    const res = await db.select().from(warehouses).where(eq(warehouses.id, id));
+    return res;
+}
+
+export const getProductByWareHouseId = async (id: string)=>{
+    const res = await db.select({
+        productName: productDetails.name,
+        category: productDetails.category,
+        brand:productDetails.brand,
+        stock:stocks.stock,
+    })
+    .from(stocks)
+    .innerJoin(products, (eq(products.id, stocks.productId)))
+    .innerJoin(productDetails,(eq(productDetails.id, products.detailId)))
+    .where(eq(stocks.warehouseId, id));
+    return res;
+}
+
 export type TWarehouse = NonNullable<
     Awaited<ReturnType<typeof getWarehouses>>
 >[number];
+
