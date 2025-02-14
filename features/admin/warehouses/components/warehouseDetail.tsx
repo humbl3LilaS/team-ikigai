@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { getProductByWareHouseId, getWareHouseById } from "../actions/get-warehouses";
+import { getProductByWareHouseId, getWareHouseById, TWarehouse } from "../actions/get-warehouses";
 import { useRouter } from "next/navigation";
-import { TWarehouses } from "../columns/warehouse-column";
+import { IWarehouses } from "@/database/schema";
 
 interface Props {
   productName:string,
@@ -14,7 +14,7 @@ interface Props {
 
 const WareHouseDetail = ({id}:{id:string}) => {
   const [products,setProducts] = useState<Props[]>([]);
-  const [warehouseDetail,setWarehouseDetail] = useState<TWarehouses>();
+  const [warehouseDetail,setWarehouseDetail] = useState<IWarehouses>();
   const router = useRouter();
 
   const handleGoBack = ()=>{
@@ -29,7 +29,7 @@ const WareHouseDetail = ({id}:{id:string}) => {
               getProductByWareHouseId(id)
             ])
             setProducts(product);
-            setWarehouseDetail(warehouse[0] as TWarehouses);
+            setWarehouseDetail(warehouse[0] as IWarehouses);
         }
         fetchData();
     },[id])

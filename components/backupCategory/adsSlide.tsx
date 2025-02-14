@@ -16,14 +16,12 @@ const AdsSlide = () => {
         },
     ];
 
-    // const goBack = ()=>{
-    //     setCurIndex((prev)=>prev-1 < 0 ? item.length-1 : prev-1);
-    // }
+
     const goForward = ()=>{
         setCurIndex((prev)=>(prev+1) % item.length);
     };
     useEffect(() => {
-        const interval = setInterval(goForward, 5000); 
+        const interval = setInterval(goForward, 3000); 
         return () => clearInterval(interval);
     }, []);
 
