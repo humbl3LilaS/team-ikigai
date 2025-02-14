@@ -10,13 +10,13 @@ const ProductList = async () => {
     const featureProducts = await getFeatureProducts();
 
     return (
-        <section className="w-full h-full mt-8 p-4 sm:p-8 ">
-            <div className="flex flex-col gap-5">
+        <section className="w-full max-w-screen-2xl mx-auto h-full mt-16">
+            <div className="flex flex-col gap-3">
                 <div className="mx-auto">
-                    <h1 className="text-4xl font-bold font-oswald text-[#2a384b]">Our Feature Product</h1>
+                    <h1 className="text-4xl text-center font-bold font-oswald text-[#2a384b]">Our Feature Product</h1>
                     {/* <div className="w-full max-w-4xl border-b-[1px] border-dashed border-gray-500 mt-2" /> */}
                     <p className="text-[14px] text-gray-500 text-center mt-3 font-inter">
-                        Product description
+                    Top electronics for performance and innovation
                     </p>
                 </div>
                 <div className="max-w-full overflow-x-auto flex gap-5 mt-5">

@@ -22,9 +22,27 @@ const Header = async () => {
                 <RouteLink />
             </div>
 
+<<<<<<< HEAD
             <div className="md:hidden flex items-center gap-x-4">
                 <CartLink />
                 <MobileNav isLoggedIn={!!session} role={session?.user.role} />
+=======
+<<<<<<< HEAD
+            <ProductProvider>
+                <div className="md:hidden">
+                    <ProductSearch />
+                </div>
+            </ProductProvider>
+
+            
+            <div className="md:hidden">
+                <MobileNav isLoggedIn={!!session} />
+=======
+            <div className="md:hidden flex items-center gap-x-4">
+                <CartLink />
+                <MobileNav isLoggedIn={!!session} role={session?.user.role} />
+>>>>>>> 7a99742b1e92359f21e45c830985802f7ff30eb5
+>>>>>>> 13fcfd7 (modify landing page ui)
             </div>
 
             <div className="hidden md:flex justify-between gap-5">
