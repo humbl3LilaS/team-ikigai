@@ -78,6 +78,12 @@ export const adminSideBarItems = [
         url: "/admin/warehouses",
         icon: <Warehouse />,
     },
+    {
+        title: "complains",
+        role: ["ADMIN", "SALES"],
+        url: "/admin/complains",
+        icon: <Warehouse />,
+    },
 ];
 export type TAdminRoutes =
     "Dashboard" |
@@ -88,4 +94,5 @@ export type TAdminRoutes =
     "Invoice" |
     "Drivers" |
     "Deliveries" |
+    "Complains" |
     "Warehouses";
