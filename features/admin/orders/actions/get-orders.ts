@@ -27,7 +27,7 @@ export const getOrders = async (status?: IOrderStatus) => {
         if (!res) {
             return undefined;
         }
-        return res;
+        return res || [];
     } catch {
         return undefined;
     }
