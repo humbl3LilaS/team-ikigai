@@ -1,12 +1,12 @@
-
 import OrderDetails from "@/features/admin/orders/components/order-details";
 
-const OrderPage = async () => {
-    return (
-        <>
-            <OrderDetails />
-        </>
-    );
+const OrderDetailPage = async ({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}) => {
+    const { slug } = await params;
+    return <OrderDetails id={slug} />;
 };
 
-export default OrderPage;
+export default OrderDetailPage;
