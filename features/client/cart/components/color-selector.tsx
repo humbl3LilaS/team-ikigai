@@ -23,7 +23,7 @@ const ColorSelector = ({ options, onChange, value }: ColorSelectorProps) => {
                             <RadioGroupItem value={item.colorId} />
                         </FormControl>
                         <FormLabel
-                            className={"block size-10 rounded-full relative"}
+                            className={"block size-10 rounded-full relative cursor-pointer border border-slate-500"}
                             style={{
                                 backgroundColor: `${item.colorHex}`,
                             }}

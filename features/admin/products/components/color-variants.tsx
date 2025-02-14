@@ -17,10 +17,10 @@ const ColorVariants = ({ variants }: ColorVarientProps) => {
             <h1>Available Colors</h1>
             <div className={"mt-3 flex gap-x-2"}>
                 {variants.map((variant) => (
-                    <p key={variant.colorHex} className={"relative"}>
+                    <p key={variant.colorHex} className={"relative cursor-pointer"}>
                         <span className={"sr-only"}>{variant.colorHex}</span>
                         <span
-                            className={"size-10 rounded-full block"}
+                            className={"size-10 rounded-full block border border-slate-500"}
                             style={{ backgroundColor: variant.colorHex }}
                             onClick={() => setCurrentColor(variant.colorHex)}
                         />

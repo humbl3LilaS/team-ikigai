@@ -26,7 +26,7 @@ const ProductDetailPage = async ({
                         alt={product.name}
                         width={350}
                         height={350}
-                        className={"ml-auto size-[350px]"}
+                        className={"ml-auto size-[350px] object-contain"}
                     />
                 </div>
                 <div className={"pl-4 py-6"}>
@@ -58,7 +58,7 @@ const ProductDetailPage = async ({
                 </div>
                 <div
                     className={
-                        "p-6 rounded-2xl border border-foreground/80 md:p-10 md:col-span-2"
+                        "p-6 rounded-2xl border border-foreground/80 md:p-10 col-span-3 max-w-screen-lg mx-auto md:col-span-2"
                     }
                 >
                     <h3 className={"mb-3 text-lg font-bold md:text-xl"}>

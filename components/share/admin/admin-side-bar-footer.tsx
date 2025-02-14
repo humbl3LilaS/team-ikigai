@@ -29,7 +29,7 @@ export default function AdminSidebarFooter() {
   const { setTheme } = useTheme();
   const session = useSession();
   const userId = session.data?.user.id;
-
+  const role = session.data?.user.role;
 
   const { data, isLoading } = useQuery({
     queryKey: ["dbId"],
@@ -45,7 +45,12 @@ export default function AdminSidebarFooter() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                <User2 /> {isLoading ? <Skeleton className="w-full h-full" /> : data?.name}
+                <User2 />
+                {isLoading ?
+                  <Skeleton className="w-full h-full" /> :
+                  <span>{data?.name} ({role == "WAREHOUSE_MANAGER" ? "WAREHOUSE MANAGE" : role})
+                  </span>
+                }
                 <ChevronUp className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
@@ -56,8 +61,6 @@ export default function AdminSidebarFooter() {
               <DropdownMenuItem>
                 <Link className="w-full h-full text-left" href="/admin/account">Account</Link>
               </DropdownMenuItem >
-              {/* <DropdownMenuItem> */}
-              {/* <button className="w-full h-full text-left" type="button" onClick={switchTheme}>Switch Theme</button> */}
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>Switch Theme</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
@@ -67,7 +70,6 @@ export default function AdminSidebarFooter() {
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
-              {/* </DropdownMenuItem> */}
               <DropdownMenuItem>
                 <button type="button" className="w-full text-left" onClick={() => signOut()}>Logout</button>
               </DropdownMenuItem>

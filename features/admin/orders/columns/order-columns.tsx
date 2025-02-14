@@ -37,6 +37,14 @@ export const orderColumns = [
             </Link>
         ),
     }),
+    columnHelper.accessor("createdAt", {
+        header: () => <span>Order Date</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>
+                {format(getValue(), "do MMM yyyy")}
+            </span>
+        ),
+    }),
     columnHelper.accessor("username", {
         header: () => <span>User</span>,
         cell: ({ getValue, row }) => (
@@ -48,20 +56,31 @@ export const orderColumns = [
             </Link>
         ),
     }),
+    columnHelper.accessor("contactNumber", {
+        header: () => <span>Phone</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
+    columnHelper.accessor("address", {
+        header: () => <span>Address</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
+    columnHelper.accessor("city", {
+        header: () => <span>City</span>,
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
     columnHelper.accessor("totalAmount", {
         header: () => <span>Total Amount</span>,
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>${getValue()}</span>
+            <span className={"max-w-[200px] tabular-nums text-right line-clamp-1"}>${getValue().toLocaleString()}</span>
         ),
     }),
-    columnHelper.accessor("createdAt", {
-        header: () => <span>Order Date</span>,
-        cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>
-                {format(getValue(), "do MMM yyyy")}
-            </span>
-        ),
-    }),
+
     columnHelper.accessor("status", {
         header: () => <span>Status</span>,
         cell: ({ getValue }) => (
@@ -72,7 +91,7 @@ export const orderColumns = [
                         getOrderStatusClass(getValue()),
                     )}
                 >
-                    {getValue()}
+                    {getValue() == "ON_THE_WAY" ? "DELIVERING" : getValue()}
                 </span>
             </span>
         ),

@@ -40,7 +40,7 @@ const AboutPage = () => {
                         backgroundImage: "url('/about-us/who_we_are.png')",
                     }}
                 >
-                    <div className="bg-white p-6 border w-full md:w-1/3 lg:w-1/4     border-neutral-200 bg-opacity-85">
+                    <div className="bg-white p-6 border w-full md:w-1/3 lg:w-1/4 border-neutral-200 bg-opacity-85">
                         <h2 className="font-bold text-xl md:text-2xl text-center mb-2">
                             Who We Are
                         </h2>

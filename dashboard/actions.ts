@@ -6,9 +6,9 @@ import { db } from "@/database/dirzzle";
 import { orderItems, orders, productDetails, products, stocks, users, warehouses } from "@/database/schema";
 
 // Dashboard Page
-export const getFinishedOrdersCount = async () => {
+export const getDeliveringOrders = async () => {
   try {
-    return (await db.select({ count: count() }).from(orders).where(eq(orders.status, "FINISH")))[0];
+    return (await db.select({ count: count() }).from(orders).where(eq(orders.status, "ON_THE_WAY")))[0];
   } catch {
     return { count: 0 };
   }
@@ -51,6 +51,7 @@ export const getFinishedWeeklySales = async () => {
             or(
               eq(orders.status, "FINISH"),
               eq(orders.status, "APPROVE"),
+              eq(orders.status, "ON_THE_WAY"),
             ),
           ),
         )
@@ -140,7 +141,7 @@ export const getOrders = async () => {
 
 export const getCustomers = async () => {
   try {
-    const res = await db.select().from(users).orderBy(users.name);
+    const res = await db.select().from(users).where(eq(users.role, "USER")).orderBy(users.name);
     return res;
   } catch {
     return;

@@ -2,7 +2,7 @@
 import { InventoryChart } from "@/components/share/admin/dashboard-inventory-chart";
 import { PopularItemsChart } from "@/components/share/admin/dashboard-popular-items-piechart";
 import { SaleChart } from "@/components/share/admin/dashboard-sale-chart";
-import { getApprovedOrdersCount, getFinishedOrdersCount, getUnfinishOrdersCount } from "@/dashboard/actions";
+import { getApprovedOrdersCount, getDeliveringOrders, getUnfinishOrdersCount } from "@/dashboard/actions";
 import { handleAdminRoutes } from "@/dashboard/handle-admin-routes";
 
 
@@ -10,9 +10,9 @@ export default async function DashboardPage() {
 
   await handleAdminRoutes("Dashboard");
 
-  const finishedOrders = await getFinishedOrdersCount();
-  const unfinishedOrders = await getUnfinishOrdersCount();
+  const pendingOrders = await getUnfinishOrdersCount();
   const approvedOrders = await getApprovedOrdersCount();
+  const deliveringOrders = await getDeliveringOrders();
   // const role = (await auth())?.user.role;
   // const acceptRoles = adminSideBarItems.find(({ title }) => title == "Dashboard");
   // const isValidate = acceptRoles?.role.includes(role!);
@@ -20,16 +20,15 @@ export default async function DashboardPage() {
   //   notFound();
   // }
 
-
   return (
     <main className="w-full bg-background px-3 md:px-5 max-w-screen-xl">
       <h1 className="admin-header pl-2">Dashboard</h1>
       <section className="mb-2">
         <h2 className="admin-secondary-header">Orders</h2>
         <div className="flex gap-3 w-full items-center px-2 max-w-screen-lg">
-          <OrderCard num={unfinishedOrders.count} title="Pending" color="bg-red-500/10 border-red-400/30 text-red-600 dark:text-red-100" />
-          <OrderCard num={finishedOrders.count} title="Finished" color="bg-yellow-500/10 border-yellow-400/30 text-yellow-600 dark:text-yellow-100" />
+          <OrderCard num={pendingOrders.count} title="Pending" color="bg-red-500/10 border-red-400/30 text-red-600 dark:text-red-100" />
           <OrderCard num={approvedOrders.count} title="Approved" color="bg-green-500/10 border-green-400/30 text-green-600 dark:text-green-100" />
+          <OrderCard num={deliveringOrders.count} title="Delivering" color="bg-yellow-500/10 border-yellow-400/30 text-yellow-600 dark:text-yellow-100" />
         </div>
       </section>
 
