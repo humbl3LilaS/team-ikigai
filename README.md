@@ -62,5 +62,31 @@ pnpm run db:studio
 
 ```bash
 
-ppnpm run seed
+pnpm run seed
+```
+
+Demo Accounts
+
+Super User Admin:
+```
+email: admin123@gmail.com
+password: Admin123!
+```
+
+Customer:
+```
+email: user123@gmail.com
+password: User123!
+```
+
+Warehouse:
+```
+email: warehouse123@gmail.com
+password: Warehouse123!
+```
+
+Finance
+```
+email: finance123@gmail.com
+password: Finance123!
 ```
