@@ -1,4 +1,3 @@
-
 import Category from "@/components/backupCategory/category";
 import Footer from "@/components/footer/Footer";
 import Description from "@/components/homeProduct/Description";
@@ -10,8 +9,7 @@ export default async function Home() {
         <section className="p-4 sm:p-6">
             <div className="mt-6">
                 <Hero />
-                {/* <HomeCategory/> */}
-                <Category/>
+                <Category />
                 <ProductList />
                 <Description />
             </div>
