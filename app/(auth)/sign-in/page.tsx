@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import SignInForm from "@/features/sign-in/components/sign-in-form";
 
 const SignInPage = async () => {

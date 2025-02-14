@@ -53,7 +53,7 @@ const Header = async () => {
                             Get started
                         </Link>
                     )}
-                    {session?.user.role !== "USER" && (
+                    {session && session?.user.role !== "USER" && (
                         <Link
                             href={"/admin"}
                             className="text-black hidden sm:flex font-semibold py-1.5 px-3 text-[14px] items-center border hover:black hover:text-blue-500 hover:bg-transparent rounded-sm"
