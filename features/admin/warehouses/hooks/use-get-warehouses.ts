@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getWarehouses } from "@/features/admin/warehouses/actions/get-warehouses";
+import { getProductByWareHouseId, getWarehouses } from "@/features/admin/warehouses/actions/get-warehouses";
 
 export const useGetWarehouses = () => {
     return useQuery({
@@ -9,3 +9,12 @@ export const useGetWarehouses = () => {
         staleTime: 60 * 60 * 1000,
     });
 };
+
+export const useGetProductByWareHouseId = (id:string)=>{
+    return useQuery({
+        queryKey:["products",id],
+        queryFn:()=>getProductByWareHouseId(id),
+        staleTime:60 * 60 * 1000,
+        enabled: !!id,
+    })
+}

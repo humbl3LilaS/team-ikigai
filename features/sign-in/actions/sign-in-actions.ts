@@ -32,7 +32,7 @@ export const signInWithCredential = async ({
             return {
                 success: false,
                 cause: {
-                    reason: error.message,
+                    reason: "Invalid Credentials",
                 },
             };
         }

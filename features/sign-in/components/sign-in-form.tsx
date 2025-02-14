@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
+import { House, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -127,6 +127,17 @@ const SignInForm = () => {
                             Sign up
                         </Link>
                     </div>
+
+                    <Button
+                        asChild={true}
+                        variant={"outline"}
+                        className={"my-3 mx-auto block w-fit"}
+                    >
+                        <Link href={"/"} className={"flex"}>
+                            <House />
+                            <span>Go Back To Home</span>
+                        </Link>
+                    </Button>
                 </CardContent>
             </Card>
         </div>

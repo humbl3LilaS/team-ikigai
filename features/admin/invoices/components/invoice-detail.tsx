@@ -91,11 +91,11 @@ const InvoiceDetail = async ({ id }: { id: string }) => {
                             ))}
                         </TableBody>
                         <TableFooter>
-                            <TableRow>
-                                <TableCell colSpan={3} className="">
+                            <TableRow className="">
+                                <TableCell colSpan={2} className="">
                                     Total
                                 </TableCell>
-                                <TableCell className="text-right">
+                                <TableCell className="text-right ">
                                     ${invoiceInfo.user.totalAmount}
                                 </TableCell>
                             </TableRow>

@@ -6,7 +6,7 @@ import {
     useReactTable,
 } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DataTableBody from "@/components/share/admin/data-table-body";
 import DataTableSkeleton from "@/components/share/admin/data-table-skeleton";
@@ -14,17 +14,29 @@ import { Button } from "@/components/ui/button";
 import {
     columns,
 } from "@/features/admin/warehouses/columns/warehouse-column";
+import { getWarehouses } from "../actions/get-warehouses";
+import { TWarehouse } from "../actions/get-warehouses";
 
 import { useGetWarehouses } from "../hooks/use-get-warehouses";
 
 
 
-const DeliveryTable = () => {
+const WareHouseTable = () => {
     const { data } = useGetWarehouses();
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 510,
+        pageSize: 10,
     });
+    const [warehouseData,setWareHouseData] = useState<TWarehouse[]>([]);
+    useEffect(()=>{
+        const fetchData = async ()=>{
+            const data = await getWarehouses();
+            setWareHouseData(data as TWarehouse[]);
+        }
+        fetchData();
+    },[])
+    console.log(warehouseData);
+
     const table = useReactTable({
         data: data ?? [],
         columns: columns,
@@ -69,4 +81,4 @@ const DeliveryTable = () => {
         </div>
     );
 };
-export default DeliveryTable;
+export default WareHouseTable;
