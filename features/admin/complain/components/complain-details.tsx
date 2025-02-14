@@ -1,7 +1,8 @@
-import Image from "next/image";
-import { getComplainsById } from "@/features/admin/complain/actions/get-complains-by-id";
 import { format } from "date-fns";
 import { Circle } from "lucide-react";
+import Image from "next/image";
+
+import { getComplainsById } from "@/features/admin/complain/actions/get-complains-by-id";
 
 const ComplainsDetails = async ({ id }: { id: string }) => {
     const complainInfo = await getComplainsById(id);
@@ -36,12 +37,14 @@ const ComplainsDetails = async ({ id }: { id: string }) => {
 
                     <div className="flex flex-col gap-5">
                         <div className="text-sm">
-                            <p>Order Id: {complainInfo?.customer.orderId} </p>
                             <p>
-                                Order date :{" "}
-                                {complainInfo?.customer.orderDate
+                                Complain Id: {complainInfo?.customer.complainId}
+                            </p>
+                            <p>
+                                Complain Date :{" "}
+                                {complainInfo?.customer.complainDate
                                     ? format(
-                                          complainInfo?.customer.orderDate,
+                                          complainInfo?.customer.complainDate,
                                           "do MMM yyyy",
                                       )
                                     : "Unknown Date"}
