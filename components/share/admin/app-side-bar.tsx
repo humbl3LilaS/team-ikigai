@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -28,7 +29,17 @@ const AppSideBar = () => {
         <Sidebar collapsible="icon" className="print:hidden">
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>{role == "WAREHOUSE_MANAGER" ? "WAREHOUSE MANAGE" : role}</SidebarGroupLabel>
+                    <SidebarGroupLabel>
+                        <Link href={"/"}>
+                            <Image
+                                src="/brandLogo.png"
+                                width={54}
+                                height={34}
+                                alt="logo"
+                                className="dark:invert dark:saturate-0"
+                            />
+                        </Link>
+                    </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {adminSideBarItems.map((item) => {

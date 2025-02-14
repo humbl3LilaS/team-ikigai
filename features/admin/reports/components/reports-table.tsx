@@ -7,7 +7,7 @@ import {
     getPaginationRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { format } from "date-fns";
+import { format, formatDate } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import React from "react";
 import { useState } from "react";
@@ -128,7 +128,7 @@ const ReportTable = () => {
                 </Form>
             </div>
             <div>
-                <p className="">{date}</p>
+                <p className="text-muted-foreground underline underline-offset-4 decoration-muted-foreground/30">{formatDate(date, "do MMM yyyy (EEE)")}</p>
                 {!report && <DataTableSkeleton paginationOn={true} />}
                 {report && (
                     <section className={`w-screen pr-3 print:w-full ${!isMobile && open ? "md:w-[calc(100vw-280px)]" : "md:w-[calc(100vw-100px)]"}`}>

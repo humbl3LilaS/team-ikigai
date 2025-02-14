@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableFooter,
     TableHead,
