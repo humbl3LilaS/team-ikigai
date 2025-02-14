@@ -73,6 +73,7 @@ const CheckoutForm = ({ defaultValues }: { defaultValues: IUserInfo }) => {
     };
 
     const region = form.watch("region");
+
     return (
         <div>
             <h2 className={"mb-4 font-bold text-2xl"}>
@@ -200,7 +201,9 @@ const CheckoutForm = ({ defaultValues }: { defaultValues: IUserInfo }) => {
                         type={"submit"}
                         disabled={
                             form.formState.isSubmitting ||
-                            !form.formState.isValid
+                            !form.formState.isValid ||
+                            !cart ||
+                            !cart.length
                         }
                     >
                         {form.formState.isSubmitting ? (

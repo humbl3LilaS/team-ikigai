@@ -1,10 +1,11 @@
-import React from "react";
-import ProductCard from "./product-card";
-import { getFeatureProducts } from "@/features/client/product/actions/get-feature-products";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { clsx } from "clsx";
+import React from "react";
+
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getFeatureProducts } from "@/features/client/product/actions/get-feature-products";
+
+import ProductCard from "./product-card";
 
 const ProductList = async () => {
     const featureProducts = await getFeatureProducts();
@@ -13,10 +14,11 @@ const ProductList = async () => {
         <section className="w-full max-w-screen-2xl mx-auto h-full mt-16">
             <div className="flex flex-col gap-3">
                 <div className="mx-auto">
-                    <h1 className="text-4xl text-center font-bold font-oswald text-[#2a384b]">Our Feature Product</h1>
-                    {/* <div className="w-full max-w-4xl border-b-[1px] border-dashed border-gray-500 mt-2" /> */}
+                    <h1 className="text-4xl text-center font-bold font-oswald text-[#2a384b]">
+                        Our Feature Products
+                    </h1>
                     <p className="text-[14px] text-gray-500 text-center mt-3 font-inter">
-                    Top electronics for performance and innovation
+                        Top electronics for performance and innovation
                     </p>
                 </div>
                 <div className="max-w-full overflow-x-auto flex gap-5 mt-5">
