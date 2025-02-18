@@ -1,3 +1,5 @@
+import { UserRole } from "@/database/schema";
+
 export const REGION = [
     "Ayeyarwady",
     "Bago",
@@ -563,3 +565,41 @@ export const WAREHOUSES = [
 ];
 
 export const BRAND = PRODUCT_PLACEHOLDER.map((item) => item.brand);
+
+export const DEMO_ACCOUNT = [
+    {
+        email: "admin123@gmail.com",
+        name: "admin123",
+        password: "Admin123!",
+        role: "ADMIN" as UserRole,
+        phoneNumber: "09123456789",
+    },
+    {
+        email: "sales123@gmail.com",
+        name: "sales123",
+        password: "Sales123!",
+        role: "SALES" as UserRole,
+        phoneNumber: "09123456789",
+    },
+    {
+        email: "warehouse123@gmail.com",
+        name: "warehouse123",
+        password: "Warehouse123!",
+        role: "WAREHOUSE_MANAGER" as UserRole,
+        phoneNumber: "09123456789",
+    },
+    {
+        email: "finance123@gmail.com",
+        name: "finance123",
+        password: "Finance123!",
+        role: "FINANCE" as UserRole,
+        phoneNumber: "09123456789",
+    },
+    {
+        email: "driver@gmail.com",
+        name: "driver123",
+        password: "Driver123!",
+        role: "DRIVER" as UserRole,
+        phoneNumber: "09123456789",
+    },
+];
