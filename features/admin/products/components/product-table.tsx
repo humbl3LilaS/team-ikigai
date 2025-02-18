@@ -4,6 +4,7 @@ import {
     getCoreRowModel,
     getFilteredRowModel,
     getPaginationRowModel,
+    getSortedRowModel,
     PaginationState,
     useReactTable,
 } from "@tanstack/react-table";
@@ -34,6 +35,7 @@ const ProductsTable = () => {
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         onPaginationChange: setPagination,
         onColumnFiltersChange: setColumnFilters,
         state: {

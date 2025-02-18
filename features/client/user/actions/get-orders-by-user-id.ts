@@ -1,16 +1,24 @@
 "use server";
 
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { orders } from "@/database/schema";
+import { IOrderStatus, orders } from "@/database/schema";
 
-export const getOrdersByUserId = async (userId: string) => {
+export const getOrdersByUserId = async (
+    userId: string,
+    status?: IOrderStatus,
+) => {
     try {
         const res = await db
             .select()
             .from(orders)
-            .where(eq(orders.userId, userId))
+            .where(
+                and(
+                    status ? eq(orders.status, status) : undefined,
+                    eq(orders.userId, userId),
+                ),
+            )
             .orderBy(desc(orders.createdAt));
         if (!res) {
             return undefined;

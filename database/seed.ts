@@ -3,7 +3,12 @@ import { hash } from "bcryptjs";
 import { subDays } from "date-fns";
 import { eq } from "drizzle-orm";
 
-import { PRODUCT_PLACEHOLDER, REGION, TOWNSHIPS } from "@/constants";
+import {
+    DEMO_ACCOUNT,
+    PRODUCT_PLACEHOLDER,
+    REGION,
+    TOWNSHIPS,
+} from "@/constants";
 import { cleanUp } from "@/database/db-cleanup";
 import { db } from "@/database/dirzzle";
 import {
@@ -302,14 +307,14 @@ async function main() {
         };
     });
     await db.insert(serviceCenters).values(generatedServiceCenter).returning();
-    const adminPassword = await hash("Admin123!", 10);
-    await db.insert(users).values({
-        email: "admin123@gmail.com",
-        password: adminPassword,
-        phoneNumber: "09773643961",
-        role: "SALES" as UserRole,
-        name: "admin123",
+    const demoAccountPromises = DEMO_ACCOUNT.map(async (item) => {
+        const hashedPassword = await hash(item.password, 10);
+        return db.insert(users).values({
+            ...item,
+            password: hashedPassword,
+        });
     });
+    await Promise.all(demoAccountPromises);
     console.log("seeding end");
 }
 
