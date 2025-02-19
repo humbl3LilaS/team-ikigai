@@ -1,6 +1,11 @@
 "use client";
 import { createColumnHelper } from "@tanstack/table-core";
+import { format } from "date-fns";
+import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import ComplainTableActionBtn from "@/features/admin/complain/components/complain-table-action-btn";
 
 import { TComplains } from "../actions/get-complains";
 import ComplainsStatus from "../components/complains-status";
@@ -12,7 +17,9 @@ export const columns = [
         cell: ({ getValue, row }) => (
             <Link
                 href={`complains/${row.original.id}`}
-                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
+                className={
+                    "max-w-[200px] line-clamp-1 underline hover:text-blue-500"
+                }
             >
                 {getValue()}
             </Link>
@@ -24,14 +31,24 @@ export const columns = [
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
-    columnHelper.accessor("type", {
-        header: () => <span>Type</span>,
+    columnHelper.accessor("createdAt", {
+        header: ({ column }) => (
+            <Button
+                variant="ghost"
+                onClick={() =>
+                    column.toggleSorting(column.getIsSorted() === "asc")
+                }
+            >
+                Category
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        ),
         cell: ({ getValue }) => (
-            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+            <span>{format(getValue(), "do MMM yyyy")}</span>
         ),
     }),
-    columnHelper.accessor("issues", {
-        header: () => <span>Issues</span>,
+    columnHelper.accessor("type", {
+        header: () => <span>Type</span>,
         cell: ({ getValue }) => (
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
@@ -40,10 +57,9 @@ export const columns = [
         header: () => <span>Status</span>,
         cell: ({ getValue }) => <ComplainsStatus status={getValue()} />,
     }),
-    // columnHelper.accessor("reason", {
-    //     header: () => <span>Reason</span>,
-    //     cell: ({ getValue }) => (
-    //         <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
-    //     ),
-    // }),
+
+    columnHelper.accessor("issues", {
+        header: () => <span></span>,
+        cell: ({ row }) => <ComplainTableActionBtn data={row.original} />,
+    }),
 ];

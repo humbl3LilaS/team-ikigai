@@ -2,6 +2,7 @@
 import {
     getCoreRowModel,
     getPaginationRowModel,
+    getSortedRowModel,
     PaginationState,
     useReactTable,
 } from "@tanstack/react-table";
@@ -26,6 +27,7 @@ const ComplainsTable = () => {
         columns: columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         onPaginationChange: setPagination,
         state: {
             pagination,

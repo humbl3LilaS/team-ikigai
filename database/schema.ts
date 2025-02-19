@@ -37,6 +37,7 @@ export const ORDER_STATUS = pgEnum("order_status", [
 export const COMPLAIN_STATUS = pgEnum("complain_status", [
     "PENDING",
     "APPROVE",
+    "SOLVING",
     "SOLVED",
 ]);
 export const COMPLAIN_TYPE = pgEnum("complain_type", ["EXCHANGE", "REPAIR"]);
