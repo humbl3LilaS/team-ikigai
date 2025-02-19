@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import DataTableBody from "@/components/share/admin/data-table-body";
@@ -27,6 +28,7 @@ const ProductsTable = () => {
         pageSize: 5,
     });
 
+    const { data: session } = useSession();
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
     const table = useReactTable({
@@ -45,16 +47,18 @@ const ProductsTable = () => {
     });
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
-            {products && (
-                <Link
-                    href={"/admin/products/new"}
-                    className={
-                        "absolute px-3 py-1 bg-foreground rounded-lg text-background "
-                    }
-                >
-                    Add New Product
-                </Link>
-            )}
+            {products &&
+                session &&
+                session.user.role === "WAREHOUSE_MANAGER" && (
+                    <Link
+                        href={"/admin/products/new"}
+                        className={
+                            "absolute px-3 py-1 bg-foreground rounded-lg text-background "
+                        }
+                    >
+                        Add New Product
+                    </Link>
+                )}
             <div>
                 {products && (
                     <div className={"mb-4"}>

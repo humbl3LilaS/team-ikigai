@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { getProductById } from "@/actions/get-product-by-id";
+import { auth } from "@/auth";
 import AddVariantDialog from "@/features/admin/products/components/add-variant-dialog";
 import ColorVariants from "@/features/admin/products/components/color-variants";
 import RestockDialog from "@/features/admin/products/components/restock-dialog";
@@ -12,6 +13,7 @@ const ProductDetailPage = async ({
 }: {
     params: Promise<{ slug: string }>;
 }) => {
+    const session = await auth();
     const { slug } = await params;
     const product = await getProductById(slug);
     if (!product) {
@@ -32,7 +34,10 @@ const ProductDetailPage = async ({
                 <div className={"pl-4 py-6"}>
                     <div className={"flex items-center gap-x-4"}>
                         <h2 className={"text-lg font-bold"}>{product.name}</h2>
-                        <UpdateProductSheet data={product} />
+                        {session &&
+                            session.user.role === "WAREHOUSE_MANAGER" && (
+                                <UpdateProductSheet data={product} />
+                            )}
                     </div>
                     <p className={"mt-4"}>
                         <span className={"font-semibold text-foreground/60"}>
@@ -51,10 +56,12 @@ const ProductDetailPage = async ({
                         </span>
                     </p>
                     <ColorVariants variants={product.variants} />
-                    <div className={"mt-4 flex items-center gap-x-4"}>
-                        <RestockDialog variants={product.variants} />
-                        <AddVariantDialog detailId={product.id} />
-                    </div>
+                    {session && session.user.role === "WAREHOUSE_MANAGER" && (
+                        <div className={"mt-4 flex items-center gap-x-4"}>
+                            <RestockDialog variants={product.variants} />
+                            <AddVariantDialog detailId={product.id} />
+                        </div>
+                    )}
                 </div>
                 <div
                     className={
