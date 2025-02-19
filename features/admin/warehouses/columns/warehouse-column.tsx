@@ -1,8 +1,8 @@
 "use client";
 import { createColumnHelper } from "@tanstack/table-core";
+import Link from "next/link";
 
 import { TWarehouse } from "../actions/get-warehouses";
-import Link from "next/link";
 
 
 const columnHelper = createColumnHelper<TWarehouse>();
@@ -43,10 +43,10 @@ export const columns = [
     columnHelper.accessor("warehouseCity", {
         header: () => <span>City</span>,
         cell: ({ getValue }) => (
-            <span  className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
- 
+
     columnHelper.accessor("warehouseRegion", {
         header: () => <span>Region</span>,
         cell: ({ getValue }) => (

@@ -199,14 +199,15 @@ export async function getAllWarehouseCategory() {
 }
 
 export async function getUserNameFromDb(id: string) {
-  try {
-    const res = await db
-      .select({ name: users.name })
-      .from(users)
-      .where(eq(users.id, id));
-    return res[0];
-  } catch {
-    return;
-  }
+  const res = await db
+    .select({ name: users.name })
+    .from(users)
+    .where(eq(users.id, id));
+  return res[0];
+}
 
+export async function getAllWarehousesName() {
+  const res = await db.select({ name: warehouses.name }).from(warehouses);
+  // console.log(res);
+  return res;
 }

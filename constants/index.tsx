@@ -242,7 +242,6 @@ export const TOWNSHIPS: Record<string, string[]> = {
         "Lay Shi - လေရှီး",
         "Mawlaik - မော်လိုက်",
         "Mingin - မင်းကင်း",
-        "Mingin - မင်းကင်း",
         "Monywa - မုံရွာ",
         "Myaung - မြောင်",
         "Myinmu - မြင်းမှု",
@@ -547,19 +546,6 @@ export const PRODUCT_PLACEHOLDER = [
         imageUrl:
             "https://res.cloudinary.com/dpvszi2rs/image/upload/v1739074683/HyperX_Cloud_Alpha_Headset_qfgttb.png",
     },
-];
-
-export const WAREHOUSES = [
-    "Kyi Myin Dine Branch",
-    "Kabar Aye Branch",
-    "Lanmadaw Branch",
-    "Bahan Branch",
-    "Hlaing Thayar Branch",
-    "Dagon Branch",
-    "Lathar Branch",
-    "Thingangyun Branch",
-    "Thaketa Branch",
-    "Hlaing Branch",
 ];
 
 export const BRAND = PRODUCT_PLACEHOLDER.map((item) => item.brand);

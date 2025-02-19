@@ -38,6 +38,8 @@ export default function AdminSidebarFooter() {
     enabled: !!userId,
   });
 
+  // console.log(session.data?.user.id);
+
   return (
     <SidebarFooter>
       <SidebarMenu>
