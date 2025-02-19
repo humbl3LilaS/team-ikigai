@@ -43,7 +43,8 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
     const { toast } = useToast();
     const queryClient = useQueryClient();
 
-    const { data: orders, isLoading } = useGetOrdersByUserId(userId);
+    const { data: orders, isLoading } = useGetOrdersByUserId(userId, "FINISH");
+    console.log(orders);
     const onSubmit: SubmitHandler<TComplainFormSchema> = async (values) => {
         const res = await fileComplain(values);
         if (!res.success) {

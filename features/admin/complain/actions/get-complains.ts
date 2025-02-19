@@ -1,17 +1,16 @@
-"use server"
+"use server";
+
+import { desc } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
 import { complains } from "@/database/schema";
 
 export const getComplains = async () => {
     try {
-        const res = await db.select({
-            id: complains.id,
-            orderItemId: complains.orderItemId,
-            type: complains.type,
-            issues: complains.issues,
-            status: complains.status,
-        }).from(complains);
+        const res = await db
+            .select()
+            .from(complains)
+            .orderBy(desc(complains.createdAt));
         if (!res) {
             return undefined;
         }
@@ -19,8 +18,8 @@ export const getComplains = async () => {
     } catch {
         return undefined;
     }
-}
+};
 
 export type TComplains = NonNullable<
     Awaited<ReturnType<typeof getComplains>>
-    >[number];
+>[number];
