@@ -35,3 +35,11 @@ export async function cleanUp() {
     await db.delete(serviceCenters);
     console.log("Cleaning up complete");
 }
+
+// try {
+//     console.log("Cleaning cleanup...");
+//     await cleanUp();
+//     console.log("Cleaning cleanup Finish");
+// } catch (err) {
+//     console.log(err);
+// }
