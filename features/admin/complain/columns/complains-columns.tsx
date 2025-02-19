@@ -1,6 +1,7 @@
 "use client";
 import { createColumnHelper } from "@tanstack/table-core";
 import Link from "next/link";
+
 import { TComplains } from "../actions/get-complains";
 import ComplainsStatus from "../components/complains-status";
 
@@ -11,7 +12,7 @@ export const columns = [
         cell: ({ getValue, row }) => (
             <Link
                 href={`complains/${row.original.id}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>

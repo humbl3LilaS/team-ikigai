@@ -7,6 +7,7 @@ import {
     ScrollText,
     ShoppingCart,
     Truck,
+    UserCog,
     Users,
     Warehouse,
 } from "lucide-react";
@@ -27,7 +28,7 @@ export const CLIENT_NAV_ITEMS = [
 export const adminSideBarItems = [
     {
         title: "Dashboard",
-        role: ["ADMIN", "SALES", "FINANCE"],
+        role: ["ADMIN", "SALES", "FINANCE", "WAREHOUSE_MANAGER", "DRIVER"],
         url: "/admin/dashboard",
         icon: <Home />,
     },
@@ -85,9 +86,15 @@ export const adminSideBarItems = [
         url: "/admin/complains",
         icon: <ScrollText />,
     },
+    {
+        title: "Employees",
+        role: ["ADMIN"],
+        url: "/admin/employees",
+        icon: <UserCog />,
+    },
 ];
 export type TAdminRoutes =
-    | "Dashboard"
+    "Dashboard"
     | "Orders"
     | "Customers"
     | "Products"
@@ -96,4 +103,5 @@ export type TAdminRoutes =
     | "Drivers"
     | "Deliveries"
     | "Warehouses"
-    | "Complains";
+    | "Complains"
+    | "Employees";

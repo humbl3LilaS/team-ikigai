@@ -33,7 +33,7 @@ export default function AdminSidebarFooter() {
 
   const { data, isLoading } = useQuery({
     queryKey: ["dbId"],
-    queryFn: () => getUserNameFromDb(userId!),
+    queryFn: () => getUserNameFromDb(userId!) || session.data?.user.name,
     staleTime: 1000 * 60 * 30,
     enabled: !!userId,
   });

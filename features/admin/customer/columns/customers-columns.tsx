@@ -26,7 +26,7 @@ export const CustomersColumns = [
         cell: ({ getValue, row }) => (
             <Link
                 href={`/admin/customers/${row.original.id}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>

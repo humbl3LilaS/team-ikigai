@@ -4,7 +4,9 @@ import {
     getCoreRowModel,
     getFilteredRowModel,
     getPaginationRowModel,
+    getSortedRowModel,
     PaginationState,
+    SortingState,
     useReactTable,
 } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -14,26 +16,33 @@ import DataTableBody from "@/components/share/admin/data-table-body";
 import DataTableSkeleton from "@/components/share/admin/data-table-skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { columns } from "@/features/admin/driver/columns/driver-columns";
-import { useGetDrivers } from "@/features/admin/driver/hooks/use-get-drivers";
 
-const DriverTable = () => {
-    const { data: drivers } = useGetDrivers();
+import { CustomersColumns } from "../columns/employees-column";
+import { useGetEmployees } from "../hooks/use-get-customers";
+
+const EmployeesTable = () => {
+    const { data: employees } = useGetEmployees();
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 10,
+        pageSize: 15,
     });
+
+    const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
     const table = useReactTable({
-        data: drivers ?? [],
-        columns: columns,
+        data: employees ?? [],
+        columns: CustomersColumns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onPaginationChange: setPagination,
+        onSortingChange: setSorting,
+        getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         onColumnFiltersChange: setColumnFilters,
         state: {
             pagination,
+            sorting,
             columnFilters,
         },
     });
@@ -41,29 +50,29 @@ const DriverTable = () => {
     return (
         <div className={"p-6 bg-background rounded-2xl relative"}>
             <div>
-                {drivers && (
+                {employees && (
                     <div className={"mb-4"}>
                         <Input
-                            placeholder={`Filter by name...`}
+                            placeholder={`Filter by email...`}
                             value={
                                 (table
-                                    .getColumn("name")
+                                    .getColumn("email")
                                     ?.getFilterValue() as string) ?? ""
                             }
                             onChange={(event) =>
                                 table
-                                    .getColumn("name")
+                                    .getColumn("email")
                                     ?.setFilterValue(event.target.value)
                             }
                             className="max-w-sm ml-auto"
                         />
                     </div>
                 )}
-                {!drivers && <DataTableSkeleton paginationOn={true} />}
-                {drivers && (
-                    <DataTableBody table={table} data={drivers ?? []} />
+                {!employees && <DataTableSkeleton paginationOn={true} />}
+                {employees && (
+                    <DataTableBody table={table} data={employees ?? []} />
                 )}
-                {drivers && (
+                {employees && (
                     <div className="flex items-center justify-between space-x-2 py-4">
                         <p className={"text-foreground text-sm font-semibold"}>
                             Page {pagination.pageIndex + 1} of{" "}
@@ -99,4 +108,4 @@ const DriverTable = () => {
     );
 };
 
-export default DriverTable;
+export default EmployeesTable;

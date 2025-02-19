@@ -87,7 +87,7 @@ const DispatchDeliveriesDialog = ({ orderId }: { orderId: string }) => {
                                         </FormControl>
                                         <SelectContent>
                                             {drivers &&
-                                                drivers.map((driver, idx) => (
+                                                drivers.map((driver) => (
                                                     <SelectItem
                                                         value={driver.id}
                                                         key={driver.id}

@@ -13,7 +13,7 @@ export const columns = [
         cell: ({ getValue, row }) => (
             <Link
                 href={`/admin/drivers/${row.original.id}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>

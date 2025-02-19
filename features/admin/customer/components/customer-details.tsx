@@ -1,14 +1,14 @@
 import { format } from "date-fns";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { ChevronDown, ChevronUp } from "lucide-react";
 
 import { getCustomerDetailsById } from "../actions/get-customer-by-id";
 
 const CustomerDetails = async ({ id }: { id: string }) => {
     const userInfo = await getCustomerDetailsById(id);
-    console.log(userInfo);
+    // console.log(userInfo);
     if (!userInfo) {
         return notFound();
     }
@@ -62,7 +62,7 @@ const CustomerDetails = async ({ id }: { id: string }) => {
                 </div>
                 {
                     userInfo.ordersData.map((order, index) => (
-                        <details key={index} className={`h-full w-full md:w-1/2 flex flex-col justify-between items-start pt-4 px-4 border-2 ${order.status === "PENDING" ? 'border-orange-400' : 'border-green-500'} rounded-md gap-4 mb-4 shadow-lg`}>
+                        <details key={index} className={`group h-full w-full max-w-screen-sm mx-auto flex flex-col justify-between items-start pt-4 px-4 border-2 ${order.status === "PENDING" ? "border-orange-400" : "border-green-500"} rounded-md gap-4 mb-4 shadow-lg`}>
                             <summary className="w-full flex items-center justify-between cursor-pointer">
                                 <div className="w-full flex flex-col">
                                     <p className="flex items-center justify-between text-muted-foreground mb-2">
@@ -78,15 +78,15 @@ const CustomerDetails = async ({ id }: { id: string }) => {
                                     </p>
                                     <p className="flex items-center justify-between text-muted-foreground mb-2">
                                         <span className="font-semibold">Status:</span>
-                                        <span className={`${order.status === "PENDING" ? 'text-orange-400' : 'text-green-500'} `}>{order.status}</span>
+                                        <span className={`${order.status === "PENDING" ? "text-orange-400" : "text-green-500"} `}>{order.status}</span>
                                     </p>
                                     <p className="flex items-center justify-between text-muted-foreground mb-2">
                                         <span className="font-semibold">Total Price:</span>
-                                        <span>$ {order.totalAmount}</span>
+                                        <span>$ {order.totalAmount.toLocaleString()}</span>
                                     </p>
 
                                     <div className="flex items-center justify-center">
-                                        <ChevronDown />
+                                        <ChevronDown className="group-open:-scale-y-100 transition-transform" />
                                     </div>
                                 </div>
                             </summary>

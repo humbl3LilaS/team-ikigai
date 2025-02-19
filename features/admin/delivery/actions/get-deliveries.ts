@@ -20,7 +20,6 @@ export const getDeliveries = async (userId?: string) => {
             .innerJoin(drivers, eq(deliveries.driverId, drivers.id))
             .innerJoin(users, eq(drivers.userId, users.id))
             .where(userId ? eq(users.id, userId) : undefined);
-
         if (!res) {
             return undefined;
         }

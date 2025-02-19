@@ -31,7 +31,7 @@ export const orderColumns = [
         cell: ({ getValue }) => (
             <Link
                 href={`/admin/orders/${getValue()}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>
@@ -49,7 +49,7 @@ export const orderColumns = [
         header: () => <span>User</span>,
         cell: ({ getValue, row }) => (
             <Link
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
                 href={`/admin/customers/${row.original.userId}`}
             >
                 {getValue()}
