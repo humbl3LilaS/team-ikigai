@@ -165,9 +165,11 @@ export const warehouseManagers = pgTable("warehouse_managers", {
 
 export const warehouses = pgTable("warehouses", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    managerId: uuid("manager_id").references(() => warehouseManagers.id, {
-        onDelete: "set null",
-    }),
+    managerId: uuid("manager_id")
+        .references(() => warehouseManagers.id, {
+            onDelete: "set null",
+        })
+        .notNull(),
     phoneNumber: text("phone_number").notNull(),
     name: text("name"),
     address: text("address"),

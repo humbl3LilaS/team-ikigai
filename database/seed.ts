@@ -315,6 +315,54 @@ async function main() {
         });
     });
     await Promise.all(demoAccountPromises);
+    const demoWareHouseManager = {
+        email: "warehouse123@gmail.com",
+        name: "warehouse123",
+        password: "Warehouse123!",
+        role: "WAREHOUSE_MANAGER" as UserRole,
+        phoneNumber: "09123456789",
+    };
+    const demoWareHouseManagerPassword = await hash(
+        demoWareHouseManager.password,
+        10,
+    );
+    const [demoWareHouseManagerUser] = await db
+        .insert(users)
+        .values({
+            ...demoWareHouseManager,
+            password: demoWareHouseManagerPassword,
+        })
+        .returning({ id: users.id });
+
+    await db.insert(warehouseManagers).values({
+        userId: demoWareHouseManagerUser.id,
+    });
+
+    const demoDriver = {
+        email: "driver123@gmail.com",
+        name: "driver123",
+        password: "Driver123!",
+        role: "DRIVER" as UserRole,
+        phoneNumber: "09123456789",
+    };
+    const demoDriverPassword = await hash(demoDriver.password, 10);
+
+    const [demoDriverUser] = await db
+        .insert(users)
+        .values({
+            ...demoDriver,
+            password: demoDriverPassword,
+        })
+        .returning({
+            id: users.id,
+        });
+
+    await db.insert(drivers).values({
+        userId: demoDriverUser.id!,
+        warehouseId: faker.helpers.arrayElement(newWareHousesId),
+        vehiclePlateNumber: faker.string.numeric(9),
+        deliveryRoute: "Yangon",
+    });
     console.log("seeding end");
 }
 

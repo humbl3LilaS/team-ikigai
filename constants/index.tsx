@@ -568,24 +568,10 @@ export const DEMO_ACCOUNT = [
         phoneNumber: "09123456789",
     },
     {
-        email: "warehouse123@gmail.com",
-        name: "warehouse123",
-        password: "Warehouse123!",
-        role: "WAREHOUSE_MANAGER" as UserRole,
-        phoneNumber: "09123456789",
-    },
-    {
         email: "finance123@gmail.com",
         name: "finance123",
         password: "Finance123!",
         role: "FINANCE" as UserRole,
-        phoneNumber: "09123456789",
-    },
-    {
-        email: "driver@gmail.com",
-        name: "driver123",
-        password: "Driver123!",
-        role: "DRIVER" as UserRole,
         phoneNumber: "09123456789",
     },
 ];
