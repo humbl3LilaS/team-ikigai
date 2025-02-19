@@ -22,8 +22,7 @@ import {
 } from "@/components/ui/chart";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
-import { WAREHOUSES } from "@/constants";
-import { getAllWarehouseCategory, getProductsCategory } from "@/dashboard/actions";
+import { getAllWarehouseCategory, getAllWarehousesName, getProductsCategory } from "@/dashboard/actions";
 
 const chartConfig = {
   Desktop: {
@@ -46,13 +45,20 @@ export function InventoryChart() {
     count: number;
   }
 
-  const [warehouse, setWarehouse] = useState(WAREHOUSES[0]);
+  const [warehouse, setWarehouse] = useState("all");
   const [all, setAll] = useState(true);
 
   const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["products", { warehouse, all }],
     queryFn: all ? getAllWarehouseCategory : () => getProductsCategory(warehouse),
     staleTime: 1000 * 60 * 30,
+  });
+
+
+  const { data: warehouses } = useQuery({
+    queryKey: ["warehouseName"],
+    queryFn: getAllWarehousesName,
+    staleTime: 1000 * 60 * 60,
   });
 
 
@@ -79,11 +85,11 @@ export function InventoryChart() {
             <DropdownMenuContent className="bg-background">
               <DropdownMenuItem onClick={() => setAll(true)}>All Warehouses</DropdownMenuItem>
               {
-                WAREHOUSES.map((warehouse, i) => (
+                warehouses && warehouses.map((warehouse, i) => (
                   <DropdownMenuItem key={i} onClick={() => {
                     setAll(false);
-                    setWarehouse(warehouse);
-                  }}>{warehouse}</DropdownMenuItem>
+                    setWarehouse(warehouse.name || "");
+                  }}>{warehouse.name}</DropdownMenuItem>
                 ))
               }
             </DropdownMenuContent>

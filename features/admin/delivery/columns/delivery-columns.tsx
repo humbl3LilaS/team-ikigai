@@ -17,7 +17,7 @@ export const deliveryColumns = [
         cell: ({ getValue }) => (
             <Link
                 href={`/admin/deliveries/${getValue()}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>
@@ -28,7 +28,7 @@ export const deliveryColumns = [
         cell: ({ getValue }) => (
             <Link
                 href={`/admin/orders/${getValue()}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>
@@ -39,7 +39,7 @@ export const deliveryColumns = [
         cell: ({ getValue, row }) => (
             <Link
                 href={`/admin/drivers/${row.original.driverId}`}
-                className={"max-w-[200px] line-clamp-1"}
+                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
             >
                 {getValue()}
             </Link>

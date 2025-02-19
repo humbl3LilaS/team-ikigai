@@ -14,9 +14,9 @@ import { Button } from "@/components/ui/button";
 import {
     columns,
 } from "@/features/admin/warehouses/columns/warehouse-column";
+
 import { getWarehouses } from "../actions/get-warehouses";
 import { TWarehouse } from "../actions/get-warehouses";
-
 import { useGetWarehouses } from "../hooks/use-get-warehouses";
 
 
@@ -27,15 +27,15 @@ const WareHouseTable = () => {
         pageIndex: 0,
         pageSize: 10,
     });
-    const [warehouseData,setWareHouseData] = useState<TWarehouse[]>([]);
-    useEffect(()=>{
-        const fetchData = async ()=>{
+    const [_, setWareHouseData] = useState<TWarehouse[]>([]);
+    useEffect(() => {
+        const fetchData = async () => {
             const data = await getWarehouses();
             setWareHouseData(data as TWarehouse[]);
-        }
+        };
         fetchData();
-    },[])
-    console.log(warehouseData);
+    }, []);
+    // console.log(warehouseData);
 
     const table = useReactTable({
         data: data ?? [],

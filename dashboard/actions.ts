@@ -3,7 +3,7 @@
 import { and, count, desc, eq, gte, lt, or, sql } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { orderItems, orders, productDetails, products, stocks, users, warehouses } from "@/database/schema";
+import { deliveries, drivers, orderItems, orders, productDetails, products, stocks, users, warehouses } from "@/database/schema";
 
 // Dashboard Page
 export const getDeliveringOrders = async () => {
@@ -120,6 +120,14 @@ export async function getPopularItems() {
 
 }
 
+export async function getDeliveriesByDriverId(driverId: string) {
+  const res = await db.select().from(deliveries).
+    innerJoin(drivers, eq(drivers.userId, driverId))
+    ;
+  // innerJoin(deliveries, eq(deliveries.driverId, users.id));
+  return res;
+}
+
 
 
 // Order Page
@@ -199,14 +207,16 @@ export async function getAllWarehouseCategory() {
 }
 
 export async function getUserNameFromDb(id: string) {
-  try {
-    const res = await db
-      .select({ name: users.name })
-      .from(users)
-      .where(eq(users.id, id));
-    return res[0];
-  } catch {
-    return;
-  }
-
+  const res = await db
+    .select({ name: users.name })
+    .from(users)
+    .where(eq(users.id, id));
+  return res[0];
 }
+
+export async function getAllWarehousesName() {
+  const res = await db.select({ name: warehouses.name }).from(warehouses);
+  // console.log(res);
+  return res;
+}
+

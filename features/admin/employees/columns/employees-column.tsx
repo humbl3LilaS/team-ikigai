@@ -1,28 +1,14 @@
 "use client";
-
 import { createColumnHelper } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { TProductInfo } from "@/features/admin/products/actions/get-products";
 
-const columnHelper = createColumnHelper<TProductInfo>();
+import { TEmployees } from "../actions/get-employees";
 
-export const columns = [
-    columnHelper.accessor("id", {
-        header: () => <span className={"sr-only"}>ID</span>,
-        cell: ({ row }) => (
-            <Image
-                src={row.original.imageUrl}
-                alt={row.original.name}
-                width={200}
-                height={200}
-                className={"size-20 object-contain"}
-            />
-        ),
-    }),
+const columnHelper = createColumnHelper<TEmployees>();
+
+export const CustomersColumns = [
     columnHelper.accessor("name", {
         header: ({ column }) => {
             return (
@@ -37,25 +23,18 @@ export const columns = [
                 </Button>
             );
         },
-        cell: ({ getValue, row }) => (
-            <Link
-                href={`/admin/products/${row.original.id}`}
-                className={"max-w-[200px] line-clamp-1 underline hover:text-blue-500"}
-            >
-                {getValue()}
-            </Link>
+        cell: ({ getValue }) => (
+            getValue()
         ),
     }),
-    columnHelper.accessor("category", {
+    columnHelper.accessor("email", {
         header: ({ column }) => {
             return (
                 <Button
                     variant="ghost"
-                    onClick={() =>
-                        column.toggleSorting(column.getIsSorted() === "asc")
-                    }
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Category
+                    Email
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
@@ -64,16 +43,14 @@ export const columns = [
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
-    columnHelper.accessor("brand", {
+    columnHelper.accessor("phoneNumber", {
         header: ({ column }) => {
             return (
                 <Button
                     variant="ghost"
-                    onClick={() =>
-                        column.toggleSorting(column.getIsSorted() === "asc")
-                    }
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Brand
+                    Phone
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
@@ -82,16 +59,30 @@ export const columns = [
             <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
         ),
     }),
-    columnHelper.accessor("price", {
+    columnHelper.accessor("role", {
         header: ({ column }) => {
             return (
                 <Button
                     variant="ghost"
-                    onClick={() =>
-                        column.toggleSorting(column.getIsSorted() === "asc")
-                    }
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Price
+                    Role
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => (
+            <span className={"max-w-[200px] line-clamp-1"}>{getValue()}</span>
+        ),
+    }),
+    columnHelper.accessor("city", {
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    City
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
