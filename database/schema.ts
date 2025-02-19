@@ -47,6 +47,12 @@ export const DELIVERY_STATUS = pgEnum("delivery_status", [
     "FAILED",
 ]);
 
+export const DELIVERY_TYPE = pgEnum("delivery_type", [
+    "TRANSPORT",
+    "RETRIEVE",
+    "SERVICE",
+]);
+
 export const users = pgTable("users", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
     name: varchar("name", { length: 200 }).notNull(),
@@ -165,9 +171,11 @@ export const warehouseManagers = pgTable("warehouse_managers", {
 
 export const warehouses = pgTable("warehouses", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-    managerId: uuid("manager_id").references(() => warehouseManagers.id, {
-        onDelete: "set null",
-    }),
+    managerId: uuid("manager_id")
+        .references(() => warehouseManagers.id, {
+            onDelete: "set null",
+        })
+        .notNull(),
     phoneNumber: text("phone_number").notNull(),
     name: text("name"),
     address: text("address"),
@@ -196,6 +204,7 @@ export const deliveries = pgTable("deliveries", {
         .references(() => orders.id, { onDelete: "cascade" })
         .notNull(),
     driverId: uuid("driver_id").references(() => drivers.id),
+    type: DELIVERY_TYPE("type").default("TRANSPORT").notNull(),
     deliveryStatus: DELIVERY_STATUS("delivery_status")
         .default("PENDING")
         .notNull(),
