@@ -1,5 +1,5 @@
 "use server";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
 import { deliveries, drivers, users } from "@/database/schema";
@@ -19,7 +19,8 @@ export const getDeliveries = async (userId?: string) => {
             .from(deliveries)
             .innerJoin(drivers, eq(deliveries.driverId, drivers.id))
             .innerJoin(users, eq(drivers.userId, users.id))
-            .where(userId ? eq(users.id, userId) : undefined);
+            .where(userId ? eq(users.id, userId) : undefined)
+            .orderBy(desc(deliveries.createdAt));
         if (!res) {
             return undefined;
         }
