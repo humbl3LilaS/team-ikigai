@@ -42,36 +42,27 @@ const AppSideBar = () => {
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {adminSideBarItems.map((item) => {
-                                if (!item.role.includes(role!)) {
-                                    return;
-                                }
-                                else {
-                                    return (
-                                        <SidebarMenuItem key={item.title}>
-                                            <SidebarMenuButton
-                                                size="lg"
-                                                asChild
-                                                isActive={
-                                                    path == item.url ? true : false
-                                                }
-                                            >
-                                                <Link
-                                                    href={item.url}
-                                                    className="flex items-center gap-2 p-2"
-                                                >
-                                                    {/* {React.createElement(item.icon, {
-                                                className: "w-5 h-5",
-                                            })} */}
-                                                    <span>{item.icon}</span>
-                                                    <span>{item.title}</span>
-                                                </Link>
-                                            </SidebarMenuButton>
-                                        </SidebarMenuItem>
-                                    );
+                            {adminSideBarItems.filter(item => item.role.includes(role!)).map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton
+                                        size="lg"
+                                        asChild
+                                        isActive={
+                                            path == item.url ? true : false
+                                        }
+                                        tooltip={item.title}
+                                    >
+                                        <Link
+                                            href={item.url}
+                                            className="flex items-center gap-2 p-2"
+                                        >
+                                            <span>{item.icon}</span>
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
 
-                                }
-                            })}
+                            ))}
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>

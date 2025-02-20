@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { ChevronUp, User2 } from "lucide-react";
+import { ChevronUp, LogOut, SunMoon, User2 } from "lucide-react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
@@ -50,7 +50,7 @@ export default function AdminSidebarFooter() {
                 <User2 />
                 {isLoading ?
                   <Skeleton className="w-full h-full" /> :
-                  <span>{data?.name} ({role == "WAREHOUSE_MANAGER" ? "WAREHOUSE MANAGE" : role})
+                  <span>{data?.name} ({role == "WAREHOUSE_MANAGER" ? "WAREHOUSE" : role})
                   </span>
                 }
                 <ChevronUp className="ml-auto" />
@@ -61,10 +61,10 @@ export default function AdminSidebarFooter() {
               className="w-[--radix-popper-anchor-width]"
             >
               <DropdownMenuItem>
-                <Link className="w-full h-full text-left" href="/admin/account">Account</Link>
+                <Link className="w-full h-full text-left" href="/admin/account"> <User2 className="inline size-5" /> Account</Link>
               </DropdownMenuItem >
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Switch Theme</DropdownMenuSubTrigger>
+                <DropdownMenuSubTrigger> <SunMoon /> Switch Theme</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
                     <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
@@ -73,6 +73,7 @@ export default function AdminSidebarFooter() {
                 </DropdownMenuPortal>
               </DropdownMenuSub>
               <DropdownMenuItem>
+                <LogOut />
                 <button type="button" className="w-full text-left" onClick={() => signOut()}>Logout</button>
               </DropdownMenuItem>
             </DropdownMenuContent>

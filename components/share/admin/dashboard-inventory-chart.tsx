@@ -38,15 +38,15 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function InventoryChart() {
+export function InventoryChart({ warehouseName }: { warehouseName: string }) {
 
   type TData = {
     category: string;
     count: number;
   }
 
-  const [warehouse, setWarehouse] = useState("all");
-  const [all, setAll] = useState(true);
+  const [warehouse, setWarehouse] = useState(warehouseName ? warehouseName : "all");
+  const [all, setAll] = useState(warehouseName ? false : true);
 
   const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["products", { warehouse, all }],
@@ -58,7 +58,7 @@ export function InventoryChart() {
   const { data: warehouses } = useQuery({
     queryKey: ["warehouseName"],
     queryFn: getAllWarehousesName,
-    staleTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 30,
   });
 
 
@@ -71,11 +71,11 @@ export function InventoryChart() {
   }
 
   return (
-    <Card className="w-full">
+    <Card className="w-full max-w-screen-lg">
       <CardHeader>
         <CardTitle>
           <span className="mr-2">Inventory Products</span>
-          <DropdownMenu>
+          {!warehouseName && <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='outline' size='sm'>
                 {all ? "All Warehouses" : warehouse}
@@ -93,11 +93,11 @@ export function InventoryChart() {
                 ))
               }
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu>}
         </CardTitle>
         <CardDescription>Inventory Data for {all ? "All warehouses" : warehouse}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="w-full">
         {isLoading ? <Skeleton className="max-w-screen-sm h-52" />
           : <ChartContainer config={chartConfig}>
             <BarChart
@@ -130,6 +130,7 @@ export function InventoryChart() {
                 layout="vertical"
                 fill="hsl(var(--chart-1))"
                 radius={4}
+
               >
 
                 <LabelList

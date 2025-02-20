@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableFooter,
     TableHead,
@@ -88,7 +87,7 @@ const DriverDetails = async ({ id }: { id: string }) => {
                                             ) : (
                                                 format(
                                                     delivery.deliveredDate,
-                                                    "do MMM yyyy"
+                                                    "do MMM yyyy",
                                                 )
                                             )
                                         }
@@ -105,6 +104,6 @@ const DriverDetails = async ({ id }: { id: string }) => {
                 </div>
             </section>
         </>
-    )
-}
+    );
+};
 export default DriverDetails;

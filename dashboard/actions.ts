@@ -3,7 +3,7 @@
 import { and, count, desc, eq, gte, lt, or, sql } from "drizzle-orm";
 
 import { db } from "@/database/dirzzle";
-import { deliveries, drivers, orderItems, orders, productDetails, products, stocks, users, warehouses } from "@/database/schema";
+import { deliveries, drivers, orderItems, orders, productDetails, products, stocks, users, warehouseManagers, warehouses } from "@/database/schema";
 
 // Dashboard Page
 export const getDeliveringOrders = async () => {
@@ -120,12 +120,64 @@ export async function getPopularItems() {
 
 }
 
-export async function getDeliveriesByDriverId(driverId: string) {
-  const res = await db.select().from(deliveries).
-    innerJoin(drivers, eq(drivers.userId, driverId))
-    ;
-  // innerJoin(deliveries, eq(deliveries.driverId, users.id));
+export async function getTotalDeliveriesByDriverId(driverId: string) {
+  const res = await db
+    .select({
+      deliStatus: deliveries.deliveryStatus,
+      totalDeliveries: count(),
+    })
+    .from(drivers).where(eq(drivers.userId, driverId))
+    .innerJoin(deliveries, eq(deliveries.driverId, drivers.id))
+    .groupBy(deliveries.deliveryStatus)
+    .orderBy(deliveries.deliveryStatus);
+  // console.log(res);
   return res;
+}
+
+export async function getRecentDeliveriesByDriverId(driverId: string) {
+  const res = await db.select({
+    id: deliveries.id,
+    date: deliveries.createdAt,
+    deliStatus: deliveries.deliveryStatus,
+    totalAmount: orders.totalAmount,
+    product: productDetails.name,
+    img: productDetails.imageUrl,
+    brand: productDetails.brand,
+    category: productDetails.category,
+    productPrice: productDetails.price,
+    quantity: orderItems.quantity,
+    customerName: users.name,
+    customerPhone: users.phoneNumber,
+    customerEmail: users.email,
+    location: sql<string>`CONCAT(${orders.address}, ', ', ${orders.city}, ', ', ${orders.region})`,
+  }).from(drivers)
+    .where(and(eq(drivers.userId, driverId), eq(deliveries.deliveryStatus, "DELIVERED")))
+    .innerJoin(deliveries, eq(deliveries.driverId, drivers.id))
+    .innerJoin(orders, eq(orders.id, deliveries.orderId))
+    .innerJoin(orderItems, eq(orderItems.orderId, orders.id))
+    .innerJoin(products, eq(products.id, orderItems.productId))
+    .innerJoin(productDetails, eq(productDetails.id, products.detailId))
+    .innerJoin(users, eq(users.id, orders.userId))
+    .limit(5)
+    ;
+  // console.log(res);
+  return res;
+}
+
+export async function getCategoriesByWarehouseId(warehouseManagerId: string) {
+  const res = await db.select({
+    id: warehouses.id,
+    warehouseName: warehouses.name,
+    phone: warehouses.phoneNumber,
+    warehouseManagerName: users.name,
+    location: sql<string>`CONCAT(${warehouses.address}, ', ' , ${warehouses.city}, ', ' , ${warehouses.region})`,
+  }).from(warehouseManagers)
+    .where(eq(warehouseManagers.userId, warehouseManagerId))
+    .innerJoin(warehouses, eq(warehouses.managerId, warehouseManagers.id))
+    .innerJoin(users, (eq(warehouseManagers.userId, users.id)))
+    ;
+  // console.log(res);
+  return res[0];
 }
 
 
