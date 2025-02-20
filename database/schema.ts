@@ -39,6 +39,7 @@ export const COMPLAIN_STATUS = pgEnum("complain_status", [
     "APPROVE",
     "SOLVING",
     "SOLVED",
+    "DECLINED",
 ]);
 export const COMPLAIN_TYPE = pgEnum("complain_type", ["EXCHANGE", "REPAIR"]);
 export const DELIVERY_STATUS = pgEnum("delivery_status", [
@@ -52,7 +53,10 @@ export const DELIVERY_TYPE = pgEnum("delivery_type", [
     "TRANSPORT",
     "RETRIEVE",
     "SERVICE",
+    "EXCHANGE",
 ]);
+
+export const INVOICE_STATUS = pgEnum("invoice_status", ["SUCCESS", "FAILED"]);
 
 export const users = pgTable("users", {
     id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
@@ -145,6 +149,7 @@ export const invoices = pgTable("invoices", {
     paymentMethod: PAYMENT_METHOD("payment_method")
         .default("CASH_ON_DELIVERY")
         .notNull(),
+    status: INVOICE_STATUS("invoice_status").default("SUCCESS").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
         .defaultNow()
         .notNull(),
@@ -161,7 +166,7 @@ export const complains = pgTable("complains", {
     createdAt: timestamp("created_at", { withTimezone: true })
         .defaultNow()
         .notNull(),
-    faultQty: integer("fault_qty").default(0),
+    faultQty: integer("fault_qty").default(0).notNull(),
     resolvedAt: timestamp("resolved_at", { withTimezone: true }),
 });
 export const warehouseManagers = pgTable("warehouse_managers", {
