@@ -6,11 +6,12 @@ import { db } from "@/database/dirzzle";
 import {
     complains,
     orderItems,
+    orders,
     productDetails,
     products,
 } from "@/database/schema";
 
-export const getComplains = async () => {
+export const getComplains = async (useId: string) => {
     try {
         const res = await db
             .select({
@@ -23,11 +24,10 @@ export const getComplains = async () => {
             })
             .from(complains)
             .innerJoin(orderItems, eq(complains.orderItemId, orderItems.id))
+            .innerJoin(orders, eq(orderItems.orderId, orders.id))
             .innerJoin(products, eq(orderItems.productId, products.id))
-            .innerJoin(
-                productDetails,
-                eq(productDetails.id, products.detailId),
-            );
+            .innerJoin(productDetails, eq(productDetails.id, products.detailId))
+            .where(eq(orders.userId, useId));
         if (!res) {
             return undefined;
         }

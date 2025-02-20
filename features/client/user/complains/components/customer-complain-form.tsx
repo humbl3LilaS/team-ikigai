@@ -24,6 +24,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { COMPLAIN_TYPE } from "@/database/schema";
 import { fileComplain } from "@/features/client/user/complains/actions/file-complain";
+import FaultyQtyController from "@/features/client/user/complains/components/faulty-qty-controller";
 import OrderItemSelector from "@/features/client/user/complains/components/order-item-selector";
 import { useGetOrdersByUserId } from "@/features/client/user/hooks/use-get-orders-by-user-id";
 import { useToast } from "@/hooks/use-toast";
@@ -36,7 +37,8 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
             issue: "",
             type: "",
             orderId: "",
-            orderDetailsId: [],
+            orderItemId: "",
+            faultQty: 1,
         },
     });
 
@@ -44,7 +46,6 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
     const queryClient = useQueryClient();
 
     const { data: orders, isLoading } = useGetOrdersByUserId(userId, "FINISH");
-    console.log(orders);
     const onSubmit: SubmitHandler<TComplainFormSchema> = async (values) => {
         const res = await fileComplain(values);
         if (!res.success) {
@@ -58,14 +59,14 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
             title: "Complaint Successfully Filed",
         });
         await queryClient.invalidateQueries({
-            queryKey: ["complains"],
+            queryKey: ["complains", { userId }],
         });
         form.reset();
     };
     const orderId = form.watch("orderId");
-
+    const orderItemId = form.watch("orderItemId");
     useEffect(() => {
-        form.setValue("orderDetailsId", []);
+        form.setValue("orderItemId", "");
     }, [orderId, form.setValue]);
 
     return (
@@ -74,7 +75,7 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className={"flex flex-col gap-y-3"}
+                    className={"flex flex-col gap-y-6"}
                 >
                     <FormField
                         name={"orderId"}
@@ -115,7 +116,7 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
                     />
                     {orderId && (
                         <FormField
-                            name={"orderDetailsId"}
+                            name={"orderItemId"}
                             control={form.control}
                             render={({ field }) => (
                                 <OrderItemSelector
@@ -123,6 +124,28 @@ const CustomerComplainForm = ({ userId }: { userId: string }) => {
                                     value={field.value}
                                     onChange={field.onChange}
                                 />
+                            )}
+                        />
+                    )}
+
+                    {orderId && orderItemId && (
+                        <FormField
+                            name={"faultQty"}
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Select Qty of Fault Item
+                                    </FormLabel>
+                                    <FormControl>
+                                        <FaultyQtyController
+                                            orderId={orderId}
+                                            orderItemId={orderItemId}
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                </FormItem>
                             )}
                         />
                     )}

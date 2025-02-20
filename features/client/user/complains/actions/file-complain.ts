@@ -9,17 +9,16 @@ export const fileComplain = async (
     payload: TComplainFormSchema,
 ): Promise<{ success: true } | { success: false; cause: Cause }> => {
     try {
-        const promises = payload.orderDetailsId.map(async (item) => {
-            return db
-                .insert(complains)
-                .values({
-                    orderItemId: item,
-                    issues: payload.issue,
-                    type: payload.type as IComplainType,
-                })
-                .returning();
-        });
-        const res = await Promise.all(promises);
+        const res = await db
+            .insert(complains)
+            .values({
+                orderItemId: payload.orderItemId,
+                issues: payload.issue,
+                type: payload.type as IComplainType,
+                faultQty: payload.faultQty,
+            })
+            .returning();
+
         if (!res) {
             return {
                 success: false,

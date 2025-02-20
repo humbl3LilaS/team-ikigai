@@ -1,6 +1,12 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { FormMessage } from "@/components/ui/form";
+import {
+    FormControl,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
     Table,
     TableBody,
@@ -13,8 +19,8 @@ import { useGetOrderItemsByOrderId } from "@/features/client/user/hooks/use-get-
 
 type OrderItemSelectorProps = {
     orderId: string;
-    value: string[] | undefined;
-    onChange: (payload: string[] | undefined) => void;
+    value: string;
+    onChange: (payload: string | undefined) => void;
 };
 
 const OrderItemSelector = ({
@@ -25,53 +31,25 @@ const OrderItemSelector = ({
     const { data } = useGetOrderItemsByOrderId(orderId);
     return (
         <div>
-            <h2>Select Order Items</h2>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className={"sr-only"}>Check</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Qty</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {data &&
-                        data.map((item) => (
-                            <TableRow key={item.id}>
-                                <TableCell>
-                                    <Checkbox
-                                        id={item.id}
-                                        checked={
-                                            value &&
-                                            value.includes(item.orderItemId)
-                                        }
-                                        onCheckedChange={(check) => {
-                                            if (check && value) {
-                                                onChange([
-                                                    ...value,
-                                                    item.orderItemId,
-                                                ]);
-                                            }
-                                            if (!check && value) {
-                                                onChange(
-                                                    value.filter(
-                                                        (val) =>
-                                                            val !==
-                                                            item.orderItemId,
-                                                    ),
-                                                );
-                                            }
-                                        }}
-                                    />
-                                </TableCell>
-                                <TableCell>
-                                    <Label htmlFor={item.id}>{item.name}</Label>
-                                </TableCell>
-                                <TableCell>{item.quantity}</TableCell>
-                            </TableRow>
-                        ))}
-                </TableBody>
-            </Table>
+            <h2 className={"mb-3 text-sm font-medium leading-none"}>
+                Select Order Items
+            </h2>
+            <RadioGroup value={value} onValueChange={onChange}>
+                {data &&
+                    data.map((item) => (
+                        <FormItem
+                            key={item.id}
+                            className={"flex  items-center gap-x-2"}
+                        >
+                            <FormControl>
+                                <RadioGroupItem value={item.orderItemId} />
+                            </FormControl>
+                            <FormLabel className={"!m-0 pt-0"}>
+                                {item.name}
+                            </FormLabel>
+                        </FormItem>
+                    ))}
+            </RadioGroup>
             <FormMessage />
         </div>
     );

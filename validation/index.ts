@@ -45,12 +45,7 @@ export type TFilterFormSchema = Zod.infer<typeof FilterFormSchema>;
 
 export const ComplainFormSchema = z.object({
     orderId: z.string().min(1),
-    orderDetailsId: z
-        .string()
-        .array()
-        .refine((arg) => arg.length > 0, {
-            message: "Please select at least one item",
-        }),
+    orderItemId: z.string().min(1, { message: "Please Select an Order Item" }),
     type: z
         .string()
         .refine((arg) =>
@@ -59,6 +54,7 @@ export const ComplainFormSchema = z.object({
     issue: z.string().min(10, {
         message: "Issue must be at least 10 characters long",
     }),
+    faultQty: z.coerce.number().min(1),
 });
 
 export type TComplainFormSchema = Zod.infer<typeof ComplainFormSchema>;

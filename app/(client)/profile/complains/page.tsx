@@ -12,7 +12,7 @@ export default async function ComplaintsPage() {
     return (
         <section
             className={
-                "px-6 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-10 lg:px-20"
+                "py-20 px-6 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-10 lg:px-20"
             }
         >
             <CustomerComplaintForm userId={session.user.id} />
