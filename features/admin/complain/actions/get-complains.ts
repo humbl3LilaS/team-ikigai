@@ -31,6 +31,7 @@ export const getComplains = async () => {
                 city: orders.city,
                 region: orders.region,
                 address: orders.address,
+                orderItemId: orderItems.id,
             })
             .from(complains)
             .innerJoin(orderItems, eq(complains.orderItemId, orderItems.id))
