@@ -39,7 +39,7 @@ export const columns = [
                     column.toggleSorting(column.getIsSorted() === "asc")
                 }
             >
-                Category
+                Create At
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         ),
@@ -57,7 +57,6 @@ export const columns = [
         header: () => <span>Status</span>,
         cell: ({ getValue }) => <ComplainsStatus status={getValue()} />,
     }),
-
     columnHelper.accessor("issues", {
         header: () => <span></span>,
         cell: ({ row }) => <ComplainTableActionBtn data={row.original} />,

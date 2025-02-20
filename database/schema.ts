@@ -161,6 +161,7 @@ export const complains = pgTable("complains", {
     createdAt: timestamp("created_at", { withTimezone: true })
         .defaultNow()
         .notNull(),
+    faultQty: integer("fault_qty").default(0),
     resolvedAt: timestamp("resolved_at", { withTimezone: true }),
 });
 export const warehouseManagers = pgTable("warehouse_managers", {
