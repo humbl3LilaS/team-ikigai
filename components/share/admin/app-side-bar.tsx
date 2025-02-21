@@ -1,4 +1,4 @@
-"use client";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,19 +11,24 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { adminSideBarItems } from "@/constants/ui-constants";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import AdminSidebarFooter from "./admin-side-bar-footer";
+// import AdminSidebarItems from "./admin-side-bar-Items";
+const AdminSidebarItems = dynamic(() => import("./admin-side-bar-Items"),
+    {
+        ssr: false,
+        loading: () =>
+            <div className="hidden md:flex flex-col w-[240px] items-center gap-3 mt-3 pl-2">
+                {Array.from({ length: 5 }, (_, i) => <Skeleton key={i} className="w-full h-12" />)}
+            </div>,
+    });
 
 const AppSideBar = () => {
     const path = usePathname();
     const session = useSession();
-
-    const role = session.data?.user.role;
+    const role = session?.data?.user.role;
 
     return (
         <Sidebar collapsible="icon" className="print:hidden">
@@ -41,29 +46,7 @@ const AppSideBar = () => {
                         </Link>
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
-                        <SidebarMenu>
-                            {adminSideBarItems.filter(item => item.role.includes(role!)).map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton
-                                        size="lg"
-                                        asChild
-                                        isActive={
-                                            path == item.url ? true : false
-                                        }
-                                        tooltip={item.title}
-                                    >
-                                        <Link
-                                            href={item.url}
-                                            className="flex items-center gap-2 p-2"
-                                        >
-                                            <span>{item.icon}</span>
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-
-                            ))}
-                        </SidebarMenu>
+                        <AdminSidebarItems role={role!} path={path} />
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
