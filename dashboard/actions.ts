@@ -258,12 +258,17 @@ export async function getAllWarehouseCategory() {
 
 }
 
-export async function getUserNameFromDb(id: string) {
-  const res = await db
-    .select({ name: users.name })
-    .from(users)
-    .where(eq(users.id, id));
-  return res[0];
+export async function getUserNameFromDb(id: string, name?: string) {
+  try {
+    const res = await db
+      .select({ name: users.name })
+      .from(users)
+      .where(eq(users.id, id));
+    return res[0];
+  } catch {
+    return { name };
+  }
+
 }
 
 export async function getAllWarehousesName() {
