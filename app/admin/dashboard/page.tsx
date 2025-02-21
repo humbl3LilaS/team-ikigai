@@ -11,6 +11,10 @@ export default async function DashboardPage() {
   switch (role) {
     case "ADMIN":
       return <AdminDashboard />;
+    case "FINANCE":
+      return <AdminDashboard />;
+    case "SALES":
+      return <AdminDashboard />;
     case "DRIVER":
       return <DriverDashboard />;
     case "WAREHOUSE_MANAGER":
