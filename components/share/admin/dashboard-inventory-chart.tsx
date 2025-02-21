@@ -38,7 +38,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function InventoryChart({ warehouseName }: { warehouseName: string }) {
+export function InventoryChart({ warehouseName }: { warehouseName?: string }) {
 
   type TData = {
     category: string;

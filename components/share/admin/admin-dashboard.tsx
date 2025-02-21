@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
       </section>
 
       <section className="p-2 max-w-screen-lg">
-        <InventoryChart warehouseName="" />
+        <InventoryChart />
       </section>
     </section>
   );
