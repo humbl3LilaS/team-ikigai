@@ -25,7 +25,10 @@ const OrderTableActionBtn = ({
 
     const { mutateAsync, isPending } = useChangeOrderStatus();
 
-    if (role === "SALES" && (status === "ON_THE_WAY" || status === "APPROVE")) {
+    if (
+        (role === "SALES" || role === "FINANCE") &&
+        (status === "ON_THE_WAY" || status === "APPROVE")
+    ) {
         return <></>;
     }
 

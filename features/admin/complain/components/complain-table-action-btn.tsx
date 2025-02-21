@@ -16,7 +16,6 @@ import { useUpdateComplain } from "@/features/admin/complain/hooks/use-update-co
 
 const ComplainTableActionBtn = ({ data }: { data: TComplains }) => {
     const { mutateAsync, isPending } = useUpdateComplain();
-    console.log(data);
 
     const onApprove = useCallback(async () => {
         await mutateAsync({
@@ -65,9 +64,9 @@ const ComplainTableActionBtn = ({ data }: { data: TComplains }) => {
                     )}
                     <Button
                         disabled={
-                            !(
-                                ["PENDING", "DECLINED"] as IComplainStatus[]
-                            ).includes(data.status) || isPending
+                            !(["PENDING"] as IComplainStatus[]).includes(
+                                data.status,
+                            ) || isPending
                         }
                         onClick={onDecline}
                     >
