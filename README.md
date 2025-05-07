@@ -38,6 +38,7 @@ pnpm run lint:fix
 pnpm run format
 ```
 
+The End.
 ---
 
 ### Generate Schema
